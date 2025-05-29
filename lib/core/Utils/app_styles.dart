@@ -2,36 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:oxytocin/core/Utils/size_config.dart';
 
 abstract class AppStyles {
-  static TextStyle lobsterRegularregular(context) {
+  static TextStyle gESSUniqueBold(context) {
     return TextStyle(
       color: const Color.fromARGB(255, 255, 255, 255),
-      fontSize: getResponsiveFontSize(context, fontSize: 65),
-      fontFamily: 'Lobster',
-      fontWeight: FontWeight.w400,
+      fontSize: getResponsiveFontSize(context, fontSize: 47),
+      fontFamily: 'GESSUniqueBold',
+      fontWeight: FontWeight.w700,
     );
   }
 
-  static TextStyle abelregular(context) {
+  static TextStyle cairoExtraBold(context) {
     return TextStyle(
-      textBaseline: TextBaseline.ideographic,
-      color: const Color(0xFF0059A6),
-      fontSize: getResponsiveFontSize(context, fontSize: 14),
-      decorationThickness: 2,
-      decorationColor: const Color(0xFF0059A6),
-      fontFamily: 'Abel',
-      fontWeight: FontWeight.w400,
+      color: const Color.fromARGB(255, 255, 255, 255),
+      fontSize: getResponsiveFontSize(context, fontSize: 32),
+      fontFamily: 'CairoExtraBold',
+      fontWeight: FontWeight.w800,
     );
   }
 
-  static TextStyle caveatregular(context) {
+  static TextStyle almaraiExtraBold(context) {
     return TextStyle(
-      textBaseline: TextBaseline.ideographic,
-      color: const Color(0xFF0059A6),
-      fontSize: getResponsiveFontSize(context, fontSize: 50),
-      decorationThickness: 2,
-      decorationColor: const Color(0xFF0059A6),
-      fontFamily: 'Caveat',
-      fontWeight: FontWeight.w400,
+      color: const Color.fromARGB(255, 255, 255, 255),
+      fontSize: getResponsiveFontSize(context, fontSize: 16),
+      fontFamily: 'AlmaraiExtraBold',
+      fontWeight: FontWeight.w800,
     );
   }
 }
