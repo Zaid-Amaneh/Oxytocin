@@ -22,6 +22,21 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "Oxytocin": MessageLookupByLibrary.simpleMessage("Oxytocin")
+        "FindPerfectDoctor":
+            MessageLookupByLibrary.simpleMessage("Find Your Perfect Doctor"),
+        "FindPerfectDoctorDes": MessageLookupByLibrary.simpleMessage(
+            "Browse trusted doctor profiles and choose the one that fits your needs with ease and confidence."),
+        "MedicalRecordInYourHand": MessageLookupByLibrary.simpleMessage(
+            "Your Medical Record in Your Hands"),
+        "MedicalRecordInYourHandDes": MessageLookupByLibrary.simpleMessage(
+            "Track your health history and medical files anytime, securely."),
+        "Next": MessageLookupByLibrary.simpleMessage("Next"),
+        "Oxytocin": MessageLookupByLibrary.simpleMessage("Oxytocin"),
+        "Skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "YourPrivacyProtected": MessageLookupByLibrary.simpleMessage(
+            "Your Privacy is Always Protected"),
+        "YourPrivacyProtectedDes": MessageLookupByLibrary.simpleMessage(
+            "All your health information is encrypted and safe. Your privacy is our priority."),
+        "startNow": MessageLookupByLibrary.simpleMessage("Start now")
       };
 }

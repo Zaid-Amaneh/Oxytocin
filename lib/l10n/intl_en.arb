@@ -1,4 +1,12 @@
 {
-    "Oxytocin":"Oxytocin"
-
+    "Oxytocin": "Oxytocin",
+    "FindPerfectDoctor": "Find Your Perfect Doctor",
+    "FindPerfectDoctorDes": "Browse trusted doctor profiles and choose the one that fits your needs with ease and confidence.",
+    "MedicalRecordInYourHand": "Your Medical Record in Your Hands",
+    "MedicalRecordInYourHandDes": "Track your health history and medical files anytime, securely.",
+    "YourPrivacyProtected": "Your Privacy is Always Protected",
+    "YourPrivacyProtectedDes": "All your health information is encrypted and safe. Your privacy is our priority.",
+    "Next": "Next",
+    "Skip": "Skip",
+    "startNow":"Start now"
 }

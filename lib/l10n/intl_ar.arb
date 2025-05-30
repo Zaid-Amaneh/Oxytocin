@@ -1,3 +1,12 @@
 {
-    "Oxytocin":"أوكسيتوسين"
+    "Oxytocin":"أوكسيتوسين",
+    "FindPerfectDoctor":"اعثر على طبيبك المثالي",
+    "FindPerfectDoctorDes":"تصفّح ملفات الأطباء الموثوقين واختر من يناسب احتياجاتك بثقة وسهولة.",
+    "MedicalRecordInYourHand":"سجلك الطبي في متناولك",
+    "MedicalRecordInYourHandDes":"تابع تاريخك الصحي وملفاتك الطبية في أي وقت وبكل أمان.",
+    "YourPrivacyProtected":"خصوصيتك محمية دائمًا",
+    "YourPrivacyProtectedDes":"كل معلوماتك الصحية مشفّرة وآمنة,خصوصيتك أولويتنا.",
+    "Next":"التالي",
+    "Skip":"تخطي",
+    "startNow":"ابدأ الآن"
 }

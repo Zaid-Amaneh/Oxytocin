@@ -59,6 +59,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Find Your Perfect Doctor`
+  String get FindPerfectDoctor {
+    return Intl.message(
+      'Find Your Perfect Doctor',
+      name: 'FindPerfectDoctor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Browse trusted doctor profiles and choose the one that fits your needs with ease and confidence.`
+  String get FindPerfectDoctorDes {
+    return Intl.message(
+      'Browse trusted doctor profiles and choose the one that fits your needs with ease and confidence.',
+      name: 'FindPerfectDoctorDes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Medical Record in Your Hands`
+  String get MedicalRecordInYourHand {
+    return Intl.message(
+      'Your Medical Record in Your Hands',
+      name: 'MedicalRecordInYourHand',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Track your health history and medical files anytime, securely.`
+  String get MedicalRecordInYourHandDes {
+    return Intl.message(
+      'Track your health history and medical files anytime, securely.',
+      name: 'MedicalRecordInYourHandDes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Privacy is Always Protected`
+  String get YourPrivacyProtected {
+    return Intl.message(
+      'Your Privacy is Always Protected',
+      name: 'YourPrivacyProtected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All your health information is encrypted and safe. Your privacy is our priority.`
+  String get YourPrivacyProtectedDes {
+    return Intl.message(
+      'All your health information is encrypted and safe. Your privacy is our priority.',
+      name: 'YourPrivacyProtectedDes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get Next {
+    return Intl.message(
+      'Next',
+      name: 'Next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skip`
+  String get Skip {
+    return Intl.message(
+      'Skip',
+      name: 'Skip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start now`
+  String get startNow {
+    return Intl.message(
+      'Start now',
+      name: 'startNow',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

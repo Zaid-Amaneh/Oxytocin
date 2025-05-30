@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:oxytocin/features/intro/presentation/views/splash_view.dart';
 import 'package:oxytocin/generated/l10n.dart';
 
@@ -12,7 +13,7 @@ class OxytocinApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       locale: const Locale('ar'),
       localizationsDelegates: [
         S.delegate,
