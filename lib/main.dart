@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:oxytocin/core/theme/app_theme.dart';
 import 'package:oxytocin/features/intro/presentation/views/splash_view.dart';
 import 'package:oxytocin/generated/l10n.dart';
 
@@ -22,6 +23,7 @@ class OxytocinApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
+      theme: AppTheme.lightTheme,
       home: const SplashView(),
     );
   }

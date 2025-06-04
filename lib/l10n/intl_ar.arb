@@ -8,5 +8,19 @@
     "YourPrivacyProtectedDes":"كل معلوماتك الصحية مشفّرة وآمنة,خصوصيتك أولويتنا.",
     "Next":"التالي",
     "Skip":"تخطي",
-    "startNow":"ابدأ الآن"
+    "StartNow":"ابدأ الآن",
+    "SignUp":"إنشاء حساب",
+    "SignIn":"تسجيل الدخول",
+    "Password":"كلمة المرور",
+    "PhoneNumber":"رقم الهاتف",
+    "PleaseEnterValidNumber":"الرجاء إدخال رقم صالح",
+    "Passwordatleast8characterslong":"يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+    "Passwordisrequired":"كلمة المرور مطلوبة",
+    "Passwordincludeleastonelowercaseletter":"يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل",
+    "Passwordincludeleastoneuppercaseletter":"يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل",
+    "Passwordmustincludeatleastonenumber":"يجب أن تحتوي كلمة المرور على رقم واحد على الأقل",
+    "Passwordmustleastonespecialcharacter":"يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل",
+    "Passwordistoocommon":"كلمة المرور شائعة جدًا. الرجاء اختيار كلمة مرور أكثر أمانًا",
+    "Passwordshouldnotcontainyourusername":"يجب ألا تحتوي كلمة المرور على اسم المستخدم الخاص بك",
+    "Passwordshouldnotcontainpartsofyouremail":"يجب ألا تحتوي كلمة المرور على جزء من بريدك الإلكتروني"   
 }

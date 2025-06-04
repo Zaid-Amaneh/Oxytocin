@@ -94,7 +94,19 @@ flutter:
         fonts:
         - asset: assets/fonts/Almarai-ExtraBold.ttf
           weight: 800
-  #   - family: Schyler
+      - family: AlmaraiBold
+        fonts:
+        - asset: assets/fonts/Almarai-Bold.ttf
+          weight: 700
+      - family: AlmaraiRegular
+        fonts:
+        - asset: assets/fonts/Almarai-Regular.ttf
+          weight: 400
+      - family: TajawalBold
+        fonts:
+        - asset: assets/fonts/Tajawal-Bold.ttf
+          weight: 700
+  #   - family: Schyler assets\fonts\Almarai-Regular.ttf
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf

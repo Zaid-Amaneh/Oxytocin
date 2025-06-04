@@ -25,18 +25,48 @@ class MessageLookup extends MessageLookupByLibrary {
         "FindPerfectDoctor":
             MessageLookupByLibrary.simpleMessage("Find Your Perfect Doctor"),
         "FindPerfectDoctorDes": MessageLookupByLibrary.simpleMessage(
-            "Browse trusted doctor profiles and choose the one that fits your needs with ease and confidence."),
+            "Browse trusted doctors\' profiles and choose the one that suits your needs with confidence and ease."),
         "MedicalRecordInYourHand": MessageLookupByLibrary.simpleMessage(
-            "Your Medical Record in Your Hands"),
+            "Your Medical Record in Your Hand"),
         "MedicalRecordInYourHandDes": MessageLookupByLibrary.simpleMessage(
-            "Track your health history and medical files anytime, securely."),
+            "Track your health history and medical records anytime, securely."),
         "Next": MessageLookupByLibrary.simpleMessage("Next"),
         "Oxytocin": MessageLookupByLibrary.simpleMessage("Oxytocin"),
+        "Password": MessageLookupByLibrary.simpleMessage("Password"),
+        "Passwordatleast8characterslong": MessageLookupByLibrary.simpleMessage(
+            "Password must be at least 8 characters long"),
+        "Passwordincludeleastonelowercaseletter":
+            MessageLookupByLibrary.simpleMessage(
+                "Password must include at least one lowercase letter"),
+        "Passwordincludeleastoneuppercaseletter":
+            MessageLookupByLibrary.simpleMessage(
+                "Password must include at least one uppercase letter"),
+        "Passwordisrequired":
+            MessageLookupByLibrary.simpleMessage("Password is required"),
+        "Passwordistoocommon": MessageLookupByLibrary.simpleMessage(
+            "Password is too common. Please choose a more secure one"),
+        "Passwordmustincludeatleastonenumber":
+            MessageLookupByLibrary.simpleMessage(
+                "Password must include at least one number"),
+        "Passwordmustleastonespecialcharacter":
+            MessageLookupByLibrary.simpleMessage(
+                "Password must include at least one special character"),
+        "Passwordshouldnotcontainpartsofyouremail":
+            MessageLookupByLibrary.simpleMessage(
+                "Password should not contain parts of your email"),
+        "Passwordshouldnotcontainyourusername":
+            MessageLookupByLibrary.simpleMessage(
+                "Password should not contain your username"),
+        "PhoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
+        "PleaseEnterValidNumber":
+            MessageLookupByLibrary.simpleMessage("Please enter a valid number"),
+        "SignIn": MessageLookupByLibrary.simpleMessage("Sign In"),
+        "SignUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "Skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "StartNow": MessageLookupByLibrary.simpleMessage("Start Now"),
         "YourPrivacyProtected": MessageLookupByLibrary.simpleMessage(
             "Your Privacy is Always Protected"),
         "YourPrivacyProtectedDes": MessageLookupByLibrary.simpleMessage(
-            "All your health information is encrypted and safe. Your privacy is our priority."),
-        "startNow": MessageLookupByLibrary.simpleMessage("Start now")
+            "All your health information is encrypted and secure. Your privacy is our priority.")
       };
 }

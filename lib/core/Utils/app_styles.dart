@@ -28,6 +28,32 @@ abstract class AppStyles {
       fontWeight: FontWeight.w800,
     );
   }
+
+  static TextStyle almaraiBold(context) {
+    return TextStyle(
+      color: const Color.fromARGB(255, 255, 255, 255),
+      fontSize: getResponsiveFontSize(context, fontSize: 20),
+      fontFamily: 'AlmaraiBold',
+      fontWeight: FontWeight.w700,
+    );
+  }
+
+  static TextStyle almaraiRegular(context) {
+    return TextStyle(
+      fontSize: getResponsiveFontSize(context, fontSize: 12),
+      fontFamily: 'AlmaraiRegular',
+      fontWeight: FontWeight.w400,
+    );
+  }
+
+  static TextStyle tajawalBold(context) {
+    return TextStyle(
+      color: const Color.fromARGB(255, 255, 255, 255),
+      fontSize: getResponsiveFontSize(context, fontSize: 17),
+      fontFamily: 'TajawalBold',
+      fontWeight: FontWeight.w700,
+    );
+  }
 }
 
 //#

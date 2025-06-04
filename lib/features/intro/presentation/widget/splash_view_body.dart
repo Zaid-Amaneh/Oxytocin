@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:oxytocin/constants/app_constants.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/services/local_storage_service.dart';
+import 'package:oxytocin/core/theme/app_gradients.dart';
 import 'package:oxytocin/features/auth/presentation/views/sign_in_view.dart';
 import 'package:oxytocin/features/intro/presentation/views/intro_view.dart';
-import 'package:oxytocin/generated/l10n.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -48,7 +48,9 @@ class _SplashViewBodyState extends State<SplashViewBody> {
         Container(
           width: width,
           height: height,
-          decoration: const BoxDecoration(gradient: kLinearGradient1),
+          decoration: BoxDecoration(
+            gradient: AppGradients.getBackgroundGradient(context),
+          ),
         ),
         Positioned(
           top: height * 0.2,
@@ -63,7 +65,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
           child: AnimatedTextKit(
             animatedTexts: [
               ScaleAnimatedText(
-                S.of(context).Oxytocin,
+                context.tr.Oxytocin,
                 textStyle: AppStyles.gESSUniqueBold(context),
                 scalingFactor: 1.5,
                 duration: const Duration(milliseconds: 2200),

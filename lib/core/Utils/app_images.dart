@@ -6,6 +6,12 @@ class Assets {
 
   static const String imagesAssistantsignup = "assets/images/assistantsignup.svg";
 
+  static const String imagesHidePassword = "assets/images/hidePassword.svg";
+
+  static const String imagesLayer1 = "assets/images/layer1.svg";
+
+  static const String imagesLayer2 = "assets/images/layer2.svg";
+
   static const String imagesLogo = "assets/images/Logo.png";
 
   static const String imagesLogoEmpty = "assets/images/logoEmpty.png";
@@ -16,8 +22,14 @@ class Assets {
 
   static const String imagesMedicalrecord = "assets/images/medicalrecord.gif";
 
+  static const String imagesPasswordIcon = "assets/images/passwordIcon.svg";
+
   static const String imagesPerfectdoctor = "assets/images/Perfectdoctor.gif";
 
+  static const String imagesPhoneIcon = "assets/images/phoneIcon.svg";
+
   static const String imagesPrivacy = "assets/images/privacy.gif";
+
+  static const String imagesShowPassword = "assets/images/showPassword.svg";
 }
 

@@ -32,11 +32,41 @@ class MessageLookup extends MessageLookupByLibrary {
             "تابع تاريخك الصحي وملفاتك الطبية في أي وقت وبكل أمان."),
         "Next": MessageLookupByLibrary.simpleMessage("التالي"),
         "Oxytocin": MessageLookupByLibrary.simpleMessage("أوكسيتوسين"),
+        "Password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+        "Passwordatleast8characterslong": MessageLookupByLibrary.simpleMessage(
+            "يجب أن تكون كلمة المرور 8 أحرف على الأقل"),
+        "Passwordincludeleastonelowercaseletter":
+            MessageLookupByLibrary.simpleMessage(
+                "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل"),
+        "Passwordincludeleastoneuppercaseletter":
+            MessageLookupByLibrary.simpleMessage(
+                "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل"),
+        "Passwordisrequired":
+            MessageLookupByLibrary.simpleMessage("كلمة المرور مطلوبة"),
+        "Passwordistoocommon": MessageLookupByLibrary.simpleMessage(
+            "كلمة المرور شائعة جدًا. الرجاء اختيار كلمة مرور أكثر أمانًا"),
+        "Passwordmustincludeatleastonenumber":
+            MessageLookupByLibrary.simpleMessage(
+                "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل"),
+        "Passwordmustleastonespecialcharacter":
+            MessageLookupByLibrary.simpleMessage(
+                "يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل"),
+        "Passwordshouldnotcontainpartsofyouremail":
+            MessageLookupByLibrary.simpleMessage(
+                "يجب ألا تحتوي كلمة المرور على جزء من بريدك الإلكتروني"),
+        "Passwordshouldnotcontainyourusername":
+            MessageLookupByLibrary.simpleMessage(
+                "يجب ألا تحتوي كلمة المرور على اسم المستخدم الخاص بك"),
+        "PhoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
+        "PleaseEnterValidNumber":
+            MessageLookupByLibrary.simpleMessage("الرجاء إدخال رقم صالح"),
+        "SignIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "SignUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "Skip": MessageLookupByLibrary.simpleMessage("تخطي"),
+        "StartNow": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
         "YourPrivacyProtected":
             MessageLookupByLibrary.simpleMessage("خصوصيتك محمية دائمًا"),
         "YourPrivacyProtectedDes": MessageLookupByLibrary.simpleMessage(
-            "كل معلوماتك الصحية مشفّرة وآمنة,خصوصيتك أولويتنا."),
-        "startNow": MessageLookupByLibrary.simpleMessage("ابدأ الآن")
+            "كل معلوماتك الصحية مشفّرة وآمنة,خصوصيتك أولويتنا.")
       };
 }

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:oxytocin/constants/app_constants.dart';
-import 'package:oxytocin/core/Utils/app_styles.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
@@ -8,19 +6,26 @@ class CustomButton extends StatelessWidget {
     this.onTap,
     required this.data,
     required this.visible,
-    required this.color,
+    this.gradient,
+    this.borderColor,
+    this.style,
+    required this.padding,
   });
   final void Function()? onTap;
   final String data;
   final bool visible;
-  final Color color;
+  final Gradient? gradient;
+  final Color? borderColor;
+  final TextStyle? style;
+  final EdgeInsetsGeometry padding;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
         decoration: ShapeDecoration(
-          color: visible ? kPrimaryColor4 : Colors.transparent,
+          gradient: gradient,
+          color: visible ? borderColor : Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(29),
           ),
@@ -36,11 +41,8 @@ class CustomButton extends StatelessWidget {
               : null,
         ),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(24, 12, 24, 12),
-          child: Text(
-            data,
-            style: AppStyles.almaraiExtraBold(context).copyWith(color: color),
-          ),
+          padding: padding,
+          child: Text(data, style: style),
         ),
       ),
     );

@@ -70,30 +70,30 @@ class S {
     );
   }
 
-  /// `Browse trusted doctor profiles and choose the one that fits your needs with ease and confidence.`
+  /// `Browse trusted doctors' profiles and choose the one that suits your needs with confidence and ease.`
   String get FindPerfectDoctorDes {
     return Intl.message(
-      'Browse trusted doctor profiles and choose the one that fits your needs with ease and confidence.',
+      'Browse trusted doctors\' profiles and choose the one that suits your needs with confidence and ease.',
       name: 'FindPerfectDoctorDes',
       desc: '',
       args: [],
     );
   }
 
-  /// `Your Medical Record in Your Hands`
+  /// `Your Medical Record in Your Hand`
   String get MedicalRecordInYourHand {
     return Intl.message(
-      'Your Medical Record in Your Hands',
+      'Your Medical Record in Your Hand',
       name: 'MedicalRecordInYourHand',
       desc: '',
       args: [],
     );
   }
 
-  /// `Track your health history and medical files anytime, securely.`
+  /// `Track your health history and medical records anytime, securely.`
   String get MedicalRecordInYourHandDes {
     return Intl.message(
-      'Track your health history and medical files anytime, securely.',
+      'Track your health history and medical records anytime, securely.',
       name: 'MedicalRecordInYourHandDes',
       desc: '',
       args: [],
@@ -110,10 +110,10 @@ class S {
     );
   }
 
-  /// `All your health information is encrypted and safe. Your privacy is our priority.`
+  /// `All your health information is encrypted and secure. Your privacy is our priority.`
   String get YourPrivacyProtectedDes {
     return Intl.message(
-      'All your health information is encrypted and safe. Your privacy is our priority.',
+      'All your health information is encrypted and secure. Your privacy is our priority.',
       name: 'YourPrivacyProtectedDes',
       desc: '',
       args: [],
@@ -140,11 +140,151 @@ class S {
     );
   }
 
-  /// `Start now`
-  String get startNow {
+  /// `Start Now`
+  String get StartNow {
     return Intl.message(
-      'Start now',
-      name: 'startNow',
+      'Start Now',
+      name: 'StartNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get SignUp {
+    return Intl.message(
+      'Sign Up',
+      name: 'SignUp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign In`
+  String get SignIn {
+    return Intl.message(
+      'Sign In',
+      name: 'SignIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get Password {
+    return Intl.message(
+      'Password',
+      name: 'Password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone Number`
+  String get PhoneNumber {
+    return Intl.message(
+      'Phone Number',
+      name: 'PhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid number`
+  String get PleaseEnterValidNumber {
+    return Intl.message(
+      'Please enter a valid number',
+      name: 'PleaseEnterValidNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must be at least 8 characters long`
+  String get Passwordatleast8characterslong {
+    return Intl.message(
+      'Password must be at least 8 characters long',
+      name: 'Passwordatleast8characterslong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password is required`
+  String get Passwordisrequired {
+    return Intl.message(
+      'Password is required',
+      name: 'Passwordisrequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must include at least one lowercase letter`
+  String get Passwordincludeleastonelowercaseletter {
+    return Intl.message(
+      'Password must include at least one lowercase letter',
+      name: 'Passwordincludeleastonelowercaseletter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must include at least one uppercase letter`
+  String get Passwordincludeleastoneuppercaseletter {
+    return Intl.message(
+      'Password must include at least one uppercase letter',
+      name: 'Passwordincludeleastoneuppercaseletter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must include at least one number`
+  String get Passwordmustincludeatleastonenumber {
+    return Intl.message(
+      'Password must include at least one number',
+      name: 'Passwordmustincludeatleastonenumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must include at least one special character`
+  String get Passwordmustleastonespecialcharacter {
+    return Intl.message(
+      'Password must include at least one special character',
+      name: 'Passwordmustleastonespecialcharacter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password is too common. Please choose a more secure one`
+  String get Passwordistoocommon {
+    return Intl.message(
+      'Password is too common. Please choose a more secure one',
+      name: 'Passwordistoocommon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password should not contain your username`
+  String get Passwordshouldnotcontainyourusername {
+    return Intl.message(
+      'Password should not contain your username',
+      name: 'Passwordshouldnotcontainyourusername',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password should not contain parts of your email`
+  String get Passwordshouldnotcontainpartsofyouremail {
+    return Intl.message(
+      'Password should not contain parts of your email',
+      name: 'Passwordshouldnotcontainpartsofyouremail',
       desc: '',
       args: [],
     );
