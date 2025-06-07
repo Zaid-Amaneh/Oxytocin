@@ -289,6 +289,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Forgot your password?`
+  String get Forgotyourpassword {
+    return Intl.message(
+      'Forgot your password?',
+      name: 'Forgotyourpassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remember me`
+  String get Rememberme {
+    return Intl.message(
+      'Remember me',
+      name: 'Rememberme',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This field is required`
+  String get Thisfieldisrequired {
+    return Intl.message(
+      'This field is required',
+      name: 'Thisfieldisrequired',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

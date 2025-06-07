@@ -43,13 +43,27 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
           ],
         ),
         child: TextFormField(
+          maxLength: 10,
           controller: textController,
           keyboardType: TextInputType.number,
-          inputFormatters: [FilteringTextInputFormatter.allow(digitValidator)],
+          inputFormatters: [
+            FilteringTextInputFormatter.allow(digitValidator),
+            LengthLimitingTextInputFormatter(10),
+          ],
           onChanged: (value) {
             setValidator(syrianPhoneRegExp.hasMatch(value) || value.isEmpty);
           },
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return context.tr.Thisfieldisrequired;
+            } else if (value.length == 10 && value.startsWith('09')) {
+              return null;
+            } else {
+              return context.tr.PleaseEnterValidNumber;
+            }
+          },
           decoration: InputDecoration(
+            counterText: '',
             suffixIcon: Padding(
               padding: const EdgeInsets.all(16.0),
               child: SvgPicture.asset(Assets.imagesPhoneIcon),

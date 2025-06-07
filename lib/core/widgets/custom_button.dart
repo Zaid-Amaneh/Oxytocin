@@ -10,6 +10,7 @@ class CustomButton extends StatelessWidget {
     this.borderColor,
     this.style,
     required this.padding,
+    required this.borderRadius,
   });
   final void Function()? onTap;
   final String data;
@@ -18,6 +19,7 @@ class CustomButton extends StatelessWidget {
   final Color? borderColor;
   final TextStyle? style;
   final EdgeInsetsGeometry padding;
+  final double borderRadius;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -27,7 +29,7 @@ class CustomButton extends StatelessWidget {
           gradient: gradient,
           color: visible ? borderColor : Colors.transparent,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(29),
+            borderRadius: BorderRadius.circular(borderRadius),
           ),
           shadows: visible
               ? [
@@ -42,7 +44,7 @@ class CustomButton extends StatelessWidget {
         ),
         child: Padding(
           padding: padding,
-          child: Text(data, style: style),
+          child: Text(data, style: style, textAlign: TextAlign.center),
         ),
       ),
     );

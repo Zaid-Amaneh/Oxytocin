@@ -49,6 +49,7 @@ class _IntroViewBodyState extends State<IntroViewBody> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               CustomButton(
+                borderRadius: 29,
                 visible: true,
                 data: currentPage == 2 ? context.tr.StartNow : context.tr.Next,
                 onTap: () {
@@ -72,6 +73,7 @@ class _IntroViewBodyState extends State<IntroViewBody> {
                 count: widget.intro.length,
               ),
               CustomButton(
+                borderRadius: 29,
                 visible: false,
                 padding: const EdgeInsets.fromLTRB(24, 12, 24, 12),
                 data: context.tr.Skip,

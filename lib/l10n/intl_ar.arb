@@ -22,5 +22,8 @@
     "Passwordmustleastonespecialcharacter":"يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل",
     "Passwordistoocommon":"كلمة المرور شائعة جدًا. الرجاء اختيار كلمة مرور أكثر أمانًا",
     "Passwordshouldnotcontainyourusername":"يجب ألا تحتوي كلمة المرور على اسم المستخدم الخاص بك",
-    "Passwordshouldnotcontainpartsofyouremail":"يجب ألا تحتوي كلمة المرور على جزء من بريدك الإلكتروني"   
+    "Passwordshouldnotcontainpartsofyouremail":"يجب ألا تحتوي كلمة المرور على جزء من بريدك الإلكتروني",
+    "Forgotyourpassword":"هل نسيت كلمة المرور؟",
+    "Rememberme":"احفظ بيانات الدخول",
+    "Thisfieldisrequired":"هذه الخانة مطلوبه"
 }

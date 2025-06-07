@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Find Your Perfect Doctor"),
         "FindPerfectDoctorDes": MessageLookupByLibrary.simpleMessage(
             "Browse trusted doctors\' profiles and choose the one that suits your needs with confidence and ease."),
+        "Forgotyourpassword":
+            MessageLookupByLibrary.simpleMessage("Forgot your password?"),
         "MedicalRecordInYourHand": MessageLookupByLibrary.simpleMessage(
             "Your Medical Record in Your Hand"),
         "MedicalRecordInYourHandDes": MessageLookupByLibrary.simpleMessage(
@@ -60,10 +62,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "PhoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "PleaseEnterValidNumber":
             MessageLookupByLibrary.simpleMessage("Please enter a valid number"),
+        "Rememberme": MessageLookupByLibrary.simpleMessage("Remember me"),
         "SignIn": MessageLookupByLibrary.simpleMessage("Sign In"),
         "SignUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "Skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "StartNow": MessageLookupByLibrary.simpleMessage("Start Now"),
+        "Thisfieldisrequired":
+            MessageLookupByLibrary.simpleMessage("This field is required"),
         "YourPrivacyProtected": MessageLookupByLibrary.simpleMessage(
             "Your Privacy is Always Protected"),
         "YourPrivacyProtectedDes": MessageLookupByLibrary.simpleMessage(

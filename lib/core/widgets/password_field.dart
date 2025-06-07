@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
+import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/generated/l10n.dart';
 
 class PasswordField extends StatefulWidget {
@@ -62,6 +63,15 @@ class _PasswordFieldState extends State<PasswordField> {
           onChanged: (value) {
             setValidator(value);
           },
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return context.tr.Thisfieldisrequired;
+            } else if (setValidator(value)) {
+              return null;
+            } else {
+              return errorText;
+            }
+          },
           onTap: () {},
           decoration: InputDecoration(
             suffixIcon: Padding(
@@ -86,13 +96,16 @@ class _PasswordFieldState extends State<PasswordField> {
               fontSize: 18,
               fontWeight: FontWeight.w900,
             ),
+            errorStyle: AppStyles.almaraiRegular(
+              context,
+            ).copyWith(color: AppColors.error),
           ),
         ),
       ),
     );
   }
 
-  void setValidator(String valid) {
+  bool setValidator(String valid) {
     String? temp;
     if (valid.isEmpty) {
       temp = null;
@@ -110,5 +123,6 @@ class _PasswordFieldState extends State<PasswordField> {
     setState(() {
       errorText = temp;
     });
+    return temp == null;
   }
 }

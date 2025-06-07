@@ -22,5 +22,8 @@
   "Passwordmustleastonespecialcharacter": "Password must include at least one special character",
   "Passwordistoocommon": "Password is too common. Please choose a more secure one",
   "Passwordshouldnotcontainyourusername": "Password should not contain your username",
-  "Passwordshouldnotcontainpartsofyouremail": "Password should not contain parts of your email"
+  "Passwordshouldnotcontainpartsofyouremail": "Password should not contain parts of your email",
+  "Forgotyourpassword":"Forgot your password?",
+  "Rememberme":"Remember me",
+  "Thisfieldisrequired":"This field is required"
 }
