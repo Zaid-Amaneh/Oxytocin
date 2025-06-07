@@ -47,7 +47,7 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
           keyboardType: TextInputType.number,
           inputFormatters: [FilteringTextInputFormatter.allow(digitValidator)],
           onChanged: (value) {
-            setValidator(syrianPhoneRegExp.hasMatch(value));
+            setValidator(syrianPhoneRegExp.hasMatch(value) || value.isEmpty);
           },
           decoration: InputDecoration(
             suffixIcon: Padding(

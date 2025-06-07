@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'app_colors.dart';
 
 class AppTheme {

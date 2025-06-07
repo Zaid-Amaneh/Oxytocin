@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:go_router/go_router.dart';
+import 'package:oxytocin/core/routing/app_router.dart';
+import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/theme/app_theme.dart';
-import 'package:oxytocin/features/intro/presentation/views/splash_view.dart';
 import 'package:oxytocin/generated/l10n.dart';
 
 void main() {
-  runApp(const OxytocinApp());
+  final navigationService = NavigationService();
+  final router = AppRouter.createRouter(navigationService);
+  runApp(OxytocinApp(router: router));
 }
 
 class OxytocinApp extends StatelessWidget {
-  const OxytocinApp({super.key});
-
+  const OxytocinApp({super.key, required this.router});
+  final GoRouter router;
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp.router(
       locale: const Locale('ar'),
       localizationsDelegates: [
         S.delegate,
@@ -24,7 +27,7 @@ class OxytocinApp extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       theme: AppTheme.lightTheme,
-      home: const SplashView(),
+      routerConfig: router,
     );
   }
 }

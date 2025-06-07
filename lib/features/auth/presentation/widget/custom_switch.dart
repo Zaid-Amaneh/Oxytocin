@@ -36,7 +36,7 @@ class CustomSwitch extends StatelessWidget {
             onTap: inup ? () {} : null,
             padding: const EdgeInsets.fromLTRB(24, 16, 24, 13),
             data: context.tr.SignUp,
-            // borderColor: AppColors.kPrimaryColor1,
+            borderColor: AppColors.kPrimaryColor1,
             visible: !inup,
             style: inup
                 ? AppStyles.tajawalBold(
@@ -49,7 +49,7 @@ class CustomSwitch extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(24, 16, 24, 13),
             data: context.tr.SignIn,
             visible: inup,
-            // borderColor: AppColors.kPrimaryColor1,
+            borderColor: AppColors.kPrimaryColor1,
             style: inup
                 ? AppStyles.tajawalBold(context)
                 : AppStyles.tajawalBold(

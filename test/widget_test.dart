@@ -7,13 +7,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:oxytocin/core/routing/app_router.dart';
+import 'package:oxytocin/core/routing/navigation_service.dart';
 
 import 'package:oxytocin/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const OxytocinApp());
+    final navigationService = NavigationService();
+    final router = AppRouter.createRouter(navigationService);
+    await tester.pumpWidget(OxytocinApp(router: router));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

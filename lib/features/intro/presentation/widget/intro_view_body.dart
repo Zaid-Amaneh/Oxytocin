@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/services/local_storage_service.dart';
+import 'package:oxytocin/core/routing/navigation_service.dart';
+import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/theme/app_gradients.dart';
-import 'package:oxytocin/features/auth/presentation/views/sign_in_view.dart';
 import 'package:oxytocin/features/intro/data/models/intro_header_item.dart';
 import 'package:oxytocin/core/widgets/custom_button.dart';
 import 'package:oxytocin/features/intro/presentation/widget/custom_smooth_pageIndicator.dart';
@@ -69,7 +69,7 @@ class _IntroViewBodyState extends State<IntroViewBody> {
               ),
               CustomSmoothPageindicator(
                 pageController: pageController,
-                count: 3,
+                count: widget.intro.length,
               ),
               CustomButton(
                 visible: false,
@@ -90,9 +90,10 @@ class _IntroViewBodyState extends State<IntroViewBody> {
     );
   }
 
-  void introductionEnd() async {
+  void introductionEnd() {
     LocalStorageService localStorageService = LocalStorageService();
-    await localStorageService.newUser();
-    Get.offAll(const SignInView(), transition: Transition.fade);
+    localStorageService.newUser();
+    NavigationService nav = NavigationService();
+    nav.goToNamed(RouteNames.signIn);
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
@@ -15,9 +14,10 @@ class PasswordField extends StatefulWidget {
 
 class _PasswordFieldState extends State<PasswordField> {
   final TextEditingController textController = TextEditingController();
-  String? errorText;
   final FocusNode focusNode = FocusNode();
+  String? errorText;
   bool isFocused = false;
+  bool obscureText = false;
   static final _specialChars = r'!@#$%^&*()_\-+';
   @override
   void initState() {
@@ -56,16 +56,27 @@ class _PasswordFieldState extends State<PasswordField> {
           ],
         ),
         child: TextFormField(
+          obscureText: obscureText,
           focusNode: focusNode,
           controller: textController,
           onChanged: (value) {
             setValidator(value);
           },
+          onTap: () {},
           decoration: InputDecoration(
             suffixIcon: Padding(
               padding: const EdgeInsets.all(16.0),
               child: isFocused
-                  ? SvgPicture.asset(Assets.imagesShowPassword)
+                  ? GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          obscureText = !obscureText;
+                        });
+                      },
+                      child: obscureText
+                          ? SvgPicture.asset(Assets.imagesHidePassword)
+                          : SvgPicture.asset(Assets.imagesShowPassword),
+                    )
                   : SvgPicture.asset(Assets.imagesPasswordIcon),
             ),
             errorText: errorText,
@@ -84,7 +95,7 @@ class _PasswordFieldState extends State<PasswordField> {
   void setValidator(String valid) {
     String? temp;
     if (valid.isEmpty) {
-      temp = context.tr.Passwordisrequired;
+      temp = null;
     } else if (valid.length < 8) {
       temp = context.tr.Passwordatleast8characterslong;
     } else if (!RegExp(r'[a-z]').hasMatch(valid)) {
