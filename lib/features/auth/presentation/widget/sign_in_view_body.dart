@@ -34,7 +34,7 @@ class SignInViewBody extends StatelessWidget {
             top: 0,
             left: width * 0.002,
             right: width * 0.002,
-            child: SvgPicture.asset(Assets.imagesLayer1),
+            child: SvgPicture.asset(Assets.imagesLayer1, fit: BoxFit.fill),
           ),
           Positioned(
             top: height * 0.3,
