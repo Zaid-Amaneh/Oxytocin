@@ -1,18 +1,32 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
+import 'package:oxytocin/core/viewmodels/password_view_model.dart';
+import 'package:oxytocin/core/viewmodels/phone_view_model.dart';
 import 'package:oxytocin/core/widgets/custom_button.dart';
 import 'package:oxytocin/core/widgets/password_field.dart';
 import 'package:oxytocin/core/widgets/phone_number_field.dart';
-import 'package:oxytocin/features/auth/presentation/widget/custom_switch.dart';
 import 'package:oxytocin/features/auth/presentation/widget/forgot_password.dart';
 import 'package:oxytocin/features/auth/presentation/widget/remember_me.dart';
+import 'package:provider/provider.dart';
 
-class SignInForm extends StatelessWidget {
+class SignInForm extends StatefulWidget {
   const SignInForm({super.key});
+
+  @override
+  State<SignInForm> createState() => _SignInFormState();
+}
+
+class _SignInFormState extends State<SignInForm> {
+  final TextEditingController phoneController = TextEditingController(),
+      passwordController = TextEditingController();
+  @override
+  void dispose() {
+    phoneController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +59,19 @@ class SignInForm extends StatelessWidget {
         ),
         child: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(child: SizedBox(height: height * 0.04)),
-            const SliverToBoxAdapter(child: CustomSwitch(inup: true)),
-            SliverToBoxAdapter(child: SizedBox(height: height * 0.04)),
-            const SliverToBoxAdapter(child: PhoneNumberField()),
-            const SliverToBoxAdapter(child: PasswordField()),
+            SliverToBoxAdapter(child: SizedBox(height: height * 0.2)),
+            SliverToBoxAdapter(
+              child: ChangeNotifierProvider(
+                create: (_) => PhoneViewModel(),
+                child: const PhoneNumberField(),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: ChangeNotifierProvider(
+                create: (_) => PasswordViewModel(),
+                child: const PasswordField(),
+              ),
+            ),
             const SliverToBoxAdapter(child: ForgotPassword()),
             SliverToBoxAdapter(child: SizedBox(height: height * 0.06)),
             const SliverToBoxAdapter(child: RememberMe()),
@@ -60,10 +82,7 @@ class SignInForm extends StatelessWidget {
                   borderRadius: 25,
                   onTap: () {
                     if (numberForm.currentState!.validate()) {
-                      log('2');
-                    } else {
-                      log('0');
-                    }
+                    } else {}
                   },
                   borderColor: AppColors.kPrimaryColor1,
                   data: context.tr.SignIn,

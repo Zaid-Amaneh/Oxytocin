@@ -22,12 +22,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Atleastletters":
+            MessageLookupByLibrary.simpleMessage("At least 3 letters"),
+        "Confirmpassword":
+            MessageLookupByLibrary.simpleMessage("Confirm password"),
         "FindPerfectDoctor":
             MessageLookupByLibrary.simpleMessage("Find Your Perfect Doctor"),
         "FindPerfectDoctorDes": MessageLookupByLibrary.simpleMessage(
             "Browse trusted doctors\' profiles and choose the one that suits your needs with confidence and ease."),
         "Forgotyourpassword":
             MessageLookupByLibrary.simpleMessage("Forgot your password?"),
+        "Lastname": MessageLookupByLibrary.simpleMessage("Last name"),
         "MedicalRecordInYourHand": MessageLookupByLibrary.simpleMessage(
             "Your Medical Record in Your Hand"),
         "MedicalRecordInYourHandDes": MessageLookupByLibrary.simpleMessage(
@@ -69,9 +74,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "StartNow": MessageLookupByLibrary.simpleMessage("Start Now"),
         "Thisfieldisrequired":
             MessageLookupByLibrary.simpleMessage("This field is required"),
+        "Username": MessageLookupByLibrary.simpleMessage("User name"),
         "YourPrivacyProtected": MessageLookupByLibrary.simpleMessage(
             "Your Privacy is Always Protected"),
         "YourPrivacyProtectedDes": MessageLookupByLibrary.simpleMessage(
-            "All your health information is encrypted and secure. Your privacy is our priority.")
+            "All your health information is encrypted and secure. Your privacy is our priority."),
+        "passwordmustnotcontainyourorphonenumber":
+            MessageLookupByLibrary.simpleMessage(
+                "The password must not contain your name or phone number.")
       };
 }

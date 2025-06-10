@@ -319,6 +319,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Confirm password`
+  String get Confirmpassword {
+    return Intl.message(
+      'Confirm password',
+      name: 'Confirmpassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last name`
+  String get Lastname {
+    return Intl.message(
+      'Last name',
+      name: 'Lastname',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User name`
+  String get Username {
+    return Intl.message(
+      'User name',
+      name: 'Username',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `At least 3 letters`
+  String get Atleastletters {
+    return Intl.message(
+      'At least 3 letters',
+      name: 'Atleastletters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The password must not contain your name or phone number.`
+  String get passwordmustnotcontainyourorphonenumber {
+    return Intl.message(
+      'The password must not contain your name or phone number.',
+      name: 'passwordmustnotcontainyourorphonenumber',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

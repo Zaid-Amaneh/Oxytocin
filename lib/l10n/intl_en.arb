@@ -25,5 +25,10 @@
   "Passwordshouldnotcontainpartsofyouremail": "Password should not contain parts of your email",
   "Forgotyourpassword":"Forgot your password?",
   "Rememberme":"Remember me",
-  "Thisfieldisrequired":"This field is required"
+  "Thisfieldisrequired":"This field is required",
+  "Confirmpassword":"Confirm password",
+  "Lastname":"Last name",
+  "Username":"User name",
+  "Atleastletters":"At least 3 letters",
+  "passwordmustnotcontainyourorphonenumber":"The password must not contain your name or phone number."
 }

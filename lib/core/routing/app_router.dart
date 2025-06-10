@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
-import 'package:oxytocin/features/auth/presentation/views/sign_in_view.dart';
+import 'package:oxytocin/features/auth/presentation/views/auth_view.dart';
 import 'package:oxytocin/features/intro/presentation/views/intro_view.dart';
 import 'package:oxytocin/features/intro/presentation/views/splash_view.dart';
 
@@ -23,7 +23,7 @@ class AppRouter {
         GoRoute(
           path: '/${RouteNames.signIn}',
           name: RouteNames.signIn,
-          builder: (context, state) => const SignInView(),
+          builder: (context, state) => const AuthView(),
         ),
       ],
     );

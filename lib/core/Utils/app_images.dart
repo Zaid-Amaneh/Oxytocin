@@ -31,5 +31,7 @@ class Assets {
   static const String imagesPrivacy = "assets/images/privacy.gif";
 
   static const String imagesShowPassword = "assets/images/showPassword.svg";
+
+  static const String imagesUserNameIcon = "assets/images/userNameIcon.svg";
 }
 

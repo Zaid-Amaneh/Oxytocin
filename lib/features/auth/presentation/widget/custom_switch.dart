@@ -5,8 +5,14 @@ import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/widgets/custom_button.dart';
 
 class CustomSwitch extends StatelessWidget {
-  const CustomSwitch({super.key, required this.inup});
+  const CustomSwitch({
+    super.key,
+    required this.inup,
+    this.signInTap,
+    this.signUpTap,
+  });
   final bool inup;
+  final void Function()? signInTap, signUpTap;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
@@ -37,7 +43,7 @@ class CustomSwitch extends StatelessWidget {
           children: [
             CustomButton(
               borderRadius: 29,
-              onTap: inup ? () {} : null,
+              onTap: inup ? signUpTap : null,
               padding: const EdgeInsets.fromLTRB(24, 16, 24, 13),
               data: context.tr.SignUp,
               borderColor: AppColors.kPrimaryColor1,
@@ -50,7 +56,7 @@ class CustomSwitch extends StatelessWidget {
             ),
             CustomButton(
               borderRadius: 29,
-              onTap: inup ? null : () {},
+              onTap: inup ? null : signInTap,
               padding: const EdgeInsets.fromLTRB(24, 16, 24, 13),
               data: context.tr.SignIn,
               visible: inup,

@@ -25,5 +25,10 @@
     "Passwordshouldnotcontainpartsofyouremail":"يجب ألا تحتوي كلمة المرور على جزء من بريدك الإلكتروني",
     "Forgotyourpassword":"هل نسيت كلمة المرور؟",
     "Rememberme":"احفظ بيانات الدخول",
-    "Thisfieldisrequired":"هذه الخانة مطلوبه"
+    "Thisfieldisrequired":"هذه الخانة مطلوبه",
+    "Confirmpassword":"تأكيد كلمة المرور",
+    "Lastname":"إسم العائلة",
+    "Username":"إسم المستخدم",
+    "Atleastletters":"الاسم يجب أن لا يقل عن حرفين",
+    "passwordmustnotcontainyourorphonenumber":"لا يجب أن تحتوي كلمة المرور على اسمك أو رقم الهاتف."
 }

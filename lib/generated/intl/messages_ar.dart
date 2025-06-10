@@ -22,12 +22,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Atleastletters": MessageLookupByLibrary.simpleMessage(
+            "الاسم يجب أن لا يقل عن حرفين"),
+        "Confirmpassword":
+            MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "FindPerfectDoctor":
             MessageLookupByLibrary.simpleMessage("اعثر على طبيبك المثالي"),
         "FindPerfectDoctorDes": MessageLookupByLibrary.simpleMessage(
             "تصفّح ملفات الأطباء الموثوقين واختر من يناسب احتياجاتك بثقة وسهولة."),
         "Forgotyourpassword":
             MessageLookupByLibrary.simpleMessage("هل نسيت كلمة المرور؟"),
+        "Lastname": MessageLookupByLibrary.simpleMessage("إسم العائلة"),
         "MedicalRecordInYourHand":
             MessageLookupByLibrary.simpleMessage("سجلك الطبي في متناولك"),
         "MedicalRecordInYourHandDes": MessageLookupByLibrary.simpleMessage(
@@ -70,9 +75,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "StartNow": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
         "Thisfieldisrequired":
             MessageLookupByLibrary.simpleMessage("هذه الخانة مطلوبه"),
+        "Username": MessageLookupByLibrary.simpleMessage("إسم المستخدم"),
         "YourPrivacyProtected":
             MessageLookupByLibrary.simpleMessage("خصوصيتك محمية دائمًا"),
         "YourPrivacyProtectedDes": MessageLookupByLibrary.simpleMessage(
-            "كل معلوماتك الصحية مشفّرة وآمنة,خصوصيتك أولويتنا.")
+            "كل معلوماتك الصحية مشفّرة وآمنة,خصوصيتك أولويتنا."),
+        "passwordmustnotcontainyourorphonenumber":
+            MessageLookupByLibrary.simpleMessage(
+                "لا يجب أن تحتوي كلمة المرور على اسمك أو رقم الهاتف.")
       };
 }

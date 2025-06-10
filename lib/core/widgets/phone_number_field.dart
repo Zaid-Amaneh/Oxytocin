@@ -1,27 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
-import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/constants/app_constants.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
+import 'package:oxytocin/core/viewmodels/phone_view_model.dart';
+import 'package:provider/provider.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
 
-class PhoneNumberField extends StatefulWidget {
+class PhoneNumberField extends StatelessWidget {
   const PhoneNumberField({super.key});
 
   @override
-  State<PhoneNumberField> createState() => _PhoneNumberFieldState();
-}
-
-class _PhoneNumberFieldState extends State<PhoneNumberField> {
-  final TextEditingController textController = TextEditingController();
-  final RegExp syrianPhoneRegExp = RegExp(r'^09\d{8}$');
-  final RegExp digitValidator = RegExp("[0-9]");
-  bool isANumber = true;
-
-  @override
   Widget build(BuildContext context) {
+    final vm = context.watch<PhoneViewModel>();
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: DecoratedBox(
@@ -44,23 +36,16 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
         ),
         child: TextFormField(
           maxLength: 10,
-          controller: textController,
+          controller: vm.phoneController,
           keyboardType: TextInputType.number,
-          inputFormatters: [
-            FilteringTextInputFormatter.allow(digitValidator),
-            LengthLimitingTextInputFormatter(10),
-          ],
-          onChanged: (value) {
-            setValidator(syrianPhoneRegExp.hasMatch(value) || value.isEmpty);
-          },
+          inputFormatters: vm.inputFormatters,
+          onChanged: (value) => vm.validatePhone(value, context),
           validator: (value) {
             if (value == null || value.isEmpty) {
               return context.tr.Thisfieldisrequired;
-            } else if (value.length == 10 && value.startsWith('09')) {
-              return null;
-            } else {
-              return context.tr.PleaseEnterValidNumber;
             }
+            vm.validatePhone(value, context);
+            return vm.errorText;
           },
           decoration: InputDecoration(
             counterText: '',
@@ -68,7 +53,7 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
               padding: const EdgeInsets.all(16.0),
               child: SvgPicture.asset(Assets.imagesPhoneIcon),
             ),
-            errorText: isANumber ? null : context.tr.PleaseEnterValidNumber,
+            errorText: vm.errorText,
             hintText: context.tr.PhoneNumber,
             hintStyle: AppStyles.almaraiBold(context).copyWith(
               color: AppColors.textPrimary,
@@ -82,11 +67,5 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
         ),
       ),
     );
-  }
-
-  void setValidator(bool valid) {
-    setState(() {
-      isANumber = valid;
-    });
   }
 }
