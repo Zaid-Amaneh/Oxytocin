@@ -72,6 +72,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "SignUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "Skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "StartNow": MessageLookupByLibrary.simpleMessage("Start Now"),
+        "Thepasswordsdonotmatch":
+            MessageLookupByLibrary.simpleMessage("The passwords do not match"),
         "Thisfieldisrequired":
             MessageLookupByLibrary.simpleMessage("This field is required"),
         "Username": MessageLookupByLibrary.simpleMessage("User name"),

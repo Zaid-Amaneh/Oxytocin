@@ -87,7 +87,7 @@ class _AuthViewBodyState extends State<AuthViewBody> {
             child: AnimatedCrossFade(
               firstChild: SvgPicture.asset(Assets.imagesAssistantsignin),
               secondChild: SvgPicture.asset(Assets.imagesAssistantsignup),
-              duration: const Duration(milliseconds: 100),
+              duration: const Duration(seconds: 5),
               crossFadeState: form
                   ? CrossFadeState.showFirst
                   : CrossFadeState.showSecond,

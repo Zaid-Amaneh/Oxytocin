@@ -30,5 +30,6 @@
     "Lastname":"إسم العائلة",
     "Username":"إسم المستخدم",
     "Atleastletters":"الاسم يجب أن لا يقل عن حرفين",
-    "passwordmustnotcontainyourorphonenumber":"لا يجب أن تحتوي كلمة المرور على اسمك أو رقم الهاتف."
+    "passwordmustnotcontainyourorphonenumber":"لا يجب أن تحتوي كلمة المرور على اسمك أو رقم الهاتف.",
+    "Thepasswordsdonotmatch":"كلمتا المرور غير متطابقتين"
 }

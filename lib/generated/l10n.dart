@@ -369,6 +369,16 @@ class S {
       args: [],
     );
   }
+
+  /// `The passwords do not match`
+  String get Thepasswordsdonotmatch {
+    return Intl.message(
+      'The passwords do not match',
+      name: 'Thepasswordsdonotmatch',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -73,6 +73,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "SignUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "Skip": MessageLookupByLibrary.simpleMessage("تخطي"),
         "StartNow": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
+        "Thepasswordsdonotmatch":
+            MessageLookupByLibrary.simpleMessage("كلمتا المرور غير متطابقتين"),
         "Thisfieldisrequired":
             MessageLookupByLibrary.simpleMessage("هذه الخانة مطلوبه"),
         "Username": MessageLookupByLibrary.simpleMessage("إسم المستخدم"),

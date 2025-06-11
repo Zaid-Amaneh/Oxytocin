@@ -5,6 +5,7 @@ import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/viewmodels/name_view_model.dart';
 import 'package:oxytocin/core/viewmodels/password_view_model.dart';
 import 'package:oxytocin/core/viewmodels/phone_view_model.dart';
+import 'package:oxytocin/core/widgets/confirm_password_field.dart';
 import 'package:oxytocin/core/widgets/custom_button.dart';
 import 'package:oxytocin/core/widgets/name_field.dart';
 import 'package:oxytocin/core/widgets/password_field.dart';
@@ -28,6 +29,7 @@ class _SignUpFormState extends State<SignUpForm> {
     final firstNameVM = NameViewModel();
     final lastNameVM = NameViewModel();
     final phoneNumberVM = PhoneViewModel();
+    final passwordVM = PasswordViewModel();
 
     return Form(
       key: numberForm,
@@ -70,11 +72,19 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
             SliverToBoxAdapter(
               child: ChangeNotifierProvider<PasswordViewModel>(
-                create: (_) => PasswordViewModel(),
+                create: (_) => passwordVM,
                 child: PasswordField(
                   nameController: firstNameVM.nameController,
                   lastNameController: lastNameVM.nameController,
                   phoneController: phoneNumberVM.phoneController,
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: ChangeNotifierProvider<PasswordViewModel>(
+                create: (_) => PasswordViewModel(),
+                child: ConfirmPasswordField(
+                  passwordController: passwordVM.passwordController,
                 ),
               ),
             ),

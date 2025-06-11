@@ -3,9 +3,11 @@ import 'package:oxytocin/core/Utils/helpers/helper.dart';
 
 class PasswordViewModel extends ChangeNotifier {
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
   final FocusNode focusNode = FocusNode();
 
-  String? errorText;
+  String? errorText, confirmErrorText;
   bool obscureText = true;
   bool isFocused = false;
 
@@ -37,20 +39,20 @@ class PasswordViewModel extends ChangeNotifier {
     phoneNumber = phone.trim();
   }
 
-  void validatePassword(String password, BuildContext context) {
-    final lowerPassword = password.toLowerCase();
+  void validatePassword(BuildContext context) {
+    final lowerPassword = passwordController.text.toLowerCase();
     String? temp;
-    if (password.isEmpty) {
+    if (passwordController.text.isEmpty) {
       temp = null;
-    } else if (password.length < 8) {
-      temp = context.tr.passwordmustnotcontainyourorphonenumber;
-    } else if (!RegExp(r'[a-z]').hasMatch(password)) {
+    } else if (passwordController.text.length < 8) {
+      temp = context.tr.Passwordatleast8characterslong;
+    } else if (!RegExp(r'[a-z]').hasMatch(passwordController.text)) {
       temp = context.tr.Passwordincludeleastonelowercaseletter;
-    } else if (!RegExp(r'[A-Z]').hasMatch(password)) {
+    } else if (!RegExp(r'[A-Z]').hasMatch(passwordController.text)) {
       temp = context.tr.Passwordincludeleastoneuppercaseletter;
-    } else if (!RegExp(r'[0-9]').hasMatch(password)) {
+    } else if (!RegExp(r'[0-9]').hasMatch(passwordController.text)) {
       temp = context.tr.Passwordmustincludeatleastonenumber;
-    } else if (!RegExp('[$_specialChars]').hasMatch(password)) {
+    } else if (!RegExp('[$_specialChars]').hasMatch(passwordController.text)) {
       temp = context.tr.Passwordmustleastonespecialcharacter;
     } else if ((username.isNotEmpty && lowerPassword.contains(username)) ||
         (lastName.isNotEmpty && lowerPassword.contains(lastName)) ||
@@ -59,6 +61,19 @@ class PasswordViewModel extends ChangeNotifier {
     }
 
     errorText = temp;
+    notifyListeners();
+  }
+
+  void validateConfirmPassword(String paasword, BuildContext context) {
+    String? temp;
+    if (confirmPasswordController.text.isEmpty) {
+      temp = null;
+    } else if (paasword.trim() != confirmPasswordController.text.trim()) {
+      temp = context.tr.Thepasswordsdonotmatch;
+    } else {
+      temp = null;
+    }
+    confirmErrorText = temp;
     notifyListeners();
   }
 

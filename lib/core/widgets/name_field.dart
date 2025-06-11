@@ -43,12 +43,12 @@ class _NameFieldState extends State<NameField> {
           controller: vm.nameController,
           maxLength: 10,
           keyboardType: TextInputType.name,
-          onChanged: (value) => vm.setValidator(value, context),
+          onChanged: (value) => vm.setValidator(context),
           validator: (value) {
             if (value!.trim().isEmpty) {
               return context.tr.Thisfieldisrequired;
             } else {
-              vm.setValidator(value, context);
+              vm.setValidator(context);
             }
             return null;
           },

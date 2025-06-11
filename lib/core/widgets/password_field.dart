@@ -48,12 +48,12 @@ class PasswordField extends StatelessWidget {
           controller: vm.passwordController,
           focusNode: vm.focusNode,
           obscureText: vm.obscureText,
-          onChanged: (value) => vm.validatePassword(value, context),
+          onChanged: (value) => vm.validatePassword(context),
           validator: (value) {
             if (value == null || value.isEmpty) {
               return context.tr.Thisfieldisrequired;
             } else {
-              vm.validatePassword(value, context);
+              vm.validatePassword(context);
             }
             return null;
           },

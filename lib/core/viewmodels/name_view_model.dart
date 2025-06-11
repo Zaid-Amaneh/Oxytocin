@@ -5,11 +5,11 @@ class NameViewModel extends ChangeNotifier {
   final TextEditingController nameController = TextEditingController();
   String? isAName;
 
-  void setValidator(String value, BuildContext context) {
+  void setValidator(BuildContext context) {
     String? temp;
-    if (value.isEmpty) {
+    if (nameController.text.isEmpty) {
       temp = null;
-    } else if (value.trim().length < 2) {
+    } else if (nameController.text.trim().length < 2) {
       temp = context.tr.Atleastletters;
     }
     isAName = temp;

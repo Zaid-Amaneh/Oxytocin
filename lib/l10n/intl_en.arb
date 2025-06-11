@@ -30,5 +30,6 @@
   "Lastname":"Last name",
   "Username":"User name",
   "Atleastletters":"At least 3 letters",
-  "passwordmustnotcontainyourorphonenumber":"The password must not contain your name or phone number."
+  "passwordmustnotcontainyourorphonenumber":"The password must not contain your name or phone number.",
+  "Thepasswordsdonotmatch":"The passwords do not match"
 }
