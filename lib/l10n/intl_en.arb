@@ -34,10 +34,17 @@
   "Thepasswordsdonotmatch":"The passwords do not match",
   "changePasswordTitle": "Change Password",
   "changePasswordSubtitle": "You can now set a new password for your account. Make sure to choose a strong and memorable one.",
-  "newPasswordSlogan": "New password, new beginning",
+  "newPasswordSlogan": "New password\nnew beginning",
   "otpSentMessage": "We've sent a 5-digit verification code to your phone number. Please enter it to complete the registration.",
   "otpSentSuccess": "Code sent successfully",
   "sendOtpButton": "Send Verification Code",
   "enterPhoneHint": "Please enter the phone number associated with your account so we can send you a verification code via SMS.",
-  "forgotPasswordPrompt": "Forgot your password?\nNo worries, we're here to help."
+  "forgotPasswordPrompt": "Forgot your password?\nNo worries, we're here to help.",
+  "otpEmptyError": "Please enter the verification code.",
+  "otpLengthError": "The code must be 5 digits.",
+  "tapToChange": "Tap here to change",
+  "enteredWrongNumber": "Entered a wrong number?",
+  "resend": "Resend",
+  "didNotReceiveCode": "Didn't receive the code?",
+  "resendCountdown": "Resend in 00:{seconds}"
 }

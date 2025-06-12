@@ -20,6 +20,8 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
+  static String m0(seconds) => "إعادة الإرسال خلال 00:${seconds}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Atleastletters": MessageLookupByLibrary.simpleMessage(
@@ -86,12 +88,20 @@ class MessageLookup extends MessageLookupByLibrary {
             "الآن يمكنك تعيين كلمة مرور جديدة لحسابك. احرص على اختيار كلمة مرور قوية وسهلة التذكر."),
         "changePasswordTitle":
             MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
+        "didNotReceiveCode":
+            MessageLookupByLibrary.simpleMessage("لم يصلك الرمز؟"),
         "enterPhoneHint": MessageLookupByLibrary.simpleMessage(
             "من فضلك أدخل رقم هاتفك المرتبط بحسابك لنتمكن من إرسال رمز التحقق إليك عبر رسالة نصية."),
+        "enteredWrongNumber":
+            MessageLookupByLibrary.simpleMessage("أدخلت رقمًا خاطئًا؟"),
         "forgotPasswordPrompt": MessageLookupByLibrary.simpleMessage(
             "هل نسيت كلمة المرور؟\nلا بأس، نحن هنا لمساعدتك."),
         "newPasswordSlogan": MessageLookupByLibrary.simpleMessage(
-            "كلمة مرور جديدة، بداية جديدة"),
+            "كلمة مرور جديدة\nبداية جديدة"),
+        "otpEmptyError":
+            MessageLookupByLibrary.simpleMessage("الرجاء إدخال رمز التحقق."),
+        "otpLengthError": MessageLookupByLibrary.simpleMessage(
+            "يجب أن يتكون الرمز من 5 أرقام."),
         "otpSentMessage": MessageLookupByLibrary.simpleMessage(
             "قد أرسلنا رمز تحقق مكونًا من 5 أرقام إلى رقم هاتفك الرجاء إدخاله لإكمال التسجيل"),
         "otpSentSuccess":
@@ -99,7 +109,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordmustnotcontainyourorphonenumber":
             MessageLookupByLibrary.simpleMessage(
                 "لا يجب أن تحتوي كلمة المرور على اسمك أو رقم الهاتف."),
+        "resend": MessageLookupByLibrary.simpleMessage("أعد الإرسال"),
+        "resendCountdown": m0,
         "sendOtpButton":
-            MessageLookupByLibrary.simpleMessage("إرسال رمز التحقق")
+            MessageLookupByLibrary.simpleMessage("إرسال رمز التحقق"),
+        "tapToChange": MessageLookupByLibrary.simpleMessage("اضغط هنا لتغييره")
       };
 }

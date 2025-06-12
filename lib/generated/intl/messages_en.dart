@@ -20,6 +20,8 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(seconds) => "Resend in 00:${seconds}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Atleastletters":
@@ -85,12 +87,20 @@ class MessageLookup extends MessageLookupByLibrary {
             "You can now set a new password for your account. Make sure to choose a strong and memorable one."),
         "changePasswordTitle":
             MessageLookupByLibrary.simpleMessage("Change Password"),
+        "didNotReceiveCode":
+            MessageLookupByLibrary.simpleMessage("Didn\'t receive the code?"),
         "enterPhoneHint": MessageLookupByLibrary.simpleMessage(
             "Please enter the phone number associated with your account so we can send you a verification code via SMS."),
+        "enteredWrongNumber":
+            MessageLookupByLibrary.simpleMessage("Entered a wrong number?"),
         "forgotPasswordPrompt": MessageLookupByLibrary.simpleMessage(
             "Forgot your password?\nNo worries, we\'re here to help."),
         "newPasswordSlogan":
-            MessageLookupByLibrary.simpleMessage("New password, new beginning"),
+            MessageLookupByLibrary.simpleMessage("New password\nnew beginning"),
+        "otpEmptyError": MessageLookupByLibrary.simpleMessage(
+            "Please enter the verification code."),
+        "otpLengthError":
+            MessageLookupByLibrary.simpleMessage("The code must be 5 digits."),
         "otpSentMessage": MessageLookupByLibrary.simpleMessage(
             "We\'ve sent a 5-digit verification code to your phone number. Please enter it to complete the registration."),
         "otpSentSuccess":
@@ -98,7 +108,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordmustnotcontainyourorphonenumber":
             MessageLookupByLibrary.simpleMessage(
                 "The password must not contain your name or phone number."),
+        "resend": MessageLookupByLibrary.simpleMessage("Resend"),
+        "resendCountdown": m0,
         "sendOtpButton":
-            MessageLookupByLibrary.simpleMessage("Send Verification Code")
+            MessageLookupByLibrary.simpleMessage("Send Verification Code"),
+        "tapToChange":
+            MessageLookupByLibrary.simpleMessage("Tap here to change")
       };
 }

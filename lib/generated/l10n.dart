@@ -400,10 +400,10 @@ class S {
     );
   }
 
-  /// `New password, new beginning`
+  /// `New password\nnew beginning`
   String get newPasswordSlogan {
     return Intl.message(
-      'New password, new beginning',
+      'New password\nnew beginning',
       name: 'newPasswordSlogan',
       desc: '',
       args: [],
@@ -457,6 +457,76 @@ class S {
       name: 'forgotPasswordPrompt',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Please enter the verification code.`
+  String get otpEmptyError {
+    return Intl.message(
+      'Please enter the verification code.',
+      name: 'otpEmptyError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The code must be 5 digits.`
+  String get otpLengthError {
+    return Intl.message(
+      'The code must be 5 digits.',
+      name: 'otpLengthError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap here to change`
+  String get tapToChange {
+    return Intl.message(
+      'Tap here to change',
+      name: 'tapToChange',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Entered a wrong number?`
+  String get enteredWrongNumber {
+    return Intl.message(
+      'Entered a wrong number?',
+      name: 'enteredWrongNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend`
+  String get resend {
+    return Intl.message(
+      'Resend',
+      name: 'resend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Didn't receive the code?`
+  String get didNotReceiveCode {
+    return Intl.message(
+      'Didn\'t receive the code?',
+      name: 'didNotReceiveCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend in 00:{seconds}`
+  String resendCountdown(Object seconds) {
+    return Intl.message(
+      'Resend in 00:$seconds',
+      name: 'resendCountdown',
+      desc: '',
+      args: [seconds],
     );
   }
 }

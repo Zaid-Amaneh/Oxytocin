@@ -10,6 +10,7 @@ import 'package:oxytocin/core/widgets/custom_button.dart';
 import 'package:oxytocin/core/widgets/name_field.dart';
 import 'package:oxytocin/core/widgets/password_field.dart';
 import 'package:oxytocin/core/widgets/phone_number_field.dart';
+import 'package:oxytocin/core/widgets/sliver_spacer.dart';
 import 'package:provider/provider.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -25,14 +26,14 @@ class _SignUpFormState extends State<SignUpForm> {
     final size = MediaQuery.sizeOf(context);
     final width = size.width;
     final height = size.height;
-    var numberForm = GlobalKey<FormState>();
+    var formKey = GlobalKey<FormState>();
     final firstNameVM = NameViewModel();
     final lastNameVM = NameViewModel();
     final phoneNumberVM = PhoneViewModel();
     final passwordVM = PasswordViewModel();
 
     return Form(
-      key: numberForm,
+      key: formKey,
       child: Container(
         clipBehavior: Clip.antiAliasWithSaveLayer,
         width: width,
@@ -57,7 +58,8 @@ class _SignUpFormState extends State<SignUpForm> {
         ),
         child: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(child: SizedBox(height: height * 0.2)),
+            SliverSpacer(height: height * 0.2),
+
             SliverToBoxAdapter(
               child: ChangeNotifierProvider<NameViewModel>(
                 create: (_) => firstNameVM,
@@ -94,14 +96,14 @@ class _SignUpFormState extends State<SignUpForm> {
                 child: const PhoneNumberField(),
               ),
             ),
-            SliverToBoxAdapter(child: SizedBox(height: height * 0.02)),
+            SliverSpacer(height: height * 0.02),
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: CustomButton(
                   borderRadius: 25,
                   onTap: () {
-                    if (numberForm.currentState!.validate()) {
+                    if (formKey.currentState!.validate()) {
                     } else {}
                   },
                   borderColor: AppColors.kPrimaryColor1,

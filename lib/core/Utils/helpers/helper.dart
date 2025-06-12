@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:oxytocin/generated/l10n.dart';
 
 class Helper {
-  bool isArabic() {
+  static bool isArabic() {
     return Intl.getCurrentLocale() == 'ar';
   }
 }

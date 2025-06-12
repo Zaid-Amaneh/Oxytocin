@@ -3,4 +3,6 @@ class RouteNames {
   static const intro = 'intro';
   static const signIn = 'signIn';
   static const forgotPassword = 'forgotPassword';
+  static const forgotPasswordverification = 'forgotPasswordverification';
+  static const resetPassword = 'resetPassword';
 }
