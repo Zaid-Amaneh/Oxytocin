@@ -81,8 +81,24 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your Privacy is Always Protected"),
         "YourPrivacyProtectedDes": MessageLookupByLibrary.simpleMessage(
             "All your health information is encrypted and secure. Your privacy is our priority."),
+        "changePasswordSubtitle": MessageLookupByLibrary.simpleMessage(
+            "You can now set a new password for your account. Make sure to choose a strong and memorable one."),
+        "changePasswordTitle":
+            MessageLookupByLibrary.simpleMessage("Change Password"),
+        "enterPhoneHint": MessageLookupByLibrary.simpleMessage(
+            "Please enter the phone number associated with your account so we can send you a verification code via SMS."),
+        "forgotPasswordPrompt": MessageLookupByLibrary.simpleMessage(
+            "Forgot your password?\nNo worries, we\'re here to help."),
+        "newPasswordSlogan":
+            MessageLookupByLibrary.simpleMessage("New password, new beginning"),
+        "otpSentMessage": MessageLookupByLibrary.simpleMessage(
+            "We\'ve sent a 5-digit verification code to your phone number. Please enter it to complete the registration."),
+        "otpSentSuccess":
+            MessageLookupByLibrary.simpleMessage("Code sent successfully"),
         "passwordmustnotcontainyourorphonenumber":
             MessageLookupByLibrary.simpleMessage(
-                "The password must not contain your name or phone number.")
+                "The password must not contain your name or phone number."),
+        "sendOtpButton":
+            MessageLookupByLibrary.simpleMessage("Send Verification Code")
       };
 }

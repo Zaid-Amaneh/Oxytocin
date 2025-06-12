@@ -6,6 +6,8 @@ class Assets {
 
   static const String imagesAssistantsignup = "assets/images/assistantsignup.svg";
 
+  static const String imagesForgotPasswordIcon = "assets/images/forgotPasswordIcon.svg";
+
   static const String imagesHidePassword = "assets/images/hidePassword.svg";
 
   static const String imagesLayer1 = "assets/images/layer1.svg";
@@ -30,8 +32,14 @@ class Assets {
 
   static const String imagesPrivacy = "assets/images/privacy.gif";
 
+  static const String imagesResetPasswordIcon = "assets/images/resetPasswordIcon.svg";
+
+  static const String imagesSendOTPIcon = "assets/images/sendOTPIcon.svg";
+
   static const String imagesShowPassword = "assets/images/showPassword.svg";
 
   static const String imagesUserNameIcon = "assets/images/userNameIcon.svg";
+
+  static const String imagesVerification = "assets/images/verification.gif";
 }
 

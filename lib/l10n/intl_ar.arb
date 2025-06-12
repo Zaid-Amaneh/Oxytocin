@@ -31,5 +31,13 @@
     "Username":"إسم المستخدم",
     "Atleastletters":"الاسم يجب أن لا يقل عن حرفين",
     "passwordmustnotcontainyourorphonenumber":"لا يجب أن تحتوي كلمة المرور على اسمك أو رقم الهاتف.",
-    "Thepasswordsdonotmatch":"كلمتا المرور غير متطابقتين"
+    "Thepasswordsdonotmatch":"كلمتا المرور غير متطابقتين",
+    "changePasswordTitle": "تغيير كلمة المرور",
+    "changePasswordSubtitle": "الآن يمكنك تعيين كلمة مرور جديدة لحسابك. احرص على اختيار كلمة مرور قوية وسهلة التذكر.",
+    "newPasswordSlogan": "كلمة مرور جديدة، بداية جديدة",
+    "otpSentMessage": "قد أرسلنا رمز تحقق مكونًا من 5 أرقام إلى رقم هاتفك الرجاء إدخاله لإكمال التسجيل",
+    "otpSentSuccess": "تم إرسال الرمز بنجاح",
+    "sendOtpButton": "إرسال رمز التحقق",
+    "enterPhoneHint": "من فضلك أدخل رقم هاتفك المرتبط بحسابك لنتمكن من إرسال رمز التحقق إليك عبر رسالة نصية.",
+    "forgotPasswordPrompt": "هل نسيت كلمة المرور؟\nلا بأس، نحن هنا لمساعدتك."
 }

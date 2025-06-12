@@ -379,6 +379,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Change Password`
+  String get changePasswordTitle {
+    return Intl.message(
+      'Change Password',
+      name: 'changePasswordTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can now set a new password for your account. Make sure to choose a strong and memorable one.`
+  String get changePasswordSubtitle {
+    return Intl.message(
+      'You can now set a new password for your account. Make sure to choose a strong and memorable one.',
+      name: 'changePasswordSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New password, new beginning`
+  String get newPasswordSlogan {
+    return Intl.message(
+      'New password, new beginning',
+      name: 'newPasswordSlogan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We've sent a 5-digit verification code to your phone number. Please enter it to complete the registration.`
+  String get otpSentMessage {
+    return Intl.message(
+      'We\'ve sent a 5-digit verification code to your phone number. Please enter it to complete the registration.',
+      name: 'otpSentMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Code sent successfully`
+  String get otpSentSuccess {
+    return Intl.message(
+      'Code sent successfully',
+      name: 'otpSentSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Verification Code`
+  String get sendOtpButton {
+    return Intl.message(
+      'Send Verification Code',
+      name: 'sendOtpButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter the phone number associated with your account so we can send you a verification code via SMS.`
+  String get enterPhoneHint {
+    return Intl.message(
+      'Please enter the phone number associated with your account so we can send you a verification code via SMS.',
+      name: 'enterPhoneHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forgot your password?\nNo worries, we're here to help.`
+  String get forgotPasswordPrompt {
+    return Intl.message(
+      'Forgot your password?\nNo worries, we\'re here to help.',
+      name: 'forgotPasswordPrompt',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

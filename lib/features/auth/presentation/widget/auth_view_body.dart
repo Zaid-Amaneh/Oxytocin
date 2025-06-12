@@ -25,6 +25,7 @@ class _AuthViewBodyState extends State<AuthViewBody> {
     return SingleChildScrollView(
       child: Stack(
         children: [
+          // To make stack get the screen size
           SizedBox(width: width, height: height),
           // Layer2
           const SecondLayer(),

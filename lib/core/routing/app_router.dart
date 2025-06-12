@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/features/auth/presentation/views/auth_view.dart';
+import 'package:oxytocin/features/auth/presentation/views/forgot_password_view.dart';
 import 'package:oxytocin/features/intro/presentation/views/intro_view.dart';
 import 'package:oxytocin/features/intro/presentation/views/splash_view.dart';
 
@@ -24,6 +25,11 @@ class AppRouter {
           path: '/${RouteNames.signIn}',
           name: RouteNames.signIn,
           builder: (context, state) => const AuthView(),
+        ),
+        GoRoute(
+          path: '/${RouteNames.forgotPassword}',
+          name: RouteNames.forgotPassword,
+          builder: (context, state) => const ForgotPasswordView(),
         ),
       ],
     );

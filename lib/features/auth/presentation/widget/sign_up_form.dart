@@ -106,7 +106,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   },
                   borderColor: AppColors.kPrimaryColor1,
                   data: context.tr.SignUp,
-                  style: AppStyles.almaraiBold(context).copyWith(),
+                  style: AppStyles.almaraiBold(context),
                   visible: true,
                   padding: const EdgeInsetsGeometry.all(18),
                 ),

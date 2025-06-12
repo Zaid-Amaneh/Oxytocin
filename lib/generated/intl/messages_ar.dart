@@ -82,8 +82,24 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("خصوصيتك محمية دائمًا"),
         "YourPrivacyProtectedDes": MessageLookupByLibrary.simpleMessage(
             "كل معلوماتك الصحية مشفّرة وآمنة,خصوصيتك أولويتنا."),
+        "changePasswordSubtitle": MessageLookupByLibrary.simpleMessage(
+            "الآن يمكنك تعيين كلمة مرور جديدة لحسابك. احرص على اختيار كلمة مرور قوية وسهلة التذكر."),
+        "changePasswordTitle":
+            MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
+        "enterPhoneHint": MessageLookupByLibrary.simpleMessage(
+            "من فضلك أدخل رقم هاتفك المرتبط بحسابك لنتمكن من إرسال رمز التحقق إليك عبر رسالة نصية."),
+        "forgotPasswordPrompt": MessageLookupByLibrary.simpleMessage(
+            "هل نسيت كلمة المرور؟\nلا بأس، نحن هنا لمساعدتك."),
+        "newPasswordSlogan": MessageLookupByLibrary.simpleMessage(
+            "كلمة مرور جديدة، بداية جديدة"),
+        "otpSentMessage": MessageLookupByLibrary.simpleMessage(
+            "قد أرسلنا رمز تحقق مكونًا من 5 أرقام إلى رقم هاتفك الرجاء إدخاله لإكمال التسجيل"),
+        "otpSentSuccess":
+            MessageLookupByLibrary.simpleMessage("تم إرسال الرمز بنجاح"),
         "passwordmustnotcontainyourorphonenumber":
             MessageLookupByLibrary.simpleMessage(
-                "لا يجب أن تحتوي كلمة المرور على اسمك أو رقم الهاتف.")
+                "لا يجب أن تحتوي كلمة المرور على اسمك أو رقم الهاتف."),
+        "sendOtpButton":
+            MessageLookupByLibrary.simpleMessage("إرسال رمز التحقق")
       };
 }
