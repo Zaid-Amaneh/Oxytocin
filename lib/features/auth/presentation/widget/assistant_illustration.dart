@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
 
 class AssistantIllustration extends StatelessWidget {
   const AssistantIllustration({super.key, required this.form});
@@ -26,8 +27,16 @@ class AssistantIllustration extends StatelessWidget {
           );
         },
         child: form
-            ? SvgPicture.asset(Assets.imagesAssistantsignin)
-            : SvgPicture.asset(Assets.imagesAssistantsignup),
+            ? SvgPicture.asset(
+                Helper.isArabic()
+                    ? Assets.imagesAssistantRightHand
+                    : Assets.imagesAssistantLeftHand,
+              )
+            : SvgPicture.asset(
+                Helper.isArabic()
+                    ? Assets.imagesAssistantLeftHand
+                    : Assets.imagesAssistantRightHand,
+              ),
       ),
       // AnimatedSizeAndFade(
       //   fadeDuration: const Duration(milliseconds: 10000),

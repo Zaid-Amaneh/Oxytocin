@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oxytocin/core/theme/app_colors.dart';
 
 class AdditionalContainer extends StatelessWidget {
   const AdditionalContainer({super.key});
@@ -9,12 +10,12 @@ class AdditionalContainer extends StatelessWidget {
     final width = size.width;
     final height = size.height;
     return Positioned(
-      top: height * 0.3,
+      top: height * 0.31,
       child: Container(
         width: width,
         height: height * 0.15,
         decoration: const ShapeDecoration(
-          color: Colors.white,
+          color: AppColors.background,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(35),

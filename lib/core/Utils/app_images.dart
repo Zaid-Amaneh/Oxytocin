@@ -2,9 +2,9 @@
 class Assets {
   Assets._();
   
-  static const String imagesAssistantsignin = "assets/images/assistantsignin.svg";
+  static const String imagesAssistantLeftHand = "assets/images/assistantLeftHand.svg";
 
-  static const String imagesAssistantsignup = "assets/images/assistantsignup.svg";
+  static const String imagesAssistantRightHand = "assets/images/assistantRightHand.svg";
 
   static const String imagesForgotPasswordIcon = "assets/images/forgotPasswordIcon.svg";
 
