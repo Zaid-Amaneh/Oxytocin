@@ -104,6 +104,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "يجب أن يتكون الرمز من 5 أرقام."),
         "otpSentMessage": MessageLookupByLibrary.simpleMessage(
             "قد أرسلنا رمز تحقق مكونًا من 5 أرقام إلى رقم هاتفك الرجاء إدخاله لإكمال التسجيل"),
+        "otpSentMessageForgot": MessageLookupByLibrary.simpleMessage(
+            "أرسلنا إليك رمز تحقق مكوّنًا من 5 أرقام عبر رسالة نصية. الرجاء إدخاله للمتابعة وإعادة تعيين كلمة المرور"),
         "otpSentSuccess":
             MessageLookupByLibrary.simpleMessage("تم إرسال الرمز بنجاح"),
         "passwordmustnotcontainyourorphonenumber":

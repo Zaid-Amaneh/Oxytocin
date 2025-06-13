@@ -103,6 +103,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("The code must be 5 digits."),
         "otpSentMessage": MessageLookupByLibrary.simpleMessage(
             "We\'ve sent a 5-digit verification code to your phone number. Please enter it to complete the registration."),
+        "otpSentMessageForgot": MessageLookupByLibrary.simpleMessage(
+            "We’ve sent you a 5-digit verification code via SMS. Please enter it to continue and reset your password."),
         "otpSentSuccess":
             MessageLookupByLibrary.simpleMessage("Code sent successfully"),
         "passwordmustnotcontainyourorphonenumber":

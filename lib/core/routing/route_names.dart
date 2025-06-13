@@ -5,4 +5,5 @@ class RouteNames {
   static const forgotPassword = 'forgotPassword';
   static const forgotPasswordverification = 'forgotPasswordverification';
   static const resetPassword = 'resetPassword';
+  static const verificationPhoneNumber = 'verificationPhoneNumber';
 }

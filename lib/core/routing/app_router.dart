@@ -5,13 +5,15 @@ import 'package:oxytocin/features/auth/presentation/views/auth_view.dart';
 import 'package:oxytocin/features/auth/presentation/views/forgot_password_verification_view.dart';
 import 'package:oxytocin/features/auth/presentation/views/forgot_password_view.dart';
 import 'package:oxytocin/features/auth/presentation/views/reset_password_view.dart';
+import 'package:oxytocin/features/auth/presentation/views/verification_phone_number_view.dart';
 import 'package:oxytocin/features/intro/presentation/views/intro_view.dart';
 import 'package:oxytocin/features/intro/presentation/views/splash_view.dart';
 
 class AppRouter {
   static GoRouter createRouter(NavigationService navigationService) {
     final router = GoRouter(
-      initialLocation: '/${RouteNames.splash}',
+      initialLocation: '/${RouteNames.verificationPhoneNumber}',
+      // initialLocation: '/${RouteNames.splash}',
       routes: [
         GoRoute(
           path: '/${RouteNames.splash}',
@@ -42,6 +44,11 @@ class AppRouter {
           path: '/${RouteNames.resetPassword}',
           name: RouteNames.resetPassword,
           builder: (context, state) => const ResetPasswordView(),
+        ),
+        GoRoute(
+          path: '/${RouteNames.verificationPhoneNumber}',
+          name: RouteNames.verificationPhoneNumber,
+          builder: (context, state) => const VerificationPhoneNumberView(),
         ),
       ],
     );

@@ -38,7 +38,7 @@ class ForgotPasswordVerificationViewBody extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(18, 5, 18, 0),
               child: Text(
-                context.tr.otpSentMessage,
+                context.tr.otpSentMessageForgot,
                 style: AppStyles.almaraiBold(
                   context,
                 ).copyWith(color: AppColors.textSecondary, fontSize: 14),

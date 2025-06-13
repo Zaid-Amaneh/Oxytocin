@@ -420,6 +420,16 @@ class S {
     );
   }
 
+  /// `We’ve sent you a 5-digit verification code via SMS. Please enter it to continue and reset your password.`
+  String get otpSentMessageForgot {
+    return Intl.message(
+      'We’ve sent you a 5-digit verification code via SMS. Please enter it to continue and reset your password.',
+      name: 'otpSentMessageForgot',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Code sent successfully`
   String get otpSentSuccess {
     return Intl.message(
