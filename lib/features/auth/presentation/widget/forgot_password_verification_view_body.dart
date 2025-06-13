@@ -10,6 +10,7 @@ import 'package:oxytocin/core/widgets/custom_button.dart';
 import 'package:oxytocin/core/widgets/otp_field.dart';
 import 'package:oxytocin/core/widgets/resend_otp.dart';
 import 'package:oxytocin/core/widgets/sliver_spacer.dart';
+import 'package:oxytocin/features/auth/presentation/widget/change_wrong_number.dart';
 import 'package:oxytocin/features/auth/presentation/widget/forgot_password_view_header.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +20,6 @@ class ForgotPasswordVerificationViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
-    // final width = size.width;
     final height = size.height;
     var formKey = GlobalKey<FormState>();
     final TextEditingController otpController = TextEditingController();
@@ -53,7 +53,7 @@ class ForgotPasswordVerificationViewBody extends StatelessWidget {
               child: const ResendOtp(),
             ),
           ),
-          SliverSpacer(height: height * 0.25),
+          SliverSpacer(height: height * 0.24),
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -73,6 +73,7 @@ class ForgotPasswordVerificationViewBody extends StatelessWidget {
               ),
             ),
           ),
+          const SliverToBoxAdapter(child: ChangeWrongNumber()),
         ],
       ),
     );
