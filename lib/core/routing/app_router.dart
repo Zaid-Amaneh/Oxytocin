@@ -12,8 +12,7 @@ import 'package:oxytocin/features/intro/presentation/views/splash_view.dart';
 class AppRouter {
   static GoRouter createRouter(NavigationService navigationService) {
     final router = GoRouter(
-      initialLocation: '/${RouteNames.verificationPhoneNumber}',
-      // initialLocation: '/${RouteNames.splash}',
+      initialLocation: '/${RouteNames.splash}',
       routes: [
         GoRoute(
           path: '/${RouteNames.splash}',

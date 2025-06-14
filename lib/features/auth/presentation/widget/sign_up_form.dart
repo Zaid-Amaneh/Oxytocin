@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
+import 'package:oxytocin/core/routing/navigation_service.dart';
+import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/viewmodels/name_view_model.dart';
 import 'package:oxytocin/core/viewmodels/password_view_model.dart';
@@ -104,6 +106,10 @@ class _SignUpFormState extends State<SignUpForm> {
                   borderRadius: 25,
                   onTap: () {
                     if (formKey.currentState!.validate()) {
+                      NavigationService navigationService = NavigationService();
+                      navigationService.pushToNamed(
+                        RouteNames.verificationPhoneNumber,
+                      );
                     } else {}
                   },
                   borderColor: AppColors.kPrimaryColor1,
