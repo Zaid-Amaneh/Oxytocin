@@ -66,10 +66,6 @@ class ResetPasswordViewBody extends StatelessWidget {
                 borderRadius: 25,
                 onTap: () {
                   if (formKey.currentState!.validate()) {
-                    // NavigationService navigationService = NavigationService();
-                    // navigationService.pushToNamed(
-                    //   RouteNames.forgotPasswordverification,
-                    // );
                   } else {}
                 },
                 borderColor: AppColors.kPrimaryColor1,
