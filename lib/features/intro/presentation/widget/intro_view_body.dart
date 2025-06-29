@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
+import 'package:oxytocin/core/Utils/services/i_local_storage_service.dart';
 import 'package:oxytocin/core/Utils/services/local_storage_service.dart';
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
@@ -21,7 +22,7 @@ class IntroViewBody extends StatefulWidget {
 
 class _IntroViewBodyState extends State<IntroViewBody> {
   int currentPage = 0;
-
+  final ILocalStorageService storage = LocalStorageService();
   @override
   Widget build(BuildContext context) {
     PageController pageController = PageController();
@@ -93,8 +94,7 @@ class _IntroViewBodyState extends State<IntroViewBody> {
   }
 
   void introductionEnd() {
-    LocalStorageService localStorageService = LocalStorageService();
-    localStorageService.newUser();
+    storage.setNewUserFlag(false);
     NavigationService nav = NavigationService();
     nav.goToNamed(RouteNames.signIn);
   }

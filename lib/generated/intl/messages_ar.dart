@@ -84,6 +84,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("خصوصيتك محمية دائمًا"),
         "YourPrivacyProtectedDes": MessageLookupByLibrary.simpleMessage(
             "كل معلوماتك الصحية مشفّرة وآمنة,خصوصيتك أولويتنا."),
+        "account_created_success": MessageLookupByLibrary.simpleMessage(
+            "تهانينا! تم إنشاء حسابك بنجاح."),
         "changePasswordSubtitle": MessageLookupByLibrary.simpleMessage(
             "الآن يمكنك تعيين كلمة مرور جديدة لحسابك. احرص على اختيار كلمة مرور قوية وسهلة التذكر."),
         "changePasswordTitle":
@@ -94,10 +96,34 @@ class MessageLookup extends MessageLookupByLibrary {
             "من فضلك أدخل رقم هاتفك المرتبط بحسابك لنتمكن من إرسال رمز التحقق إليك عبر رسالة نصية."),
         "enteredWrongNumber":
             MessageLookupByLibrary.simpleMessage("أدخلت رقمًا خاطئًا؟"),
+        "error_invalid_credentials": MessageLookupByLibrary.simpleMessage(
+            "رقم الهاتف أو كلمة المرور غير صحيحة"),
+        "error_invalid_credentials_title":
+            MessageLookupByLibrary.simpleMessage("فشل تسجيل الدخول"),
+        "error_network":
+            MessageLookupByLibrary.simpleMessage("تحقق من اتصال الإنترنت"),
+        "error_phone_exists":
+            MessageLookupByLibrary.simpleMessage("رقم الهاتف هذا مسجل مسبقًا"),
+        "error_phone_invalid":
+            MessageLookupByLibrary.simpleMessage("رقم الهاتف غير صالح"),
+        "error_server": MessageLookupByLibrary.simpleMessage(
+            "حدث خطأ في الخادم، حاول لاحقًا"),
+        "error_unknown":
+            MessageLookupByLibrary.simpleMessage("حدث خطأ غير متوقع"),
+        "error_validation":
+            MessageLookupByLibrary.simpleMessage("البيانات المدخلة غير صحيحة"),
         "forgotPasswordPrompt": MessageLookupByLibrary.simpleMessage(
             "هل نسيت كلمة المرور؟\nلا بأس، نحن هنا لمساعدتك."),
+        "invalid_otp_code": MessageLookupByLibrary.simpleMessage(
+            "رمز التحقق غير صحيح أو منتهي. حاول مرة أخرى."),
+        "invalid_otp_code_title":
+            MessageLookupByLibrary.simpleMessage("رمز خاطئ"),
         "newPasswordSlogan": MessageLookupByLibrary.simpleMessage(
             "كلمة مرور جديدة\nبداية جديدة"),
+        "operation_failed_title":
+            MessageLookupByLibrary.simpleMessage("فشل العملية"),
+        "operation_successful_title":
+            MessageLookupByLibrary.simpleMessage("تمت العملية بنجاح!"),
         "otpEmptyError":
             MessageLookupByLibrary.simpleMessage("الرجاء إدخال رمز التحقق."),
         "otpLengthError": MessageLookupByLibrary.simpleMessage(
@@ -108,13 +134,33 @@ class MessageLookup extends MessageLookupByLibrary {
             "أرسلنا إليك رمز تحقق مكوّنًا من 5 أرقام عبر رسالة نصية. الرجاء إدخاله للمتابعة وإعادة تعيين كلمة المرور"),
         "otpSentSuccess":
             MessageLookupByLibrary.simpleMessage("تم إرسال الرمز بنجاح"),
+        "otp_verified_successfully":
+            MessageLookupByLibrary.simpleMessage("تم التحقق من الرمز بنجاح!"),
+        "otp_verified_successfully_title":
+            MessageLookupByLibrary.simpleMessage("تم التحقق"),
         "passwordmustnotcontainyourorphonenumber":
             MessageLookupByLibrary.simpleMessage(
                 "لا يجب أن تحتوي كلمة المرور على اسمك أو رقم الهاتف."),
         "resend": MessageLookupByLibrary.simpleMessage("أعد الإرسال"),
         "resendCountdown": m0,
+        "resend_otp_failed": MessageLookupByLibrary.simpleMessage(
+            "فشل في إعادة إرسال رمز التحقق. يرجى المحاولة لاحقًا."),
+        "resend_otp_failed_title":
+            MessageLookupByLibrary.simpleMessage("فشل الإرسال"),
+        "resend_otp_success": MessageLookupByLibrary.simpleMessage(
+            "تم إرسال رمز التحقق بنجاح. يرجى التحقق من هاتفك."),
+        "resend_otp_success_title":
+            MessageLookupByLibrary.simpleMessage("تم الإرسال"),
         "sendOtpButton":
             MessageLookupByLibrary.simpleMessage("إرسال رمز التحقق"),
-        "tapToChange": MessageLookupByLibrary.simpleMessage("اضغط هنا لتغييره")
+        "sign_in_success_message":
+            MessageLookupByLibrary.simpleMessage("تم تسجيل الدخول بنجاح"),
+        "sign_up_failure_title":
+            MessageLookupByLibrary.simpleMessage("فشل إنشاء الحساب"),
+        "tapToChange": MessageLookupByLibrary.simpleMessage("اضغط هنا لتغييره"),
+        "unverified_phone": MessageLookupByLibrary.simpleMessage(
+            "رقم الهاتف لم يتم التحقق منه بعد. يرجى التحقق من الرمز المرسل."),
+        "unverified_phone_title":
+            MessageLookupByLibrary.simpleMessage("التحقق مطلوب")
       };
 }

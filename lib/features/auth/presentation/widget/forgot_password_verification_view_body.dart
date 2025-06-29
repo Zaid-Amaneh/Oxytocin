@@ -10,6 +10,7 @@ import 'package:oxytocin/core/widgets/custom_button.dart';
 import 'package:oxytocin/core/widgets/otp_field.dart';
 import 'package:oxytocin/core/widgets/resend_otp.dart';
 import 'package:oxytocin/core/widgets/sliver_spacer.dart';
+import 'package:oxytocin/features/auth/data/models/resend_otp_request.dart';
 import 'package:oxytocin/features/auth/presentation/widget/change_wrong_number.dart';
 import 'package:oxytocin/features/auth/presentation/widget/forgot_password_view_header.dart';
 import 'package:provider/provider.dart';
@@ -50,27 +51,24 @@ class ForgotPasswordVerificationViewBody extends StatelessWidget {
           SliverToBoxAdapter(
             child: ChangeNotifierProvider(
               create: (_) => ResendOtpViewModel()..startTimer(),
-              child: const ResendOtp(),
+              child: ResendOtp(request: ResendOtpRequest(phone: 'phone')),
             ),
           ),
           SliverSpacer(height: height * 0.24),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: CustomButton(
-                borderRadius: 25,
-                onTap: () {
-                  if (formKey.currentState!.validate()) {
-                    NavigationService navigationService = NavigationService();
-                    navigationService.pushToNamed(RouteNames.resetPassword);
-                  } else {}
-                },
-                borderColor: AppColors.kPrimaryColor1,
-                data: context.tr.sendOtpButton,
-                style: AppStyles.almaraiBold(context),
-                visible: true,
-                padding: const EdgeInsetsGeometry.all(18),
-              ),
+            child: CustomButton(
+              borderRadius: 25,
+              onTap: () {
+                if (formKey.currentState!.validate()) {
+                  NavigationService navigationService = NavigationService();
+                  navigationService.pushToNamed(RouteNames.resetPassword);
+                } else {}
+              },
+              borderColor: AppColors.kPrimaryColor1,
+              data: context.tr.sendOtpButton,
+              style: AppStyles.almaraiBold(context),
+              visible: true,
+              padding: const EdgeInsetsGeometry.all(18),
             ),
           ),
           const SliverToBoxAdapter(child: ChangeWrongNumber()),

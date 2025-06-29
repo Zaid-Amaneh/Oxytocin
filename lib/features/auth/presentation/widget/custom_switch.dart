@@ -44,6 +44,7 @@ class CustomSwitch extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               CustomButton(
+                buttonPadding: const EdgeInsets.all(0),
                 borderRadius: 29,
                 onTap: inup ? signUpTap : null,
                 padding: const EdgeInsets.fromLTRB(24, 16, 24, 13),
@@ -58,6 +59,7 @@ class CustomSwitch extends StatelessWidget {
                     : AppStyles.tajawalBold(context),
               ),
               CustomButton(
+                buttonPadding: const EdgeInsets.all(0),
                 borderRadius: 29,
                 onTap: inup ? null : signInTap,
                 padding: const EdgeInsets.fromLTRB(24, 16, 24, 13),

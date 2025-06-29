@@ -539,6 +539,236 @@ class S {
       args: [seconds],
     );
   }
+
+  /// `A server error occurred. Please try again later.`
+  String get error_server {
+    return Intl.message(
+      'A server error occurred. Please try again later.',
+      name: 'error_server',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please check your internet connection.`
+  String get error_network {
+    return Intl.message(
+      'Please check your internet connection.',
+      name: 'error_network',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The input data is invalid.`
+  String get error_validation {
+    return Intl.message(
+      'The input data is invalid.',
+      name: 'error_validation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An unexpected error occurred.`
+  String get error_unknown {
+    return Intl.message(
+      'An unexpected error occurred.',
+      name: 'error_unknown',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Operation Successful!`
+  String get operation_successful_title {
+    return Intl.message(
+      'Operation Successful!',
+      name: 'operation_successful_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Congratulations! Your account has been created successfully.`
+  String get account_created_success {
+    return Intl.message(
+      'Congratulations! Your account has been created successfully.',
+      name: 'account_created_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This phone number is already registered`
+  String get error_phone_exists {
+    return Intl.message(
+      'This phone number is already registered',
+      name: 'error_phone_exists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid phone number`
+  String get error_phone_invalid {
+    return Intl.message(
+      'Invalid phone number',
+      name: 'error_phone_invalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Operation Failed`
+  String get operation_failed_title {
+    return Intl.message(
+      'Operation Failed',
+      name: 'operation_failed_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid phone number or password`
+  String get error_invalid_credentials {
+    return Intl.message(
+      'Invalid phone number or password',
+      name: 'error_invalid_credentials',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign-In Failed`
+  String get error_invalid_credentials_title {
+    return Intl.message(
+      'Sign-In Failed',
+      name: 'error_invalid_credentials_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Signed in successfully`
+  String get sign_in_success_message {
+    return Intl.message(
+      'Signed in successfully',
+      name: 'sign_in_success_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign-up Failed`
+  String get sign_up_failure_title {
+    return Intl.message(
+      'Sign-up Failed',
+      name: 'sign_up_failure_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to resend the verification code. Please try again later.`
+  String get resend_otp_failed {
+    return Intl.message(
+      'Failed to resend the verification code. Please try again later.',
+      name: 'resend_otp_failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend Failed`
+  String get resend_otp_failed_title {
+    return Intl.message(
+      'Resend Failed',
+      name: 'resend_otp_failed_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verification code was sent successfully. Please check your phone.`
+  String get resend_otp_success {
+    return Intl.message(
+      'Verification code was sent successfully. Please check your phone.',
+      name: 'resend_otp_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Code Sent`
+  String get resend_otp_success_title {
+    return Intl.message(
+      'Code Sent',
+      name: 'resend_otp_success_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The code has been verified successfully!`
+  String get otp_verified_successfully {
+    return Intl.message(
+      'The code has been verified successfully!',
+      name: 'otp_verified_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verified`
+  String get otp_verified_successfully_title {
+    return Intl.message(
+      'Verified',
+      name: 'otp_verified_successfully_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid or expired verification code. Please try again.`
+  String get invalid_otp_code {
+    return Intl.message(
+      'Invalid or expired verification code. Please try again.',
+      name: 'invalid_otp_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Code`
+  String get invalid_otp_code_title {
+    return Intl.message(
+      'Invalid Code',
+      name: 'invalid_otp_code_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone number has not been verified yet. Please check the verification code sent to you.`
+  String get unverified_phone {
+    return Intl.message(
+      'Phone number has not been verified yet. Please check the verification code sent to you.',
+      name: 'unverified_phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verification Required`
+  String get unverified_phone_title {
+    return Intl.message(
+      'Verification Required',
+      name: 'unverified_phone_title',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

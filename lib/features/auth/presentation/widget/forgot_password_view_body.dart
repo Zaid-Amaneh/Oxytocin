@@ -51,24 +51,21 @@ class ForgotPasswordViewBody extends StatelessWidget {
           ),
           SliverSpacer(height: height * 0.2),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: CustomButton(
-                borderRadius: 25,
-                onTap: () {
-                  if (formKey.currentState!.validate()) {
-                    NavigationService navigationService = NavigationService();
-                    navigationService.pushToNamed(
-                      RouteNames.forgotPasswordverification,
-                    );
-                  } else {}
-                },
-                borderColor: AppColors.kPrimaryColor1,
-                data: context.tr.sendOtpButton,
-                style: AppStyles.almaraiBold(context),
-                visible: true,
-                padding: const EdgeInsetsGeometry.all(18),
-              ),
+            child: CustomButton(
+              borderRadius: 25,
+              onTap: () {
+                if (formKey.currentState!.validate()) {
+                  NavigationService navigationService = NavigationService();
+                  navigationService.pushToNamed(
+                    RouteNames.forgotPasswordverification,
+                  );
+                } else {}
+              },
+              borderColor: AppColors.kPrimaryColor1,
+              data: context.tr.sendOtpButton,
+              style: AppStyles.almaraiBold(context),
+              visible: true,
+              padding: const EdgeInsetsGeometry.all(18),
             ),
           ),
         ],

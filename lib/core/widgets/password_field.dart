@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
+import 'package:oxytocin/core/constants/app_constants.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:provider/provider.dart';
 import 'package:oxytocin/core/viewmodels/password_view_model.dart';
@@ -27,7 +28,7 @@ class PasswordField extends StatelessWidget {
       phone: phoneController?.text ?? '',
     );
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: AppConstants.textFieldPadding,
       child: DecoratedBox(
         decoration: ShapeDecoration(
           color: AppColors.background,

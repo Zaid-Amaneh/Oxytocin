@@ -60,20 +60,17 @@ class ResetPasswordViewBody extends StatelessWidget {
           ),
           SliverSpacer(height: height * 0.1),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: CustomButton(
-                borderRadius: 25,
-                onTap: () {
-                  if (formKey.currentState!.validate()) {
-                  } else {}
-                },
-                borderColor: AppColors.kPrimaryColor1,
-                data: context.tr.changePasswordTitle,
-                style: AppStyles.almaraiBold(context),
-                visible: true,
-                padding: const EdgeInsetsGeometry.all(18),
-              ),
+            child: CustomButton(
+              borderRadius: 25,
+              onTap: () {
+                if (formKey.currentState!.validate()) {
+                } else {}
+              },
+              borderColor: AppColors.kPrimaryColor1,
+              data: context.tr.changePasswordTitle,
+              style: AppStyles.almaraiBold(context),
+              visible: true,
+              padding: const EdgeInsetsGeometry.all(18),
             ),
           ),
         ],
