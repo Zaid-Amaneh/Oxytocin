@@ -85,8 +85,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "All your health information is encrypted and secure. Your privacy is our priority."),
         "account_created_success": MessageLookupByLibrary.simpleMessage(
             "Congratulations! Your account has been created successfully."),
+        "changePasswordFailure":
+            MessageLookupByLibrary.simpleMessage("Failed to change password"),
         "changePasswordSubtitle": MessageLookupByLibrary.simpleMessage(
             "You can now set a new password for your account. Make sure to choose a strong and memorable one."),
+        "changePasswordSuccess": MessageLookupByLibrary.simpleMessage(
+            "Password changed successfully"),
         "changePasswordTitle":
             MessageLookupByLibrary.simpleMessage("Change Password"),
         "didNotReceiveCode":
@@ -105,6 +109,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "This phone number is already registered"),
         "error_phone_invalid":
             MessageLookupByLibrary.simpleMessage("Invalid phone number"),
+        "error_phone_not_found":
+            MessageLookupByLibrary.simpleMessage("Phone number not found"),
         "error_server": MessageLookupByLibrary.simpleMessage(
             "A server error occurred. Please try again later."),
         "error_unknown": MessageLookupByLibrary.simpleMessage(
@@ -158,6 +164,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Sign-up Failed"),
         "tapToChange":
             MessageLookupByLibrary.simpleMessage("Tap here to change"),
+        "tokenNotValid": MessageLookupByLibrary.simpleMessage(
+            "Invalid token. Please log in again"),
         "unverified_phone": MessageLookupByLibrary.simpleMessage(
             "Phone number has not been verified yet. Please check the verification code sent to you."),
         "unverified_phone_title":

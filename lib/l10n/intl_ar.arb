@@ -70,6 +70,9 @@
     "invalid_otp_code": "رمز التحقق غير صحيح أو منتهي. حاول مرة أخرى.",
     "invalid_otp_code_title": "رمز خاطئ",
     "unverified_phone": "رقم الهاتف لم يتم التحقق منه بعد. يرجى التحقق من الرمز المرسل.",
-    "unverified_phone_title": "التحقق مطلوب"
-
+    "unverified_phone_title": "التحقق مطلوب",
+    "error_phone_not_found": "رقم الهاتف غير موجود",
+    "changePasswordSuccess": "تم تغيير كلمة المرور بنجاح",
+    "changePasswordFailure": "فشل في تغيير كلمة المرور",
+    "tokenNotValid": "التوكن غير صالح. يرجى إعادة تسجيل الدخول"
 }

@@ -1,4 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/web.dart';
+import 'package:oxytocin/core/Utils/services/i_secure_storage_service.dart';
+import 'package:oxytocin/core/Utils/services/secure_storage_service.dart';
 import 'package:oxytocin/core/errors/failure.dart';
 import 'package:oxytocin/features/auth/data/models/resend_otp_request.dart';
 import 'package:oxytocin/features/auth/data/models/verify_otp_request.dart';
@@ -12,12 +15,17 @@ part 'otp_state.dart';
 class OtpBloc extends Bloc<OtpEvent, OtpState> {
   final VerifyOtpUseCase verifyOtpUseCase;
   final ResendOtpUseCase resendOtpUseCase;
-
   OtpBloc(this.verifyOtpUseCase, this.resendOtpUseCase) : super(OtpInitial()) {
     on<OtpSubmitted>((event, emit) async {
       emit(OtpLoading());
       try {
-        final result = await verifyOtpUseCase.execute(event.request);
+        final result = await verifyOtpUseCase(event.request);
+        final ISecureStorageService secureStorageService =
+            SecureStorageService();
+        await secureStorageService.saveAccessToken(result.accessToken);
+        await secureStorageService.saveRefreshToken(result.refreshToken);
+        Logger().i(result.accessToken);
+        Logger().i(result.refreshToken);
         emit(OtpSuccess(result));
       } catch (e) {
         emit(OtpFailure(e is Failure ? e : const UnknownFailure()));
@@ -27,7 +35,7 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
     on<OtpResendRequested>((event, emit) async {
       emit(OtpLoading());
       try {
-        final message = await resendOtpUseCase.execute(event.request);
+        final message = await resendOtpUseCase(event.request);
         emit(OtpResendSuccess(message));
       } catch (e) {
         emit(OtpFailure(e is Failure ? e : const UnknownFailure()));

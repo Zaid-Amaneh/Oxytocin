@@ -14,7 +14,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     on<SignUpSubmitted>((event, emit) async {
       emit(SignUpLoading());
       try {
-        final user = await signUpUseCase.execute(event.request);
+        final user = await signUpUseCase(event.request);
         emit(SignUpSuccess(user));
       } catch (e) {
         if (e is Failure) {

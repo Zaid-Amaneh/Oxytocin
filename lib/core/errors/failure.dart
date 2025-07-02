@@ -51,3 +51,11 @@ class OtpResendSuccess extends Failure {
 class UnverifiedPhoneFailure extends Failure {
   const UnverifiedPhoneFailure() : super('unverified_phone');
 }
+
+class PhoneNotFoundFailure extends Failure {
+  const PhoneNotFoundFailure() : super('error_phone_not_found');
+}
+
+class InvalidTokenFailure extends Failure {
+  const InvalidTokenFailure() : super("token_not_valid");
+}

@@ -4,13 +4,19 @@ import 'package:http/http.dart' as http;
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/features/auth/data/services/auth_service.dart';
+import 'package:oxytocin/features/auth/domain/change_password_use_case.dart';
+import 'package:oxytocin/features/auth/domain/forgot_password_usecase.dart';
 import 'package:oxytocin/features/auth/domain/resend_otp_use_case.dart';
 import 'package:oxytocin/features/auth/domain/sign_in_use_case.dart';
 import 'package:oxytocin/features/auth/domain/sign_up_use_case.dart';
+import 'package:oxytocin/features/auth/domain/verify_forgot_password_otp_use_case.dart';
 import 'package:oxytocin/features/auth/domain/verify_otp_use_case.dart';
+import 'package:oxytocin/features/auth/presentation/viewmodels/blocs/changePassword/change_password_bloc.dart';
+import 'package:oxytocin/features/auth/presentation/viewmodels/blocs/forgotPassword/forgot_password_bloc.dart';
 import 'package:oxytocin/features/auth/presentation/viewmodels/blocs/verification/otp_bloc.dart';
 import 'package:oxytocin/features/auth/presentation/viewmodels/blocs/signIn/sign_in_bloc.dart';
 import 'package:oxytocin/features/auth/presentation/viewmodels/blocs/signUp/sign_up_bloc.dart';
+import 'package:oxytocin/features/auth/presentation/viewmodels/blocs/verifyForgotPasswordOtp/verify_forgot_password_otp_bloc.dart';
 import 'package:oxytocin/features/auth/presentation/views/auth_view.dart';
 import 'package:oxytocin/features/auth/presentation/views/forgot_password_verification_view.dart';
 import 'package:oxytocin/features/auth/presentation/views/forgot_password_view.dart';
@@ -43,10 +49,10 @@ class AppRouter {
             return MultiRepositoryProvider(
               providers: [
                 RepositoryProvider<SignUpUseCase>(
-                  create: (_) => SignUpUseCase(authRepository),
+                  create: (_) => SignUpUseCase(authService: authRepository),
                 ),
                 RepositoryProvider<SignInUseCase>(
-                  create: (_) => SignInUseCase(authRepository),
+                  create: (_) => SignInUseCase(authService: authRepository),
                 ),
               ],
               child: MultiBlocProvider(
@@ -60,7 +66,7 @@ class AppRouter {
                         SignInBloc(context.read<SignInUseCase>()),
                   ),
                 ],
-                child: const AuthView(), // هنا ستستفيد الشاشة من كلا البلوكين
+                child: const AuthView(),
               ),
             );
           },
@@ -69,17 +75,51 @@ class AppRouter {
         GoRoute(
           path: '/${RouteNames.forgotPassword}',
           name: RouteNames.forgotPassword,
-          builder: (context, state) => const ForgotPasswordView(),
+          builder: (context, state) {
+            final authRepository = AuthService(http.Client());
+            return RepositoryProvider<ForgotPasswordUseCase>(
+              create: (_) => ForgotPasswordUseCase(authService: authRepository),
+              child: BlocProvider<ForgotPasswordBloc>(
+                create: (context) =>
+                    ForgotPasswordBloc(context.read<ForgotPasswordUseCase>()),
+                child: const ForgotPasswordView(),
+              ),
+            );
+          },
         ),
+
         GoRoute(
           path: '/${RouteNames.forgotPasswordverification}',
           name: RouteNames.forgotPasswordverification,
-          builder: (context, state) => const ForgotPasswordVerificationView(),
+          builder: (context, state) {
+            final phoneNumber = state.uri.queryParameters['phoneNumber'];
+            final authRepository = AuthService(http.Client());
+            return RepositoryProvider<VerifyForgotPasswordOtpUseCase>(
+              create: (_) =>
+                  VerifyForgotPasswordOtpUseCase(authService: authRepository),
+              child: BlocProvider<VerifyForgotPasswordOtpBloc>(
+                create: (context) => VerifyForgotPasswordOtpBloc(
+                  context.read<VerifyForgotPasswordOtpUseCase>(),
+                ),
+                child: ForgotPasswordVerificationView(phoneNumber: phoneNumber),
+              ),
+            );
+          },
         ),
         GoRoute(
           path: '/${RouteNames.resetPassword}',
           name: RouteNames.resetPassword,
-          builder: (context, state) => const ResetPasswordView(),
+          builder: (context, state) {
+            final authRepository = AuthService(http.Client());
+            return RepositoryProvider<ChangePasswordUseCase>(
+              create: (_) => ChangePasswordUseCase(authService: authRepository),
+              child: BlocProvider<ChangePasswordBloc>(
+                create: (context) =>
+                    ChangePasswordBloc(context.read<ChangePasswordUseCase>()),
+                child: const ResetPasswordView(),
+              ),
+            );
+          },
         ),
         GoRoute(
           path: '/${RouteNames.verificationPhoneNumber}',
@@ -90,10 +130,10 @@ class AppRouter {
             return MultiRepositoryProvider(
               providers: [
                 RepositoryProvider<VerifyOtpUseCase>(
-                  create: (_) => VerifyOtpUseCase(authRepository),
+                  create: (_) => VerifyOtpUseCase(authService: authRepository),
                 ),
                 RepositoryProvider<ResendOtpUseCase>(
-                  create: (_) => ResendOtpUseCase(authRepository),
+                  create: (_) => ResendOtpUseCase(authService: authRepository),
                 ),
               ],
               child: BlocProvider<OtpBloc>(

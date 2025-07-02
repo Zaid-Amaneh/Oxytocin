@@ -769,6 +769,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Phone number not found`
+  String get error_phone_not_found {
+    return Intl.message(
+      'Phone number not found',
+      name: 'error_phone_not_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password changed successfully`
+  String get changePasswordSuccess {
+    return Intl.message(
+      'Password changed successfully',
+      name: 'changePasswordSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to change password`
+  String get changePasswordFailure {
+    return Intl.message(
+      'Failed to change password',
+      name: 'changePasswordFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid token. Please log in again`
+  String get tokenNotValid {
+    return Intl.message(
+      'Invalid token. Please log in again',
+      name: 'tokenNotValid',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

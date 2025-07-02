@@ -28,6 +28,10 @@ extension FailureLocalization on S {
         return invalid_otp_code_title;
       case 'unverified_phone':
         return unverified_phone;
+      case 'error_phone_not_found':
+        return error_phone_not_found;
+      case 'token_not_valid':
+        return tokenNotValid;
       default:
         return error_unknown;
     }

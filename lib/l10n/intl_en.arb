@@ -70,6 +70,9 @@
   "invalid_otp_code": "Invalid or expired verification code. Please try again.",
   "invalid_otp_code_title": "Invalid Code",
   "unverified_phone": "Phone number has not been verified yet. Please check the verification code sent to you.",
-  "unverified_phone_title": "Verification Required"
-
+  "unverified_phone_title": "Verification Required",
+  "error_phone_not_found": "Phone number not found",
+  "changePasswordSuccess": "Password changed successfully",
+  "changePasswordFailure": "Failed to change password",
+  "tokenNotValid": "Invalid token. Please log in again"
 }

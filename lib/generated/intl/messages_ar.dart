@@ -86,8 +86,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "كل معلوماتك الصحية مشفّرة وآمنة,خصوصيتك أولويتنا."),
         "account_created_success": MessageLookupByLibrary.simpleMessage(
             "تهانينا! تم إنشاء حسابك بنجاح."),
+        "changePasswordFailure":
+            MessageLookupByLibrary.simpleMessage("فشل في تغيير كلمة المرور"),
         "changePasswordSubtitle": MessageLookupByLibrary.simpleMessage(
             "الآن يمكنك تعيين كلمة مرور جديدة لحسابك. احرص على اختيار كلمة مرور قوية وسهلة التذكر."),
+        "changePasswordSuccess":
+            MessageLookupByLibrary.simpleMessage("تم تغيير كلمة المرور بنجاح"),
         "changePasswordTitle":
             MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
         "didNotReceiveCode":
@@ -106,6 +110,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("رقم الهاتف هذا مسجل مسبقًا"),
         "error_phone_invalid":
             MessageLookupByLibrary.simpleMessage("رقم الهاتف غير صالح"),
+        "error_phone_not_found":
+            MessageLookupByLibrary.simpleMessage("رقم الهاتف غير موجود"),
         "error_server": MessageLookupByLibrary.simpleMessage(
             "حدث خطأ في الخادم، حاول لاحقًا"),
         "error_unknown":
@@ -158,6 +164,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sign_up_failure_title":
             MessageLookupByLibrary.simpleMessage("فشل إنشاء الحساب"),
         "tapToChange": MessageLookupByLibrary.simpleMessage("اضغط هنا لتغييره"),
+        "tokenNotValid": MessageLookupByLibrary.simpleMessage(
+            "التوكن غير صالح. يرجى إعادة تسجيل الدخول"),
         "unverified_phone": MessageLookupByLibrary.simpleMessage(
             "رقم الهاتف لم يتم التحقق منه بعد. يرجى التحقق من الرمز المرسل."),
         "unverified_phone_title":

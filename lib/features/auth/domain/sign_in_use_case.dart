@@ -3,11 +3,11 @@ import 'package:oxytocin/features/auth/data/models/sign_in_response.dart';
 import 'package:oxytocin/features/auth/data/services/auth_service.dart';
 
 class SignInUseCase {
-  final AuthService repository;
+  final AuthService authService;
 
-  SignInUseCase(this.repository);
+  SignInUseCase({required this.authService});
 
-  Future<SignInResponse> execute(SignInRequest request) {
-    return repository.login(request);
+  Future<SignInResponse> call(SignInRequest request) async {
+    return await authService.login(request);
   }
 }

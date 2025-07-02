@@ -1,6 +1,10 @@
 import 'package:logger/web.dart';
 import 'package:oxytocin/core/constants/api_endpoints.dart';
 import 'package:oxytocin/core/errors/failure.dart';
+import 'package:oxytocin/features/auth/data/models/change_password_request.dart';
+import 'package:oxytocin/features/auth/data/models/change_password_response.dart';
+import 'package:oxytocin/features/auth/data/models/forgot_password_request.dart';
+import 'package:oxytocin/features/auth/data/models/forgot_password_response.dart';
 import 'package:oxytocin/features/auth/data/models/resend_otp_request.dart';
 import 'package:oxytocin/features/auth/data/models/sign_in_request.dart';
 import 'package:oxytocin/features/auth/data/models/sign_in_response.dart';
@@ -96,39 +100,144 @@ class AuthService {
 
   Future<VerifyOtpResponse> verifyOtp(VerifyOtpRequest request) async {
     final url = Uri.parse(ApiEndpoints.verifyOtp);
-    final response = await client.post(
-      url,
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(request.toJson()),
-    );
+    try {
+      final response = await client.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode(request.toJson()),
+      );
 
-    if (response.statusCode == 200) {
-      return VerifyOtpResponse.fromJson(jsonDecode(response.body));
-    } else if (response.statusCode == 401) {
-      final error = jsonDecode(response.body);
-      Logger().e(error);
-      if (error['detail'] != null &&
-          error['detail'].toString().contains('رمز التحقق غير صالح')) {
-        throw const InvalidOtpFailure();
+      if (response.statusCode == 200) {
+        return VerifyOtpResponse.fromJson(jsonDecode(response.body));
+      } else if (response.statusCode == 401) {
+        final error = jsonDecode(response.body);
+        Logger().e(error);
+        if (error['detail'] != null &&
+            error['detail'].toString().contains('رمز التحقق غير صالح')) {
+          throw const InvalidOtpFailure();
+        }
+        throw const ValidationFailure();
+      } else {
+        throw const ServerFailure();
       }
-      throw const ValidationFailure();
-    } else {
-      throw const ServerFailure();
+    } catch (e) {
+      if (e is Failure) rethrow;
+      throw const NetworkFailure();
     }
   }
 
   Future<String> resendOtp(ResendOtpRequest request) async {
     final url = Uri.parse(ApiEndpoints.resendOtp);
-    final response = await client.post(
-      url,
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(request.toJson()),
-    );
+    try {
+      final response = await client.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode(request.toJson()),
+      );
 
-    if (response.statusCode == 200) {
-      return jsonDecode(response.body)['message'];
-    } else {
-      throw const ServerFailure();
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body)['message'];
+      } else {
+        throw const ServerFailure();
+      }
+    } catch (e) {
+      if (e is Failure) rethrow;
+      throw const NetworkFailure();
+    }
+  }
+
+  Future<ForgotPasswordResponse> forgotPassword(
+    ForgotPasswordRequest request,
+  ) async {
+    final url = Uri.parse(ApiEndpoints.forgetPasswordSendOtp);
+    final headers = {'Content-Type': 'application/json'};
+
+    try {
+      final response = await client.post(
+        url,
+        headers: headers,
+        body: jsonEncode(request.toJson()),
+      );
+
+      if (response.statusCode == 200) {
+        return ForgotPasswordResponse.fromJson(jsonDecode(response.body));
+      } else {
+        final decoded = jsonDecode(response.body);
+        if (decoded is List &&
+            decoded.first.toString().contains('رقم الجوال غير موجود')) {
+          throw const PhoneNotFoundFailure();
+        } else {
+          throw const ServerFailure();
+        }
+      }
+    } catch (e) {
+      if (e is Failure) rethrow;
+      throw const NetworkFailure();
+    }
+  }
+
+  Future<VerifyOtpResponse> verifyForgotPasswordOtp(
+    VerifyOtpRequest request,
+  ) async {
+    final url = Uri.parse(ApiEndpoints.verifyForgotPasswordOtp);
+
+    try {
+      final response = await client.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode(request.toJson()),
+      );
+
+      if (response.statusCode == 200) {
+        return VerifyOtpResponse.fromJson(jsonDecode(response.body));
+      } else if (response.statusCode == 401 || response.statusCode == 400) {
+        final error = jsonDecode(response.body);
+        Logger().e(error);
+        if (error['detail'] != null &&
+            error['detail'].toString().contains('رمز التحقق غير صالح')) {
+          throw const InvalidOtpFailure();
+        }
+        throw const ValidationFailure();
+      } else {
+        throw const ServerFailure();
+      }
+    } catch (e) {
+      if (e is Failure) rethrow;
+      throw const NetworkFailure();
+    }
+  }
+
+  Future<ChangePasswordResponse> changePassword(
+    ChangePasswordRequest request,
+    String accessToken,
+  ) async {
+    final url = Uri.parse(ApiEndpoints.changePassword);
+
+    try {
+      final response = await client.post(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        body: jsonEncode(request.toJson()),
+      );
+
+      if (response.statusCode == 200) {
+        return ChangePasswordResponse.fromJson(jsonDecode(response.body));
+      } else if (response.statusCode == 401) {
+        final error = jsonDecode(response.body);
+        Logger().e(error);
+        if (error['code'] == 'token_not_valid') {
+          throw const InvalidTokenFailure();
+        }
+        throw const ValidationFailure();
+      } else {
+        throw const ServerFailure();
+      }
+    } catch (e) {
+      if (e is Failure) rethrow;
+      throw const NetworkFailure();
     }
   }
 }

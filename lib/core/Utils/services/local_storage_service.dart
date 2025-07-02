@@ -21,4 +21,16 @@ class LocalStorageService implements ILocalStorageService {
     final prefs = await _prefs;
     await prefs.clear();
   }
+
+  @override
+  Future<void> setKeepUserSignedIn(bool value) async {
+    final prefs = await _prefs;
+    await prefs.setBool('keep_signed_in', value);
+  }
+
+  @override
+  Future<bool> isUserKeptSignedIn() async {
+    final prefs = await _prefs;
+    return prefs.getBool('keep_signed_in') ?? false;
+  }
 }

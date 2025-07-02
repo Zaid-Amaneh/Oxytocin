@@ -2,11 +2,11 @@ import 'package:oxytocin/features/auth/data/models/resend_otp_request.dart';
 import 'package:oxytocin/features/auth/data/services/auth_service.dart';
 
 class ResendOtpUseCase {
-  final AuthService repository;
+  final AuthService authService;
 
-  ResendOtpUseCase(this.repository);
+  ResendOtpUseCase({required this.authService});
 
-  Future<String> execute(ResendOtpRequest request) {
-    return repository.resendOtp(request);
+  Future<String> call(ResendOtpRequest request) async {
+    return await authService.resendOtp(request);
   }
 }
