@@ -1,0 +1,791 @@
+from ryu.base import app_manager
+from ryu.controller import ofp_event
+from ryu.controller.handler import CONFIG_DISPATCHER, MAIN_DISPATCHER
+from ryu.controller.handler import set_ev_cls
+from ryu.ofproto import ofproto_v1_3
+from ryu.lib.packet import packet, ethernet, arp, ipv4, icmp, udp, dhcp, ether_types
+from ryu.lib import addrconv
+import struct
+from ipaddress import ip_address, ip_network
+import time
+import logging
+import networkx as nx
+import random
+
+class CombinedApp(app_manager.RyuApp):
+    OFP_VERSIONS = [ofproto_v1_3.OFP_VERSION]
+
+    # DHCP Constants
+    DHCP_DISCOVER = 1
+    DHCP_OFFER = 2
+    DHCP_REQUEST = 3
+    DHCP_ACK = 5
+    DHCP_NAK = 6
+    DHCP_RELEASE = 7
+
+    # DHCP Option Tags
+    DHCP_MESSAGE_TYPE = 53
+    DHCP_SERVER_ID = 54
+    DHCP_LEASE_TIME = 51
+    DHCP_SUBNET_MASK = 1
+    DHCP_ROUTER = 3
+    DHCP_DNS_SERVER = 6
+    DHCP_DOMAIN_NAME = 15
+    DHCP_REQUESTED_IP = 50
+    DHCP_END = 255
+
+    def __init__(self, *args, **kwargs):
+        super(CombinedApp, self).__init__(*args, **kwargs)
+
+        # Multipath attributes
+        self.mac_to_port = {}
+        self.net = nx.DiGraph()
+        self.switches = {}
+        self.paths = {}
+        self.switch_links = {}  # To track switch-to-switch connections
+        self.arp_table = {}  # IP to MAC mapping
+        self.pending_arp = {}  # Pending packets waiting for ARP resolution
+        self.switch_ports = {}  # Track switch ports for routing
+
+        # Routing/DHCP attributes
+        shared_subnet = {
+            'network': '192.168.0.64/22',
+            'pool_range': ['192.168.0.70', '192.168.3.254'],
+            'server_ip': '192.168.196.144',
+            'subnet_mask': '255.255.252.0',
+            'router': '192.168.0.65',
+            'dns_server': '8.8.8.8',
+            'domain_name': 'example.com',
+            'lease_time': 86400
+        }
+
+        start_ip = ip_address(shared_subnet['pool_range'][0])
+        end_ip = ip_address(shared_subnet['pool_range'][1])
+        shared_pool = [str(ip_address(ip)) for ip in range(int(start_ip), int(end_ip) + 1)]
+        shared_subnet['pool'] = shared_pool
+
+        self.subnets = {
+            's2': {
+                'network': '192.168.4.0/25',
+                'pool_range': ['192.168.4.4', '192.168.4.126'],
+                'server_ip': '192.168.196.144',
+                'subnet_mask': '255.255.255.128',
+                'router': '192.168.4.1',
+                'dns_server': '8.8.8.8',
+                'domain_name': 'example.com',
+                'lease_time': 86400,
+                'pool': [str(ip_address(ip)) for ip in range(int(ip_address('192.168.4.4')),
+                                                      int(ip_address('192.168.4.126')) + 1)]
+            },
+            's3': {
+                'network': '192.168.0.0/26',
+                'pool_range': ['192.168.0.4', '192.168.0.62'],
+                'server_ip': '192.168.196.144',
+                'subnet_mask': '255.255.255.192',
+                'router': '192.168.0.1',
+                'dns_server': '8.8.8.8',
+                'domain_name': 'example.com',
+                'lease_time': 86400,
+                'pool': [str(ip_address(ip)) for ip in range(int(ip_address('192.168.0.4')),
+                                                      int(ip_address('192.168.0.62')) + 1)]
+            },
+            's4': shared_subnet,
+            's5': shared_subnet,
+            's6': shared_subnet,
+            's7': shared_subnet
+        }
+
+        self.leases = {}  # MAC -> {ip, subnet, lease_start, lease_end}
+        self.server_mac = 'aa:bb:cc:dd:ee:ff'
+        self.router_ips = {subnet: info['router'] for subnet, info in self.subnets.items()}
+        self.router_mac = self.server_mac
+
+        # Configure logging
+        logging.getLogger('ryu').setLevel(logging.INFO)  # Changed from WARNING to INFO
+        logging.basicConfig(
+            format='%(asctime)s | %(levelname)-8s | %(message)s',
+            level=logging.INFO,
+            datefmt='%H:%M:%S'
+        )
+        self.logger = logging.getLogger(__name__)
+        self.logger.setLevel(logging.INFO)
+
+    def is_broadcast_mac(self, mac):
+        return mac == 'ff:ff:ff:ff:ff:ff'
+
+    def install_flows(self, datapath, src, dst, in_port, out_port):
+        ofproto = datapath.ofproto
+        parser = datapath.ofproto_parser
+        actions = [parser.OFPActionOutput(out_port)]
+        match = parser.OFPMatch(in_port=in_port, eth_dst=dst, eth_src=src)
+        self.add_flow(datapath, 1, match, actions)
+
+    def get_subnet_name(self, ip_str):
+        ip = ip_address(ip_str)
+        for name, subnet in self.subnets.items():
+            network = ip_network(subnet['network'], strict=False)
+            if ip in network:
+                return name
+        return None
+
+    def add_lease(self, mac, ip, subnet):
+        lease_time = self.subnets[subnet]['lease_time']
+        now = time.time()
+        self.leases[mac] = {
+            'ip': ip,
+            'subnet': subnet,
+            'lease_start': now,
+            'lease_end': now + lease_time
+        }
+        self.log_dhcp(mac, "LEASE_ADDED", ip=ip, switch=subnet)
+
+    def get_lease(self, mac):
+        lease = self.leases.get(mac)
+        if lease and lease['lease_end'] > time.time():
+            return lease
+        if lease:
+            self.release_lease(mac)
+        return None
+
+    def release_lease(self, mac):
+        lease = self.leases.pop(mac, None)
+        if lease:
+            self.subnets[lease['subnet']]['pool'].append(lease['ip'])
+            self.log_dhcp(mac, "LEASE_RELEASED", ip=lease['ip'])
+
+    def log_dhcp(self, mac, msg_type, switch=None, ip=None, xid=None):
+        parts = []
+        if switch:
+            parts.append(f"SW={switch}")
+        if ip:
+            parts.append(f"IP={ip}")
+        if xid:
+            parts.append(f"XID={xid}")
+        self.logger.info(f"[DHCP] MAC={mac} | {' | '.join(parts)} | {msg_type}")
+
+    def log_packet_in(self, dpid, src, dst, in_port, pkt_type):
+        self.logger.info(f"[PACKET-IN] SW={dpid} | SRC={src} | DST={dst} | PORT={in_port} | TYPE={pkt_type}")
+
+    def print_available_paths(self, src_switch, dst_switch):
+        """Print all available paths between two switches"""
+        try:
+            all_paths = list(nx.all_shortest_paths(self.net, src_switch, dst_switch))
+            self.logger.info(f"[PATH_ANALYSIS] Available paths from {src_switch} to {dst_switch}:")
+            for i, path in enumerate(all_paths, 1):
+                path_str = " -> ".join([f"s{node}" if isinstance(node, int) else str(node) for node in path])
+                self.logger.info(f"[PATH_ANALYSIS] Path {i}: {path_str}")
+            return all_paths
+        except nx.NetworkXNoPath:
+            self.logger.warning(f"[PATH_ANALYSIS] No path found from {src_switch} to {dst_switch}")
+            return []
+
+    def print_selected_path(self, path, src_switch, dst_switch):
+        """Print the selected path"""
+        if path:
+            path_str = " -> ".join([f"s{node}" if isinstance(node, int) else str(node) for node in path])
+            self.logger.info(f"[PATH_SELECTION] Selected path from {src_switch} to {dst_switch}: {path_str}")
+        else:
+            self.logger.warning(f"[PATH_SELECTION] No path selected from {src_switch} to {dst_switch}")
+
+    @set_ev_cls(ofp_event.EventOFPSwitchFeatures, CONFIG_DISPATCHER)
+    def switch_features_handler(self, ev):
+        datapath = ev.msg.datapath
+        ofproto = datapath.ofproto
+        parser = datapath.ofproto_parser
+
+        # Default flow to send unmatched packets to controller
+        match = parser.OFPMatch()
+        actions = [parser.OFPActionOutput(ofproto.OFPP_CONTROLLER, ofproto.OFPCML_NO_BUFFER)]
+        self.add_flow(datapath, 0, match, actions)
+
+        # Flow for DHCP packets
+        match_dhcp = parser.OFPMatch(
+            eth_type=ether_types.ETH_TYPE_IP,
+            ip_proto=17,
+            udp_src=68,
+            udp_dst=67
+        )
+        actions_dhcp = [parser.OFPActionOutput(ofproto.OFPP_CONTROLLER)]
+        self.add_flow(datapath, 10, match_dhcp, actions_dhcp)
+
+        # Add switch to network graph
+        dpid = datapath.id
+        if dpid not in self.net:
+            self.net.add_node(dpid)
+            self.switches[dpid] = datapath
+            self.switch_ports[dpid] = {}
+
+    def add_flow(self, datapath, priority, match, actions, buffer_id=None):
+        ofproto = datapath.ofproto
+        parser = datapath.ofproto_parser
+        inst = [parser.OFPInstructionActions(ofproto.OFPIT_APPLY_ACTIONS, actions)]
+        if buffer_id:
+            mod = parser.OFPFlowMod(datapath=datapath, buffer_id=buffer_id, priority=priority,
+                                    match=match, instructions=inst)
+        else:
+            mod = parser.OFPFlowMod(datapath=datapath, priority=priority,
+                                    match=match, instructions=inst)
+        datapath.send_msg(mod)
+
+    def send_arp_reply(self, datapath, port, src_mac, dst_mac, src_ip, dst_ip):
+        ofproto = datapath.ofproto
+        parser = datapath.ofproto_parser
+
+        # Use router MAC if the reply is from a router
+        subnet = self.get_subnet_name(src_ip)
+        if subnet and src_ip == self.subnets[subnet]['router']:
+            src_mac = self.router_mac
+
+        ether_pkt = ethernet.ethernet(
+            dst=dst_mac,
+            src=src_mac,
+            ethertype=ether_types.ETH_TYPE_ARP
+        )
+        arp_pkt = arp.arp(
+            opcode=arp.ARP_REPLY,
+            src_mac=src_mac,
+            src_ip=src_ip,
+            dst_mac=dst_mac,
+            dst_ip=dst_ip
+        )
+        pkt = packet.Packet()
+        pkt.add_protocol(ether_pkt)
+        pkt.add_protocol(arp_pkt)
+        pkt.serialize()
+
+        actions = [parser.OFPActionOutput(port)]
+        out = parser.OFPPacketOut(
+            datapath=datapath,
+            buffer_id=ofproto.OFP_NO_BUFFER,
+            in_port=ofproto.OFPP_CONTROLLER,
+            actions=actions,
+            data=pkt.data
+        )
+        datapath.send_msg(out)
+        self.logger.info(f"[ARP] Sent reply from {src_ip}({src_mac}) to {dst_ip}({dst_mac}) on port {port}")
+
+        # Update ARP table
+        self.arp_table[src_ip] = src_mac
+
+        # Install ARP flow to avoid repeated requests
+        match = parser.OFPMatch(
+            eth_type=ether_types.ETH_TYPE_ARP,
+            arp_tpa=src_ip
+        )
+        actions = [parser.OFPActionOutput(port)]
+        self.add_flow(datapath, 15, match, actions)
+
+    def send_arp_request(self, datapath, dpid, in_port, src_ip, target_ip):
+        parser = datapath.ofproto_parser
+        ofproto = datapath.ofproto
+        src_mac = self.router_mac
+        ether_pkt = ethernet.ethernet(
+            dst='ff:ff:ff:ff:ff:ff',
+            src=src_mac,
+            ethertype=ether_types.ETH_TYPE_ARP
+        )
+        arp_pkt = arp.arp(
+            opcode=arp.ARP_REQUEST,
+            src_mac=src_mac,
+            src_ip=src_ip,
+            dst_mac='00:00:00:00:00:00',
+            dst_ip=target_ip
+        )
+        pkt = packet.Packet()
+        pkt.add_protocol(ether_pkt)
+        pkt.add_protocol(arp_pkt)
+        pkt.serialize()
+        actions = [parser.OFPActionOutput(ofproto.OFPP_FLOOD)]
+        out = parser.OFPPacketOut(
+            datapath=datapath,
+            buffer_id=ofproto.OFP_NO_BUFFER,
+            in_port=ofproto.OFPP_CONTROLLER,
+            actions=actions,
+            data=pkt.data
+        )
+        datapath.send_msg(out)
+        self.logger.info(f"[ARP] Sent request for {target_ip} from {src_ip}")
+
+        # Add to pending ARP if not already there
+        if target_ip not in self.pending_arp:
+            self.pending_arp[target_ip] = []
+
+    def handle_icmp_packet(self, datapath, in_port, pkt, ip_pkt):
+        icmp_pkt = pkt.get_protocol(icmp.icmp)
+        if not icmp_pkt:
+            return
+
+        # Only handle echo requests (ping)
+        if icmp_pkt.type != icmp.ICMP_ECHO_REQUEST:
+            return
+
+        src_ip = ip_pkt.src
+        dst_ip = ip_pkt.dst
+        src_mac = pkt.get_protocol(ethernet.ethernet).src
+        dst_mac = self.router_mac  # Use router MAC as destination
+
+        # Create ICMP echo reply
+        icmp_reply = icmp.icmp(
+            type_=icmp.ICMP_ECHO_REPLY,
+            code=icmp.ICMP_ECHO_REPLY_CODE,
+            csum=0,
+            data=icmp_pkt.data
+        )
+
+        # Create IP packet
+        ip_reply = ipv4.ipv4(
+            proto=1,  # ICMP
+            src=dst_ip,
+            dst=src_ip,
+            ttl=64
+        )
+
+        # Create Ethernet packet
+        eth_reply = ethernet.ethernet(
+            dst=src_mac,
+            src=dst_mac,
+            ethertype=ether_types.ETH_TYPE_IP
+        )
+
+        # Build and send the packet
+        reply_pkt = packet.Packet()
+        reply_pkt.add_protocol(eth_reply)
+        reply_pkt.add_protocol(ip_reply)
+        reply_pkt.add_protocol(icmp_reply)
+        reply_pkt.serialize()
+
+        parser = datapath.ofproto_parser
+        actions = [parser.OFPActionOutput(in_port)]
+        out = parser.OFPPacketOut(
+            datapath=datapath,
+            buffer_id=datapath.ofproto.OFP_NO_BUFFER,
+            in_port=datapath.ofproto.OFPP_CONTROLLER,
+            actions=actions,
+            data=reply_pkt.data
+        )
+        datapath.send_msg(out)
+        self.logger.info(f"[ICMP] Sent ping reply from {dst_ip} to {src_ip}")
+
+    def handle_inter_subnet_routing(self, datapath, src_ip, dst_ip, src_subnet, dst_subnet, in_port, msg):
+        parser = datapath.ofproto_parser
+        ofproto = datapath.ofproto
+        dpid = datapath.id
+        router_ip = self.subnets[dst_subnet]['router']
+
+        self.logger.info(f"[ROUTING] Inter-subnet routing: {src_subnet} -> {dst_subnet}")
+        self.logger.info(f"[ROUTING] Source IP: {src_ip}, Destination IP: {dst_ip}")
+
+        # Print available paths before selection
+        all_paths = self.print_available_paths(dpid, dst_subnet)
+
+        # Check if destination is the router itself
+        if dst_ip == router_ip:
+            # Send ARP reply for router
+            self.send_arp_reply(
+                datapath=datapath,
+                port=in_port,
+                src_mac=self.router_mac,
+                dst_mac=msg.data[6:12],  # Source MAC from original message
+                src_ip=router_ip,
+                dst_ip=src_ip
+            )
+            return
+
+        # Check if we have the destination MAC in ARP table
+        if dst_ip in self.arp_table:
+            dst_mac = self.arp_table[dst_ip]
+
+            # If destination MAC is known, install route and forward packet
+            if dst_subnet in self.net:
+                try:
+                    # Get all possible paths and print them
+                    all_paths = self.print_available_paths(dpid, dst_subnet)
+
+                    if all_paths:
+                        # Select a random path
+                        path = random.choice(all_paths)
+                        self.print_selected_path(path, dpid, dst_subnet)
+
+                        if len(path) > 1:
+                            next_hop = path[1]
+                            out_port = self.net[dpid][next_hop]['port']
+
+                            # Install flow rule for routing
+                            match = parser.OFPMatch(
+                                eth_type=ether_types.ETH_TYPE_IP,
+                                ipv4_src=src_ip,
+                                ipv4_dst=dst_ip
+                            )
+                            actions = [parser.OFPActionOutput(out_port)]
+                            self.add_flow(datapath, 30, match, actions)
+
+                            # Send packet along selected path
+                            data = msg.data if msg.buffer_id == ofproto.OFPCML_NO_BUFFER else None
+                            out = parser.OFPPacketOut(
+                                datapath=datapath,
+                                buffer_id=msg.buffer_id,
+                                in_port=in_port,
+                                actions=actions,
+                                data=data
+                            )
+                            datapath.send_msg(out)
+                            self.logger.info(f"[ROUTING] Installed route from {src_subnet} to {dst_subnet} via {next_hop}")
+                            return
+                except nx.NetworkXNoPath:
+                    self.logger.warning(f"No path to destination subnet {dst_subnet}")
+        else:
+            # If destination MAC is not known, send ARP request and store the packet
+            if dst_ip not in self.pending_arp:
+                self.pending_arp[dst_ip] = []
+
+            # Store the packet for later sending after ARP resolution
+            self.pending_arp[dst_ip].append({
+                'datapath': datapath,
+                'src_ip': src_ip,
+                'dst_ip': dst_ip,
+                'src_subnet': src_subnet,
+                'dst_subnet': dst_subnet,
+                'in_port': in_port,
+                'msg': msg
+            })
+
+            # Send ARP request for the destination IP
+            self.send_arp_request(datapath, dpid, in_port, src_ip, dst_ip)
+            self.logger.info(f"[ROUTING] ARP request sent for destination {dst_ip}")
+
+    def handle_arp_reply_for_pending(self, ip, mac):
+        if ip in self.pending_arp:
+            for pending in self.pending_arp[ip]:
+                self.logger.info(f"Processing pending packet for {ip} now that ARP is resolved")
+                self.handle_inter_subnet_routing(
+                    pending['datapath'],
+                    pending['src_ip'],
+                    pending['dst_ip'],
+                    pending['src_subnet'],
+                    pending['dst_subnet'],
+                    pending['in_port'],
+                    pending['msg']
+                )
+            del self.pending_arp[ip]
+
+    @set_ev_cls(ofp_event.EventOFPPacketIn, MAIN_DISPATCHER)
+    def packet_in_handler(self, ev):
+        msg = ev.msg
+        pkt = packet.Packet(msg.data)
+        eth_pkt = pkt.get_protocol(ethernet.ethernet)
+        ip_pkt = pkt.get_protocol(ipv4.ipv4)
+        udp_pkt = pkt.get_protocol(udp.udp)
+        dhcp_pkt = pkt.get_protocol(dhcp.dhcp)
+        icmp_pkt = pkt.get_protocol(icmp.icmp)
+
+        # Debug logging
+        self.logger.debug(f"Packet in - dpid: {msg.datapath.id}, in_port: {msg.match['in_port']}")
+        self.logger.debug(f"Ethernet packet: src={eth_pkt.src if eth_pkt else 'None'}, dst={eth_pkt.dst if eth_pkt else 'None'}, type={hex(eth_pkt.ethertype) if eth_pkt else 'None'}")
+        if eth_pkt and eth_pkt.ethertype == ether_types.ETH_TYPE_ARP:
+            arp_pkt = pkt.get_protocol(arp.arp)
+            self.logger.debug(f"ARP packet: op={arp_pkt.opcode if arp_pkt else 'None'}, src_ip={arp_pkt.src_ip if arp_pkt else 'None'}, dst_ip={arp_pkt.dst_ip if arp_pkt else 'None'}")
+
+        datapath = msg.datapath
+        ofproto = datapath.ofproto
+        parser = datapath.ofproto_parser
+        in_port = msg.match['in_port']
+
+        if eth_pkt and ip_pkt and udp_pkt and dhcp_pkt:
+            if udp_pkt.src_port == 68 and udp_pkt.dst_port == 67:
+                mac = eth_pkt.src
+                switch_id = datapath.id
+                switch = f's{switch_id}'
+                self.handle_dhcp(datapath, in_port, mac, dhcp_pkt, switch)
+                return
+
+        if ev.msg.msg_len < ev.msg.total_len:
+            self.logger.debug("packet truncated: only %s of %s bytes",
+                              ev.msg.msg_len, ev.msg.total_len)
+
+        pkt = packet.Packet(msg.data)
+        eth = pkt.get_protocols(ethernet.ethernet)[0]
+
+        if eth.ethertype in (ether_types.ETH_TYPE_LLDP, ether_types.ETH_TYPE_IPV6):
+            return
+
+        dst = eth.dst
+        src = eth.src
+        dpid = datapath.id
+
+        self.mac_to_port.setdefault(dpid, {})
+        if src not in self.mac_to_port[dpid]:
+            self.mac_to_port[dpid][src] = in_port
+            self.logger.info("Learning MAC %s on port %s", src, in_port)
+        elif self.mac_to_port[dpid][src] != in_port and self.is_broadcast_mac(dst):
+            prio = 2
+            actions = []
+            match = parser.OFPMatch(eth_src=src, in_port=in_port)
+            inst = [parser.OFPInstructionActions(ofproto.OFPIT_APPLY_ACTIONS, actions)]
+            if msg.buffer_id != ofproto.OFP_NO_BUFFER:
+                mod = parser.OFPFlowMod(datapath=datapath, buffer_id=msg.buffer_id, priority=prio, match=match,
+                                        instructions=inst)
+            else:
+                mod = parser.OFPFlowMod(datapath=datapath, priority=prio, match=match, instructions=inst)
+            datapath.send_msg(mod)
+            self.logger.info("Dropping packet due to incorrect port")
+            return
+
+        if src not in self.net:
+            self.net.add_node(src)
+        self.net.add_edge(dpid, src, port=in_port)
+        self.net.add_edge(src, dpid)
+
+        if eth.ethertype == 0x0806:  # ARP
+            arp_pkt = pkt.get_protocol(arp.arp)
+            if arp_pkt.opcode == arp.ARP_REQUEST:
+                self.logger.info(f"[ARP] Request for IP: {arp_pkt.dst_ip} from {arp_pkt.src_ip}({arp_pkt.src_mac})")
+
+                # Handle ARP for all router interfaces
+                for subnet, info in self.subnets.items():
+                    if arp_pkt.dst_ip == info['router']:
+                        self.send_arp_reply(
+                            datapath=datapath,
+                            port=in_port,
+                            src_mac=self.router_mac,
+                            dst_mac=arp_pkt.src_mac,
+                            src_ip=arp_pkt.dst_ip,
+                            dst_ip=arp_pkt.src_ip
+                        )
+                        return
+
+                # Handle ARP for hosts in other subnets
+                dst_subnet = self.get_subnet_name(arp_pkt.dst_ip)
+                current_switch = f's{dpid}'
+                if dst_subnet and dst_subnet != current_switch:
+                    router_ip = self.subnets[dst_subnet]['router']
+                    if arp_pkt.dst_ip == router_ip:
+                        self.send_arp_reply(
+                            datapath=datapath,
+                            port=in_port,
+                            src_mac=self.router_mac,
+                            dst_mac=arp_pkt.src_mac,
+                            src_ip=arp_pkt.dst_ip,
+                            dst_ip=arp_pkt.src_ip
+                        )
+                        return
+            elif arp_pkt.opcode == arp.ARP_REPLY:
+                self.logger.info(f"[ARP] Received reply for {arp_pkt.src_ip}({arp_pkt.src_mac})")
+                self.mac_to_port[dpid][arp_pkt.src_mac] = in_port
+                self.arp_table[arp_pkt.src_ip] = arp_pkt.src_mac
+
+                # Check if this ARP reply resolves any pending packets
+                self.handle_arp_reply_for_pending(arp_pkt.src_ip, arp_pkt.src_mac)
+
+                # Install ARP flow to avoid repeated requests
+                match = parser.OFPMatch(
+                    eth_type=ether_types.ETH_TYPE_ARP,
+                    arp_tpa=arp_pkt.src_ip
+                )
+                actions = [parser.OFPActionOutput(in_port)]
+                self.add_flow(datapath, 15, match, actions)
+
+            out_port = self.mac_to_port[dpid].get(dst, ofproto.OFPP_FLOOD)
+            actions = [parser.OFPActionOutput(out_port)]
+            data = msg.data if msg.buffer_id == ofproto.OFPCML_NO_BUFFER else None
+            out = parser.OFPPacketOut(
+                datapath=datapath,
+                buffer_id=msg.buffer_id,
+                in_port=in_port,
+                actions=actions,
+                data=data
+            )
+            datapath.send_msg(out)
+            return
+
+        elif eth.ethertype == 0x0800:  # IPv4
+            ip_pkt = pkt.get_protocol(ipv4.ipv4)
+            src_ip = ip_pkt.src
+            dst_ip = ip_pkt.dst
+            src_subnet = self.get_subnet_name(src_ip)
+            dst_subnet = self.get_subnet_name(dst_ip)
+
+            if not src_subnet or not dst_subnet:
+                self.logger.warning(f"Unknown subnet for src: {src_ip} or dst: {dst_ip}")
+                return
+
+            # Handle ICMP packets (ping)
+            if ip_pkt.proto == 1:  # ICMP
+                self.handle_icmp_packet(datapath, in_port, pkt, ip_pkt)
+                return
+
+            # Enable routing between subnets
+            if dst_subnet != src_subnet:
+                self.logger.info(f"Routing between subnets: {src_subnet} -> {dst_subnet}")
+                self.handle_inter_subnet_routing(datapath, src_ip, dst_ip, src_subnet, dst_subnet, in_port, msg)
+                return
+
+            if dst in self.mac_to_port[dpid]:
+                out_port = self.mac_to_port[dpid][dst]
+                actions = [parser.OFPActionOutput(out_port)]
+                match = parser.OFPMatch(
+                    eth_type=ether_types.ETH_TYPE_IP,
+                    ipv4_src=src_ip,
+                    ipv4_dst=dst_ip
+                )
+                self.add_flow(datapath, 1, match, actions)
+                data = msg.data if msg.buffer_id == ofproto.OFPCML_NO_BUFFER else None
+                out = parser.OFPPacketOut(
+                    datapath=datapath,
+                    buffer_id=msg.buffer_id,
+                    in_port=in_port,
+                    actions=actions,
+                    data=data
+                )
+                datapath.send_msg(out)
+                return
+
+        if dst in self.net:
+            try:
+                # Get all available paths and print them
+                all_paths = self.print_available_paths(src, dst)
+
+                if all_paths:
+                    # Select a random path
+                    path = random.choice(all_paths)
+                    self.print_selected_path(path, src, dst)
+                    self.paths[(src, dst)] = path
+
+                    if dpid in path:
+                        try:
+                            next_node = path[path.index(dpid) + 1]
+                            out_port = self.net[dpid][next_node]['port']
+                            self.logger.info("Outputting packet to port %s", out_port)
+                            self.logger.info("Path is : %s", str(path))
+                            self.install_flows(datapath, src, dst, in_port, out_port)
+                        except IndexError:
+                            out_port = ofproto.OFPP_FLOOD
+                            self.logger.info("No next node in path, flooding...")
+                    else:
+                        out_port = ofproto.OFPP_FLOOD
+                        self.logger.info("dpid %s not in path, flooding...", dpid)
+                else:
+                    out_port = ofproto.OFPP_FLOOD
+                    self.logger.info("No path found, flooding...")
+            except nx.NetworkXNoPath:
+                out_port = ofproto.OFPP_FLOOD
+                self.logger.info("No path found, flooding...")
+        else:
+            out_port = ofproto.OFPP_FLOOD
+            self.logger.info("Destination not found, flooding...")
+
+        actions = [parser.OFPActionOutput(out_port)]
+        data = None
+        if msg.buffer_id == ofproto.OFPP_NO_BUFFER:
+            data = msg.data
+        out = parser.OFPPacketOut(datapath=datapath, buffer_id=msg.buffer_id,
+                                  in_port=in_port, actions=actions, data=data)
+        datapath.send_msg(out)
+
+    def handle_dhcp(self, datapath, port, mac, dhcp_pkt, switch):
+        xid = dhcp_pkt.xid
+        msg_type = None
+        for opt in dhcp_pkt.options.option_list:
+            if opt.tag == self.DHCP_MESSAGE_TYPE:
+                msg_type = opt.value[0]
+                break
+        if msg_type == self.DHCP_DISCOVER:
+            self.log_dhcp(mac, "DISCOVER", switch=switch, xid=xid)
+            self.process_dhcp_discover(datapath, port, mac, xid, switch)
+        elif msg_type == self.DHCP_REQUEST:
+            self.log_dhcp(mac, "REQUEST", switch=switch, xid=xid)
+            self.process_dhcp_request(datapath, port, mac, dhcp_pkt, xid, switch)
+        elif msg_type == self.DHCP_RELEASE:
+            self.log_dhcp(mac, "RELEASE", switch=switch)
+            self.release_lease(mac)
+        else:
+            self.log_dhcp(mac, f"UNKNOWN ({msg_type})", switch=switch)
+
+    def process_dhcp_discover(self, datapath, port, mac, xid, switch):
+        subnet = self.subnets.get(switch)
+        if not subnet:
+            self.log_dhcp(mac, f"NO_SUBNET ({switch})", xid=xid)
+            return
+        lease = self.get_lease(mac)
+        if lease:
+            ip = lease['ip']
+        else:
+            if not subnet['pool']:
+                self.log_dhcp(mac, "POOL_EMPTY", xid=xid)
+                return
+            ip = subnet['pool'].pop(0)
+            self.add_lease(mac, ip, switch)
+        self.send_dhcp_offer(datapath, port, mac, ip, xid, switch)
+
+    def process_dhcp_request(self, datapath, port, mac, dhcp_pkt, xid, switch):
+        subnet_info = self.subnets.get(switch)
+        if not subnet_info:
+            self.log_dhcp(mac, "SUBNET_NOT_FOUND", xid=xid)
+            self.send_dhcp_nak(datapath, port, mac, xid)
+            return
+        requested_ip = None
+        for opt in dhcp_pkt.options.option_list:
+            if opt.tag == self.DHCP_REQUESTED_IP:
+                requested_ip = addrconv.ipv4.bin_to_text(opt.value)
+        lease = self.get_lease(mac)
+        if lease is None:
+            self.log_dhcp(mac, "NO_LEASE", xid=xid)
+            self.send_dhcp_nak(datapath, port, mac, xid)
+            return
+        if lease['ip'] != requested_ip or lease['subnet'] != switch:
+            self.log_dhcp(mac, "IP_MISMATCH", ip=requested_ip, xid=xid)
+            self.send_dhcp_nak(datapath, port, mac, xid)
+            self.release_lease(mac)
+        else:
+            self.send_dhcp_ack(datapath, port, mac, lease['ip'], xid, switch)
+
+    def build_dhcp_packet(self, mac, ip, msg_type, xid, switch):
+        chaddr = addrconv.mac.text_to_bin(mac)
+        subnet = self.subnets.get(switch, {})
+        server_ip = subnet.get('server_ip', '0.0.0.0')
+        options = dhcp.options(option_list=[
+            dhcp.option(tag=self.DHCP_MESSAGE_TYPE, value=bytes([msg_type])),
+            dhcp.option(tag=self.DHCP_SERVER_ID, value=addrconv.ipv4.text_to_bin(server_ip)),
+            dhcp.option(tag=self.DHCP_LEASE_TIME, value=struct.pack('!I', subnet.get('lease_time', 0))),
+            dhcp.option(tag=self.DHCP_SUBNET_MASK, value=addrconv.ipv4.text_to_bin(subnet.get('subnet_mask', '0.0.0.0'))),
+            dhcp.option(tag=self.DHCP_ROUTER, value=addrconv.ipv4.text_to_bin(subnet.get('router', '0.0.0.0'))),
+            dhcp.option(tag=self.DHCP_DNS_SERVER, value=addrconv.ipv4.text_to_bin(subnet.get('dns_server', '0.0.0.0'))),
+            dhcp.option(tag=self.DHCP_DOMAIN_NAME, value=subnet.get('domain_name', '').encode()),
+            dhcp.option(tag=self.DHCP_END, value=b'')
+        ])
+        pkt = packet.Packet()
+        pkt.add_protocol(ethernet.ethernet(
+            ethertype=ether_types.ETH_TYPE_IP, dst='ff:ff:ff:ff:ff:ff', src=self.server_mac))
+        pkt.add_protocol(ipv4.ipv4(dst='255.255.255.255', src=server_ip, proto=17))
+        pkt.add_protocol(udp.udp(src_port=67, dst_port=68))
+        pkt.add_protocol(dhcp.dhcp(op=2, chaddr=chaddr, yiaddr=ip, siaddr=server_ip, xid=xid, options=options))
+        pkt.serialize()
+        return pkt
+
+    def send_dhcp_offer(self, datapath, port, mac, ip, xid, switch):
+        self.log_dhcp(mac, "OFFER_SENT", ip=ip, xid=xid)
+        pkt = self.build_dhcp_packet(mac, ip, self.DHCP_OFFER, xid, switch)
+        self.send_packet(datapath, port, pkt)
+
+    def send_dhcp_ack(self, datapath, port, mac, ip, xid, switch):
+        self.log_dhcp(mac, "ACK_SENT", ip=ip, xid=xid)
+        pkt = self.build_dhcp_packet(mac, ip, self.DHCP_ACK, xid, switch)
+        self.send_packet(datapath, port, pkt)
+
+    def send_dhcp_nak(self, datapath, port, mac, xid):
+        self.log_dhcp(mac, "NAK_SENT", xid=xid)
+        pkt = self.build_dhcp_packet(mac, '0.0.0.0', self.DHCP_NAK, xid, None)
+        self.send_packet(datapath, port, pkt)
+
+    def send_packet(self, datapath, port, pkt):
+        ofproto = datapath.ofproto
+        parser = datapath.ofproto_parser
+        pkt.serialize()
+        out = parser.OFPPacketOut(
+            datapath=datapath,
+            buffer_id=ofproto.OFP_NO_BUFFER,
+            in_port=ofproto.OFPP_CONTROLLER,
+            actions=[parser.OFPActionOutput(port)],
+            data=pkt.data
+        )
+        datapath.send_msg(out)
+        self.logger.debug(f"[DEBUG] Packet sent to port {port}") 

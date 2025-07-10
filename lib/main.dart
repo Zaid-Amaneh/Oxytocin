@@ -5,9 +5,12 @@ import 'package:oxytocin/core/routing/app_router.dart';
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/theme/app_theme.dart';
 import 'package:oxytocin/generated/l10n.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'features/profile/presentation/cubit/profile_info_cubit.dart';
 
 void main() {
   final navigationService = NavigationService();
+
   final router = AppRouter.createRouter(navigationService);
   runApp(OxytocinApp(router: router));
 }
@@ -15,19 +18,24 @@ void main() {
 class OxytocinApp extends StatelessWidget {
   const OxytocinApp({super.key, required this.router});
   final GoRouter router;
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      locale: const Locale('ar'),
-      localizationsDelegates: [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-      theme: AppTheme.lightTheme,
-      routerConfig: router,
+    return MultiBlocProvider(
+      providers: [BlocProvider(create: (context) => ProfileInfoCubit())],
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        locale: const Locale('ar'),
+        localizationsDelegates: [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
+        theme: AppTheme.lightTheme,
+        routerConfig: router,
+      ),
     );
   }
 }

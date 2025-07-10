@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
+import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/viewmodels/resend_otp_view_model.dart';
 import 'package:oxytocin/core/widgets/custom_button.dart';
@@ -64,6 +66,7 @@ class VerificationPhoneNumberViewBody extends StatelessWidget {
                 borderRadius: 25,
                 onTap: () {
                   if (formKey.currentState!.validate()) {
+                    context.go('/${RouteNames.profileInfo}');
                   } else {}
                 },
                 borderColor: AppColors.kPrimaryColor1,

@@ -15,7 +15,7 @@ class PhoneNumberField extends StatelessWidget {
   Widget build(BuildContext context) {
     final vm = context.watch<PhoneViewModel>();
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.fromLTRB(32.0, 16, 32, 16),
       child: DecoratedBox(
         decoration: ShapeDecoration(
           color: Colors.white,

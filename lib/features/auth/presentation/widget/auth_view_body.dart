@@ -13,7 +13,6 @@ class AuthViewBody extends StatefulWidget {
   State<AuthViewBody> createState() => _AuthViewBodyState();
 }
 
-// The boolean value for switcher
 bool form = true;
 
 class _AuthViewBodyState extends State<AuthViewBody> {
