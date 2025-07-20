@@ -115,21 +115,7 @@ class AppRouter {
           name: RouteNames.upload,
           builder: (context, state) => const UploadProfilePhoto(),
         ),
-        GoRoute(
-          path: '/${RouteNames.forgotPassword}',
-          name: RouteNames.forgotPassword,
-          builder: (context, state) {
-            final authRepository = AuthService(http.Client());
-            return RepositoryProvider<ForgotPasswordUseCase>(
-              create: (_) => ForgotPasswordUseCase(authService: authRepository),
-              child: BlocProvider<ForgotPasswordBloc>(
-                create: (context) =>
-                    ForgotPasswordBloc(context.read<ForgotPasswordUseCase>()),
-                child: const ForgotPasswordView(),
-              ),
-            );
-          },
-        ),
+
         GoRoute(
           path: '/${RouteNames.forgotPasswordverification}',
           name: RouteNames.forgotPasswordverification,
@@ -148,6 +134,7 @@ class AppRouter {
             );
           },
         ),
+
         GoRoute(
           path: '/${RouteNames.medicalInfoView}',
           name: RouteNames.medicalInfoView,
