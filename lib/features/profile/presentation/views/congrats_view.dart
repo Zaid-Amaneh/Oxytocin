@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
-import 'package:oxytocin/core/Utils/helpers/helper.dart';
-import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/Utils/size_config.dart';
+import 'package:oxytocin/core/theme/app_colors.dart';
 
 class CongratsView extends StatelessWidget {
   const CongratsView({super.key});
@@ -24,9 +23,9 @@ class CongratsView extends StatelessWidget {
               children: [
                 SizedBox(height: SizeConfig.screenHigh * 0.08),
                 Text(
-                "تهانينا! لقد أتممت إنشاء حسابك بنجاح",
-                //  context.tr.CongratsTitle,
-                 textAlign: TextAlign.center,
+                  "تهانينا! لقد أتممت إنشاء حسابك بنجاح",
+                  //  context.tr.CongratsTitle,
+                  textAlign: TextAlign.center,
                   style: AppStyles.almaraiBold(context).copyWith(
                     fontSize: getResponsiveFontSize(context, fontSize: 24),
                     color: AppColors.kPrimaryColor1,

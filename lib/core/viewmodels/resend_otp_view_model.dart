@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 
 class ResendOtpViewModel extends ChangeNotifier {
-  static const int _startTime = 60;
+  static const int _startTime = 5;
 
   late Timer _timer;
   int _secondsLeft = _startTime;

@@ -83,8 +83,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your Privacy is Always Protected"),
         "YourPrivacyProtectedDes": MessageLookupByLibrary.simpleMessage(
             "All your health information is encrypted and secure. Your privacy is our priority."),
+        "account_created_success": MessageLookupByLibrary.simpleMessage(
+            "Congratulations! Your account has been created successfully."),
+        "changePasswordFailure":
+            MessageLookupByLibrary.simpleMessage("Failed to change password"),
         "changePasswordSubtitle": MessageLookupByLibrary.simpleMessage(
             "You can now set a new password for your account. Make sure to choose a strong and memorable one."),
+        "changePasswordSuccess": MessageLookupByLibrary.simpleMessage(
+            "Password changed successfully"),
         "changePasswordTitle":
             MessageLookupByLibrary.simpleMessage("Change Password"),
         "didNotReceiveCode":
@@ -93,10 +99,36 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter the phone number associated with your account so we can send you a verification code via SMS."),
         "enteredWrongNumber":
             MessageLookupByLibrary.simpleMessage("Entered a wrong number?"),
+        "error_invalid_credentials": MessageLookupByLibrary.simpleMessage(
+            "Invalid phone number or password"),
+        "error_invalid_credentials_title":
+            MessageLookupByLibrary.simpleMessage("Sign-In Failed"),
+        "error_network": MessageLookupByLibrary.simpleMessage(
+            "Please check your internet connection."),
+        "error_phone_exists": MessageLookupByLibrary.simpleMessage(
+            "This phone number is already registered"),
+        "error_phone_invalid":
+            MessageLookupByLibrary.simpleMessage("Invalid phone number"),
+        "error_phone_not_found":
+            MessageLookupByLibrary.simpleMessage("Phone number not found"),
+        "error_server": MessageLookupByLibrary.simpleMessage(
+            "A server error occurred. Please try again later."),
+        "error_unknown": MessageLookupByLibrary.simpleMessage(
+            "An unexpected error occurred."),
+        "error_validation":
+            MessageLookupByLibrary.simpleMessage("The input data is invalid."),
         "forgotPasswordPrompt": MessageLookupByLibrary.simpleMessage(
             "Forgot your password?\nNo worries, we\'re here to help."),
+        "invalid_otp_code": MessageLookupByLibrary.simpleMessage(
+            "Invalid or expired verification code. Please try again."),
+        "invalid_otp_code_title":
+            MessageLookupByLibrary.simpleMessage("Invalid Code"),
         "newPasswordSlogan":
             MessageLookupByLibrary.simpleMessage("New password\nnew beginning"),
+        "operation_failed_title":
+            MessageLookupByLibrary.simpleMessage("Operation Failed"),
+        "operation_successful_title":
+            MessageLookupByLibrary.simpleMessage("Operation Successful!"),
         "otpEmptyError": MessageLookupByLibrary.simpleMessage(
             "Please enter the verification code."),
         "otpLengthError":
@@ -107,14 +139,36 @@ class MessageLookup extends MessageLookupByLibrary {
             "We’ve sent you a 5-digit verification code via SMS. Please enter it to continue and reset your password."),
         "otpSentSuccess":
             MessageLookupByLibrary.simpleMessage("Code sent successfully"),
+        "otp_verified_successfully": MessageLookupByLibrary.simpleMessage(
+            "The code has been verified successfully!"),
+        "otp_verified_successfully_title":
+            MessageLookupByLibrary.simpleMessage("Verified"),
         "passwordmustnotcontainyourorphonenumber":
             MessageLookupByLibrary.simpleMessage(
                 "The password must not contain your name or phone number."),
         "resend": MessageLookupByLibrary.simpleMessage("Resend"),
         "resendCountdown": m0,
+        "resend_otp_failed": MessageLookupByLibrary.simpleMessage(
+            "Failed to resend the verification code. Please try again later."),
+        "resend_otp_failed_title":
+            MessageLookupByLibrary.simpleMessage("Resend Failed"),
+        "resend_otp_success": MessageLookupByLibrary.simpleMessage(
+            "Verification code was sent successfully. Please check your phone."),
+        "resend_otp_success_title":
+            MessageLookupByLibrary.simpleMessage("Code Sent"),
         "sendOtpButton":
             MessageLookupByLibrary.simpleMessage("Send Verification Code"),
+        "sign_in_success_message":
+            MessageLookupByLibrary.simpleMessage("Signed in successfully"),
+        "sign_up_failure_title":
+            MessageLookupByLibrary.simpleMessage("Sign-up Failed"),
         "tapToChange":
-            MessageLookupByLibrary.simpleMessage("Tap here to change")
+            MessageLookupByLibrary.simpleMessage("Tap here to change"),
+        "tokenNotValid": MessageLookupByLibrary.simpleMessage(
+            "Invalid token. Please log in again"),
+        "unverified_phone": MessageLookupByLibrary.simpleMessage(
+            "Phone number has not been verified yet. Please check the verification code sent to you."),
+        "unverified_phone_title":
+            MessageLookupByLibrary.simpleMessage("Verification Required")
       };
 }

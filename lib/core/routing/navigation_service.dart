@@ -13,5 +13,19 @@ class NavigationService {
 
   void goToNamed(String name) => _router.goNamed(name);
   void pushToNamed(String name) => _router.pushNamed(name);
+  void goToNamedWithParams(
+    String name, {
+    required Map<String, String> queryParams,
+  }) {
+    _router.goNamed(name, queryParameters: queryParams);
+  }
+
+  void pushToNamedWithParams(
+    String name, {
+    required Map<String, String> queryParams,
+  }) {
+    _router.pushNamed(name, queryParameters: queryParams);
+  }
+
   void goBack() => _router.pop();
 }

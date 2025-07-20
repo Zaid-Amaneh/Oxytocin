@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
+import 'package:oxytocin/core/constants/app_constants.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/viewmodels/password_view_model.dart';
 import 'package:oxytocin/generated/l10n.dart';
@@ -15,7 +16,7 @@ class ConfirmPasswordField extends StatelessWidget {
   Widget build(BuildContext context) {
     final vm = context.watch<PasswordViewModel>();
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: AppConstants.textFieldPadding,
       child: DecoratedBox(
         decoration: ShapeDecoration(
           color: AppColors.background,

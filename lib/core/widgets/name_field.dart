@@ -20,7 +20,7 @@ class _NameFieldState extends State<NameField> {
   Widget build(BuildContext context) {
     final vm = context.watch<NameViewModel>();
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: AppConstants.textFieldPadding,
       child: DecoratedBox(
         decoration: ShapeDecoration(
           color: Colors.white,

@@ -33,13 +33,17 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   }
 
   Future<void> _handleNavigation() async {
+    NavigationService nav = NavigationService();
     final localStorageService = LocalStorageService();
     final isNewUser = await localStorageService.isNewUser();
-    // if (!mounted) return;
-    NavigationService nav = NavigationService();
-    isNewUser
-        ? nav.goToNamed(RouteNames.intro)
-        : nav.goToNamed(RouteNames.signIn);
+    final keepUser = await localStorageService.isUserKeptSignedIn();
+    if (keepUser) {
+      // Go to Home
+    } else if (isNewUser) {
+      nav.goToNamed(RouteNames.intro);
+    } else {
+      nav.goToNamed(RouteNames.signIn);
+    }
   }
 
   @override
