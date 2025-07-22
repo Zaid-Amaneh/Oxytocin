@@ -1,3 +1,4 @@
+import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
@@ -22,7 +23,22 @@ class CustomSwitch extends StatelessWidget {
       top: height * 0.34,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Container(
+        child: AnimatedToggleSwitch.rolling(
+          allowUnlistedValues: true,
+          current: Text(context.tr.SignIn),
+          values: [Text(context.tr.SignUp), Text(context.tr.SignIn)],
+          iconList: [Text(context.tr.SignUp), Text(context.tr.SignIn)],
+          style: const ToggleStyle(backgroundColor: Colors.red),
+          styleBuilder: (value) => ToggleStyle(
+            indicatorColor: value.maxLines == 1 ? Colors.yellow : Colors.green,
+          ),
+        ),
+      ),
+    );
+  }
+}
+/*
+Container(
           width: width * 0.9,
           height: height * 0.09,
           decoration: const ShapeDecoration(
@@ -75,8 +91,5 @@ class CustomSwitch extends StatelessWidget {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
+        )
+*/

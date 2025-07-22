@@ -10,7 +10,7 @@ class AdditionalContainer extends StatelessWidget {
     final width = size.width;
     final height = size.height;
     return Positioned(
-      top: height * 0.31,
+      top: height * 0.3,
       child: Container(
         width: width,
         height: height * 0.15,

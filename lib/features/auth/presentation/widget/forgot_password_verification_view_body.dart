@@ -7,19 +7,15 @@ import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
-import 'package:oxytocin/core/viewmodels/resend_otp_view_model.dart';
 import 'package:oxytocin/core/widgets/custom_button.dart';
 import 'package:oxytocin/core/widgets/otp_field.dart';
-import 'package:oxytocin/core/widgets/resend_otp.dart';
 import 'package:oxytocin/core/widgets/sliver_spacer.dart';
 import 'package:oxytocin/extensions/failure_localization.dart';
-import 'package:oxytocin/features/auth/data/models/resend_otp_request.dart';
 import 'package:oxytocin/features/auth/data/models/verify_otp_request.dart';
 import 'package:oxytocin/features/auth/presentation/viewmodels/blocs/verifyForgotPasswordOtp/verify_forgot_password_otp_bloc.dart';
 import 'package:oxytocin/features/auth/presentation/widget/change_wrong_number.dart';
 import 'package:oxytocin/features/auth/presentation/widget/forgot_password_view_header.dart';
 import 'package:oxytocin/generated/l10n.dart';
-import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
 
 class ForgotPasswordVerificationViewBody extends StatelessWidget {

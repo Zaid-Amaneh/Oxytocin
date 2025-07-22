@@ -14,7 +14,7 @@ class _AuthFormState extends State<AuthForm>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Offset> _offsetAnimation;
-  bool? _previousForm; // Track previous state
+  bool? _previousForm;
 
   final List<Widget> formList = const [
     SignInForm(key: ValueKey('sign_in')),
@@ -63,7 +63,7 @@ class _AuthFormState extends State<AuthForm>
 
   @override
   Widget build(BuildContext context) {
-    _updateAnimation(); // Ensure animation uses latest values
+    _updateAnimation();
     return Positioned(
       top: MediaQuery.sizeOf(context).height * 0.3,
       bottom: 0,
