@@ -155,6 +155,13 @@ class _SignUpFormState extends State<SignUpForm> {
                         context.read<SignUpBloc>().add(
                           SignUpSubmitted(request),
                         );
+                        print('==========================');
+                        print(request);
+                        print(firstNameVM.nameController.text);
+                        print(lastNameVM.nameController.text);
+                        print(phoneNumberVM.phoneController.text);
+                        print(passwordVM.passwordController.text);
+                        print(passwordVM.passwordController.text);
                       }
                     },
                     borderColor: AppColors.kPrimaryColor1,

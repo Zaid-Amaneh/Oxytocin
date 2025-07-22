@@ -312,6 +312,8 @@ class _MedicalInfoBodyState extends State<MedicalInfoBody> {
                           if (state.isSuccess == true) {
                             context.pushNamed(
                               RouteNames.setLocation,
+
+                              // RouteNames.upload,
                               extra: context.read<ProfileInfoCubit>(),
                             );
                           }
@@ -352,9 +354,11 @@ class _MedicalInfoBodyState extends State<MedicalInfoBody> {
                               context.read<ProfileInfoCubit>().setIsSmoker(
                                 isSmoker,
                               );
-                              context
-                                  .read<ProfileInfoCubit>()
-                                  .submitMedicalInfo();
+                              // انتقل مباشرة لصفحة الموقع بدون إرسال أي طلب API
+                              context.pushNamed(
+                                RouteNames.setLocation,
+                                extra: context.read<ProfileInfoCubit>(),
+                              );
                             },
                             filled: true,
                             borderRadius: 25,

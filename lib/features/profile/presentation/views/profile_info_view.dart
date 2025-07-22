@@ -73,17 +73,18 @@ class _ProfileInfoState extends State<ProfileInfo> {
           body: BlocListener<ProfileInfoCubit, ProfileInfoState>(
             listener: (context, state) {
               if (state.isSuccess) {
-               context.pushNamed(
+                context.pushNamed(
                   RouteNames.medicalInfoView,
-                  extra: {
-                    'profileInfoCubit': context.read<ProfileInfoCubit>(),
-                    // 'birthDate': context
-                    //     .read<ProfileInfoCubit>()
-                    //     .state
-                    //     .birthDate,
-                    // 'job': context.read<ProfileInfoCubit>().state.job,
-                    // 'gender': context.read<ProfileInfoCubit>().state.gender,
-                  },
+                  extra: context.read<ProfileInfoCubit>(),
+                  // extra: {
+                  //   'profileInfoCubit': context.read<ProfileInfoCubit>(),
+                  //   // 'birthDate': context
+                  //   //     .read<ProfileInfoCubit>()
+                  //   //     .state
+                  //   //     .birthDate,
+                  //   // 'job': context.read<ProfileInfoCubit>().state.job,
+                  //   // 'gender': context.read<ProfileInfoCubit>().state.gender,
+                  // },
                 );
               }
               if (state.errorMessage != null) {
@@ -272,42 +273,41 @@ class _ProfileInfoState extends State<ProfileInfo> {
                         ),
                         child: SizedBox(
                           width: double.infinity,
-                          child: BlocBuilder<ProfileInfoCubit, ProfileInfoState>(
-                            builder: (context, state) {
-                              if (state.isSubmitting) {
-                                return const Center(
-                                  child: CircularProgressIndicator(
-                                    color: AppColors.kPrimaryColor1,
-                                  ),
-                                );
-                              }
-                              return ProfileActionButton(
-                                text: 'التالي',
-                                onPressed: () {
-                                  final cubit = context
-                                      .read<ProfileInfoCubit>();
-                                  if (selectedDate != null &&
-                                      cubit.state.birthDate == null) {
-                                    cubit.setBirthDate(selectedDate!);
+                          child:
+                              BlocBuilder<ProfileInfoCubit, ProfileInfoState>(
+                                builder: (context, state) {
+                                  if (state.isSubmitting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(
+                                        color: AppColors.kPrimaryColor1,
+                                      ),
+                                    );
                                   }
-                                  cubit.setJob(jobController.text);
-                                  context.pushNamed(
-                                    RouteNames.medicalInfoView,
-                                    extra: {
-                                      'profileInfoCubit': context
-                                          .read<ProfileInfoCubit>(),
+                                  return ProfileActionButton(
+                                    text: 'التالي',
+                                    onPressed: () {
+                                      final cubit = context
+                                          .read<ProfileInfoCubit>();
+                                      if (selectedDate != null &&
+                                          cubit.state.birthDate == null) {
+                                        cubit.setBirthDate(selectedDate!);
+                                      }
+                                      cubit.setJob(jobController.text);
+                                      context.pushNamed(
+                                        RouteNames.medicalInfoView,
+                                        extra: context.read<ProfileInfoCubit>(),
+                                      );
                                     },
+                                    filled: true,
+                                    borderRadius:
+                                        AppConstants.borderRadiusCircular,
+                                    fontSize: getResponsiveFontSize(
+                                      context,
+                                      fontSize: 18,
+                                    ),
                                   );
                                 },
-                                filled: true,
-                                borderRadius: AppConstants.borderRadiusCircular,
-                                fontSize: getResponsiveFontSize(
-                                  context,
-                                  fontSize: 18,
-                                ),
-                              );
-                            },
-                          ),
+                              ),
                         ),
                       ),
                       SizedBox(height: SizeConfig.screenHigh * 0.04),

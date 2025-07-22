@@ -6,6 +6,9 @@ class RouteNames {
   static const forgotPasswordverification = 'forgotPasswordverification';
   static const resetPassword = 'resetPassword';
   static const verificationPhoneNumber = 'verificationPhoneNumber';
+  static const categories = 'categories';
+
+  static const home = 'home';
 
   static const profileInfo = 'ProfileInfo';
   static const medicalInfoView = 'MedicalInfoView';

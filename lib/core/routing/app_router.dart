@@ -22,6 +22,8 @@ import 'package:oxytocin/features/auth/presentation/views/forgot_password_verifi
 import 'package:oxytocin/features/auth/presentation/views/forgot_password_view.dart';
 import 'package:oxytocin/features/auth/presentation/views/reset_password_view.dart';
 import 'package:oxytocin/features/auth/presentation/views/verification_phone_number_view.dart';
+import 'package:oxytocin/features/categories/presentation/view/categories_view.dart';
+import 'package:oxytocin/features/home/presentation/view/home_view.dart';
 import 'package:oxytocin/features/intro/presentation/views/intro_view.dart';
 import 'package:oxytocin/features/intro/presentation/views/splash_view.dart';
 import 'package:oxytocin/features/profile/presentation/cubit/profile_info_cubit.dart';
@@ -47,6 +49,12 @@ class AppRouter {
           builder: (context, state) => const CongratsView(),
         ),
         GoRoute(
+          path: '/${RouteNames.categories}',
+          name: RouteNames.categories,
+          builder: (context, state) => const CategoriesView(),
+        ),
+
+        GoRoute(
           path: '/${RouteNames.profileInfo}',
           name: RouteNames.profileInfo,
           builder: (context, state) => BlocProvider(
@@ -58,6 +66,11 @@ class AppRouter {
           path: '/${RouteNames.intro}',
           name: RouteNames.intro,
           builder: (context, state) => const IntroView(),
+        ),
+        GoRoute(
+          path: '/${RouteNames.home}',
+          name: RouteNames.home,
+          builder: (context, state) => HomeView(),
         ),
         GoRoute(
           path: '/${RouteNames.signIn}',
@@ -108,8 +121,28 @@ class AppRouter {
         GoRoute(
           path: '/${RouteNames.setLocation}',
           name: RouteNames.setLocation,
-          builder: (context, state) => const SetLocation(),
+          builder: (context, state) {
+            final profileInfoCubit = state.extra as ProfileInfoCubit;
+            return BlocProvider.value(
+              value: profileInfoCubit,
+              child: SetLocation(),
+            );
+          },
         ),
+
+        // GoRoute(
+        //   path: '/${RouteNames.setLocation}',
+        //   name: RouteNames.setLocation,
+        //   // builder: (context, state) {
+        //   //   final profileInfoCubit =
+        //   //       (state.extra as Map)['profileInfoCubit'] as ProfileInfoCubit;
+        //   //   return BlocProvider.value(
+        //   //     value: profileInfoCubit,
+        //   //     child: SetLocation(),
+        //   //   );
+        //   // },
+
+        // ),
         GoRoute(
           path: '/${RouteNames.upload}',
           name: RouteNames.upload,

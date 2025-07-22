@@ -4,6 +4,7 @@ import 'package:oxytocin/features/profile/data/datasources/profile_data_source.d
 import 'package:oxytocin/features/profile/data/models/complete_register_model.dart';
 
 import 'profile_info_state.dart';
+import 'dart:io';
 
 class ProfileInfoCubit extends Cubit<ProfileInfoState> {
   final ProfileRemoteDataSource _dataSource = ProfileRemoteDataSource();
@@ -91,6 +92,16 @@ class ProfileInfoCubit extends Cubit<ProfileInfoState> {
 
       await _dataSource.completeRegister(requestModel);
 
+      emit(state.copyWith(isSubmitting: false, isSuccess: true));
+    } catch (e) {
+      emit(state.copyWith(isSubmitting: false, errorMessage: e.toString()));
+    }
+  }
+
+  Future<void> uploadProfileImage(File imageFile) async {
+    emit(state.copyWith(isSubmitting: true, clearErrorMessage: true));
+    try {
+      await _dataSource.uploadProfileImage(imageFile); // تكتبها في data source
       emit(state.copyWith(isSubmitting: false, isSuccess: true));
     } catch (e) {
       emit(state.copyWith(isSubmitting: false, errorMessage: e.toString()));
