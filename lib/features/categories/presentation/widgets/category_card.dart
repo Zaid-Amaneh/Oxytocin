@@ -15,6 +15,7 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('CategoryCard - Title: $title, IconAsset: $iconAsset');
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -31,24 +32,40 @@ class CategoryCard extends StatelessWidget {
               blurRadius: 6,
               offset: const Offset(0, 2),
             ),
+            // ظل إضافي من تحت لتحسين المظهر
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 12,
+              offset: const Offset(0, 8),
+              spreadRadius: 1,
+            ),
           ],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // محاولة عرض SVG مع fallback إلى أيقونة
             SvgPicture.asset(
               iconAsset,
               width: 48,
               height: 48,
               color: Colors.white,
+              placeholderBuilder: (BuildContext context) {
+                print('Failed to load SVG: $iconAsset, showing fallback icon');
+                return const Icon(
+                  Icons.medical_services,
+                  size: 48,
+                  color: Colors.white,
+                );
+              },
             ),
             const SizedBox(height: 8),
             Text(
               title,
               style: const TextStyle(
                 color: Colors.white,
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
+                fontSize: 10,
+                fontWeight: FontWeight.bold,
                 fontFamily: 'AlmaraiRegular',
               ),
               textAlign: TextAlign.center,

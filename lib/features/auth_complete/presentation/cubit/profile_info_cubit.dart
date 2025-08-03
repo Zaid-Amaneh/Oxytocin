@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:oxytocin/features/profile/data/datasources/profile_data_source.dart';
-import 'package:oxytocin/features/profile/data/models/complete_register_model.dart';
+import 'package:oxytocin/features/auth_complete/data/datasources/profile_data_source.dart';
+import 'package:oxytocin/features/auth_complete/data/models/complete_register_model.dart';
 
 import 'profile_info_state.dart';
 import 'dart:io';

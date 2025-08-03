@@ -44,16 +44,16 @@ class PasswordViewModel extends ChangeNotifier {
     String? temp;
     if (passwordController.text.isEmpty) {
       temp = null;
-    } else if (passwordController.text.length < 8) {
-      temp = context.tr.Passwordatleast8characterslong;
+    } else if (passwordController.text.length < 8) {    
+      temp = context.tr.passwordatleast8characterslong;
     } else if (!RegExp(r'[a-z]').hasMatch(passwordController.text)) {
-      temp = context.tr.Passwordincludeleastonelowercaseletter;
+      temp = context.tr.passwordincludeleastonelowercaseletter;
     } else if (!RegExp(r'[A-Z]').hasMatch(passwordController.text)) {
-      temp = context.tr.Passwordincludeleastoneuppercaseletter;
+      temp = context.tr.passwordincludeleastoneuppercaseletter;
     } else if (!RegExp(r'[0-9]').hasMatch(passwordController.text)) {
-      temp = context.tr.Passwordmustincludeatleastonenumber;
+      temp = context.tr.passwordmustincludeatleastonenumber;
     } else if (!RegExp('[$_specialChars]').hasMatch(passwordController.text)) {
-      temp = context.tr.Passwordmustleastonespecialcharacter;
+      temp = context.tr.passwordmustleastonespecialcharacter;
     } else if ((username.isNotEmpty && lowerPassword.contains(username)) ||
         (lastName.isNotEmpty && lowerPassword.contains(lastName)) ||
         (phoneNumber.isNotEmpty && lowerPassword.contains(phoneNumber))) {
@@ -69,8 +69,8 @@ class PasswordViewModel extends ChangeNotifier {
     if (confirmPasswordController.text.isEmpty) {
       temp = null;
     } else if (paasword.trim() != confirmPasswordController.text.trim()) {
-      temp = context.tr.Thepasswordsdonotmatch;
-    } else {
+      temp = context.tr.thepasswordsdonotmatch;
+    } else {  
       temp = null;
     }
     confirmErrorText = temp;

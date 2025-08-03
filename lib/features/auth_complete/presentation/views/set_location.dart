@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:oxytocin/features/profile/presentation/cubit/profile_info_cubit.dart';
+import 'package:oxytocin/features/auth_complete/presentation/cubit/profile_info_cubit.dart';
 
 class SetLocation extends StatefulWidget {
   const SetLocation({super.key});

@@ -5,13 +5,14 @@ import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/constants/app_constants.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
-import 'package:oxytocin/features/profile/presentation/widget/Profile_date_picker_field.dart';
-import 'package:oxytocin/features/profile/presentation/widget/custom_input_text_field.dart';
+import 'package:oxytocin/features/auth_complete/presentation/widget/Profile_date_picker_field.dart';
+import 'package:oxytocin/features/auth_complete/presentation/widget/custom_input_text_field.dart';
 import 'package:oxytocin/core/Utils/size_config.dart';
-import 'package:oxytocin/features/profile/presentation/widget/profile_action_button.dart';
+import 'package:oxytocin/features/auth_complete/presentation/widget/profile_action_button.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:oxytocin/features/profile/presentation/cubit/profile_info_cubit.dart';
-import 'package:oxytocin/features/profile/presentation/cubit/profile_info_state.dart';
+import 'package:oxytocin/features/auth_complete/presentation/cubit/profile_info_cubit.dart';
+import 'package:oxytocin/features/auth_complete/presentation/cubit/profile_info_state.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class ProfileInfoPage extends StatelessWidget {
   const ProfileInfoPage({super.key});

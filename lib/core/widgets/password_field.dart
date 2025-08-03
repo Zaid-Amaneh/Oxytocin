@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/constants/app_constants.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
+import 'package:oxytocin/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:oxytocin/core/viewmodels/password_view_model.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
-import 'package:oxytocin/generated/l10n.dart';
 
 class PasswordField extends StatelessWidget {
   const PasswordField({
@@ -52,14 +52,14 @@ class PasswordField extends StatelessWidget {
           onChanged: (value) => vm.validatePassword(context),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return context.tr.Thisfieldisrequired;
+              return context.tr.thisfieldisrequired;
             } else {
               vm.validatePassword(context);
             }
             return null;
           },
           decoration: InputDecoration(
-            hintText: S.of(context).Password,
+            hintText: AppLocalizations.of(context)!.password,
             errorText: vm.errorText,
             hintStyle: AppStyles.almaraiBold(context).copyWith(
               color: Colors.black,

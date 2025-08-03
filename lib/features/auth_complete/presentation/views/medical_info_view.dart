@@ -3,14 +3,14 @@ import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
-import 'package:oxytocin/features/profile/presentation/cubit/profile_info_cubit.dart';
-import 'package:oxytocin/features/profile/presentation/widget/custom_input_text_field.dart';
-import 'package:oxytocin/features/profile/presentation/widget/life_styleI_icon.dart';
+import 'package:oxytocin/features/auth_complete/presentation/cubit/profile_info_cubit.dart';
+import 'package:oxytocin/features/auth_complete/presentation/widget/custom_input_text_field.dart';
+import 'package:oxytocin/features/auth_complete/presentation/widget/life_styleI_icon.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oxytocin/core/Utils/size_config.dart';
-import 'package:oxytocin/features/profile/presentation/widget/profile_action_button.dart';
+import 'package:oxytocin/features/auth_complete/presentation/widget/profile_action_button.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:oxytocin/features/profile/presentation/cubit/profile_info_state.dart';
+import 'package:oxytocin/features/auth_complete/presentation/cubit/profile_info_state.dart';
 
 class MedicalInfoBody extends StatefulWidget {
   const MedicalInfoBody(this.bloc, {super.key});

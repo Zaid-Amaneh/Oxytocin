@@ -54,7 +54,7 @@ class _IntroViewBodyState extends State<IntroViewBody> {
                 visible: false,
                 padding: const EdgeInsets.fromLTRB(24, 12, 24, 12),
                 buttonPadding: const EdgeInsets.all(0),
-                data: context.tr.Skip,
+                data: context.tr.skip,
                 onTap: () {
                   introductionEnd();
                 },
@@ -69,7 +69,7 @@ class _IntroViewBodyState extends State<IntroViewBody> {
               CustomButton(
                 borderRadius: 29,
                 visible: true,
-                data: currentPage == 2 ? context.tr.StartNow : context.tr.Next,
+                data: currentPage == 2 ? context.tr.startNow : context.tr.next,
                 onTap: () {
                   if (currentPage == 2) {
                     introductionEnd();

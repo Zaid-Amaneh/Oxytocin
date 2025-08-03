@@ -6,7 +6,7 @@ import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/constants/app_constants.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/viewmodels/password_view_model.dart';
-import 'package:oxytocin/generated/l10n.dart';
+import 'package:oxytocin/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 class ConfirmPasswordField extends StatelessWidget {
@@ -41,14 +41,14 @@ class ConfirmPasswordField extends StatelessWidget {
               vm.validateConfirmPassword(passwordController.text, context),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return context.tr.Thisfieldisrequired;
+              return context.tr.thisfieldisrequired;
             } else {
               vm.validateConfirmPassword(passwordController.text, context);
             }
             return null;
           },
           decoration: InputDecoration(
-            hintText: S.of(context).Confirmpassword,
+            hintText: AppLocalizations.of(context)!.confirmpassword,
             errorText: vm.confirmErrorText,
             hintStyle: AppStyles.almaraiBold(context).copyWith(
               color: Colors.black,

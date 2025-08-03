@@ -44,8 +44,7 @@ class CategoriesView extends StatelessWidget {
                             .map(
                               (cat) => CategoryCard(
                                 title: cat.name,
-                                iconAsset: "",
-                                //     cat.iconAsset, // ضع المسار الصحيح للأيقونة
+                                iconAsset: cat.iconAsset, // من CategoryModel
                                 onTap: () {},
                               ),
                             )

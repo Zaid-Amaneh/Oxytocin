@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
-import 'package:oxytocin/generated/l10n.dart';
+import 'package:oxytocin/l10n/app_localizations.dart';
 import 'package:toastification/toastification.dart';
 
 class Helper {
@@ -58,5 +58,5 @@ class Helper {
 }
 
 extension LocalizationExt on BuildContext {
-  S get tr => S.of(this);
+  AppLocalizations get tr => AppLocalizations.of(this)!;
 }

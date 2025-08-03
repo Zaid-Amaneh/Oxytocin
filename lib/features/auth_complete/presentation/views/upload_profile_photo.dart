@@ -5,7 +5,7 @@ import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/Utils/size_config.dart';
-import 'package:oxytocin/features/profile/presentation/widget/profile_action_button.dart';
+import 'package:oxytocin/features/auth_complete/presentation/widget/profile_action_button.dart';
 import 'package:oxytocin/core/constants/app_constants.dart';
 
 class UploadProfilePhoto extends StatelessWidget {

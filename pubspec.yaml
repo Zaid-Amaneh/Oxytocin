@@ -2,7 +2,7 @@ name: oxytocin
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -36,7 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   intl: any
   flutter_localizations:
-        sdk: flutter
+    sdk: flutter
   animated_text_kit: ^4.2.3
   logger: ^2.5.0
   shared_preferences: ^2.5.3
@@ -49,10 +49,11 @@ dependencies:
   toastification: ^3.0.3
   lottie: ^3.3.1
   flutter_secure_storage: ^9.2.4
+  feather_icons: ^1.2.0
 
 google_maps_flutter: ^2.12.3
-geolocator : ^14.0.2
-image_picker : ^1.1.2
+geolocator: ^14.0.2
+image_picker: ^1.1.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -76,6 +77,8 @@ flutter:
   assets:
     - assets/images/
     - assets/lottie/
+    - assets/images/categories/
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -90,28 +93,28 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-      - family: GESSUniqueBold
-        fonts:
+    - family: GESSUniqueBold
+      fonts:
         - asset: assets/fonts/GESSUniqueBold.otf
           weight: 700
-      - family: CairoExtraBold
-        fonts:
+    - family: CairoExtraBold
+      fonts:
         - asset: assets/fonts/Cairo-ExtraBold.ttf
           weight: 800
-      - family: AlmaraiExtraBold
-        fonts:
+    - family: AlmaraiExtraBold
+      fonts:
         - asset: assets/fonts/Almarai-ExtraBold.ttf
           weight: 800
-      - family: AlmaraiBold
-        fonts:
+    - family: AlmaraiBold
+      fonts:
         - asset: assets/fonts/Almarai-Bold.ttf
           weight: 700
-      - family: AlmaraiRegular
-        fonts:
+    - family: AlmaraiRegular
+      fonts:
         - asset: assets/fonts/Almarai-Regular.ttf
           weight: 400
-      - family: TajawalBold
-        fonts:
+    - family: TajawalBold
+      fonts:
         - asset: assets/fonts/Tajawal-Bold.ttf
           weight: 700
   #   - family: Schyler assets\fonts\Almarai-Regular.ttf

@@ -20,7 +20,7 @@ class _RememberMeState extends State<RememberMe> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          context.tr.Rememberme,
+          context.tr.rememberme,
           style: AppStyles.tajawalBold(
             context,
           ).copyWith(color: AppColors.textPrimary),

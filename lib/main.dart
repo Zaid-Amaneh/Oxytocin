@@ -4,9 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:oxytocin/core/routing/app_router.dart';
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/theme/app_theme.dart';
-import 'package:oxytocin/generated/l10n.dart';
+import 'package:oxytocin/l10n/app_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'features/profile/presentation/cubit/profile_info_cubit.dart';
+import 'features/auth_complete/presentation/cubit/profile_info_cubit.dart';
 
 void main() {
   final navigationService = NavigationService();
@@ -27,12 +27,12 @@ class OxytocinApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         locale: const Locale('ar'),
         localizationsDelegates: [
-          S.delegate,
+          AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        supportedLocales: S.delegate.supportedLocales,
+        supportedLocales: AppLocalizations.supportedLocales,
         theme: AppTheme.lightTheme,
         routerConfig: router,
       ),

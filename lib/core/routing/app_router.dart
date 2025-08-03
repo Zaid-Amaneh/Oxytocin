@@ -26,17 +26,17 @@ import 'package:oxytocin/features/categories/presentation/view/categories_view.d
 import 'package:oxytocin/features/home/presentation/view/home_view.dart';
 import 'package:oxytocin/features/intro/presentation/views/intro_view.dart';
 import 'package:oxytocin/features/intro/presentation/views/splash_view.dart';
-import 'package:oxytocin/features/profile/presentation/cubit/profile_info_cubit.dart';
-import 'package:oxytocin/features/profile/presentation/views/congrats_view.dart';
-import 'package:oxytocin/features/profile/presentation/views/medical_info_view.dart';
-import 'package:oxytocin/features/profile/presentation/views/profile_info_view.dart';
-import 'package:oxytocin/features/profile/presentation/views/set_location.dart';
-import 'package:oxytocin/features/profile/presentation/views/upload_profile_photo.dart';
+import 'package:oxytocin/features/auth_complete/presentation/cubit/profile_info_cubit.dart';
+import 'package:oxytocin/features/auth_complete/presentation/views/congrats_view.dart';
+import 'package:oxytocin/features/auth_complete/presentation/views/medical_info_view.dart';
+import 'package:oxytocin/features/auth_complete/presentation/views/profile_info_view.dart';
+import 'package:oxytocin/features/auth_complete/presentation/views/set_location.dart';
+import 'package:oxytocin/features/auth_complete/presentation/views/upload_profile_photo.dart';
 
 class AppRouter {
   static GoRouter createRouter(NavigationService navigationService) {
     final router = GoRouter(
-      initialLocation: '/${RouteNames.splash}',
+      initialLocation: '/${RouteNames.home}',
       routes: [
         GoRoute(
           path: '/${RouteNames.splash}',

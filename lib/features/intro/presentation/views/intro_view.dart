@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/features/intro/data/models/intro_header_item.dart';
 import 'package:oxytocin/features/intro/presentation/widget/intro_view_body.dart';
-import 'package:oxytocin/generated/l10n.dart';
+import 'package:oxytocin/l10n/app_localizations.dart';
 
 class IntroView extends StatelessWidget {
   const IntroView({super.key});
@@ -11,18 +11,18 @@ class IntroView extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<IntroHeaderItem> intro = [
       IntroHeaderItem(
-        titel: S.of(context).FindPerfectDoctor,
-        subtitle: S.of(context).FindPerfectDoctorDes,
+        titel: AppLocalizations.of(context)!.findPerfectDoctor,
+        subtitle: AppLocalizations.of(context)!.findPerfectDoctorDes,
         gif: Assets.imagesPerfectdoctor,
       ),
       IntroHeaderItem(
-        titel: S.of(context).MedicalRecordInYourHand,
-        subtitle: S.of(context).MedicalRecordInYourHandDes,
+        titel: AppLocalizations.of(context)!.medicalRecordInYourHand,
+        subtitle: AppLocalizations.of(context)!.medicalRecordInYourHandDes,
         gif: Assets.imagesMedicalrecord,
       ),
       IntroHeaderItem(
-        titel: S.of(context).YourPrivacyProtected,
-        subtitle: S.of(context).YourPrivacyProtectedDes,
+        titel: AppLocalizations.of(context)!.yourPrivacyProtected,
+        subtitle: AppLocalizations.of(context)!.yourPrivacyProtectedDes,
         gif: Assets.imagesPrivacy,
       ),
     ];

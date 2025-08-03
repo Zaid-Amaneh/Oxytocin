@@ -11,12 +11,11 @@ import 'package:oxytocin/core/widgets/custom_button.dart';
 import 'package:oxytocin/core/widgets/password_field.dart';
 import 'package:oxytocin/core/widgets/phone_number_field.dart';
 import 'package:oxytocin/core/widgets/sliver_spacer.dart';
-import 'package:oxytocin/extensions/failure_localization.dart';
 import 'package:oxytocin/features/auth/data/models/sign_in_request.dart';
 import 'package:oxytocin/features/auth/presentation/viewmodels/blocs/signIn/sign_in_bloc.dart';
 import 'package:oxytocin/features/auth/presentation/widget/forgot_password.dart';
 import 'package:oxytocin/features/auth/presentation/widget/remember_me.dart';
-import 'package:oxytocin/generated/l10n.dart';
+import 'package:oxytocin/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
 
@@ -44,8 +43,8 @@ class _SignInFormState extends State<SignInForm> {
         } else if (state is SignInSuccess) {
           context.pop();
           Helper.customToastification(
-            title: context.tr.operation_successful_title,
-            description: context.tr.sign_in_success_message,
+            title: context.tr.operationSuccessfulTitle,
+            description: context.tr.operationSuccessful,
             context: context,
             type: ToastificationType.success,
             seconds: 5,
@@ -54,11 +53,11 @@ class _SignInFormState extends State<SignInForm> {
           context.pop();
           Logger logger = Logger();
           logger.f(state.error);
-          final message = S.of(context).getTranslatedError(state.error);
+          final message = AppLocalizations.of(context)!.errorInvalidCredentials;
           Helper.customToastification(
             context: context,
             type: ToastificationType.error,
-            title: context.tr.error_invalid_credentials_title,
+            title: context.tr.errorInvalidCredentialsTitle,  
             description: message,
             seconds: 5,
           );
@@ -102,6 +101,7 @@ class _SignInFormState extends State<SignInForm> {
                     create: (_) => passwordVM,
                     child: const PasswordField(),
                   ),
+
                 ),
                 const SliverToBoxAdapter(child: ForgotPassword()),
                 SliverSpacer(height: height * 0.06),
@@ -123,7 +123,7 @@ class _SignInFormState extends State<SignInForm> {
                       }
                     },
                     borderColor: AppColors.kPrimaryColor1,
-                    data: context.tr.SignIn,
+                    data: context.tr.signIn,
                     style: AppStyles.almaraiBold(context),
                     visible: true,
                     padding: const EdgeInsetsGeometry.all(18),

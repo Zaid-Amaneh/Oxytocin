@@ -1,25 +1,61 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/features/categories/data/models/category_model.dart';
 import 'package:oxytocin/features/categories/presentation/cubit/categories_state.dart';
-
 
 class CategoriesCubit extends Cubit<CategoriesState> {
   CategoriesCubit() : super(CategoriesInitial());
 
   final List<CategoryModel> _allCategories = [
-    CategoryModel(name: "الغدد الصماء", icon: Icons.medical_services),
-    CategoryModel(name: "المسالك البولية", icon: Icons.healing),
-    CategoryModel(name: "القلب والأوعية", icon: Icons.favorite),
-    CategoryModel(name: "الجهاز الهضمي", icon: Icons.local_hospital),
-    CategoryModel(name: "طب الرئة", icon: Icons.air),
-    CategoryModel(name: "جراحة التجميل", icon: Icons.face),
-    CategoryModel(name: "طب العيون", icon: Icons.remove_red_eye),
-    CategoryModel(name: "طب الأسنان", icon: Icons.medical_information),
-    // ضيفي يلي بدك ياه
+    // الفئات الأساسية
+    CategoryModel(
+      name: "الغدد الصماء",
+      iconAsset: Assets.categoryEndocrineGlands,
+    ),
+    CategoryModel(
+      name: "المسالك البولية",
+      iconAsset: Assets.categoryUrinaryTract,
+    ),
+    CategoryModel(
+      name: "الجهاز الهضمي",
+      iconAsset: Assets.categoryDigestiveSystem,
+    ),
+    CategoryModel(
+      name: "طب الرئة",
+      iconAsset: Assets.categoryPulmonaryMedicine,
+    ),
+    CategoryModel(
+      name: "جراحة التجميل",
+      iconAsset: Assets.categoryPlasticSurgery,
+    ),
+    CategoryModel(name: "طب العيون", iconAsset: Assets.categoryEyes),
+    CategoryModel(name: "طب الأسنان", iconAsset: Assets.categoryDentistry),
+    CategoryModel(name: "التخدير", iconAsset: Assets.categoryAnesthesia),
+    CategoryModel(
+      name: "أنف وأذن وحنجرة",
+      iconAsset: Assets.categoryEarNoseThroat,
+    ),
+    CategoryModel(name: "طب الأعصاب", iconAsset: Assets.categoryNerves),
+    CategoryModel(
+      name: "طب العمل",
+      iconAsset: Assets.categoryOccupationalMedicine,
+    ),
+    CategoryModel(name: "الأشعة", iconAsset: Assets.categoryRays),
+    CategoryModel(name: "طب النفس", iconAsset: Assets.categoryMyself),
+    // جميع الفئات المتبقية من الصور الموجودة
   ];
 
   void loadCategories() {
+    print('Loading categories...'); // للتصحيح
+    print('Categories count: ${_allCategories.length}'); // للتصحيح
+
+    // طباعة جميع مسارات الصور للتأكد
+    for (int i = 0; i < _allCategories.length; i++) {
+      print(
+        'Category ${i + 1}: ${_allCategories[i].name} -> ${_allCategories[i].iconAsset}',
+      );
+    }
+
     emit(CategoriesLoaded(_allCategories));
   }
 

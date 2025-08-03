@@ -14,7 +14,7 @@ import 'package:oxytocin/core/widgets/sliver_spacer.dart';
 import 'package:oxytocin/extensions/failure_localization.dart';
 import 'package:oxytocin/features/auth/presentation/viewmodels/blocs/forgotPassword/forgot_password_bloc.dart';
 import 'package:oxytocin/features/auth/presentation/widget/forgot_password_view_header.dart';
-import 'package:oxytocin/generated/l10n.dart';
+import 'package:oxytocin/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
 
@@ -33,8 +33,8 @@ class ForgotPasswordViewBody extends StatelessWidget {
         } else if (state is ForgotPasswordSuccess) {
           context.pop();
           Helper.customToastification(
-            title: context.tr.resend_otp_success_title,
-            description: context.tr.resend_otp_success,
+            title: context.tr.resendOtpSuccessTitle,
+            description: context.tr.resendOtpSuccess,
             context: context,
             type: ToastificationType.success,
             seconds: 5,
@@ -46,11 +46,11 @@ class ForgotPasswordViewBody extends StatelessWidget {
           );
         } else if (state is ForgotPasswordFailure) {
           context.pop();
-          final message = S.of(context).getTranslatedError(state.failure);
-          Helper.customToastification(
+          final message = AppLocalizations.of(context)!.errorUnknown;
+          Helper.customToastification(  
             context: context,
             type: ToastificationType.error,
-            title: context.tr.operation_failed_title,
+            title: context.tr.operationFailedTitle,
             description: message,
             seconds: 5,
           );

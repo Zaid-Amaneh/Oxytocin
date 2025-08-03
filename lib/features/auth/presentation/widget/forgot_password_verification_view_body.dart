@@ -18,7 +18,7 @@ import 'package:oxytocin/features/auth/data/models/verify_otp_request.dart';
 import 'package:oxytocin/features/auth/presentation/viewmodels/blocs/verifyForgotPasswordOtp/verify_forgot_password_otp_bloc.dart';
 import 'package:oxytocin/features/auth/presentation/widget/change_wrong_number.dart';
 import 'package:oxytocin/features/auth/presentation/widget/forgot_password_view_header.dart';
-import 'package:oxytocin/generated/l10n.dart';
+    import 'package:oxytocin/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
 
@@ -42,8 +42,8 @@ class ForgotPasswordVerificationViewBody extends StatelessWidget {
         } else if (state is VerifyForgotPasswordOtpSuccess) {
           context.pop();
           Helper.customToastification(
-            title: context.tr.otp_verified_successfully_title,
-            description: context.tr.otp_verified_successfully,
+            title: context.tr.otpVerifiedSuccessfullyTitle,
+            description: context.tr.otpVerifiedSuccessfully,
             context: context,
             type: ToastificationType.success,
             seconds: 5,
@@ -52,12 +52,12 @@ class ForgotPasswordVerificationViewBody extends StatelessWidget {
           nav.pushToNamed(RouteNames.resetPassword);
         } else if (state is VerifyForgotPasswordOtpFailure) {
           context.pop();
-          final message = S.of(context).getTranslatedError(state.error);
+          final message = AppLocalizations.of(context)!.invalidOtpCodeTitle;
           Helper.customToastification(
             context: context,
             type: ToastificationType.error,
             title: message,
-            description: context.tr.invalid_otp_code,
+            description: context.tr.invalidOtpCode,
             seconds: 5,
           );
         }

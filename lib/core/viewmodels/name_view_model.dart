@@ -10,7 +10,7 @@ class NameViewModel extends ChangeNotifier {
     if (nameController.text.isEmpty) {
       temp = null;
     } else if (nameController.text.trim().length < 2) {
-      temp = context.tr.Atleastletters;
+      temp = context.tr.atleastletters;
     }
     isAName = temp;
     notifyListeners();

@@ -86,7 +86,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       child: AnimatedTextKit(
         animatedTexts: [
           ScaleAnimatedText(
-            context.tr.Oxytocin,
+            context.tr.oxytocin,
             textStyle: AppStyles.gESSUniqueBold(context),
             scalingFactor: 1.5,
             duration: const Duration(milliseconds: 2200),

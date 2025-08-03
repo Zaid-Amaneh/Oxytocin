@@ -16,7 +16,7 @@ class ForgotPassword extends StatelessWidget {
         navigationService.pushToNamed(RouteNames.forgotPassword);
       },
       child: Text(
-        context.tr.Forgotyourpassword,
+        context.tr.forgotyourpassword,
         style: AppStyles.tajawalBold(
           context,
         ).copyWith(color: AppColors.kPrimaryColor3, fontSize: 15),

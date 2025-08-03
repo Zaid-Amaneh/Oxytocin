@@ -48,7 +48,7 @@ class CustomSwitch extends StatelessWidget {
                 borderRadius: 29,
                 onTap: inup ? signUpTap : null,
                 padding: const EdgeInsets.fromLTRB(24, 16, 24, 13),
-                data: context.tr.SignUp,
+                data: context.tr.signUp,    
                 borderColor: AppColors.kPrimaryColor1,
                 visible: !inup,
                 style: inup
@@ -63,7 +63,7 @@ class CustomSwitch extends StatelessWidget {
                 borderRadius: 29,
                 onTap: inup ? null : signInTap,
                 padding: const EdgeInsets.fromLTRB(24, 16, 24, 13),
-                data: context.tr.SignIn,
+                data: context.tr.signIn,
                 visible: inup,
                 borderColor: AppColors.kPrimaryColor1,
                 style: inup

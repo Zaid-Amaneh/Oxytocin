@@ -88,4 +88,36 @@ class Assets {
   static const String imagesUserNameIcon = "assets/images/userNameIcon.svg";
 
   static const String imagesVerification = "assets/images/verification.gif";
+
+  static const String bgPattern = 'assets/images/bg_pattern.png';
+  static const String doctorCard = 'assets/images/doc.png';
+
+  static const String bg2 = 'assets/images/bg_2.png';
+
+  static const String doctor = 'assets/images/doctor.jpg';
+
+  // =========categories
+  // Category Icons SVG - جميع الصور الموجودة في مجلد categories
+  static const String categoryAnesthesia =
+      "assets/images/categories/Anesthesia.svg";
+  static const String categoryDentistry =
+      "assets/images/categories/Dentistry.svg";
+  static const String categoryDigestiveSystem =
+      "assets/images/categories/digestive_system.svg";
+  static const String categoryEarNoseThroat =
+      "assets/images/categories/Ear_Nose_Throat.svg";
+  static const String categoryEndocrineGlands =
+      "assets/images/categories/endocrine_glands.svg";
+  static const String categoryEyes = "assets/images/categories/eyes.svg";
+  static const String categoryMyself = "assets/images/categories/myself.svg";
+  static const String categoryNerves = "assets/images/categories/Nerves.svg";
+  static const String categoryOccupationalMedicine =
+      "assets/images/categories/Occupational_medicine.svg";
+  static const String categoryPlasticSurgery =
+      "assets/images/categories/plastic_surgery.svg";
+  static const String categoryPulmonaryMedicine =
+      "assets/images/categories/Pulmonary_medicine.svg";
+  static const String categoryRays = "assets/images/categories/rays.svg";
+  static const String categoryUrinaryTract =
+      "assets/images/categories/urinary_tract.svg";
 }

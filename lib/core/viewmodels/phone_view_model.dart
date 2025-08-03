@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:oxytocin/generated/l10n.dart';
+import 'package:oxytocin/l10n/app_localizations.dart';
 
 class PhoneViewModel extends ChangeNotifier {
   final TextEditingController phoneController = TextEditingController();
@@ -14,7 +14,7 @@ class PhoneViewModel extends ChangeNotifier {
     if (value.isEmpty) {
       temp = null;
     } else if (!_syrianPhoneRegExp.hasMatch(value)) {
-      temp = S.of(context).PleaseEnterValidNumber;
+      temp = AppLocalizations.of(context)!.pleaseEnterValidNumber;
     }
     errorText = temp;
     notifyListeners();

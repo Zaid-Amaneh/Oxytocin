@@ -46,7 +46,7 @@ class _NameFieldState extends State<NameField> {
           onChanged: (value) => vm.setValidator(context),
           validator: (value) {
             if (value!.trim().isEmpty) {
-              return context.tr.Thisfieldisrequired;
+              return context.tr.thisfieldisrequired;
             } else {
               vm.setValidator(context);
             }
