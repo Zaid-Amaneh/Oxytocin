@@ -13,17 +13,17 @@ class IntroView extends StatelessWidget {
       IntroHeaderItem(
         titel: AppLocalizations.of(context)!.findPerfectDoctor,
         subtitle: AppLocalizations.of(context)!.findPerfectDoctorDes,
-        gif: Assets.imagesPerfectdoctor,
+        gif: AppImages.imagesPerfectdoctor,
       ),
       IntroHeaderItem(
         titel: AppLocalizations.of(context)!.medicalRecordInYourHand,
         subtitle: AppLocalizations.of(context)!.medicalRecordInYourHandDes,
-        gif: Assets.imagesMedicalrecord,
+        gif: AppImages.imagesMedicalrecord,
       ),
       IntroHeaderItem(
         titel: AppLocalizations.of(context)!.yourPrivacyProtected,
         subtitle: AppLocalizations.of(context)!.yourPrivacyProtectedDes,
-        gif: Assets.imagesPrivacy,
+        gif: AppImages.imagesPrivacy,
       ),
     ];
     return Scaffold(body: IntroViewBody(intro: intro));

@@ -757,6 +757,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'An error occurred while resending the OTP. Please try again.'**
   String get resendOtpFailed;
+
+  /// No description provided for @browse_specialties_and_book.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse various specialties, rate doctors, and book appointments with ease.'**
+  String get browse_specialties_and_book;
+
+  /// No description provided for @explore_and_choose_doctor.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore doctors and choose the one that suits you best.'**
+  String get explore_and_choose_doctor;
 }
 
 class _AppLocalizationsDelegate

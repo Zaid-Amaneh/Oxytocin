@@ -47,7 +47,7 @@ class ForgotPasswordViewBody extends StatelessWidget {
         } else if (state is ForgotPasswordFailure) {
           context.pop();
           final message = AppLocalizations.of(context)!.errorUnknown;
-          Helper.customToastification(  
+          Helper.customToastification(
             context: context,
             type: ToastificationType.error,
             title: context.tr.operationFailedTitle,
@@ -63,7 +63,7 @@ class ForgotPasswordViewBody extends StatelessWidget {
             slivers: [
               SliverToBoxAdapter(
                 child: ForgotPasswordViewHeader(
-                  icon: Assets.imagesForgotPasswordIcon,
+                  icon: AppImages.imagesForgotPasswordIcon,
                   title: context.tr.forgotPasswordPrompt,
                 ),
               ),

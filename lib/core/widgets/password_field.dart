@@ -75,10 +75,10 @@ class PasswordField extends StatelessWidget {
                   ? GestureDetector(
                       onTap: vm.toggleObscure,
                       child: vm.obscureText
-                          ? SvgPicture.asset(Assets.imagesHidePassword)
-                          : SvgPicture.asset(Assets.imagesShowPassword),
+                          ? SvgPicture.asset(AppImages.imagesHidePassword)
+                          : SvgPicture.asset(AppImages.imagesShowPassword),
                     )
-                  : SvgPicture.asset(Assets.imagesPasswordIcon),
+                  : SvgPicture.asset(AppImages.imagesPasswordIcon),
             ),
           ),
         ),

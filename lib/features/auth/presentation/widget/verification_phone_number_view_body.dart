@@ -5,6 +5,7 @@ import 'package:logger/web.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
+import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/viewmodels/resend_otp_view_model.dart';
@@ -58,6 +59,10 @@ class VerificationPhoneNumberViewBody extends StatelessWidget {
             type: ToastificationType.success,
             seconds: 5,
           );
+          Logger logger = Logger();
+          logger.f("shhdskjsdhsdjkhsdjsd");
+          NavigationService navigationService = NavigationService();
+          navigationService.pushToNamed(RouteNames.profileInfo);
         } else if (state is OtpResendSuccess) {
           context.pop();
           Helper.customToastification(
@@ -88,7 +93,7 @@ class VerificationPhoneNumberViewBody extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Image.asset(
-                    Assets.imagesVerification,
+                    AppImages.imagesVerification,
                     filterQuality: FilterQuality.high,
                   ),
                 ),

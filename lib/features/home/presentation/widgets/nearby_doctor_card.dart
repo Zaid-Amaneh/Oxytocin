@@ -75,7 +75,7 @@ class NearbyDoctorCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(isTablet ? 30.0 : 25.0),
                 child: Image.asset(
-                  Assets.bg2,
+                  AppImages.bg2,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) {
                     return Container(
@@ -118,7 +118,7 @@ class NearbyDoctorCard extends StatelessWidget {
                       Radius.circular(isTablet ? 30.0 : 25.0),
                     ),
                     child: Image.asset(
-                      Assets.doctor,
+                      AppImages.doctor,
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
                         return Container(

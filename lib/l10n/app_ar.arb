@@ -108,5 +108,8 @@
     "accountCreatedSuccess": "تم إنشاء الحساب بنجاح",
     "accountCreatedSuccessSubtitle": "يمكنك الآن تسجيل الدخول إلى حسابك.",
     "resendOtpFailedTitle": "فشل إعادة إرسال رمز التحقق",
-    "resendOtpFailed": "حدث خطأ أثناء إعادة إرسال رمز التحقق. الرجاء إعادة المحاولة."
+    "resendOtpFailed": "حدث خطأ أثناء إعادة إرسال رمز التحقق. الرجاء إعادة المحاولة.",
+    "browse_specialties_and_book": "اطّلع على التخصصات المختلفة، وقيّم الأطباء، واحجز بكل سهولة.",
+    "explore_and_choose_doctor": "استكشف الأطباء واختر الأنسب لك"
+
 }

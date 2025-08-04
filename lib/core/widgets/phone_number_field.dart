@@ -52,7 +52,7 @@ class PhoneNumberField extends StatelessWidget {
             counterText: '',
             suffixIcon: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: SvgPicture.asset(Assets.imagesPhoneIcon),
+              child: SvgPicture.asset(AppImages.imagesPhoneIcon),
             ),
             errorText: vm.errorText,
             hintText: context.tr.phoneNumber,

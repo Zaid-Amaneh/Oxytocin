@@ -379,4 +379,12 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get resendOtpFailed =>
       'An error occurred while resending the OTP. Please try again.';
+
+  @override
+  String get browse_specialties_and_book =>
+      'Browse various specialties, rate doctors, and book appointments with ease.';
+
+  @override
+  String get explore_and_choose_doctor =>
+      'Explore doctors and choose the one that suits you best.';
 }

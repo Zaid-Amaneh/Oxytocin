@@ -110,7 +110,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
                           left: SizeConfig.screenWidth * 0.02,
                         ),
                         child: Image.asset(
-                          Assets.illustration,
+                          AppImages.illustration,
                           width: SizeConfig.screenWidth * 0.5,
                           fit: BoxFit.contain,
                         ),

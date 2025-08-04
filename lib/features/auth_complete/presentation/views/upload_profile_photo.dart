@@ -47,7 +47,7 @@ class UploadProfilePhoto extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Image.asset(
-                  Assets.uploadPhoto,
+                  AppImages.uploadPhoto,
                   fit: BoxFit.contain,
                   height: SizeConfig.screenWidth * 0.7,
                   width: SizeConfig.screenWidth * 0.7,

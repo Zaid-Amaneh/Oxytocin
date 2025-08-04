@@ -63,7 +63,7 @@ class DoctorCard extends StatelessWidget {
                 color: const Color(0xFF0A1A4A),
                 borderRadius: BorderRadius.circular(isTablet ? 25.0 : 20.0),
                 image: DecorationImage(
-                  image: AssetImage(Assets.bgPattern),
+                  image: const AssetImage(AppImages.bgPattern),
                   fit: BoxFit.cover,
                   colorFilter: ColorFilter.mode(
                     const Color(0xFF2A4A7A).withOpacity(0.8),
@@ -177,8 +177,8 @@ class DoctorCard extends StatelessWidget {
                     topRight: Radius.circular(isTablet ? 16.0 : 12.0),
                     bottomRight: Radius.circular(isTablet ? 16.0 : 12.0),
                   ),
-                  image: DecorationImage(
-                    image: AssetImage(Assets.doctorCard),
+                  image: const DecorationImage(
+                    image: AssetImage(AppImages.doctorCard),
                     fit: BoxFit.cover,
                   ),
                 ),

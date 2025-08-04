@@ -372,4 +372,11 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get resendOtpFailed =>
       'حدث خطأ أثناء إعادة إرسال رمز التحقق. الرجاء إعادة المحاولة.';
+
+  @override
+  String get browse_specialties_and_book =>
+      'اطّلع على التخصصات المختلفة، وقيّم الأطباء، واحجز بكل سهولة.';
+
+  @override
+  String get explore_and_choose_doctor => 'استكشف الأطباء واختر الأنسب لك';
 }

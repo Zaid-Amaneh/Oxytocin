@@ -16,9 +16,9 @@ class BackgroundLayers extends StatelessWidget {
         color: AppColors.kPrimaryColor1,
         child: Column(
           children: [
-            SvgPicture.asset(Assets.imagesLayer2, fit: BoxFit.fill),
-            SvgPicture.asset(Assets.imagesLayer2, fit: BoxFit.fill),
-            SvgPicture.asset(Assets.imagesLayer2, fit: BoxFit.fill),
+            SvgPicture.asset(AppImages.imagesLayer2, fit: BoxFit.fill),
+            SvgPicture.asset(AppImages.imagesLayer2, fit: BoxFit.fill),
+            SvgPicture.asset(AppImages.imagesLayer2, fit: BoxFit.fill),
           ],
         ),
       ),

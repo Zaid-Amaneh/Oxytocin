@@ -35,7 +35,7 @@ class CongratsView extends StatelessWidget {
                 ),
                 SizedBox(height: SizeConfig.screenHigh * 0.04),
                 Image.asset(
-                  Assets.congrats,
+                  AppImages.congrats,
                   width: SizeConfig.screenWidth * 0.7,
                   fit: BoxFit.contain,
                 ),

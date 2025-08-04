@@ -15,4 +15,6 @@ class RouteNames {
   static const upload = 'UploadProfilePhoto';
   static const setLocation = 'SetLocation';
   static const congratView = 'CongratsView';
+
+  static const allDoctorsView = 'AllDoctorsView';
 }

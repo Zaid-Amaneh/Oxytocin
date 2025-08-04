@@ -130,11 +130,11 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
-flutter_intl:
-  enabled: true
-flutter_assets:
-  assets_path: assets/images
-  output_path: lib/core/Utils
-  filename: app_images.dart
-  field_prefix: null
-  ignore_comments: true
+# flutter_intl:
+#   enabled: true
+# flutter_assets:
+#   assets_path: assets/images
+#   output_path: lib/core/Utils
+#   filename: app_images.dart
+#   field_prefix: null
+#   ignore_comments: true

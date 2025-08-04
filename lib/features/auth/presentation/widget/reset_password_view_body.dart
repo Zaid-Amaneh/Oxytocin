@@ -65,7 +65,7 @@ class ResetPasswordViewBody extends StatelessWidget {
             slivers: [
               SliverToBoxAdapter(
                 child: ForgotPasswordViewHeader(
-                  icon: Assets.imagesResetPasswordIcon,
+                  icon: AppImages.imagesResetPasswordIcon,
                   title: context.tr.newPasswordSlogan,
                 ),
               ),

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
+import 'package:oxytocin/features/all_doctors_page/presentation/views/all_doctors_view.dart';
 import 'package:oxytocin/features/auth/data/services/auth_service.dart';
 import 'package:oxytocin/features/auth/domain/change_password_use_case.dart';
 import 'package:oxytocin/features/auth/domain/forgot_password_usecase.dart';
@@ -36,7 +37,7 @@ import 'package:oxytocin/features/auth_complete/presentation/views/upload_profil
 class AppRouter {
   static GoRouter createRouter(NavigationService navigationService) {
     final router = GoRouter(
-      initialLocation: '/${RouteNames.home}',
+      initialLocation: '/${RouteNames.allDoctorsView}',
       routes: [
         GoRoute(
           path: '/${RouteNames.splash}',
@@ -70,7 +71,7 @@ class AppRouter {
         GoRoute(
           path: '/${RouteNames.home}',
           name: RouteNames.home,
-          builder: (context, state) => HomeView(),
+          builder: (context, state) => const HomeView(),
         ),
         GoRoute(
           path: '/${RouteNames.signIn}',
@@ -125,7 +126,7 @@ class AppRouter {
             final profileInfoCubit = state.extra as ProfileInfoCubit;
             return BlocProvider.value(
               value: profileInfoCubit,
-              child: SetLocation(),
+              child: const SetLocation(),
             );
           },
         ),
@@ -219,6 +220,12 @@ class AppRouter {
               ),
             );
           },
+        ),
+
+        GoRoute(
+          path: '/${RouteNames.allDoctorsView}',
+          name: RouteNames.allDoctorsView,
+          builder: (context, state) => const AllDoctorsView(),
         ),
       ],
     );

@@ -31,14 +31,14 @@ class _MedicalInfoBodyState extends State<MedicalInfoBody> {
   bool isMarried = false;
 
   final List<Map<String, String>> bloodTypes = [
-    {'img': Assets.imagesAA, 'type': 'A+'},
-    {'img': Assets.imagesA, 'type': 'A-'},
-    {'img': Assets.imagesBb, 'type': 'B+'},
-    {'img': Assets.imagesB, 'type': 'B-'},
-    {'img': Assets.imagesAbb, 'type': 'AB+'},
-    {'img': Assets.imagesAb, 'type': 'AB-'},
-    {'img': Assets.imagesOo, 'type': 'O+'},
-    {'img': Assets.imagesO, 'type': 'O-'},
+    {'img': AppImages.imagesAA, 'type': 'A+'},
+    {'img': AppImages.imagesA, 'type': 'A-'},
+    {'img': AppImages.imagesBb, 'type': 'B+'},
+    {'img': AppImages.imagesB, 'type': 'B-'},
+    {'img': AppImages.imagesAbb, 'type': 'AB+'},
+    {'img': AppImages.imagesAb, 'type': 'AB-'},
+    {'img': AppImages.imagesOo, 'type': 'O+'},
+    {'img': AppImages.imagesO, 'type': 'O-'},
   ];
 
   int currentBloodPage = 0;
@@ -85,7 +85,7 @@ class _MedicalInfoBodyState extends State<MedicalInfoBody> {
                   right: SizeConfig.screenWidth * 0.06,
                 ),
                 child: Image.asset(
-                  Assets.medicalHistoryd,
+                  AppImages.medicalHistoryd,
                   width: SizeConfig.screenWidth * 0.8,
                   height: SizeConfig.screenHigh * 0.28,
                   fit: BoxFit.contain,
@@ -107,7 +107,7 @@ class _MedicalInfoBodyState extends State<MedicalInfoBody> {
               CustomInputField(
                 controller: chronicController,
                 hint: 'الأمراض المزمنة',
-                svgIcon: Assets.illnesses,
+                svgIcon: AppImages.illnesses,
                 horizontalPadding: SizeConfig.screenWidth * 0.06,
                 verticalPadding: SizeConfig.screenHigh * 0.01,
                 onChanged: (val) =>
@@ -116,7 +116,7 @@ class _MedicalInfoBodyState extends State<MedicalInfoBody> {
               CustomInputField(
                 controller: surgeryController,
                 hint: 'العمليات الجراحية السابقة',
-                svgIcon: Assets.surgeryIcon,
+                svgIcon: AppImages.surgeryIcon,
                 horizontalPadding: SizeConfig.screenWidth * 0.06,
                 verticalPadding: SizeConfig.screenHigh * 0.01,
                 onChanged: (val) =>
@@ -125,7 +125,7 @@ class _MedicalInfoBodyState extends State<MedicalInfoBody> {
               CustomInputField(
                 controller: allergyController,
                 hint: 'الحساسية',
-                svgIcon: Assets.sensitive,
+                svgIcon: AppImages.sensitive,
                 horizontalPadding: SizeConfig.screenWidth * 0.06,
                 verticalPadding: SizeConfig.screenHigh * 0.01,
                 onChanged: (val) =>
@@ -134,7 +134,7 @@ class _MedicalInfoBodyState extends State<MedicalInfoBody> {
               CustomInputField(
                 controller: medsController,
                 hint: 'الأدوية المستخدمة بانتظام',
-                svgIcon: Assets.medicines,
+                svgIcon: AppImages.medicines,
                 horizontalPadding: SizeConfig.screenWidth * 0.06,
                 verticalPadding: SizeConfig.screenHigh * 0.01,
                 onChanged: (val) =>
@@ -256,7 +256,7 @@ class _MedicalInfoBodyState extends State<MedicalInfoBody> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   LifestyleIcon(
-                    image: Assets.alcohol,
+                    image: AppImages.alcohol,
                     isSelected: isDrinker,
                     onTap: () {
                       setState(() {
@@ -267,7 +267,7 @@ class _MedicalInfoBodyState extends State<MedicalInfoBody> {
                   ),
                   SizedBox(width: SizeConfig.screenWidth * 0.045),
                   LifestyleIcon(
-                    image: Assets.emotionalState,
+                    image: AppImages.emotionalState,
                     isSelected: isMarried,
                     onTap: () {
                       setState(() {
@@ -278,7 +278,7 @@ class _MedicalInfoBodyState extends State<MedicalInfoBody> {
                   ),
                   SizedBox(width: SizeConfig.screenWidth * 0.045),
                   LifestyleIcon(
-                    image: Assets.smoker,
+                    image: AppImages.smoker,
                     isSelected: isSmoker,
                     onTap: () {
                       setState(() {

@@ -74,7 +74,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       top: size.height * _logoTopOffset,
       left: size.width * 0.2,
       right: size.width * 0.2,
-      child: SvgPicture.asset(Assets.imagesLogoEmptySVG),
+      child: SvgPicture.asset(AppImages.imagesLogoEmptySVG),
     );
   }
 

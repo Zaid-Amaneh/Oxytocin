@@ -108,5 +108,7 @@
   "accountCreatedSuccess": "Account created successfully",
   "accountCreatedSuccessSubtitle": "You can now sign in to your account.",
   "resendOtpFailedTitle": "Failed to resend OTP",
-  "resendOtpFailed": "An error occurred while resending the OTP. Please try again."
+  "resendOtpFailed": "An error occurred while resending the OTP. Please try again.",
+  "browse_specialties_and_book": "Browse various specialties, rate doctors, and book appointments with ease.",
+  "explore_and_choose_doctor": "Explore doctors and choose the one that suits you best."
 }

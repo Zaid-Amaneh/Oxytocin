@@ -10,38 +10,38 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     // الفئات الأساسية
     CategoryModel(
       name: "الغدد الصماء",
-      iconAsset: Assets.categoryEndocrineGlands,
+      iconAsset: AppImages.categoryEndocrineGlands,
     ),
     CategoryModel(
       name: "المسالك البولية",
-      iconAsset: Assets.categoryUrinaryTract,
+      iconAsset: AppImages.categoryUrinaryTract,
     ),
     CategoryModel(
       name: "الجهاز الهضمي",
-      iconAsset: Assets.categoryDigestiveSystem,
+      iconAsset: AppImages.categoryDigestiveSystem,
     ),
     CategoryModel(
       name: "طب الرئة",
-      iconAsset: Assets.categoryPulmonaryMedicine,
+      iconAsset: AppImages.categoryPulmonaryMedicine,
     ),
     CategoryModel(
       name: "جراحة التجميل",
-      iconAsset: Assets.categoryPlasticSurgery,
+      iconAsset: AppImages.categoryPlasticSurgery,
     ),
-    CategoryModel(name: "طب العيون", iconAsset: Assets.categoryEyes),
-    CategoryModel(name: "طب الأسنان", iconAsset: Assets.categoryDentistry),
-    CategoryModel(name: "التخدير", iconAsset: Assets.categoryAnesthesia),
+    CategoryModel(name: "طب العيون", iconAsset: AppImages.categoryEyes),
+    CategoryModel(name: "طب الأسنان", iconAsset: AppImages.categoryDentistry),
+    CategoryModel(name: "التخدير", iconAsset: AppImages.categoryAnesthesia),
     CategoryModel(
       name: "أنف وأذن وحنجرة",
-      iconAsset: Assets.categoryEarNoseThroat,
+      iconAsset: AppImages.categoryEarNoseThroat,
     ),
-    CategoryModel(name: "طب الأعصاب", iconAsset: Assets.categoryNerves),
+    CategoryModel(name: "طب الأعصاب", iconAsset: AppImages.categoryNerves),
     CategoryModel(
       name: "طب العمل",
-      iconAsset: Assets.categoryOccupationalMedicine,
+      iconAsset: AppImages.categoryOccupationalMedicine,
     ),
-    CategoryModel(name: "الأشعة", iconAsset: Assets.categoryRays),
-    CategoryModel(name: "طب النفس", iconAsset: Assets.categoryMyself),
+    CategoryModel(name: "الأشعة", iconAsset: AppImages.categoryRays),
+    CategoryModel(name: "طب النفس", iconAsset: AppImages.categoryMyself),
     // جميع الفئات المتبقية من الصور الموجودة
   ];
 
