@@ -87,6 +87,18 @@ class AppImages {
 
   static const String starSolid = "assets/images/starSolid.svg";
 
+  static const String rescheduleIcon = "assets/images/reschedule.svg";
+
+  static const String editIcon = "assets/images/edit.svg";
+
+  static const String mapLocationIcon = "assets/images/map_location.svg";
+
+  static const String infoIcon = "assets/images/info.svg";
+
+  static const String callIcon = "assets/images/call.svg";
+
+  static const String canceledIcon = "assets/images/canceledIcon.svg";
+
   static const String imagesSurgery = "assets/images/surgery.svg";
 
   static const String imagesUploadphoto = "assets/images/uploadphoto.png";
@@ -95,7 +107,15 @@ class AppImages {
 
   static const String imagesVerification = "assets/images/verification.gif";
 
+  static const String waitAppointmentGif = "assets/images/wait_appointment.gif";
+
+  static const String doneAppointmentGif = "assets/images/done_appointment.gif";
+
+  static const String canceledAppointmentGif =
+      "assets/images/canceled_appointment.gif";
+
   static const String bgPattern = 'assets/images/bg_pattern.png';
+
   static const String doctorCard = 'assets/images/doc.png';
 
   static const String bg2 = 'assets/images/bg_2.png';

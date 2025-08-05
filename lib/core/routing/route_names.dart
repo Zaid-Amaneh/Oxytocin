@@ -17,4 +17,5 @@ class RouteNames {
   static const congratView = 'CongratsView';
 
   static const allDoctorsView = 'AllDoctorsView';
+  static const medicalAppointmentsView = 'medicalAppointmentsView';
 }

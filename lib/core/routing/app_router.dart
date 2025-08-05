@@ -33,11 +33,12 @@ import 'package:oxytocin/features/auth_complete/presentation/views/medical_info_
 import 'package:oxytocin/features/auth_complete/presentation/views/profile_info_view.dart';
 import 'package:oxytocin/features/auth_complete/presentation/views/set_location.dart';
 import 'package:oxytocin/features/auth_complete/presentation/views/upload_profile_photo.dart';
+import 'package:oxytocin/features/medical_appointments/presentation/views/medical_appointments_view.dart';
 
 class AppRouter {
   static GoRouter createRouter(NavigationService navigationService) {
     final router = GoRouter(
-      initialLocation: '/${RouteNames.allDoctorsView}',
+      initialLocation: '/${RouteNames.medicalAppointmentsView}',
       routes: [
         GoRoute(
           path: '/${RouteNames.splash}',
@@ -226,6 +227,12 @@ class AppRouter {
           path: '/${RouteNames.allDoctorsView}',
           name: RouteNames.allDoctorsView,
           builder: (context, state) => const AllDoctorsView(),
+        ),
+
+        GoRoute(
+          path: '/${RouteNames.medicalAppointmentsView}',
+          name: RouteNames.medicalAppointmentsView,
+          builder: (context, state) => const MedicalAppointmentsView(),
         ),
       ],
     );
