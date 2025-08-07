@@ -57,8 +57,9 @@ class _ProfileInfoState extends State<ProfileInfo> {
         selectedDate = picked;
         dateError = null;
       });
+      print('📅 تم اختيار تاريخ الميلاد: $picked');
       context.read<ProfileInfoCubit>().setBirthDate(picked);
-      print('تاريخ الميلاد: $selectedDate');
+      print('✅ تم حفظ تاريخ الميلاد في الكيوبت');
     }
   }
 
@@ -235,9 +236,11 @@ class _ProfileInfoState extends State<ProfileInfo> {
                                     ],
                                     onChanged: (value) {
                                       setState(() => gender = value);
+                                      print('👤 تم اختيار الجنس: $value');
                                       context
                                           .read<ProfileInfoCubit>()
                                           .setGender(value!);
+                                      print('✅ تم حفظ الجنس في الكيوبت');
                                     },
                                     validator: (value) => value == null
                                         ? 'يرجى اختيار الجنس'
@@ -273,41 +276,87 @@ class _ProfileInfoState extends State<ProfileInfo> {
                         ),
                         child: SizedBox(
                           width: double.infinity,
-                          child:
-                              BlocBuilder<ProfileInfoCubit, ProfileInfoState>(
-                                builder: (context, state) {
-                                  if (state.isSubmitting) {
-                                    return const Center(
-                                      child: CircularProgressIndicator(
-                                        color: AppColors.kPrimaryColor1,
+                          child: BlocBuilder<ProfileInfoCubit, ProfileInfoState>(
+                            builder: (context, state) {
+                              if (state.isSubmitting) {
+                                return const Center(
+                                  child: CircularProgressIndicator(
+                                    color: AppColors.kPrimaryColor1,
+                                  ),
+                                );
+                              }
+                              return ProfileActionButton(
+                                text: 'التالي',
+                                onPressed: () {
+                                  print('=== حفظ البيانات الشخصية ===');
+
+                                  final cubit = context
+                                      .read<ProfileInfoCubit>();
+
+                                  // حفظ الجنس
+                                  if (gender != null) {
+                                    print('حفظ الجنس: $gender');
+                                    cubit.setGender(gender!);
+                                  } else {
+                                    print('❌ الجنس فارغ');
+                                  }
+
+                                  // حفظ تاريخ الميلاد
+                                  if (selectedDate != null) {
+                                    print('حفظ تاريخ الميلاد: $selectedDate');
+                                    cubit.setBirthDate(selectedDate!);
+                                  } else {
+                                    print('❌ تاريخ الميلاد فارغ');
+                                  }
+
+                                  // حفظ المهنة
+                                  if (jobController.text.isNotEmpty) {
+                                    print('حفظ المهنة: ${jobController.text}');
+                                    cubit.setJob(jobController.text);
+                                  } else {
+                                    print('❌ المهنة فارغة');
+                                  }
+
+                                  // طباعة البيانات المحفوظة
+                                  print('--- البيانات المحفوظة في State ---');
+                                  print('الجنس: ${cubit.state.gender}');
+                                  print(
+                                    'تاريخ الميلاد: ${cubit.state.birthDate}',
+                                  );
+                                  print('المهنة: ${cubit.state.job}');
+
+                                  // التحقق من اكتمال البيانات
+                                  if (gender != null &&
+                                      selectedDate != null &&
+                                      jobController.text.isNotEmpty) {
+                                    print(
+                                      '✅ جميع البيانات مكتملة، الانتقال للصفحة التالية',
+                                    );
+                                    context.pushNamed(
+                                      RouteNames.medicalInfoView,
+                                      extra: context.read<ProfileInfoCubit>(),
+                                    );
+                                  } else {
+                                    print('❌ البيانات غير مكتملة');
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text(
+                                          'يرجى تعبئة جميع الحقول المطلوبة',
+                                        ),
+                                        backgroundColor: Colors.red,
                                       ),
                                     );
                                   }
-                                  return ProfileActionButton(
-                                    text: 'التالي',
-                                    onPressed: () {
-                                      final cubit = context
-                                          .read<ProfileInfoCubit>();
-                                      if (selectedDate != null &&
-                                          cubit.state.birthDate == null) {
-                                        cubit.setBirthDate(selectedDate!);
-                                      }
-                                      cubit.setJob(jobController.text);
-                                      context.pushNamed(
-                                        RouteNames.medicalInfoView,
-                                        extra: context.read<ProfileInfoCubit>(),
-                                      );
-                                    },
-                                    filled: true,
-                                    borderRadius:
-                                        AppConstants.borderRadiusCircular,
-                                    fontSize: getResponsiveFontSize(
-                                      context,
-                                      fontSize: 18,
-                                    ),
-                                  );
                                 },
-                              ),
+                                filled: true,
+                                borderRadius: AppConstants.borderRadiusCircular,
+                                fontSize: getResponsiveFontSize(
+                                  context,
+                                  fontSize: 18,
+                                ),
+                              );
+                            },
+                          ),
                         ),
                       ),
                       SizedBox(height: SizeConfig.screenHigh * 0.04),

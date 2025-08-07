@@ -1,8 +1,9 @@
 class CompleteRegisterRequestModel {
   final UserDataModel user;
   final String location;
-  final String longitude;
-  final String latitude;
+  final String address; // إضافة حقل address
+  final double longitude;
+  final double latitude;
   final String job;
   final String bloodType;
   final String medicalHistory;
@@ -16,8 +17,9 @@ class CompleteRegisterRequestModel {
   CompleteRegisterRequestModel({
     required this.user,
     this.location = '',
-    this.longitude = '',
-    this.latitude = '',
+    this.address = '', // إضافة address
+    this.longitude = 0.0,
+    this.latitude = 0.0,
     required this.job,
     this.bloodType = '',
     this.medicalHistory = '',
@@ -33,6 +35,7 @@ class CompleteRegisterRequestModel {
     return {
       'user': user.toJson(),
       'location': location,
+      'address': address, // إرسال address للباك إند
       'longitude': longitude,
       'latitude': latitude,
       'job': job,

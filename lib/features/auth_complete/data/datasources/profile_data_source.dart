@@ -46,9 +46,36 @@ class ProfileRemoteDataSource {
 
     final String url = '${UrlContainer.baseUrl}patients/complete-register/';
     try {
-      print('--- SENDING MEDICAL INFO TO BACKEND ---');
-      print('POST URL: ' + url);
-      print('POST BODY: ' + jsonEncode(requestModel.toJson()));
+      print('=== إرسال البيانات للباك إند ===');
+      print('URL: $url');
+      print('Token: ${authToken != null ? "موجود" : "غير موجود"}');
+
+      // فحص Token
+      if (authToken == null || authToken.isEmpty) {
+        print('❌ خطأ: Token غير موجود');
+        throw Exception('Token غير موجود، يرجى تسجيل الدخول مرة أخرى');
+      }
+
+      print('Token: ${authToken.substring(0, 20)}...'); // طباعة جزء من Token
+
+      print('--- البيانات المرسلة ---');
+      print('الجنس: ${requestModel.user.gender}');
+      print('تاريخ الميلاد: ${requestModel.user.birthDate}');
+      print('المهنة: ${requestModel.job}');
+      print('الموقع: ${requestModel.location}');
+      print('خط الطول: ${requestModel.longitude}');
+      print('خط العرض: ${requestModel.latitude}');
+      print('زمرة الدم: ${requestModel.bloodType}');
+      print('التاريخ الطبي: ${requestModel.medicalHistory}');
+      print('التاريخ الجراحي: ${requestModel.surgicalHistory}');
+      print('الحساسية: ${requestModel.allergies}');
+      print('الأدوية: ${requestModel.medicines}');
+      print('مدخن: ${requestModel.isSmoker}');
+      print('شارب: ${requestModel.isDrinker}');
+      print('متزوج: ${requestModel.isMarried}');
+      print('--- JSON الكامل ---');
+      print(jsonEncode(requestModel.toJson()));
+
       final response = await http.post(
         Uri.parse(url),
         headers: {
@@ -57,19 +84,50 @@ class ProfileRemoteDataSource {
         },
         body: jsonEncode(requestModel.toJson()),
       );
-      print('--- RESPONSE FROM BACKEND ---');
+
+      print('=== استجابة الباك إند ===');
       print('Status code: ${response.statusCode}');
       print('Response body: ${response.body}');
-      if (response.statusCode != 201) {
-        print(
-          '[HTTP] Error: Failed to submit profile info, status code: ${response.statusCode}',
-        );
-        print('Error body: ${response.body}');
-        return;
+
+      if (response.statusCode == 401) {
+        print('❌ خطأ: Token منتهي الصلاحية');
+        print('يجب تسجيل الدخول مرة أخرى');
+        throw Exception('Token منتهي الصلاحية، يرجى تسجيل الدخول مرة أخرى');
       }
-      print('[HTTP] Registration completed successfully.');
+
+      if (response.statusCode != 201) {
+        print('❌ خطأ: فشل في إرسال البيانات');
+        print('Error status: ${response.statusCode}');
+        print('Error body: ${response.body}');
+
+        // محاولة تحليل رسالة الخطأ من الباك إند
+        try {
+          final errorData = jsonDecode(response.body);
+          if (errorData is Map<String, dynamic>) {
+            String errorMessage = 'فشل في إرسال البيانات';
+
+            // البحث عن رسالة الخطأ في البيانات المرجعة
+            if (errorData.containsKey('detail')) {
+              errorMessage = errorData['detail'];
+            } else if (errorData.containsKey('message')) {
+              errorMessage = errorData['message'];
+            } else if (errorData.containsKey('error')) {
+              errorMessage = errorData['error'];
+            }
+
+            throw Exception(errorMessage);
+          }
+        } catch (parseError) {
+          // إذا فشل في تحليل JSON، استخدم رسالة افتراضية
+          throw Exception('فشل في إرسال البيانات: ${response.statusCode}');
+        }
+
+        throw Exception('فشل في إرسال البيانات: ${response.statusCode}');
+      }
+      print('✅ تم إرسال البيانات بنجاح!');
     } catch (e) {
-      print('[HTTP] Unexpected error: ${e.toString()}');
+      print('❌ خطأ غير متوقع: ${e.toString()}');
+      throw e;
     }
   }
 }
