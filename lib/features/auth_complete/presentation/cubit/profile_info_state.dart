@@ -18,6 +18,7 @@ class ProfileInfoState extends Equatable {
   final String? location;
   final String? longitude;
   final String? latitude;
+  final bool profileExists; // حالة جديدة للتعامل مع الملف الشخصي الموجود
 
   const ProfileInfoState({
     this.gender,
@@ -37,6 +38,7 @@ class ProfileInfoState extends Equatable {
     this.location,
     this.longitude,
     this.latitude,
+    this.profileExists = false, 
   });
 
   ProfileInfoState copyWith({
@@ -46,7 +48,7 @@ class ProfileInfoState extends Equatable {
     bool? isSubmitting,
     bool? isSuccess,
     String? errorMessage,
-    bool clearErrorMessage = false,
+    bool? clearErrorMessage,
     String? bloodType,
     String? medicalHistory,
     String? surgicalHistory,
@@ -58,6 +60,7 @@ class ProfileInfoState extends Equatable {
     String? location,
     String? longitude,
     String? latitude,
+    bool? profileExists, // إضافة الحالة الجديدة
   }) {
     return ProfileInfoState(
       gender: gender ?? this.gender,
@@ -65,9 +68,9 @@ class ProfileInfoState extends Equatable {
       job: job ?? this.job,
       isSubmitting: isSubmitting ?? this.isSubmitting,
       isSuccess: isSuccess ?? this.isSuccess,
-      errorMessage: clearErrorMessage
+      errorMessage: clearErrorMessage == true
           ? null
-          : errorMessage ?? this.errorMessage,
+          : (errorMessage ?? this.errorMessage),
       bloodType: bloodType ?? this.bloodType,
       medicalHistory: medicalHistory ?? this.medicalHistory,
       surgicalHistory: surgicalHistory ?? this.surgicalHistory,
@@ -79,6 +82,8 @@ class ProfileInfoState extends Equatable {
       location: location ?? this.location,
       longitude: longitude ?? this.longitude,
       latitude: latitude ?? this.latitude,
+      profileExists:
+          profileExists ?? this.profileExists, // إضافة الحالة الجديدة
     );
   }
 
@@ -101,5 +106,6 @@ class ProfileInfoState extends Equatable {
     location,
     longitude,
     latitude,
+    profileExists, // إضافة الحالة الجديدة
   ];
 }

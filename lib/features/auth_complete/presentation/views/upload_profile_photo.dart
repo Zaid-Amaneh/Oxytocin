@@ -49,11 +49,12 @@ class UploadProfilePhoto extends StatelessWidget {
                 child: Image.asset(
                   AppImages.uploadPhoto,
                   fit: BoxFit.contain,
-                  height: SizeConfig.screenWidth * 0.7,
-                  width: SizeConfig.screenWidth * 0.7,
+                  height: SizeConfig.screenWidth * 0.8,
+                  width: SizeConfig.screenWidth * 0.8,
                 ),
               ),
               SizedBox(height: SizeConfig.screenHigh * 0.015),
+
               Padding(
                 padding: EdgeInsets.only(left: SizeConfig.screenWidth * 0.25),
                 child: Text(

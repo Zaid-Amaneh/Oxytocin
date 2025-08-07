@@ -10,6 +10,50 @@ import 'package:oxytocin/features/auth_complete/data/models/complete_register_mo
 class ProfileRemoteDataSource {
   final ISecureStorageService _secureStorageService = SecureStorageService();
 
+  // دالة للتحقق من وجود الملف الشخصي
+  Future<bool> checkProfileExists() async {
+    final String? authToken = await _secureStorageService.getAccessToken();
+    final String url = '${UrlContainer.baseUrl}patients/profile/';
+
+    try {
+      print('=== التحقق من وجود الملف الشخصي ===');
+      print('URL: $url');
+
+      if (authToken == null || authToken.isEmpty) {
+        print('❌ خطأ: Token غير موجود');
+        return false;
+      }
+
+      final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'Authorization': 'Bearer $authToken',
+          'Content-Type': 'application/json',
+        },
+      );
+
+      print('Status code: ${response.statusCode}');
+
+      // إذا كان الكود 200، فهذا يعني أن الملف الشخصي موجود
+      if (response.statusCode == 200) {
+        print('✅ الملف الشخصي موجود');
+        return true;
+      }
+
+      // إذا كان الكود 404، فهذا يعني أن الملف الشخصي غير موجود
+      if (response.statusCode == 404) {
+        print('❌ الملف الشخصي غير موجود');
+        return false;
+      }
+
+      print('❌ خطأ غير متوقع: ${response.statusCode}');
+      return false;
+    } catch (e) {
+      print('❌ خطأ في التحقق من الملف الشخصي: $e');
+      return false;
+    }
+  }
+
   Future<void> uploadProfileImage(File imageFile) async {
     final String? authToken = await _secureStorageService.getAccessToken();
     final String url = '${UrlContainer.baseUrl}patients/upload-profile-image/';
@@ -43,6 +87,7 @@ class ProfileRemoteDataSource {
     CompleteRegisterRequestModel requestModel,
   ) async {
     final String? authToken = await _secureStorageService.getAccessToken();
+    final String? refreshToken = await _secureStorageService.getRefreshToken();
 
     final String url = '${UrlContainer.baseUrl}patients/complete-register/';
     try {
@@ -56,7 +101,7 @@ class ProfileRemoteDataSource {
         throw Exception('Token غير موجود، يرجى تسجيل الدخول مرة أخرى');
       }
 
-      print('Token: ${authToken.substring(0, 20)}...'); // طباعة جزء من Token
+      print('Token: ${authToken.substring(0, 20)}...');
 
       print('--- البيانات المرسلة ---');
       print('الجنس: ${requestModel.user.gender}');
@@ -80,6 +125,7 @@ class ProfileRemoteDataSource {
         Uri.parse(url),
         headers: {
           'Authorization': 'Bearer $authToken',
+          'Refresh': 'Bearer $refreshToken',
           'Content-Type': 'application/json',
         },
         body: jsonEncode(requestModel.toJson()),
@@ -95,12 +141,33 @@ class ProfileRemoteDataSource {
         throw Exception('Token منتهي الصلاحية، يرجى تسجيل الدخول مرة أخرى');
       }
 
-      if (response.statusCode != 201) {
-        print('❌ خطأ: فشل في إرسال البيانات');
+      // التعامل مع حالة وجود ملف شخصي مسبقاً
+      if (response.statusCode == 400) {
+        try {
+          final errorData = jsonDecode(response.body);
+          if (errorData is Map<String, dynamic>) {
+            // التحقق من رسالة الخطأ
+            if (errorData.containsKey('non_field_errors')) {
+              final errors = errorData['non_field_errors'] as List;
+              if (errors.isNotEmpty &&
+                  errors.first.toString().contains('ملف شخصي سابقا')) {
+                print(
+                  '✅ الملف الشخصي موجود مسبقاً - سيتم الانتقال للصفحة الرئيسية',
+                );
+                // لا نعتبر هذا خطأ، بل نجاح في التحقق من وجود الملف
+                return;
+              }
+            }
+          }
+        } catch (parseError) {
+          print('❌ خطأ في تحليل رسالة الخطأ: $parseError');
+        }
+      }
+
+      if (response.statusCode != 201 && response.statusCode != 200) {
+        print(' فشل في إرسال البيانات');
         print('Error status: ${response.statusCode}');
         print('Error body: ${response.body}');
-
-        // محاولة تحليل رسالة الخطأ من الباك إند
         try {
           final errorData = jsonDecode(response.body);
           if (errorData is Map<String, dynamic>) {
@@ -113,6 +180,11 @@ class ProfileRemoteDataSource {
               errorMessage = errorData['message'];
             } else if (errorData.containsKey('error')) {
               errorMessage = errorData['error'];
+            } else if (errorData.containsKey('non_field_errors')) {
+              final errors = errorData['non_field_errors'] as List;
+              if (errors.isNotEmpty) {
+                errorMessage = errors.first.toString();
+              }
             }
 
             throw Exception(errorMessage);

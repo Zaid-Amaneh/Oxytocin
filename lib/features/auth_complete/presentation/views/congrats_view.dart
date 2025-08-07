@@ -1,13 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/Utils/size_config.dart';
-import 'package:oxytocin/l10n/app_localizations.dart';
+import 'package:oxytocin/core/routing/route_names.dart';
 
-class CongratsView extends StatelessWidget {
+class CongratsView extends StatefulWidget {
   const CongratsView({super.key});
+
+  @override
+  State<CongratsView> createState() => _CongratsViewState();
+}
+
+class _CongratsViewState extends State<CongratsView> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 3), () {
+      if (mounted) {
+        context.goNamed(RouteNames.home);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
