@@ -21,6 +21,16 @@ class HomeCubit extends Cubit<HomeState> {
           nextAvailableTime: 'اليوم الساعة 4:30 مساءً',
         ),
         DoctorModel(
+          name: 'د. سامر الخطيب',
+          specialty: 'أخصائي الأمراض الجلدية',
+          clinic: 'مستشفى الشامي',
+          distance: 1.2,
+          imageUrl: 'assets/images/doctor1.png',
+          rating: 4.6,
+          reviewsCount: 366,
+          nextAvailableTime: 'اليوم الساعة 4:30 مساءً',
+        ),
+        DoctorModel(
           name: 'د. زياد المطيري',
           specialty: 'جلدية وتجميل',
           clinic: 'عيادات الجمال الصحي، طريق الأمير تركي الأول',

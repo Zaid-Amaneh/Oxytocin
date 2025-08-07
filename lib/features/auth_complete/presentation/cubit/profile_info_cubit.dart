@@ -65,11 +65,6 @@ class ProfileInfoCubit extends Cubit<ProfileInfoState> {
   void setIsMarried(bool value) => emit(state.copyWith(isMarried: value));
 
   Future<void> submitProfileInfo() async {
-    print('--- بيانات المستخدم ---');
-    print('الجنس: \\${state.gender}');
-    print('تاريخ الميلاد: \\${state.birthDate}');
-    print('الوظيفة: \\${state.job}');
-
     if (state.gender == null ||
         state.birthDate == null ||
         state.job == null ||
@@ -109,26 +104,6 @@ class ProfileInfoCubit extends Cubit<ProfileInfoState> {
   }
 
   Future<void> submitMedicalInfo() async {
-    print('--- Submitting Medical Info 000000000000000---');
-
-    print('gender: ${state.gender}');
-
-    print('birthdate: ${state.birthDate}');
-
-    print('job: ${state.job}');
-
-    print('medicalHistory: ${state.medicalHistory}');
-    print('surgicalHistory: ${state.surgicalHistory}');
-    print('allergies: ${state.allergies}');
-    print('medicines: ${state.medicines}');
-    print('bloodType: ${state.bloodType}');
-    print('isSmoker: ${state.isSmoker}');
-    print('isDrinker: ${state.isDrinker}');
-    print('isMarried: ${state.isMarried}');
-    print('location: ${state.location}');
-    print('longitude: ${state.longitude}');
-    print('latitude: ${state.latitude}');
-
     if (state.bloodType == null || state.bloodType!.isEmpty) {
       emit(state.copyWith(errorMessage: "يرجى اختيار زمرة الدم"));
       return;

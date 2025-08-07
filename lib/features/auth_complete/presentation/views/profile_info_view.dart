@@ -12,7 +12,6 @@ import 'package:oxytocin/features/auth_complete/presentation/widget/profile_acti
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oxytocin/features/auth_complete/presentation/cubit/profile_info_cubit.dart';
 import 'package:oxytocin/features/auth_complete/presentation/cubit/profile_info_state.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 class ProfileInfoPage extends StatelessWidget {
   const ProfileInfoPage({super.key});

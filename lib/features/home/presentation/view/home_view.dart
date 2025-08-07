@@ -73,7 +73,6 @@ class _HomeViewState extends State<HomeView> {
             onTap: _onNavItemTapped,
           ),
           body: ListView(
-            padding: EdgeInsets.symmetric(horizontal: isTablet ? 24.0 : 16.0),
             children: [
               SizedBox(height: screenHeight * 0.05),
               TopBar(),
@@ -95,7 +94,7 @@ class _HomeViewState extends State<HomeView> {
                         children: [
                           Expanded(
                             child: Text(
-                              "ما هو التخصص الذي تبحث عنه",
+                              "     ما هو التخصص الذي تبحث عنه          ",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: isTablet ? 16.0 : 14.0,
@@ -161,28 +160,31 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ),
               SizedBox(height: screenHeight * 0.03),
-              SectionHeader(title: 'أفضل الأطباء حسب تقييم المرضى'),
+              const SectionHeader(title: '     أفضل الأطباء حسب تقييم المرضى'),
               SizedBox(height: screenHeight * 0.015),
               BlocBuilder<HomeCubit, HomeState>(
                 builder: (context, state) {
                   if (state is HomeLoading) {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   } else if (state is HomeLoaded) {
-                    return SizedBox(
-                      height: isTablet ? 280.0 : 220.0,
-                      child: ListView.separated(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: state.doctors.length,
-                        itemBuilder: (context, index) {
-                          return DoctorCard(
-                            doctor: state.doctors[index],
-                            onTap: () => _onDoctorCardTap(index),
-                            onFavoriteTap: () => _onDoctorFavoriteTap(index),
-                            onBookTap: () => _onDoctorBookTap(index),
-                          );
-                        },
-                        separatorBuilder: (_, __) =>
-                            SizedBox(width: isTablet ? 16.0 : 12.0),
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 8),
+                      child: SizedBox(
+                        height: isTablet ? 280.0 : 220.0,
+                        child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: state.doctors.length,
+                          itemBuilder: (context, index) {
+                            return DoctorCard(
+                              doctor: state.doctors[index],
+                              onTap: () => _onDoctorCardTap(index),
+                              onFavoriteTap: () => _onDoctorFavoriteTap(index),
+                              onBookTap: () => _onDoctorBookTap(index),
+                            );
+                          },
+                          separatorBuilder: (_, __) =>
+                              SizedBox(width: isTablet ? 16.0 : 12.0),
+                        ),
                       ),
                     );
                   } else {
@@ -195,13 +197,14 @@ class _HomeViewState extends State<HomeView> {
                   }
                 },
               ),
+
               SizedBox(height: screenHeight * 0.03),
-              SectionHeader(title: 'أطباء بالقرب منك'),
+              const SectionHeader(title: '     أطباء بالقرب منك'),
               SizedBox(height: screenHeight * 0.015),
               BlocBuilder<HomeCubit, HomeState>(
                 builder: (context, state) {
                   if (state is HomeLoading) {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   } else if (state is HomeLoaded) {
                     return SizedBox(
                       height: isTablet ? 180.0 : 140.0,

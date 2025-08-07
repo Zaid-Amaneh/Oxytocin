@@ -38,7 +38,7 @@ import 'package:oxytocin/features/medical_appointments/presentation/views/medica
 class AppRouter {
   static GoRouter createRouter(NavigationService navigationService) {
     final router = GoRouter(
-      initialLocation: '/${RouteNames.medicalAppointmentsView}',
+      initialLocation: '/${RouteNames.home}',
       routes: [
         GoRoute(
           path: '/${RouteNames.splash}',
@@ -132,19 +132,6 @@ class AppRouter {
           },
         ),
 
-        // GoRoute(
-        //   path: '/${RouteNames.setLocation}',
-        //   name: RouteNames.setLocation,
-        //   // builder: (context, state) {
-        //   //   final profileInfoCubit =
-        //   //       (state.extra as Map)['profileInfoCubit'] as ProfileInfoCubit;
-        //   //   return BlocProvider.value(
-        //   //     value: profileInfoCubit,
-        //   //     child: SetLocation(),
-        //   //   );
-        //   // },
-
-        // ),
         GoRoute(
           path: '/${RouteNames.upload}',
           name: RouteNames.upload,
@@ -173,14 +160,10 @@ class AppRouter {
         GoRoute(
           path: '/${RouteNames.medicalInfoView}',
           name: RouteNames.medicalInfoView,
-          builder: (context, state) {
-            final profileInfoCubit =
-                (state.extra as Map)['profileInfoCubit'] as ProfileInfoCubit;
-            return BlocProvider.value(
-              value: profileInfoCubit,
-              child: MedicalInfoBody(profileInfoCubit),
-            );
-          },
+          builder: (context, state) => BlocProvider(
+            create: (_) => ProfileInfoCubit(),
+            child: MedicalInfoBody(ProfileInfoCubit()),
+          ),
         ),
         GoRoute(
           path: '/${RouteNames.resetPassword}',

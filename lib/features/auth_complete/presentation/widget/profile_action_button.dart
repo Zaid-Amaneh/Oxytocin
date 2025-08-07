@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
@@ -11,25 +10,28 @@ class ProfileActionButton extends StatelessWidget {
   final double fontSize;
   final Color? color;
   final Color? textColor;
+  final double? height;
 
   const ProfileActionButton({
     super.key,
     required this.text,
     required this.onPressed,
     this.filled = true,
-    this.borderRadius = 25,
+    this.borderRadius = 35,
     this.fontSize = 18,
     this.color,
     this.textColor,
+    this.height,
   });
 
   @override
   Widget build(BuildContext context) {
     final bgColor = color ?? AppColors.kPrimaryColor1;
     final fgColor = textColor ?? (filled ? Colors.white : bgColor);
+    final buttonHeight = height ?? 56;
 
     return SizedBox(
-      height: 56,
+      height: buttonHeight,
       child: filled
           ? ElevatedButton(
               onPressed: onPressed,
@@ -41,8 +43,9 @@ class ProfileActionButton extends StatelessWidget {
                 elevation: 4,
                 // ignore: deprecated_member_use
                 shadowColor: Colors.black.withOpacity(0.25),
-                textStyle: AppStyles.almaraiBold(context)
-                    .copyWith(fontSize: fontSize, fontWeight: FontWeight.w900),
+                textStyle: AppStyles.almaraiBold(
+                  context,
+                ).copyWith(fontSize: fontSize, fontWeight: FontWeight.w900),
               ),
               child: Text(
                 text,
@@ -60,8 +63,9 @@ class ProfileActionButton extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(borderRadius),
                 ),
-                textStyle: AppStyles.almaraiBold(context)
-                    .copyWith(fontSize: fontSize, fontWeight: FontWeight.w900),
+                textStyle: AppStyles.almaraiBold(
+                  context,
+                ).copyWith(fontSize: fontSize, fontWeight: FontWeight.w900),
               ),
               child: Text(
                 text,

@@ -354,7 +354,7 @@ class _MedicalInfoBodyState extends State<MedicalInfoBody> {
                               context.read<ProfileInfoCubit>().setIsSmoker(
                                 isSmoker,
                               );
-                              // انتقل مباشرة لصفحة الموقع بدون إرسال أي طلب API
+
                               context.pushNamed(
                                 RouteNames.setLocation,
                                 extra: context.read<ProfileInfoCubit>(),

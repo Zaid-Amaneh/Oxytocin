@@ -7,7 +7,14 @@ class SectionHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
-      child: Text(title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+      child: Text(
+        title,
+        style: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'AlmaraiBold',
+        ),
+      ),
     );
   }
 }
