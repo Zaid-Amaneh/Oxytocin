@@ -25,9 +25,9 @@ class CustomSwitch extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: AnimatedToggleSwitch.rolling(
           allowUnlistedValues: true,
-          current: Text(context.tr.SignIn),
-          values: [Text(context.tr.SignUp), Text(context.tr.SignIn)],
-          iconList: [Text(context.tr.SignUp), Text(context.tr.SignIn)],
+          current: Text(context.tr.signIn),
+          values: [Text(context.tr.signUp), Text(context.tr.signIn)],
+          iconList: [Text(context.tr.signUp), Text(context.tr.signIn)],
           style: const ToggleStyle(backgroundColor: Colors.red),
           styleBuilder: (value) => ToggleStyle(
             indicatorColor: value.maxLines == 1 ? Colors.yellow : Colors.green,
