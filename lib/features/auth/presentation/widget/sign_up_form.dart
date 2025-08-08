@@ -19,7 +19,8 @@ import 'package:oxytocin/core/widgets/sliver_spacer.dart';
 import 'package:oxytocin/extensions/failure_localization.dart';
 import 'package:oxytocin/features/auth/data/models/sign_up_request.dart';
 import 'package:oxytocin/features/auth/presentation/viewmodels/blocs/signUp/sign_up_bloc.dart';
-import 'package:oxytocin/generated/l10n.dart';
+import 'package:oxytocin/l10n/app_localizations.dart';
+
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
 
@@ -49,8 +50,8 @@ class _SignUpFormState extends State<SignUpForm> {
         } else if (state is SignUpSuccess) {
           context.pop();
           Helper.customToastification(
-            title: context.tr.operation_successful_title,
-            description: context.tr.account_created_success,
+            title: context.tr.operationSuccessfulTitle,
+            description: context.tr.accountCreatedSuccess,
             context: context,
             type: ToastificationType.success,
             seconds: 5,
@@ -64,11 +65,11 @@ class _SignUpFormState extends State<SignUpForm> {
           context.pop();
           Logger logger = Logger();
           logger.f(state.error);
-          final message = S.of(context).getTranslatedError(state.error);
+          final message = AppLocalizations.of(context)!.errorUnknown;
           Helper.customToastification(
             context: context,
             type: ToastificationType.error,
-            title: context.tr.sign_up_failure_title,
+            title: context.tr.signUpFailureTitle,
             description: message,
             seconds: 5,
           );
@@ -106,13 +107,13 @@ class _SignUpFormState extends State<SignUpForm> {
                 SliverToBoxAdapter(
                   child: ChangeNotifierProvider<NameViewModel>(
                     create: (_) => firstNameVM,
-                    child: NameField(fieldName: context.tr.Username),
+                    child: NameField(fieldName: context.tr.username),
                   ),
                 ),
                 SliverToBoxAdapter(
                   child: ChangeNotifierProvider<NameViewModel>(
                     create: (_) => lastNameVM,
-                    child: NameField(fieldName: context.tr.Lastname),
+                    child: NameField(fieldName: context.tr.lastname),
                   ),
                 ),
                 SliverToBoxAdapter(
@@ -155,10 +156,17 @@ class _SignUpFormState extends State<SignUpForm> {
                         context.read<SignUpBloc>().add(
                           SignUpSubmitted(request),
                         );
+                        print('==========================');
+                        print(request);
+                        print(firstNameVM.nameController.text);
+                        print(lastNameVM.nameController.text);
+                        print(phoneNumberVM.phoneController.text);
+                        print(passwordVM.passwordController.text);
+                        print(passwordVM.passwordController.text);
                       }
                     },
                     borderColor: AppColors.kPrimaryColor1,
-                    data: context.tr.SignUp,
+                    data: context.tr.signUp,
                     style: AppStyles.almaraiBold(context),
                     visible: true,
                     padding: const EdgeInsetsGeometry.all(18),

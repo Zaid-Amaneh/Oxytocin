@@ -16,7 +16,7 @@ import 'package:oxytocin/extensions/failure_localization.dart';
 import 'package:oxytocin/features/auth/data/models/change_password_request.dart';
 import 'package:oxytocin/features/auth/presentation/viewmodels/blocs/changePassword/change_password_bloc.dart';
 import 'package:oxytocin/features/auth/presentation/widget/forgot_password_view_header.dart';
-import 'package:oxytocin/generated/l10n.dart';
+import 'package:oxytocin/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
 
@@ -38,7 +38,7 @@ class ResetPasswordViewBody extends StatelessWidget {
         } else if (state is ChangePasswordSuccess) {
           context.pop();
           Helper.customToastification(
-            title: context.tr.operation_successful_title,
+            title: context.tr.operationSuccessfulTitle,
             description: context.tr.changePasswordSuccess,
             context: context,
             type: ToastificationType.success,
@@ -48,7 +48,7 @@ class ResetPasswordViewBody extends StatelessWidget {
           nav.goToNamed(RouteNames.signIn);
         } else if (state is ChangePasswordFailure) {
           context.pop();
-          final message = S.of(context).getTranslatedError(state.error);
+          final message = AppLocalizations.of(context)!.errorUnknown;
           Helper.customToastification(
             context: context,
             type: ToastificationType.error,
@@ -65,7 +65,7 @@ class ResetPasswordViewBody extends StatelessWidget {
             slivers: [
               SliverToBoxAdapter(
                 child: ForgotPasswordViewHeader(
-                  icon: Assets.imagesResetPasswordIcon,
+                  icon: AppImages.imagesResetPasswordIcon,
                   title: context.tr.newPasswordSlogan,
                 ),
               ),

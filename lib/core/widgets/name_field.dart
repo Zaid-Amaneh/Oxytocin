@@ -46,7 +46,7 @@ class _NameFieldState extends State<NameField> {
           onChanged: (value) => vm.setValidator(context),
           validator: (value) {
             if (value!.trim().isEmpty) {
-              return context.tr.Thisfieldisrequired;
+              return context.tr.thisfieldisrequired;
             } else {
               vm.setValidator(context);
             }
@@ -56,7 +56,7 @@ class _NameFieldState extends State<NameField> {
             counterText: '',
             suffixIcon: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: SvgPicture.asset(Assets.imagesUserNameIcon),
+              child: SvgPicture.asset(AppImages.imagesUserNameIcon),
             ),
             errorText: vm.isAName,
             hintText: widget.fieldName,

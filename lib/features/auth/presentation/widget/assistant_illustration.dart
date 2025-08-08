@@ -12,8 +12,8 @@ class AssistantIllustration extends StatelessWidget {
     final width = size.width;
     final height = size.height;
     List<Widget> imageList = <Widget>[
-      SvgPicture.asset(Assets.imagesAssistantLeftHand),
-      SvgPicture.asset(Assets.imagesAssistantRightHand),
+      SvgPicture.asset(AppImages.imagesAssistantLeftHand),
+      SvgPicture.asset(AppImages.imagesAssistantRightHand),
     ];
     return Positioned(
       height: height * 0.47,

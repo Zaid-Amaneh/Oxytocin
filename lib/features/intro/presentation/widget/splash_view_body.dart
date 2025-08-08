@@ -74,7 +74,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       top: size.height * _logoTopOffset,
       left: size.width * 0.2,
       right: size.width * 0.2,
-      child: SvgPicture.asset(Assets.imagesLogoEmptySVG),
+      child: SvgPicture.asset(AppImages.imagesLogoEmptySVG),
     );
   }
 
@@ -86,7 +86,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       child: AnimatedTextKit(
         animatedTexts: [
           ScaleAnimatedText(
-            context.tr.Oxytocin,
+            context.tr.oxytocin,
             textStyle: AppStyles.gESSUniqueBold(context),
             scalingFactor: 1.5,
             duration: const Duration(milliseconds: 2200),

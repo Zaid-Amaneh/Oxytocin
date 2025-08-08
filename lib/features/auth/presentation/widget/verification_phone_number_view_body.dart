@@ -5,6 +5,8 @@ import 'package:logger/web.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
+import 'package:oxytocin/core/routing/navigation_service.dart';
+import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/viewmodels/resend_otp_view_model.dart';
 import 'package:oxytocin/core/widgets/custom_button.dart';
@@ -16,7 +18,8 @@ import 'package:oxytocin/features/auth/data/models/resend_otp_request.dart';
 import 'package:oxytocin/features/auth/data/models/verify_otp_request.dart';
 import 'package:oxytocin/features/auth/presentation/viewmodels/blocs/verification/otp_bloc.dart';
 import 'package:oxytocin/features/auth/presentation/widget/change_wrong_number.dart';
-import 'package:oxytocin/generated/l10n.dart';
+import 'package:oxytocin/l10n/app_localizations.dart';
+
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
 
@@ -39,28 +42,32 @@ class VerificationPhoneNumberViewBody extends StatelessWidget {
           context.pop();
           Logger logger = Logger();
           logger.f(state.error);
-          final message = S.of(context).getTranslatedError(state.error);
+          final message = AppLocalizations.of(context)!.invalidOtpCodeTitle;
           Helper.customToastification(
             context: context,
             type: ToastificationType.error,
             title: message,
-            description: context.tr.invalid_otp_code,
+            description: context.tr.invalidOtpCodeTitle,
             seconds: 5,
           );
         } else if (state is OtpSuccess) {
           context.pop();
           Helper.customToastification(
-            title: context.tr.otp_verified_successfully_title,
-            description: context.tr.otp_verified_successfully,
+            title: context.tr.otpVerifiedSuccessfullyTitle,
+            description: context.tr.otpVerifiedSuccessfully,
             context: context,
             type: ToastificationType.success,
             seconds: 5,
           );
+          Logger logger = Logger();
+          logger.f("shhdskjsdhsdjkhsdjsd");
+          NavigationService navigationService = NavigationService();
+          navigationService.pushToNamed(RouteNames.profileInfo);
         } else if (state is OtpResendSuccess) {
           context.pop();
           Helper.customToastification(
-            title: context.tr.resend_otp_success_title,
-            description: context.tr.resend_otp_success,
+            title: context.tr.resendOtpSuccessTitle,
+            description: context.tr.resendOtpSuccess,
             context: context,
             type: ToastificationType.success,
             seconds: 5,
@@ -68,10 +75,10 @@ class VerificationPhoneNumberViewBody extends StatelessWidget {
         } else {
           context.pop();
           Helper.customToastification(
-            title: context.tr.resend_otp_failed,
-            description: context.tr.resend_otp_failed_title,
+            title: context.tr.resendOtpFailedTitle,
+            description: context.tr.resendOtpFailed,
             context: context,
-            type: ToastificationType.success,
+            type: ToastificationType.error,
             seconds: 5,
           );
         }
@@ -86,7 +93,7 @@ class VerificationPhoneNumberViewBody extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Image.asset(
-                    Assets.imagesVerification,
+                    AppImages.imagesVerification,
                     filterQuality: FilterQuality.high,
                   ),
                 ),

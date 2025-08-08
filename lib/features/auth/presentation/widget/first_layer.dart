@@ -13,8 +13,8 @@ class FirstLayer extends StatelessWidget {
       right: 0,
       child: Column(
         children: [
-          SvgPicture.asset(Assets.imagesLayer1, fit: BoxFit.fill),
-          SvgPicture.asset(Assets.imagesLayer1, fit: BoxFit.fill),
+          SvgPicture.asset(AppImages.imagesLayer1, fit: BoxFit.fill),
+          SvgPicture.asset(AppImages.imagesLayer1, fit: BoxFit.fill),
         ],
       ),
     );

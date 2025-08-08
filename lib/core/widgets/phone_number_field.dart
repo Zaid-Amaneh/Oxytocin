@@ -16,6 +16,7 @@ class PhoneNumberField extends StatelessWidget {
     final vm = context.watch<PhoneViewModel>();
     return Padding(
       padding: AppConstants.textFieldPadding,
+
       child: DecoratedBox(
         decoration: ShapeDecoration(
           color: Colors.white,
@@ -42,7 +43,7 @@ class PhoneNumberField extends StatelessWidget {
           onChanged: (value) => vm.validatePhone(value, context),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return context.tr.Thisfieldisrequired;
+              return context.tr.thisfieldisrequired;
             }
             vm.validatePhone(value, context);
             return vm.errorText;
@@ -51,10 +52,10 @@ class PhoneNumberField extends StatelessWidget {
             counterText: '',
             suffixIcon: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: SvgPicture.asset(Assets.imagesPhoneIcon),
+              child: SvgPicture.asset(AppImages.imagesPhoneIcon),
             ),
             errorText: vm.errorText,
-            hintText: context.tr.PhoneNumber,
+            hintText: context.tr.phoneNumber,
             hintStyle: AppStyles.almaraiBold(context).copyWith(
               color: AppColors.textPrimary,
               fontSize: 18,
