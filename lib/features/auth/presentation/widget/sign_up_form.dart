@@ -16,7 +16,6 @@ import 'package:oxytocin/core/widgets/name_field.dart';
 import 'package:oxytocin/core/widgets/password_field.dart';
 import 'package:oxytocin/core/widgets/phone_number_field.dart';
 import 'package:oxytocin/core/widgets/sliver_spacer.dart';
-import 'package:oxytocin/extensions/failure_localization.dart';
 import 'package:oxytocin/features/auth/data/models/sign_up_request.dart';
 import 'package:oxytocin/features/auth/presentation/viewmodels/blocs/signUp/sign_up_bloc.dart';
 import 'package:oxytocin/l10n/app_localizations.dart';
@@ -32,17 +31,34 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  late final NameViewModel firstNameVM;
+  late final NameViewModel lastNameVM;
+  late final PhoneViewModel phoneNumberVM;
+  late final PasswordViewModel passwordVM;
+  @override
+  void initState() {
+    super.initState();
+    firstNameVM = NameViewModel();
+    lastNameVM = NameViewModel();
+    phoneNumberVM = PhoneViewModel();
+    passwordVM = PasswordViewModel();
+  }
+
+  @override
+  void dispose() {
+    firstNameVM.dispose();
+    lastNameVM.dispose();
+    phoneNumberVM.dispose();
+    passwordVM.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     final width = size.width;
     final height = size.height;
-    var formKey = GlobalKey<FormState>();
-    final firstNameVM = NameViewModel();
-    final lastNameVM = NameViewModel();
-    final phoneNumberVM = PhoneViewModel();
-    final passwordVM = PasswordViewModel();
-
     return BlocConsumer<SignUpBloc, SignUpState>(
       listener: (context, state) {
         if (state is SignUpLoading) {
@@ -156,13 +172,6 @@ class _SignUpFormState extends State<SignUpForm> {
                         context.read<SignUpBloc>().add(
                           SignUpSubmitted(request),
                         );
-                        print('==========================');
-                        print(request);
-                        print(firstNameVM.nameController.text);
-                        print(lastNameVM.nameController.text);
-                        print(phoneNumberVM.phoneController.text);
-                        print(passwordVM.passwordController.text);
-                        print(passwordVM.passwordController.text);
                       }
                     },
                     borderColor: AppColors.kPrimaryColor1,

@@ -387,4 +387,58 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get explore_and_choose_doctor =>
       'Explore doctors and choose the one that suits you best.';
+
+  @override
+  String get findRightDoctor => 'Find the right doctor for you';
+
+  @override
+  String get searchHistory => 'Search history';
+
+  @override
+  String get clearSearchHistory => 'Clear search history';
+
+  @override
+  String get undefined => 'Undefined';
+
+  @override
+  String get experience => 'Experience';
+
+  @override
+  String get rate => 'Rating';
+
+  @override
+  String get distance => 'Distance';
+
+  @override
+  String get descending => 'Descending';
+
+  @override
+  String get ascending => 'Ascending';
+
+  @override
+  String get registeredLocation => 'Registered Location';
+
+  @override
+  String get sortBy => 'Sort By';
+
+  @override
+  String get sortType => 'Sort Type';
+
+  @override
+  String get apply => 'Apply';
+
+  @override
+  String get locate => 'Locate';
+
+  @override
+  String get distanceKm => 'Distance (km)';
+
+  @override
+  String get km => 'km';
+
+  @override
+  String get filterSpecialty => 'Filter by Specialty';
+
+  @override
+  String get filterGender => 'Filter by Gender';
 }

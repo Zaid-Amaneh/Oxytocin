@@ -379,4 +379,58 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get explore_and_choose_doctor => 'استكشف الأطباء واختر الأنسب لك';
+
+  @override
+  String get findRightDoctor => 'ابحث عن الطبيب المناسب لك';
+
+  @override
+  String get searchHistory => 'سجل البحث';
+
+  @override
+  String get clearSearchHistory => 'مسح سجل البحث';
+
+  @override
+  String get undefined => 'غير محدد';
+
+  @override
+  String get experience => 'الخبرة';
+
+  @override
+  String get rate => 'التقييم';
+
+  @override
+  String get distance => 'البعد';
+
+  @override
+  String get descending => 'تنازلي';
+
+  @override
+  String get ascending => 'تصاعدي';
+
+  @override
+  String get registeredLocation => 'موقعي المسجل';
+
+  @override
+  String get sortBy => 'الترتيب حسب';
+
+  @override
+  String get sortType => 'نوع الترتيب';
+
+  @override
+  String get apply => 'تطبيق';
+
+  @override
+  String get locate => 'تحديد الموقع';
+
+  @override
+  String get distanceKm => 'البعد (كم)';
+
+  @override
+  String get km => 'كم';
+
+  @override
+  String get filterSpecialty => 'فلترة حسب التخصص';
+
+  @override
+  String get filterGender => 'فلترة حسب الجنس';
 }
