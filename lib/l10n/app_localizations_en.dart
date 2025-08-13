@@ -437,8 +437,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String get km => 'km';
 
   @override
+  String get m => 'm';
+
+  @override
   String get filterSpecialty => 'Filter by Specialty';
 
   @override
   String get filterGender => 'Filter by Gender';
+
+  @override
+  String get location_services_disabled =>
+      'Location services are disabled. Please enable them to continue.';
+
+  @override
+  String get location_permission_denied => 'Location permission was denied.';
+
+  @override
+  String get location_permission_denied_forever =>
+      'Location permission was permanently denied. Please enable it from the app settings.';
+
+  @override
+  String get permissions_error_title => 'Permissions Error';
+
+  @override
+  String get authentication_failed => 'Authentication failed';
+
+  @override
+  String get reviews => 'reviews';
 }

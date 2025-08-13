@@ -1,62 +1,18 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:logger/web.dart';
+import 'package:logger/logger.dart';
 import 'package:oxytocin/core/errors/failure.dart';
 import 'package:oxytocin/features/search_doctors_page/data/models/doctor_model.dart';
 import 'package:oxytocin/features/search_doctors_page/data/models/doctor_search_request.dart';
 import 'package:oxytocin/features/search_doctors_page/data/services/doctor_search_service.dart';
-
 part 'doctor_search_state.dart';
-
-// class DoctorSearchCubit extends Cubit<DoctorSearchState> {
-//   final DoctorSearchService _doctorSearchService;
-
-//   DoctorSearchCubit(this._doctorSearchService) : super(DoctorSearchInitial());
-
-//   int _currentPage = 1;
-
-//   Future<void> searchDoctors({DoctorSearchRequest? request}) async {
-//     Logger().f(request!.query ?? "dsfkjuhfdkhfdk");
-
-//     final currentState = state;
-//     List<DoctorModel> oldDoctors = [];
-
-//     if (currentState is DoctorSearchSuccess) {
-//       oldDoctors = currentState.doctors;
-//     }
-
-//     _currentPage = 1;
-//     emit(DoctorSearchLoading());
-
-//     final finalRequest = (request ?? DoctorSearchRequest()).copyWith(
-//       page: _currentPage,
-//     );
-
-//     try {
-//       final response = await _doctorSearchService.searchDoctors(finalRequest);
-//       final newDoctors = response.results;
-//       final hasReachedMax = response.next == null;
-
-//       emit(
-//         DoctorSearchSuccess(
-//           doctors: (request != null) ? newDoctors : (oldDoctors + newDoctors),
-//           hasReachedMax: hasReachedMax,
-//         ),
-//       );
-//     } catch (e) {
-//       if (e is Failure) {
-//         emit(DoctorSearchFailure(e));
-//       } else {
-//         emit(const DoctorSearchFailure(UnknownFailure()));
-//       }
-//     }
-//   }
-// }
 
 class DoctorSearchCubit extends Cubit<DoctorSearchState> {
   final DoctorSearchService _doctorSearchService;
 
-  DoctorSearchRequest _currentRequest = DoctorSearchRequest();
+  DoctorSearchRequest _currentRequest = DoctorSearchRequest(
+    useCurrentLocation: false,
+  );
 
   DoctorSearchRequest get currentRequest => _currentRequest;
 
@@ -74,15 +30,14 @@ class DoctorSearchCubit extends Cubit<DoctorSearchState> {
     } else if (currentState is DoctorSearchSuccess) {
       oldDoctors = currentState.doctors;
     }
-
-    final finalRequest = _currentRequest.copyWith(page: _currentPage);
-    Logger().f("Executing search with params: ${finalRequest.toQueryParams()}");
-
+    dynamic finalRequest = _currentRequest.copyWith(page: _currentPage);
+    Logger().f(_currentRequest.toQueryParams());
     try {
+      Logger().d(_currentRequest.useCurrentLocation);
+      Logger().d(finalRequest.useCurrentLocation);
       final response = await _doctorSearchService.searchDoctors(finalRequest);
       final newDoctors = response.results;
       final hasReachedMax = response.next == null;
-
       emit(
         DoctorSearchSuccess(
           doctors: oldDoctors + newDoctors,
@@ -93,6 +48,7 @@ class DoctorSearchCubit extends Cubit<DoctorSearchState> {
         _currentPage++;
       }
     } catch (e) {
+      Logger().e(e.toString());
       if (e is Failure) {
         emit(DoctorSearchFailure(e));
       } else {
@@ -102,24 +58,28 @@ class DoctorSearchCubit extends Cubit<DoctorSearchState> {
   }
 
   void updateAndSearch({
+    bool? useCurrentLocation,
     String? query,
     int? specialties,
     String? gender,
     double? distance,
     double? latitude,
     double? longitude,
+    String? unit,
     String? ordering,
   }) {
     _currentRequest = _currentRequest.copyWith(
+      useCurrentLocation: useCurrentLocation,
       query: query,
       specialties: specialties,
       gender: gender,
       distance: distance,
       latitude: latitude,
       longitude: longitude,
+      unit: unit,
       ordering: ordering,
+      pageSize: 6,
     );
-
     searchDoctors(isNewSearch: true);
   }
 }

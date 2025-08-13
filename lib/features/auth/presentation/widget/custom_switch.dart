@@ -23,14 +23,58 @@ class CustomSwitch extends StatelessWidget {
       top: height * 0.34,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: AnimatedToggleSwitch.rolling(
-          allowUnlistedValues: true,
-          current: Text(context.tr.signIn),
-          values: [Text(context.tr.signUp), Text(context.tr.signIn)],
-          iconList: [Text(context.tr.signUp), Text(context.tr.signIn)],
-          style: const ToggleStyle(backgroundColor: Colors.red),
-          styleBuilder: (value) => ToggleStyle(
-            indicatorColor: value.maxLines == 1 ? Colors.yellow : Colors.green,
+        child: Container(
+          width: width * 0.9,
+          height: height * 0.09,
+          decoration: const ShapeDecoration(
+            color: Colors.white,
+            shape: RoundedRectangleBorder(
+              side: BorderSide(width: 1, color: Color(0xFFC9C9C9)),
+              borderRadius: BorderRadius.all(Radius.circular(50)),
+            ),
+            shadows: [
+              BoxShadow(
+                color: Color(0x3F000000),
+                blurRadius: 4.10,
+                offset: Offset(0, 4),
+                spreadRadius: 3,
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              CustomButton(
+                buttonPadding: const EdgeInsets.all(0),
+                borderRadius: 29,
+                onTap: inup ? signUpTap : null,
+                padding: const EdgeInsets.fromLTRB(24, 16, 24, 13),
+                data: context.tr.signUp,
+                borderColor: AppColors.kPrimaryColor1,
+                visible: !inup,
+                style: inup
+                    ? AppStyles.tajawalBold(context).copyWith(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w900,
+                      )
+                    : AppStyles.tajawalBold(context),
+              ),
+              CustomButton(
+                buttonPadding: const EdgeInsets.all(0),
+                borderRadius: 29,
+                onTap: inup ? null : signInTap,
+                padding: const EdgeInsets.fromLTRB(24, 16, 24, 13),
+                data: context.tr.signIn,
+                visible: inup,
+                borderColor: AppColors.kPrimaryColor1,
+                style: inup
+                    ? AppStyles.tajawalBold(context)
+                    : AppStyles.tajawalBold(context).copyWith(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w900,
+                      ),
+              ),
+            ],
           ),
         ),
       ),

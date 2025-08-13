@@ -40,11 +40,11 @@ class _SearchDoctorsViewBodyHeaderState
         SizedBox(height: height * 0.07),
         Row(
           children: [
-            // FilterIcon(
-            //   onTap: () {
-            //     showFilterSheet(context, context.read<DoctorSearchCubit>());
-            //   },
-            // ),
+            FilterIcon(
+              onTap: () {
+                showFilterSheet(context, context.read<DoctorSearchCubit>());
+              },
+            ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(left: 8, right: 8),

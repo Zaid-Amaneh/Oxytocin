@@ -37,12 +37,12 @@ class _SignInFormState extends State<SignInForm> {
     passwordVM = PasswordViewModel();
   }
 
-  @override
-  void dispose() {
-    phoneNumberVM.dispose();
-    passwordVM.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   phoneNumberVM.dispose();
+  //   passwordVM.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {

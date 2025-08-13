@@ -57,9 +57,9 @@ class DoctorCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      Helper.isArabic()
-                          ? doctorModel.mainSpecialty.nameAr
-                          : doctorModel.mainSpecialty.nameEn,
+                      Helper.isArabic(context)
+                          ? doctorModel.mainSpecialty.specialty.nameAr
+                          : doctorModel.mainSpecialty.specialty.nameEn,
                       style: AppStyles.almaraiBold(
                         context,
                       ).copyWith(fontSize: 10, color: AppColors.textPrimary),
@@ -73,7 +73,7 @@ class DoctorCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              "جامعة دمشق",
+              doctorModel.mainSpecialty.university,
               style: AppStyles.almaraiBold(
                 context,
               ).copyWith(fontSize: 12, color: AppColors.textSecondary),
@@ -107,7 +107,7 @@ class DoctorCard extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      '215 تقييماً',
+                      '${doctorModel.rates} ${context.tr.reviews}',
                       style: AppStyles.almaraiBold(
                         context,
                       ).copyWith(fontSize: 12, color: AppColors.textSecondary),

@@ -15,6 +15,11 @@ class SearchViewModel extends ChangeNotifier {
     onSearchChanged();
   }
 
+  void historySearch(String query) {
+    searchController.text = query;
+    onSearchChanged();
+  }
+
   @override
   void dispose() {
     searchController.dispose();

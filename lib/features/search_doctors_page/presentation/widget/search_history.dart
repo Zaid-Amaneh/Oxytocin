@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/Utils/services/local_storage_service.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
+import 'package:oxytocin/core/viewmodels/search_view_model.dart';
+import 'package:oxytocin/features/search_doctors_page/presentation/viewmodels/doctorSearch/doctor_search_cubit.dart';
 
 class SearchHistory extends StatefulWidget {
   const SearchHistory({super.key});
-
   @override
   State<SearchHistory> createState() => _SearchHistoryState();
 }
@@ -71,7 +73,12 @@ class _SearchHistoryState extends State<SearchHistory> {
           children: _history
               .map(
                 (query) => GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    context.read<SearchViewModel>().historySearch(query);
+                    context.read<DoctorSearchCubit>().updateAndSearch(
+                      query: query,
+                    );
+                  },
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 12,

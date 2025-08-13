@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:oxytocin/core/viewmodels/search_view_model.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/widget/search_doctors_view_body_header.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/widget/all_doctors_list.dart';
@@ -13,6 +14,7 @@ class AllDoctorsViewBody extends StatefulWidget {
 }
 
 class _AllDoctorsViewBodyState extends State<AllDoctorsViewBody> {
+  final _scrollController = ScrollController();
   late final SearchViewModel searchViewModel;
   @override
   void initState() {
@@ -23,6 +25,7 @@ class _AllDoctorsViewBodyState extends State<AllDoctorsViewBody> {
   @override
   void dispose() {
     searchViewModel.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -31,6 +34,7 @@ class _AllDoctorsViewBodyState extends State<AllDoctorsViewBody> {
     return ChangeNotifierProvider.value(
       value: searchViewModel,
       child: CustomScrollView(
+        controller: _scrollController,
         slivers: [
           SliverToBoxAdapter(
             child: SearchDoctorsViewBodyHeader(
@@ -42,7 +46,7 @@ class _AllDoctorsViewBodyState extends State<AllDoctorsViewBody> {
             builder: (context, isFieldEmpty, child) {
               return isFieldEmpty
                   ? const SliverToBoxAdapter(child: SearchHistory())
-                  : const AllDoctorsList();
+                  : AllDoctorsList(scrollController: _scrollController);
             },
           ),
         ],

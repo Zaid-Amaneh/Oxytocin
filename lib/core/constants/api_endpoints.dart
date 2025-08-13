@@ -12,4 +12,5 @@ class ApiEndpoints {
   static const String changePassword =
       '$baseURL/api/users/forget-password/add-new-password/';
   static const String doctorSearch = "$baseURL/api/doctors/search/";
+  static const String refreshToken = "$baseURL/api/users/refresh-token/";
 }

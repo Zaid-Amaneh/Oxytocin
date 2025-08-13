@@ -426,11 +426,34 @@ class AppLocalizationsAr extends AppLocalizations {
   String get distanceKm => 'البعد (كم)';
 
   @override
-  String get km => 'كم';
+  String get km => 'كيلومتر';
+
+  @override
+  String get m => 'متر';
 
   @override
   String get filterSpecialty => 'فلترة حسب التخصص';
 
   @override
   String get filterGender => 'فلترة حسب الجنس';
+
+  @override
+  String get location_services_disabled =>
+      'خدمات الموقع معطلة. الرجاء تفعيلها للمتابعة.';
+
+  @override
+  String get location_permission_denied => 'تم رفض إذن الوصول للموقع.';
+
+  @override
+  String get location_permission_denied_forever =>
+      'تم رفض إذن الموقع بشكل دائم. يرجى تفعيله من إعدادات التطبيق.';
+
+  @override
+  String get permissions_error_title => 'خطأ في الأذونات';
+
+  @override
+  String get authentication_failed => 'فشلت عملية المصادقة';
+
+  @override
+  String get reviews => 'تقييم';
 }

@@ -45,14 +45,14 @@ class _SignUpFormState extends State<SignUpForm> {
     passwordVM = PasswordViewModel();
   }
 
-  @override
-  void dispose() {
-    firstNameVM.dispose();
-    lastNameVM.dispose();
-    phoneNumberVM.dispose();
-    passwordVM.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   firstNameVM.dispose();
+  //   lastNameVM.dispose();
+  //   phoneNumberVM.dispose();
+  //   passwordVM.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {

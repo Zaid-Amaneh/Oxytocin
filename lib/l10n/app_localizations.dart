@@ -866,6 +866,12 @@ abstract class AppLocalizations {
   /// **'km'**
   String get km;
 
+  /// No description provided for @m.
+  ///
+  /// In en, this message translates to:
+  /// **'m'**
+  String get m;
+
   /// No description provided for @filterSpecialty.
   ///
   /// In en, this message translates to:
@@ -877,6 +883,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Filter by Gender'**
   String get filterGender;
+
+  /// No description provided for @location_services_disabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Location services are disabled. Please enable them to continue.'**
+  String get location_services_disabled;
+
+  /// No description provided for @location_permission_denied.
+  ///
+  /// In en, this message translates to:
+  /// **'Location permission was denied.'**
+  String get location_permission_denied;
+
+  /// No description provided for @location_permission_denied_forever.
+  ///
+  /// In en, this message translates to:
+  /// **'Location permission was permanently denied. Please enable it from the app settings.'**
+  String get location_permission_denied_forever;
+
+  /// No description provided for @permissions_error_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Permissions Error'**
+  String get permissions_error_title;
+
+  /// No description provided for @authentication_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Authentication failed'**
+  String get authentication_failed;
+
+  /// No description provided for @reviews.
+  ///
+  /// In en, this message translates to:
+  /// **'reviews'**
+  String get reviews;
 }
 
 class _AppLocalizationsDelegate

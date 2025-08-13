@@ -126,7 +126,16 @@
     "apply":"تطبيق",
     "locate":"تحديد الموقع",
     "distanceKm":"البعد (كم)",
-    "km":"كم",
+    "km":"كيلومتر",
+    "m":"متر",
     "filterSpecialty":"فلترة حسب التخصص",
-    "filterGender":"فلترة حسب الجنس"
+    "filterGender":"فلترة حسب الجنس",
+    "location_services_disabled": "خدمات الموقع معطلة. الرجاء تفعيلها للمتابعة.",
+    "location_permission_denied": "تم رفض إذن الوصول للموقع.",
+    "location_permission_denied_forever": "تم رفض إذن الموقع بشكل دائم. يرجى تفعيله من إعدادات التطبيق.",
+    "permissions_error_title": "خطأ في الأذونات",
+    "authentication_failed": "فشلت عملية المصادقة",
+    "reviews": "تقييم"
+
+
 }

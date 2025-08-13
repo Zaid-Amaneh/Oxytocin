@@ -59,3 +59,7 @@ class PhoneNotFoundFailure extends Failure {
 class InvalidTokenFailure extends Failure {
   const InvalidTokenFailure() : super("token_not_valid");
 }
+
+class AuthenticationFailure extends Failure {
+  const AuthenticationFailure() : super("authentication_failed");
+}
