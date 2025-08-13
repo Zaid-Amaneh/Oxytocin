@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 import 'package:oxytocin/core/viewmodels/search_view_model.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/widget/search_doctors_view_body_header.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/widget/all_doctors_list.dart';

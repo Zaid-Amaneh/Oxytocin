@@ -456,4 +456,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get reviews => 'تقييم';
+
+  @override
+  String get server_error => 'حدث خطأ غير متوقع. يرجى المحاولة لاحقًا';
+
+  @override
+  String get no_doctor_found =>
+      'لم نجد أي طبيب يطابق بحثك. جرّب كلمات أخرى أو تحقق من الإملاء';
 }

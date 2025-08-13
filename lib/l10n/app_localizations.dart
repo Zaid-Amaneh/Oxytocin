@@ -919,6 +919,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'reviews'**
   String get reviews;
+
+  /// No description provided for @server_error.
+  ///
+  /// In en, this message translates to:
+  /// **'An unexpected error occurred. Please try again later'**
+  String get server_error;
+
+  /// No description provided for @no_doctor_found.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldnt find any doctor matching your search. Try different keywords or check your spelling'**
+  String get no_doctor_found;
 }
 
 class _AppLocalizationsDelegate

@@ -67,32 +67,36 @@ class _SearchHistoryState extends State<SearchHistory> {
             ),
           ],
         ),
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: _history
-              .map(
-                (query) => GestureDetector(
-                  onTap: () {
-                    context.read<SearchViewModel>().historySearch(query);
-                    context.read<DoctorSearchCubit>().updateAndSearch(
-                      query: query,
-                    );
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 8,
+        Padding(
+          padding: const EdgeInsets.only(left: 8, right: 8),
+          child: Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            alignment: WrapAlignment.start,
+            children: _history
+                .map(
+                  (query) => GestureDetector(
+                    onTap: () {
+                      context.read<SearchViewModel>().historySearch(query);
+                      context.read<DoctorSearchCubit>().updateAndSearch(
+                        query: query,
+                      );
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 8,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Text(query, style: const TextStyle(fontSize: 14)),
                     ),
-                    decoration: BoxDecoration(
-                      color: Colors.grey[300],
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Text(query, style: const TextStyle(fontSize: 14)),
                   ),
-                ),
-              )
-              .toList(),
+                )
+                .toList(),
+          ),
         ),
       ],
     );

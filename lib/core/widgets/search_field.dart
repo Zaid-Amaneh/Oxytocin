@@ -8,8 +8,15 @@ import 'package:oxytocin/core/viewmodels/search_view_model.dart';
 import 'package:provider/provider.dart';
 
 class SearchField extends StatefulWidget {
-  const SearchField({super.key, this.onSubmitted});
+  const SearchField({
+    super.key,
+    this.onSubmitted,
+    this.onDebouncedSearch,
+    this.onTyping,
+  });
   final void Function(String)? onSubmitted;
+  final void Function(String)? onDebouncedSearch;
+  final void Function(String)? onTyping;
   @override
   State<SearchField> createState() => _SearchFieldState();
 }
@@ -37,7 +44,12 @@ class _SearchFieldState extends State<SearchField> {
       child: TextField(
         controller: vm.searchController,
         keyboardType: TextInputType.text,
-        onChanged: (value) => vm.onSearchChanged(),
+        onChanged: (value) {
+          vm.onSearchChanged(
+            onDebounce: widget.onDebouncedSearch ?? (_) {},
+            onTyping: widget.onTyping,
+          );
+        },
         onSubmitted: widget.onSubmitted,
         decoration: InputDecoration(
           border: InputBorder.none,

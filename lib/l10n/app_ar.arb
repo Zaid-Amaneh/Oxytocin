@@ -135,7 +135,7 @@
     "location_permission_denied_forever": "تم رفض إذن الموقع بشكل دائم. يرجى تفعيله من إعدادات التطبيق.",
     "permissions_error_title": "خطأ في الأذونات",
     "authentication_failed": "فشلت عملية المصادقة",
-    "reviews": "تقييم"
-
-
+    "reviews": "تقييم",
+    "server_error": "حدث خطأ غير متوقع. يرجى المحاولة لاحقًا",
+    "no_doctor_found": "لم نجد أي طبيب يطابق بحثك. جرّب كلمات أخرى أو تحقق من الإملاء"
 }

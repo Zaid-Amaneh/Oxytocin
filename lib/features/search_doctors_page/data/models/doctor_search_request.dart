@@ -27,7 +27,7 @@ class DoctorSearchRequest {
 
   Map<String, String> toQueryParams() {
     final params = <String, String>{};
-    if (query != null) params['query'] = query!;
+    if (query != null) params['query'] = query!.trim();
     if (specialties != null && specialties != 0) {
       params['specialties'] = specialties.toString();
     }

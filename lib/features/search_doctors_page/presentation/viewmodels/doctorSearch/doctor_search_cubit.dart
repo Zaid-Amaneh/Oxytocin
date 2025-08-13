@@ -19,6 +19,10 @@ class DoctorSearchCubit extends Cubit<DoctorSearchState> {
   DoctorSearchCubit(this._doctorSearchService) : super(DoctorSearchInitial());
 
   int _currentPage = 1;
+  Future<void> typing() async {
+    emit(DoctorSearchLoading());
+    Logger().i("GGGD");
+  }
 
   Future<void> searchDoctors({bool isNewSearch = false}) async {
     final currentState = state;
@@ -33,8 +37,6 @@ class DoctorSearchCubit extends Cubit<DoctorSearchState> {
     dynamic finalRequest = _currentRequest.copyWith(page: _currentPage);
     Logger().f(_currentRequest.toQueryParams());
     try {
-      Logger().d(_currentRequest.useCurrentLocation);
-      Logger().d(finalRequest.useCurrentLocation);
       final response = await _doctorSearchService.searchDoctors(finalRequest);
       final newDoctors = response.results;
       final hasReachedMax = response.next == null;
@@ -55,6 +57,10 @@ class DoctorSearchCubit extends Cubit<DoctorSearchState> {
         emit(const DoctorSearchFailure(UnknownFailure()));
       }
     }
+  }
+
+  void onTyping() {
+    typing();
   }
 
   void updateAndSearch({

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/Utils/services/local_storage_service.dart';
@@ -51,11 +52,22 @@ class _SearchDoctorsViewBodyHeaderState
                 child: ChangeNotifierProvider<SearchViewModel>(
                   create: (_) => widget.serachController,
                   child: SearchField(
-                    onSubmitted: (p0) async {
+                    onDebouncedSearch: (p0) {
+                      widget.serachController.cancelDebounce();
+                      context.read<DoctorSearchCubit>().updateAndSearch(
+                        query: p0,
+                      );
+                    },
+                    onSubmitted: (p0) {
+                      widget.serachController.cancelDebounce();
                       LocalStorageService().saveUserQuery(p0);
                       context.read<DoctorSearchCubit>().updateAndSearch(
                         query: p0,
                       );
+                    },
+                    onTyping: (p0) {
+                      Logger().f(p0);
+                      context.read<DoctorSearchCubit>().onTyping();
                     },
                   ),
                 ),

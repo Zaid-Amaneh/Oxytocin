@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:logger/logger.dart';
+import 'package:oxytocin/core/Utils/app_images.dart';
+import 'package:oxytocin/core/Utils/app_styles.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
+import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/viewmodels/doctorSearch/doctor_search_cubit.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/widget/doctor_card.dart';
 import 'package:shimmer/shimmer.dart';
@@ -46,8 +49,22 @@ class _AllDoctorsListState extends State<AllDoctorsList> {
       builder: (context, state) {
         if (state is DoctorSearchSuccess) {
           if (state.doctors.isEmpty) {
-            return const SliverToBoxAdapter(
-              child: Center(child: Text("لا يوجد أطباء بهذه المواصفات")),
+            return SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(36, 36, 36, 8),
+                    child: Image.asset(AppImages.searchNotFound),
+                  ),
+                  Text(
+                    context.tr.no_doctor_found,
+                    textAlign: TextAlign.center,
+                    style: AppStyles.almaraiBold(
+                      context,
+                    ).copyWith(color: AppColors.kPrimaryColor1, fontSize: 14),
+                  ),
+                ],
+              ),
             );
           }
           return SliverMainAxisGroup(
@@ -100,90 +117,27 @@ class _AllDoctorsListState extends State<AllDoctorsList> {
             ),
           );
         } else if (state is DoctorSearchFailure) {
-          Logger().e(state.error.toString());
           return SliverToBoxAdapter(
-            child: Center(child: Text("حدث خطأ ما: ${state.error}")),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(36, 36, 36, 8),
+                  child: Image.asset(AppImages.unexpectedError),
+                ),
+                Text(
+                  context.tr.server_error,
+                  textAlign: TextAlign.center,
+                  style: AppStyles.almaraiBold(
+                    context,
+                  ).copyWith(color: AppColors.kPrimaryColor1, fontSize: 14),
+                ),
+              ],
+            ),
           );
         } else {
-          // الحالة الأولية (Initial)
           return const SliverToBoxAdapter(child: SizedBox.shrink());
         }
       },
     );
   }
 }
-//import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:logger/logger.dart';
-// import 'package:oxytocin/features/search_doctors_page/presentation/viewmodels/doctorSearch/doctor_search_cubit.dart';
-// import 'package:oxytocin/features/search_doctors_page/presentation/widget/doctor_card.dart';
-// import 'package:shimmer/shimmer.dart';
-
-// class AllDoctorsList extends StatelessWidget {
-//   const AllDoctorsList({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final size = MediaQuery.sizeOf(context);
-//     final width = size.width;
-//     final height = size.height;
-//     return BlocBuilder<DoctorSearchCubit, DoctorSearchState>(
-//       builder: (context, state) {
-//         if (state is DoctorSearchSuccess) {
-//           return SliverGrid.builder(
-//             itemCount: state.doctors.length,
-//             itemBuilder: (context, index) {
-//               return Padding(
-//                 padding: const EdgeInsets.all(6),
-//                 child: DoctorCard(doctorModel: state.doctors[index]),
-//               );
-//             },
-//             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-//               crossAxisCount: 2,
-//             ),
-//           );
-//         } else if (state is DoctorSearchLoading) {
-//           return SliverToBoxAdapter(
-//             child: Shimmer.fromColors(
-//               baseColor: Colors.grey[300]!,
-//               highlightColor: Colors.grey[100]!,
-//               child: SizedBox(
-//                 width: width,
-//                 height: height,
-//                 child: GridView.builder(
-//                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-//                     crossAxisCount: 2,
-//                   ),
-//                   itemBuilder: (context, index) {
-//                     return Padding(
-//                       padding: const EdgeInsets.all(6.0),
-//                       child: Card(
-//                         elevation: 8,
-//                         shape: RoundedRectangleBorder(
-//                           side: const BorderSide(
-//                             width: 1,
-//                             color: Color(0xFFD9D9D9),
-//                           ),
-//                           borderRadius: BorderRadius.circular(25),
-//                         ),
-//                       ),
-//                     );
-//                   },
-//                 ),
-//               ),
-//             ),
-//           );
-//         } else if (state is DoctorSearchFailure) {
-//           Logger().e(state.error.translationKey);
-//           return SliverToBoxAdapter(
-//             child: Container(width: 50, height: 50, color: Colors.red),
-//           );
-//         } else {
-//           return SliverToBoxAdapter(
-//             child: Container(width: 50, height: 50, color: Colors.limeAccent),
-//           );
-//         }
-//       },
-//     );
-//   }
-// }

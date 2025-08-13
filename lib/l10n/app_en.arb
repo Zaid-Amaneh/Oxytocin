@@ -135,6 +135,7 @@
   "location_permission_denied_forever": "Location permission was permanently denied. Please enable it from the app settings.",
   "permissions_error_title": "Permissions Error",
   "authentication_failed": "Authentication failed",
-  "reviews": "reviews"
-
+  "reviews": "reviews",
+  "server_error": "An unexpected error occurred. Please try again later",
+  "no_doctor_found": "We couldnt find any doctor matching your search. Try different keywords or check your spelling"
 }
