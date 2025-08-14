@@ -1,12 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
+import 'package:oxytocin/features/search_doctors_page/data/models/doctor_model.dart';
+import 'package:shimmer/shimmer.dart';
 
 class DoctorCard extends StatelessWidget {
-  const DoctorCard({super.key});
-
+  const DoctorCard({super.key, required this.doctorModel});
+  final DoctorModel doctorModel;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -22,37 +26,54 @@ class DoctorCard extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                  radius: 30,
-                  backgroundImage: const NetworkImage(
-                    "https://img.freepik.com/premium-photo/female-doctor-smiling-white-background_1038537-86.jpg",
+                child: CachedNetworkImage(
+                  imageUrl: doctorModel.user.image,
+                  imageBuilder: (context, imageProvider) =>
+                      CircleAvatar(radius: 30, backgroundImage: imageProvider),
+                  placeholder: (context, url) => Shimmer.fromColors(
+                    baseColor: Colors.grey[300]!,
+                    highlightColor: Colors.grey[100]!,
+                    child: CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Colors.grey[300],
+                    ),
                   ),
-                  backgroundColor: Colors.grey[200],
+                  errorWidget: (context, url, error) => const CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Colors.red,
+                    child: Icon(Icons.error, color: Colors.white),
+                  ),
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "د. ريم مصطفى",
-                    style: AppStyles.almaraiBold(
-                      context,
-                    ).copyWith(fontSize: 14, color: AppColors.textPrimary),
-                  ),
-                  Text(
-                    "طب الأطفال",
-                    style: AppStyles.almaraiBold(
-                      context,
-                    ).copyWith(fontSize: 12, color: AppColors.textPrimary),
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "${doctorModel.user.firstName} ${doctorModel.user.lastName}",
+                      style: AppStyles.almaraiBold(
+                        context,
+                      ).copyWith(fontSize: 12, color: AppColors.textPrimary),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      Helper.isArabic(context)
+                          ? doctorModel.mainSpecialty.specialty.nameAr
+                          : doctorModel.mainSpecialty.specialty.nameEn,
+                      style: AppStyles.almaraiBold(
+                        context,
+                      ).copyWith(fontSize: 10, color: AppColors.textPrimary),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              "جامعة دمشق",
+              doctorModel.mainSpecialty.university,
               style: AppStyles.almaraiBold(
                 context,
               ).copyWith(fontSize: 12, color: AppColors.textSecondary),
@@ -69,7 +90,7 @@ class DoctorCard extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          '4.5/5',
+                          '${doctorModel.rate}/5',
                           style: AppStyles.almaraiBold(context).copyWith(
                             fontSize: 12,
                             color: AppColors.textPrimary,
@@ -86,7 +107,7 @@ class DoctorCard extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      '215 تقييماً',
+                      '${doctorModel.rates} ${context.tr.reviews}',
                       style: AppStyles.almaraiBold(
                         context,
                       ).copyWith(fontSize: 12, color: AppColors.textSecondary),

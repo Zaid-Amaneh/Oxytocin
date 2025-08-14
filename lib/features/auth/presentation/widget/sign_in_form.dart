@@ -27,15 +27,28 @@ class SignInForm extends StatefulWidget {
 }
 
 class _SignInFormState extends State<SignInForm> {
-  final phoneNumberVM = PhoneViewModel();
-  final passwordVM = PasswordViewModel();
+  final formKey = GlobalKey<FormState>();
+  late final PhoneViewModel phoneNumberVM;
+  late final PasswordViewModel passwordVM;
+  @override
+  void initState() {
+    super.initState();
+    phoneNumberVM = PhoneViewModel();
+    passwordVM = PasswordViewModel();
+  }
+
+  // @override
+  // void dispose() {
+  //   phoneNumberVM.dispose();
+  //   passwordVM.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     final width = size.width;
     final height = size.height;
-    var formKey = GlobalKey<FormState>();
     return BlocConsumer<SignInBloc, SignInState>(
       listener: (context, state) {
         if (state is SignInLoading) {
@@ -57,7 +70,7 @@ class _SignInFormState extends State<SignInForm> {
           Helper.customToastification(
             context: context,
             type: ToastificationType.error,
-            title: context.tr.errorInvalidCredentialsTitle,  
+            title: context.tr.errorInvalidCredentialsTitle,
             description: message,
             seconds: 5,
           );
@@ -101,7 +114,6 @@ class _SignInFormState extends State<SignInForm> {
                     create: (_) => passwordVM,
                     child: const PasswordField(),
                   ),
-
                 ),
                 const SliverToBoxAdapter(child: ForgotPassword()),
                 SliverSpacer(height: height * 0.06),

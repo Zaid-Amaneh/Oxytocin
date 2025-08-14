@@ -57,6 +57,9 @@ dependencies:
   google_maps_flutter: ^2.12.3
   image_picker: ^1.1.2
   animated_toggle_switch: ^0.8.5
+  cached_network_image: ^3.4.1
+  shimmer: ^3.0.0
+  location: ^8.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

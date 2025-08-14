@@ -769,6 +769,168 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Explore doctors and choose the one that suits you best.'**
   String get explore_and_choose_doctor;
+
+  /// No description provided for @findRightDoctor.
+  ///
+  /// In en, this message translates to:
+  /// **'Find the right doctor for you'**
+  String get findRightDoctor;
+
+  /// No description provided for @searchHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Search history'**
+  String get searchHistory;
+
+  /// No description provided for @clearSearchHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear search history'**
+  String get clearSearchHistory;
+
+  /// No description provided for @undefined.
+  ///
+  /// In en, this message translates to:
+  /// **'Undefined'**
+  String get undefined;
+
+  /// No description provided for @experience.
+  ///
+  /// In en, this message translates to:
+  /// **'Experience'**
+  String get experience;
+
+  /// No description provided for @rate.
+  ///
+  /// In en, this message translates to:
+  /// **'Rating'**
+  String get rate;
+
+  /// No description provided for @distance.
+  ///
+  /// In en, this message translates to:
+  /// **'Distance'**
+  String get distance;
+
+  /// No description provided for @descending.
+  ///
+  /// In en, this message translates to:
+  /// **'Descending'**
+  String get descending;
+
+  /// No description provided for @ascending.
+  ///
+  /// In en, this message translates to:
+  /// **'Ascending'**
+  String get ascending;
+
+  /// No description provided for @registeredLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Registered Location'**
+  String get registeredLocation;
+
+  /// No description provided for @sortBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort By'**
+  String get sortBy;
+
+  /// No description provided for @sortType.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort Type'**
+  String get sortType;
+
+  /// No description provided for @apply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get apply;
+
+  /// No description provided for @locate.
+  ///
+  /// In en, this message translates to:
+  /// **'Locate'**
+  String get locate;
+
+  /// No description provided for @distanceKm.
+  ///
+  /// In en, this message translates to:
+  /// **'Distance (km)'**
+  String get distanceKm;
+
+  /// No description provided for @km.
+  ///
+  /// In en, this message translates to:
+  /// **'km'**
+  String get km;
+
+  /// No description provided for @m.
+  ///
+  /// In en, this message translates to:
+  /// **'m'**
+  String get m;
+
+  /// No description provided for @filterSpecialty.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter by Specialty'**
+  String get filterSpecialty;
+
+  /// No description provided for @filterGender.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter by Gender'**
+  String get filterGender;
+
+  /// No description provided for @location_services_disabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Location services are disabled. Please enable them to continue.'**
+  String get location_services_disabled;
+
+  /// No description provided for @location_permission_denied.
+  ///
+  /// In en, this message translates to:
+  /// **'Location permission was denied.'**
+  String get location_permission_denied;
+
+  /// No description provided for @location_permission_denied_forever.
+  ///
+  /// In en, this message translates to:
+  /// **'Location permission was permanently denied. Please enable it from the app settings.'**
+  String get location_permission_denied_forever;
+
+  /// No description provided for @permissions_error_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Permissions Error'**
+  String get permissions_error_title;
+
+  /// No description provided for @authentication_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Authentication failed'**
+  String get authentication_failed;
+
+  /// No description provided for @reviews.
+  ///
+  /// In en, this message translates to:
+  /// **'reviews'**
+  String get reviews;
+
+  /// No description provided for @server_error.
+  ///
+  /// In en, this message translates to:
+  /// **'An unexpected error occurred. Please try again later'**
+  String get server_error;
+
+  /// No description provided for @no_doctor_found.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldnt find any doctor matching your search. Try different keywords or check your spelling'**
+  String get no_doctor_found;
 }
 
 class _AppLocalizationsDelegate

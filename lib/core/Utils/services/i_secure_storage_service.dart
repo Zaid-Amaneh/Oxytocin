@@ -8,4 +8,5 @@ abstract class ISecureStorageService {
   Future<String?> getRefreshToken();
   Future<bool> hasRefreshToken();
   Future<void> deleteRefreshToken();
+  Future<void> deleteAll();
 }

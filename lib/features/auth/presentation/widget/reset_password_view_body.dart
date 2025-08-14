@@ -12,7 +12,6 @@ import 'package:oxytocin/core/widgets/confirm_password_field.dart';
 import 'package:oxytocin/core/widgets/custom_button.dart';
 import 'package:oxytocin/core/widgets/password_field.dart';
 import 'package:oxytocin/core/widgets/sliver_spacer.dart';
-import 'package:oxytocin/extensions/failure_localization.dart';
 import 'package:oxytocin/features/auth/data/models/change_password_request.dart';
 import 'package:oxytocin/features/auth/presentation/viewmodels/blocs/changePassword/change_password_bloc.dart';
 import 'package:oxytocin/features/auth/presentation/widget/forgot_password_view_header.dart';

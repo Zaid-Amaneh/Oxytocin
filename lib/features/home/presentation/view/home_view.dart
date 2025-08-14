@@ -75,7 +75,7 @@ class _HomeViewState extends State<HomeView> {
           body: ListView(
             children: [
               SizedBox(height: screenHeight * 0.05),
-              TopBar(),
+              const TopBar(),
               SizedBox(height: screenHeight * 0.02),
               BlocProvider(
                 create: (_) {
@@ -151,7 +151,9 @@ class _HomeViewState extends State<HomeView> {
                               },
                             );
                           } else {
-                            return Center(child: CircularProgressIndicator());
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
                           }
                         },
                       ),

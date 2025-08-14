@@ -32,6 +32,8 @@ extension FailureLocalization on AppLocalizations {
         return errorPhoneNotFound;
       case 'token_not_valid':
         return 'tokenNotValid';
+      case 'authentication_failed':
+        return 'authentication_failed';
       default:
         return errorUnknown;
     }
