@@ -463,4 +463,10 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get no_doctor_found =>
       'لم نجد أي طبيب يطابق بحثك. جرّب كلمات أخرى أو تحقق من الإملاء';
+
+  @override
+  String get profile => 'ملف';
+
+  @override
+  String get d => 'د';
 }

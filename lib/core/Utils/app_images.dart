@@ -103,6 +103,8 @@ class AppImages {
 
   static const String emptyImage = "assets/images/empty.svg";
 
+  static const String backIcon = "assets/images/backIcon.svg";
+
   static const String unexpectedError = "assets/images/unexpected_error.png";
 
   static const String searchNotFound = "assets/images/search_not_found.png";

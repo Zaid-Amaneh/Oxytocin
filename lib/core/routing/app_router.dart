@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
+import 'package:oxytocin/features/doctor_profile.dart/presentation/views/doctor_profile_view.dart';
 import 'package:oxytocin/features/search_doctors_page/data/services/doctor_search_service.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/viewmodels/doctorSearch/doctor_search_cubit.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/views/search_doctors_view.dart';
@@ -40,7 +41,7 @@ import 'package:oxytocin/features/medical_appointments/presentation/views/medica
 class AppRouter {
   static GoRouter createRouter(NavigationService navigationService) {
     final router = GoRouter(
-      initialLocation: '/${RouteNames.splash}',
+      initialLocation: '/${RouteNames.doctorProfileView}',
       routes: [
         GoRoute(
           path: '/${RouteNames.splash}',
@@ -227,6 +228,12 @@ class AppRouter {
           path: '/${RouteNames.medicalAppointmentsView}',
           name: RouteNames.medicalAppointmentsView,
           builder: (context, state) => const MedicalAppointmentsView(),
+        ),
+
+        GoRoute(
+          path: '/${RouteNames.doctorProfileView}',
+          name: RouteNames.doctorProfileView,
+          builder: (context, state) => const DoctorProfileView(),
         ),
       ],
     );

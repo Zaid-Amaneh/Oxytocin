@@ -473,4 +473,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get no_doctor_found =>
       'We couldnt find any doctor matching your search. Try different keywords or check your spelling';
+
+  @override
+  String get profile => 'profile';
+
+  @override
+  String get d => 'D';
 }

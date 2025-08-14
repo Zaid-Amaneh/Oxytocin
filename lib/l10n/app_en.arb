@@ -137,5 +137,9 @@
   "authentication_failed": "Authentication failed",
   "reviews": "reviews",
   "server_error": "An unexpected error occurred. Please try again later",
-  "no_doctor_found": "We couldnt find any doctor matching your search. Try different keywords or check your spelling"
+  "no_doctor_found": "We couldnt find any doctor matching your search. Try different keywords or check your spelling",
+  "profile":"profile",
+  "d":"D"
+
+
 }

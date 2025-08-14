@@ -931,6 +931,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'We couldnt find any doctor matching your search. Try different keywords or check your spelling'**
   String get no_doctor_found;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'profile'**
+  String get profile;
+
+  /// No description provided for @d.
+  ///
+  /// In en, this message translates to:
+  /// **'D'**
+  String get d;
 }
 
 class _AppLocalizationsDelegate
