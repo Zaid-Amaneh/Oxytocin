@@ -30,7 +30,7 @@ class SearchViewModel extends ChangeNotifier {
       notifyListeners();
     }
 
-    _debounce = Timer(const Duration(milliseconds: 750), () {
+    _debounce = Timer(const Duration(milliseconds: 1200), () {
       final query = searchController.text.trim();
       if (query.isNotEmpty) {
         onDebounce(query);
