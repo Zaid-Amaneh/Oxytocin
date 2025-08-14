@@ -40,7 +40,7 @@ import 'package:oxytocin/features/medical_appointments/presentation/views/medica
 class AppRouter {
   static GoRouter createRouter(NavigationService navigationService) {
     final router = GoRouter(
-      initialLocation: '/${RouteNames.searchDoctorsView}',
+      initialLocation: '/${RouteNames.splash}',
       routes: [
         GoRoute(
           path: '/${RouteNames.splash}',

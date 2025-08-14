@@ -85,7 +85,9 @@ class ForgotPasswordVerificationViewBody extends StatelessWidget {
               // SliverToBoxAdapter(
               //   child: ChangeNotifierProvider(
               //     create: (_) => ResendOtpViewModel()..startTimer(),
-              //     child: ResendOtp(request: ResendOtpRequest(phone: 'phone')),
+              //     child: ResendOtp(
+              //       request: ResendOtpRequest(phone: '0944373305'),
+              //     ),
               //   ),
               // ),
               SliverSpacer(height: height * 0.24),

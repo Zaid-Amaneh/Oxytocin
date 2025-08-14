@@ -346,7 +346,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get operationSuccessfulTitle => 'Operation successful';
 
   @override
-  String get operationSuccessful => 'The operation was successful.';
+  String get login_success_message =>
+      'You have successfully logged in! Welcome back';
 
   @override
   String get changePasswordSuccess =>

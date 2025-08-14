@@ -99,7 +99,7 @@
   "operationFailedTitle": "Operation failed",
   "operationFailed": "An error occurred while performing the operation. Please try again.",
   "operationSuccessfulTitle": "Operation successful",
-  "operationSuccessful": "The operation was successful.",
+  "login_success_message": "You have successfully logged in! Welcome back",
   "changePasswordSuccess": "Your password has been changed successfully.",
   "changePasswordFailure": "Failed to change password. Please try again.",
   "errorInvalidCredentialsTitle": "Invalid credentials",

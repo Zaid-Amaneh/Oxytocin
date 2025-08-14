@@ -99,7 +99,7 @@
     "operationFailedTitle": "فشل العملية",
     "operationFailed": "حدث خطأ أثناء العملية. الرجاء إعادة المحاولة.",
     "operationSuccessfulTitle": "تم العملية بنجاح",
-    "operationSuccessful": "تم العملية بنجاح.",
+    "login_success_message": "تم تسجيل دخولك بنجاح! أهلاً بعودتك",
     "changePasswordSuccess": "تم تغيير كلمة المرور بنجاح.",
     "changePasswordFailure": "فشل تغيير كلمة المرور. الرجاء إعادة المحاولة.",
     "errorInvalidCredentialsTitle": "البيانات غير صالحة",

@@ -340,7 +340,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get operationSuccessfulTitle => 'تم العملية بنجاح';
 
   @override
-  String get operationSuccessful => 'تم العملية بنجاح.';
+  String get login_success_message => 'تم تسجيل دخولك بنجاح! أهلاً بعودتك';
 
   @override
   String get changePasswordSuccess => 'تم تغيير كلمة المرور بنجاح.';

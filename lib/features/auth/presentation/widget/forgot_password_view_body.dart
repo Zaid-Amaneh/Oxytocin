@@ -11,7 +11,6 @@ import 'package:oxytocin/core/viewmodels/phone_view_model.dart';
 import 'package:oxytocin/core/widgets/custom_button.dart';
 import 'package:oxytocin/core/widgets/phone_number_field.dart';
 import 'package:oxytocin/core/widgets/sliver_spacer.dart';
-import 'package:oxytocin/extensions/failure_localization.dart';
 import 'package:oxytocin/features/auth/presentation/viewmodels/blocs/forgotPassword/forgot_password_bloc.dart';
 import 'package:oxytocin/features/auth/presentation/widget/forgot_password_view_header.dart';
 import 'package:oxytocin/l10n/app_localizations.dart';

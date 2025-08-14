@@ -698,11 +698,11 @@ abstract class AppLocalizations {
   /// **'Operation successful'**
   String get operationSuccessfulTitle;
 
-  /// No description provided for @operationSuccessful.
+  /// No description provided for @login_success_message.
   ///
   /// In en, this message translates to:
-  /// **'The operation was successful.'**
-  String get operationSuccessful;
+  /// **'You have successfully logged in! Welcome back'**
+  String get login_success_message;
 
   /// No description provided for @changePasswordSuccess.
   ///
