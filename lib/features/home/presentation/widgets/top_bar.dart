@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:oxytocin/features/home/presentation/widgets/profile_avatar_with_shadow.dart';
+import 'package:oxytocin/features/profile/data/model/user_profile_model.dart';
 
 class TopBar extends StatelessWidget {
-  const TopBar({super.key});
+  final UserProfileModel? profile;
+
+  const TopBar({super.key, this.profile});
 
   String _getCurrentDate() {
     final now = DateTime.now();
@@ -16,7 +19,7 @@ class TopBar extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const ProfileAvatarWithShadow(),
+        ProfileAvatarWithShadow(profile: profile),
         const SizedBox(width: 38),
         Expanded(
           child: SizedBox(

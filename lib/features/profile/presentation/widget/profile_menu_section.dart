@@ -80,6 +80,7 @@ class _ProfileMenuSectionState extends State<ProfileMenuSection> {
         ),
         boxShadow: [
           BoxShadow(
+            // ignore: deprecated_member_use
             color: Colors.black.withOpacity(0.05),
             blurRadius: SizeConfig.getProportionateScreenWidth(10),
             offset: Offset(0, SizeConfig.getProportionateScreenHeight(2)),

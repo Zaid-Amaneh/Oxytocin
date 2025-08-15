@@ -191,6 +191,7 @@ class _ProfileHeaderCardState extends State<ProfileHeaderCard> {
                 Shadow(
                   offset: const Offset(0, 1),
                   blurRadius: 3,
+                  // ignore: deprecated_member_use
                   color: Colors.black.withOpacity(0.5),
                 ),
               ],
@@ -211,6 +212,7 @@ class _ProfileHeaderCardState extends State<ProfileHeaderCard> {
                 Shadow(
                   offset: const Offset(0, 1),
                   blurRadius: 3,
+                  // ignore: deprecated_member_use
                   color: Colors.black.withOpacity(0.5),
                 ),
               ],
@@ -229,6 +231,7 @@ class _ProfileHeaderCardState extends State<ProfileHeaderCard> {
                 Shadow(
                   offset: const Offset(0, 1),
                   blurRadius: 3,
+                  // ignore: deprecated_member_use
                   color: Colors.black.withOpacity(0.5),
                 ),
               ],
@@ -252,6 +255,7 @@ class _ProfileHeaderCardState extends State<ProfileHeaderCard> {
           Shadow(
             offset: const Offset(0, 1),
             blurRadius: 2,
+            // ignore: deprecated_member_use
             color: Colors.black.withOpacity(0.4),
           ),
         ],
@@ -364,7 +368,6 @@ class _AuthenticatedImageState extends State<_AuthenticatedImage> {
         print('❌ خطأ في تحميل صورة البروفايل: $error');
         print('📷 URL الصورة: ${widget.imageUrl}');
         print('🔑 Token موجود: ${authToken != null && authToken!.isNotEmpty}');
-        // إرجاع الصورة الافتراضية مع الاستمرار في عرض البيانات
         return _buildDefaultAvatar();
       },
       headers: {'Authorization': 'Bearer $authToken'},

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
-import 'package:oxytocin/features/home/data/model/nearby_doctor_model.dart';
 import 'package:oxytocin/features/home/presentation/widgets/doctor_card.dart';
 import 'package:oxytocin/features/home/presentation/widgets/nearby_doctor_card.dart';
 import 'package:oxytocin/features/home/presentation/widgets/section_header.dart';
@@ -18,6 +17,10 @@ import 'package:oxytocin/core/widgets/custom_bottom_navigation_bar.dart';
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/features/profile/presentation/view/profile_with_nav_view.dart';
+import 'package:oxytocin/features/profile/presentation/cubit/profile_cubit.dart';
+import 'package:oxytocin/features/profile/presentation/cubit/profile_state.dart';
+import 'package:oxytocin/features/profile/data/repositories/profile_repository_impl.dart';
+import 'package:oxytocin/features/profile/data/datasources/profile_data_source.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -103,7 +106,18 @@ class _HomeViewState extends State<HomeView> {
         body: ListView(
           children: [
             SizedBox(height: screenHeight * 0.05),
-            TopBar(),
+            BlocProvider.value(
+              value: ProfileCubit(ProfileRepository(ProfileDataSourceImpl()))
+                ..getProfile(),
+              child: BlocBuilder<ProfileCubit, ProfileState>(
+                builder: (context, profileState) {
+                  if (profileState is ProfileLoaded) {
+                    return TopBar(profile: profileState.profile);
+                  }
+                  return const TopBar(); // بدون بيانات
+                },
+              ),
+            ),
             SizedBox(height: screenHeight * 0.02),
             BlocProvider(
               create: (_) {
