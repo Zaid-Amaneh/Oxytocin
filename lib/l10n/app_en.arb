@@ -142,7 +142,9 @@
   "d":"D",
   "clinicLocation":"Clinic location",
   "easilyLocateClinic":"Easily locate the clinic, and find your way there",
-  "oneClick":"With one click."
+  "oneClick":"With one click.",
+  "clinicPhotos":"Clinic photos",
+  "noClinicImage": "Sorry, no photos are available for this clinic."
 
 
 }

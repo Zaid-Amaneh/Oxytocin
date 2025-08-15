@@ -489,4 +489,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get oneClick => 'With one click.';
+
+  @override
+  String get clinicPhotos => 'Clinic photos';
+
+  @override
+  String get noClinicImage => 'Sorry, no photos are available for this clinic.';
 }

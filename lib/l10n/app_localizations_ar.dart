@@ -479,4 +479,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get oneClick => 'بنقرة واحدة.';
+
+  @override
+  String get clinicPhotos => 'صور العيادة';
+
+  @override
+  String get noClinicImage => 'عذرًا، لا توجد صور متاحة لهذه العيادة.';
 }

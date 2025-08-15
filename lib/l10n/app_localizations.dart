@@ -961,6 +961,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'With one click.'**
   String get oneClick;
+
+  /// No description provided for @clinicPhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'Clinic photos'**
+  String get clinicPhotos;
+
+  /// No description provided for @noClinicImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, no photos are available for this clinic.'**
+  String get noClinicImage;
 }
 
 class _AppLocalizationsDelegate
