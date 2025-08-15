@@ -9,7 +9,6 @@ class CategorySearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-       
         Expanded(
           child: Container(
             height: 44,
@@ -29,27 +28,25 @@ class CategorySearchBar extends StatelessWidget {
               onChanged: onChanged,
               textAlign: TextAlign.right,
               style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
+                fontSize: 13,
                 color: Colors.black,
-                fontFamily: 'GESSUniqueBold',
+                fontFamily: 'AlmaraiBold',
               ),
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: "ابحث باسم الطبيب أو التخصص...",
-                hintStyle: const TextStyle(
+                hintStyle: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
-                  fontFamily: 'Almarai',
+                  fontFamily: 'AlmaraiBold',
                 ),
                 border: InputBorder.none,
-                contentPadding: const EdgeInsets.symmetric(
+                contentPadding: EdgeInsets.symmetric(
                   horizontal: 16,
                   vertical: 10,
                 ),
-                suffixIcon: Icon(
-                  Icons.search,
-                  color: Color(0xFF344CB7),
-                  size: 28,
+                suffixIcon: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(Icons.search, color: Color(0xFF344CB7), size: 28),
                 ),
               ),
             ),
@@ -73,7 +70,7 @@ class CategorySearchBar extends StatelessWidget {
           ),
           child: IconButton(
             icon: const Icon(
-              Icons.arrow_back,
+              Icons.arrow_forward_outlined,
               color: Color(0xFF344CB7),
               size: 28,
             ),

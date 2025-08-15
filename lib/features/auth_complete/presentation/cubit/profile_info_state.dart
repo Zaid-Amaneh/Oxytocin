@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'dart:io';
 
 class ProfileInfoState extends Equatable {
   final String? gender;
@@ -18,7 +19,8 @@ class ProfileInfoState extends Equatable {
   final String? location;
   final String? longitude;
   final String? latitude;
-  final bool profileExists; // حالة جديدة للتعامل مع الملف الشخصي الموجود
+  final bool profileExists;
+  final File? profileImage;
 
   const ProfileInfoState({
     this.gender,
@@ -38,7 +40,8 @@ class ProfileInfoState extends Equatable {
     this.location,
     this.longitude,
     this.latitude,
-    this.profileExists = false, 
+    this.profileExists = false,
+    this.profileImage,
   });
 
   ProfileInfoState copyWith({
@@ -60,7 +63,8 @@ class ProfileInfoState extends Equatable {
     String? location,
     String? longitude,
     String? latitude,
-    bool? profileExists, // إضافة الحالة الجديدة
+    bool? profileExists,
+    File? profileImage,
   }) {
     return ProfileInfoState(
       gender: gender ?? this.gender,
@@ -82,8 +86,8 @@ class ProfileInfoState extends Equatable {
       location: location ?? this.location,
       longitude: longitude ?? this.longitude,
       latitude: latitude ?? this.latitude,
-      profileExists:
-          profileExists ?? this.profileExists, // إضافة الحالة الجديدة
+      profileExists: profileExists ?? this.profileExists,
+      profileImage: profileImage ?? this.profileImage,
     );
   }
 
@@ -106,6 +110,7 @@ class ProfileInfoState extends Equatable {
     location,
     longitude,
     latitude,
-    profileExists, // إضافة الحالة الجديدة
+    profileExists,
+    profileImage,
   ];
 }

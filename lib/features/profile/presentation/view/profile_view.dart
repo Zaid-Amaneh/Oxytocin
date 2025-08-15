@@ -8,9 +8,11 @@ import 'package:oxytocin/features/profile/presentation/cubit/profile_cubit.dart'
 import 'package:oxytocin/features/profile/presentation/cubit/profile_state.dart';
 import 'package:oxytocin/features/profile/presentation/widget/profile_header_card.dart';
 import 'package:oxytocin/features/profile/presentation/widget/profile_menu_section.dart';
+import 'package:oxytocin/features/profile/presentation/view/account_details_view.dart';
+import 'package:oxytocin/features/profile/data/model/user_profile_model.dart';
 
 class ProfileView extends StatefulWidget {
-  const ProfileView({Key? key}) : super(key: key);
+  const ProfileView({super.key});
 
   @override
   State<ProfileView> createState() => _ProfileViewState();
@@ -28,6 +30,12 @@ class _ProfileViewState extends State<ProfileView>
     super.initState();
     _initializeAnimations();
     _loadProfileData();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    SizeConfig.init(context);
   }
 
   void _initializeAnimations() {
@@ -55,7 +63,7 @@ class _ProfileViewState extends State<ProfileView>
   }
 
   void _loadProfileData() {
-    context.read<ProfileCubit>().getUserProfile();
+    context.read<ProfileCubit>().getProfile();
   }
 
   @override
@@ -68,21 +76,33 @@ class _ProfileViewState extends State<ProfileView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
         child: BlocConsumer<ProfileCubit, ProfileState>(
           listener: (context, state) {
             if (state is ProfileError) {
-              _showErrorSnackBar(state.message);
-            } else if (state is ProfileLoggedOut) {
-              _handleLogout();
-            }
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    'خطأ: ${state.message}',
+                    style: const TextStyle(
+                      fontFamily: 'AlmaraiBold',
+                      color: Colors.white,
+                    ),
+                  ),
+                  backgroundColor: AppColors.error,
+                  behavior: SnackBarBehavior.floating,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              );
+            } else if (state is ProfileLoaded) {}
           },
           builder: (context, state) {
             return CustomScrollView(
               physics: const BouncingScrollPhysics(),
               slivers: [
-                _buildAppBar(),
                 SliverToBoxAdapter(
                   child: FadeTransition(
                     opacity: _fadeAnimation,
@@ -98,7 +118,7 @@ class _ProfileViewState extends State<ProfileView>
                           children: [
                             SizedBox(
                               height: SizeConfig.getProportionateScreenHeight(
-                                20,
+                                24,
                               ),
                             ),
                             if (state is ProfileLoading)
@@ -111,7 +131,7 @@ class _ProfileViewState extends State<ProfileView>
                               _buildInitialState(),
                             SizedBox(
                               height: SizeConfig.getProportionateScreenHeight(
-                                30,
+                                40,
                               ),
                             ),
                           ],
@@ -128,45 +148,11 @@ class _ProfileViewState extends State<ProfileView>
     );
   }
 
-  Widget _buildAppBar() {
-    return SliverAppBar(
-      expandedHeight: 0,
-      floating: false,
-      pinned: true,
-      backgroundColor: AppColors.background,
-      elevation: 0,
-      title: Text(
-        'الملف الشخصي',
-        style: TextStyle(
-          color: AppColors.textPrimary,
-          fontSize: getResponsiveFontSize(context, fontSize: 20),
-          fontFamily: 'AlmaraiBold',
-          fontWeight: FontWeight.w700,
-        ),
-        textAlign: TextAlign.right,
-      ),
-      centerTitle: false,
-      leading: Container(), // إزالة زر الرجوع
-      actions: [
-        Padding(
-          padding: EdgeInsets.only(
-            right: SizeConfig.getProportionateScreenWidth(16),
-          ),
-          child: Icon(
-            FeatherIcons.settings,
-            color: AppColors.kPrimaryColor1,
-            size: 24,
-          ),
-        ),
-      ],
-    );
-  }
-
   Widget _buildLoadingState() {
     return Column(
       children: [
         _buildShimmerCard(),
-        SizedBox(height: SizeConfig.getProportionateScreenHeight(20)),
+        SizedBox(height: SizeConfig.getProportionateScreenHeight(24)),
         _buildShimmerMenuSection(),
       ],
     );
@@ -174,10 +160,10 @@ class _ProfileViewState extends State<ProfileView>
 
   Widget _buildShimmerCard() {
     return Container(
-      height: SizeConfig.getProportionateScreenHeight(200),
+      height: SizeConfig.getProportionateScreenHeight(280),
       decoration: BoxDecoration(
         color: Colors.grey[300],
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(24),
       ),
     );
   }
@@ -190,7 +176,7 @@ class _ProfileViewState extends State<ProfileView>
           margin: EdgeInsets.only(
             bottom: SizeConfig.getProportionateScreenHeight(16),
           ),
-          height: SizeConfig.getProportionateScreenHeight(120),
+          height: SizeConfig.getProportionateScreenHeight(160),
           decoration: BoxDecoration(
             color: Colors.grey[300],
             borderRadius: BorderRadius.circular(16),
@@ -200,7 +186,7 @@ class _ProfileViewState extends State<ProfileView>
     );
   }
 
-  Widget _buildProfileContent(dynamic profile) {
+  Widget _buildProfileContent(UserProfileModel profile) {
     return Column(
       children: [
         ProfileHeaderCard(profile: profile),
@@ -221,13 +207,26 @@ class _ProfileViewState extends State<ProfileView>
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(FeatherIcons.alertCircle, size: 64, color: AppColors.error),
+          Container(
+            width: SizeConfig.getProportionateScreenWidth(80),
+            height: SizeConfig.getProportionateScreenWidth(80),
+            decoration: BoxDecoration(
+              // ignore: deprecated_member_use
+              color: AppColors.error.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(40),
+            ),
+            child: Icon(
+              FeatherIcons.alertCircle,
+              size: SizeConfig.getProportionateScreenWidth(40),
+              color: AppColors.error,
+            ),
+          ),
           SizedBox(height: SizeConfig.getProportionateScreenHeight(16)),
           Text(
             'حدث خطأ في تحميل البيانات',
             style: TextStyle(
               color: AppColors.textPrimary,
-              fontSize: 16,
+              fontSize: getResponsiveFontSize(context, fontSize: 16),
               fontFamily: 'AlmaraiBold',
             ),
           ),
@@ -238,6 +237,10 @@ class _ProfileViewState extends State<ProfileView>
               backgroundColor: AppColors.kPrimaryColor1,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
+              ),
+              padding: EdgeInsets.symmetric(
+                horizontal: SizeConfig.getProportionateScreenWidth(24),
+                vertical: SizeConfig.getProportionateScreenHeight(12),
               ),
             ),
             child: Text(
@@ -258,40 +261,26 @@ class _ProfileViewState extends State<ProfileView>
     return const SizedBox.shrink();
   }
 
-  void _showErrorSnackBar(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          message,
-          style: const TextStyle(
-            fontFamily: 'AlmaraiBold',
-            color: Colors.white,
-          ),
+  void _handleAccountTap() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => BlocProvider.value(
+          value: context.read<ProfileCubit>(),
+          child: const AccountDetailsView(),
         ),
-        backgroundColor: AppColors.error,
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
     );
   }
 
-  void _handleAccountTap() {
-    // التنقل إلى صفحة الحساب
-    print('تم النقر على الحساب');
-  }
-
   void _handleMedicalRecordsTap() {
-    // التنقل إلى صفحة السجلات الطبية
     print('تم النقر على السجلات الطبية');
   }
 
   void _handleFavoritesTap() {
-    // التنقل إلى صفحة المفضلة
     print('تم النقر على المفضلة');
   }
 
   void _handleSettingsTap() {
-    // التنقل إلى صفحة الإعدادات
     print('تم النقر على الإعدادات');
   }
 
@@ -337,7 +326,7 @@ class _ProfileViewState extends State<ProfileView>
           ElevatedButton(
             onPressed: () {
               Navigator.of(context).pop();
-              context.read<ProfileCubit>().logout();
+              _handleLogout();
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.error,
@@ -360,7 +349,6 @@ class _ProfileViewState extends State<ProfileView>
   }
 
   void _handleLogout() {
-    // التنقل إلى صفحة تسجيل الدخول
     print('تم تسجيل الخروج بنجاح');
   }
 }

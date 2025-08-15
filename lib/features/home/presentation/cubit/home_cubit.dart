@@ -1,86 +1,101 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:oxytocin/core/constants/api_endpoints.dart';
 import 'package:oxytocin/features/home/data/model/doctor_model.dart';
+import 'package:oxytocin/features/home/data/model/nearby_doctor_model.dart';
+import 'package:oxytocin/features/home/data/services/doctors_service.dart';
 import 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit() : super(HomeInitial());
+  final DoctorsService _doctorsService;
+
+  List<DoctorModel> _doctors = [];
+  List<NearbyDoctorModel> _nearbyDoctors = [];
+  bool _isLoadingDoctors = false;
+  bool _isLoadingNearbyDoctors = false;
+
+  HomeCubit()
+    : _doctorsService = DoctorsService(baseUrl: ApiEndpoints.baseURL),
+      super(HomeInitial());
+
+  List<DoctorModel> get doctors => _doctors;
+  List<NearbyDoctorModel> get nearbyDoctors => _nearbyDoctors;
+  bool get isLoadingDoctors => _isLoadingDoctors;
+  bool get isLoadingNearbyDoctors => _isLoadingNearbyDoctors;
 
   void loadDoctors() async {
-    emit(HomeLoading());
-    await Future.delayed(Duration(seconds: 1));
-    emit(
-      HomeLoaded([
-        DoctorModel(
-          name: 'د. سامر الخطيب',
-          specialty: 'أخصائي الأمراض الجلدية',
-          clinic: 'مستشفى الشامي',
-          distance: 1.2,
-          imageUrl: 'assets/images/doctor1.png',
-          rating: 4.6,
-          reviewsCount: 366,
-          nextAvailableTime: 'اليوم الساعة 4:30 مساءً',
-        ),
-        DoctorModel(
-          name: 'د. سامر الخطيب',
-          specialty: 'أخصائي الأمراض الجلدية',
-          clinic: 'مستشفى الشامي',
-          distance: 1.2,
-          imageUrl: 'assets/images/doctor1.png',
-          rating: 4.6,
-          reviewsCount: 366,
-          nextAvailableTime: 'اليوم الساعة 4:30 مساءً',
-        ),
-        DoctorModel(
-          name: 'د. زياد المطيري',
-          specialty: 'جلدية وتجميل',
-          clinic: 'عيادات الجمال الصحي، طريق الأمير تركي الأول',
-          distance: 0.8,
-          imageUrl: 'assets/images/doctor2.png',
-          rating: 4.8,
-          reviewsCount: 120,
-          nextAvailableTime: 'غدًا الساعة 10:00 صباحًا',
-        ),
-      ]),
-    );
+    try {
+      _isLoadingDoctors = true;
+      if (_nearbyDoctors.isEmpty) {
+        emit(HomeLoading());
+      }
+      final doctors = await _doctorsService.getHighestRatedDoctors();
+      _doctors = doctors;
+      _isLoadingDoctors = false;
+      if (_nearbyDoctors.isNotEmpty) {
+        emit(HomeFullyLoaded(doctors: _doctors, nearbyDoctors: _nearbyDoctors));
+      } else {
+        emit(HomeLoaded(_doctors));
+      }
+    } catch (e) {
+      _isLoadingDoctors = false;
+      emit(HomeError(e.toString()));
+    }
+  }
+
+  void loadNearbyDoctors(double latitude, double longitude) async {
+    try {
+      _isLoadingNearbyDoctors = true;
+      if (_doctors.isEmpty) {
+        emit(HomeLoading());
+      }
+
+      final nearbyDoctors = await _doctorsService.getNearbyDoctors(
+        latitude: latitude,
+        longitude: longitude,
+      );
+
+      _nearbyDoctors = nearbyDoctors;
+      _isLoadingNearbyDoctors = false;
+      if (_doctors.isNotEmpty) {
+        emit(HomeFullyLoaded(doctors: _doctors, nearbyDoctors: _nearbyDoctors));
+      } else {
+        emit(NearbyDoctorsLoaded(_nearbyDoctors));
+      }
+    } catch (e) {
+      _isLoadingNearbyDoctors = false;
+      emit(HomeError(e.toString()));
+    }
   }
 
   void onDoctorCardTap(int doctorIndex) {
-    if (state is HomeLoaded) {
-      final currentState = state as HomeLoaded;
-      final doctor = currentState.doctors[doctorIndex];
-      print('Doctor card tapped: ${doctor.name}');
+    if (_doctors.isNotEmpty && doctorIndex < _doctors.length) {
+      final doctor = _doctors[doctorIndex];
+      // Navigate to doctor details page
+      // Navigator.pushNamed(context, '/doctor-details', arguments: doctor);
     }
   }
 
   void onDoctorFavoriteTap(int doctorIndex) {
-    if (state is HomeLoaded) {
-      final currentState = state as HomeLoaded;
-      final doctor = currentState.doctors[doctorIndex];
-      print('Doctor favorite tapped: ${doctor.name}');
+    if (_doctors.isNotEmpty && doctorIndex < _doctors.length) {
+      final doctor = _doctors[doctorIndex];
     }
   }
 
   void onDoctorBookTap(int doctorIndex) {
-    if (state is HomeLoaded) {
-      final currentState = state as HomeLoaded;
-      final doctor = currentState.doctors[doctorIndex];
-      print('Doctor book tapped: ${doctor.name}');
+    if (_doctors.isNotEmpty && doctorIndex < _doctors.length) {
+      final doctor = _doctors[doctorIndex];
     }
   }
 
   void onNearbyDoctorCardTap(int doctorIndex) {
-    if (state is HomeLoaded) {
-      final currentState = state as HomeLoaded;
-      final doctor = currentState.doctors[doctorIndex];
-      print('Nearby doctor card tapped: ${doctor.name}');
+    if (_nearbyDoctors.isNotEmpty && doctorIndex < _nearbyDoctors.length) {
+      final doctor = _nearbyDoctors[doctorIndex];
     }
   }
 
   void onNearbyDoctorBookTap(int doctorIndex) {
-    if (state is HomeLoaded) {
-      final currentState = state as HomeLoaded;
-      final doctor = currentState.doctors[doctorIndex];
-      print('Nearby doctor book tapped: ${doctor.name}');
+    if (_nearbyDoctors.isNotEmpty && doctorIndex < _nearbyDoctors.length) {
+      final doctor = _nearbyDoctors[doctorIndex];
     }
   }
 }

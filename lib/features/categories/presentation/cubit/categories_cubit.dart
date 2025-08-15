@@ -1,69 +1,63 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:oxytocin/core/Utils/app_images.dart';
+import 'package:oxytocin/core/Utils/services/local_storage_service.dart';
+import 'package:oxytocin/features/categories/data/datasources/categories_remote_data_source.dart';
 import 'package:oxytocin/features/categories/data/models/category_model.dart';
-import 'package:oxytocin/features/categories/presentation/cubit/categories_state.dart';
+
+import 'categories_state.dart';
 
 class CategoriesCubit extends Cubit<CategoriesState> {
-  CategoriesCubit() : super(CategoriesInitial());
+  final CategoriesRemoteDataSource remoteDataSource;
+  final LocalStorageService localStorage;
 
-  final List<CategoryModel> _allCategories = [
-    // الفئات الأساسية
-    CategoryModel(
-      name: "الغدد الصماء",
-      iconAsset: AppImages.categoryEndocrineGlands,
-    ),
-    CategoryModel(
-      name: "المسالك البولية",
-      iconAsset: AppImages.categoryUrinaryTract,
-    ),
-    CategoryModel(
-      name: "الجهاز الهضمي",
-      iconAsset: AppImages.categoryDigestiveSystem,
-    ),
-    CategoryModel(
-      name: "طب الرئة",
-      iconAsset: AppImages.categoryPulmonaryMedicine,
-    ),
-    CategoryModel(
-      name: "جراحة التجميل",
-      iconAsset: AppImages.categoryPlasticSurgery,
-    ),
-    CategoryModel(name: "طب العيون", iconAsset: AppImages.categoryEyes),
-    CategoryModel(name: "طب الأسنان", iconAsset: AppImages.categoryDentistry),
-    CategoryModel(name: "التخدير", iconAsset: AppImages.categoryAnesthesia),
-    CategoryModel(
-      name: "أنف وأذن وحنجرة",
-      iconAsset: AppImages.categoryEarNoseThroat,
-    ),
-    CategoryModel(name: "طب الأعصاب", iconAsset: AppImages.categoryNerves),
-    CategoryModel(
-      name: "طب العمل",
-      iconAsset: AppImages.categoryOccupationalMedicine,
-    ),
-    CategoryModel(name: "الأشعة", iconAsset: AppImages.categoryRays),
-    CategoryModel(name: "طب النفس", iconAsset: AppImages.categoryMyself),
-    // جميع الفئات المتبقية من الصور الموجودة
-  ];
+  CategoriesCubit(this.remoteDataSource, this.localStorage)
+      : super(CategoriesState());
 
-  void loadCategories() {
-    print('Loading categories...'); // للتصحيح
-    print('Categories count: ${_allCategories.length}'); // للتصحيح
-
-    // طباعة جميع مسارات الصور للتأكد
-    for (int i = 0; i < _allCategories.length; i++) {
-      print(
-        'Category ${i + 1}: ${_allCategories[i].name} -> ${_allCategories[i].iconAsset}',
-      );
+  Future<void> fetchCategories() async {
+    emit(state.copyWith(status: CategoriesStatus.loading));
+    try {
+      final cats = await remoteDataSource.fetchCategories();
+      emit(state.copyWith(status: CategoriesStatus.success, categories: cats));
+    } catch (e) {
+      emit(state.copyWith(status: CategoriesStatus.failure, error: e.toString()));
     }
-
-    emit(CategoriesLoaded(_allCategories));
   }
 
-  void search(String query) {
-    final filtered = _allCategories
-        .where((cat) => cat.name.contains(query))
-        .toList();
+  void selectCategory(CategoryModel category) {
+    emit(state.copyWith(selectedCategory: category, selectedSub: null));
+  }
 
-    emit(CategoriesLoaded(filtered));
+  Future<void> selectSubspecialty(SubspecialtyModel sub) async {
+    emit(state.copyWith(selectedSub: sub));
+
+    // حفظ الاختيارات في التخزين المحلي
+    await localStorage.setValue('selected_category_id', state.selectedCategory!.id);
+    await localStorage.setValue('selected_category_name_ar', state.selectedCategory!.nameAr);
+    await localStorage.setValue('selected_sub_id', sub.id);
+    await localStorage.setValue('selected_sub_name_ar', sub.nameAr);
+  }
+
+  Future<void> loadSavedSelection() async {
+    final catId = await localStorage.getValue('selected_category_id');
+    final catName = await localStorage.getValue('selected_category_name_ar');
+    final subId = await localStorage.getValue('selected_sub_id');
+    final subName = await localStorage.getValue('selected_sub_name_ar');
+
+    if (catId != null && subId != null && state.categories.isNotEmpty) {
+      try {
+        final category = state.categories.firstWhere(
+          (c) => c.id == catId,
+          orElse: () => state.categories.first,
+        );
+        
+        final sub = category.subspecialties.firstWhere(
+          (s) => s.id == subId,
+          orElse: () => category.subspecialties.first,
+        );
+
+        emit(state.copyWith(selectedCategory: category, selectedSub: sub));
+      } catch (e) {
+        print('Error loading saved selection: $e');
+      }
+    }
   }
 }

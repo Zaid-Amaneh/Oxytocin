@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
-import 'package:oxytocin/features/home/data/model/doctor_model.dart';
+import 'package:oxytocin/features/home/data/model/nearby_doctor_model.dart';
 
 class NearbyDoctorCard extends StatelessWidget {
-  final DoctorModel doctor;
+  final NearbyDoctorModel doctor;
   final VoidCallback? onTap;
   final VoidCallback? onBookTap;
 
@@ -16,37 +16,16 @@ class NearbyDoctorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('🟠 Building card for: ${doctor.doctor.fullName}');
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     final isTablet = screenWidth > 600;
-    final isLargeScreen = screenWidth > 900;
 
-    final cardWidth = isLargeScreen
-        ? 380.0
-        : isTablet
-        ? 350.0
-        : 320.0;
-    final cardHeight = isLargeScreen
-        ? 140.0
-        : isTablet
-        ? 120.0
-        : 100.0;
-    final imageWidth = isLargeScreen
-        ? 130.0
-        : isTablet
-        ? 110.0
-        : 90.0;
-    final imageHeight = isLargeScreen
-        ? 170.0
-        : isTablet
-        ? 150.0
-        : 130.0;
-
+    final info = doctor.doctor;
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: cardWidth,
-        height: cardHeight,
+        width: double.infinity,
+        height: isTablet ? 145.0 : 130.0,
         margin: EdgeInsets.symmetric(
           horizontal: isTablet ? 8.0 : 4.0,
           vertical: isTablet ? 4.0 : 2.0,
@@ -63,6 +42,7 @@ class NearbyDoctorCard extends StatelessWidget {
           ),
           boxShadow: [
             BoxShadow(
+              // ignore: deprecated_member_use
               color: Colors.black.withOpacity(0.1),
               blurRadius: isTablet ? 8.0 : 6.0,
               offset: Offset(0, isTablet ? 4.0 : 3.0),
@@ -96,10 +76,11 @@ class NearbyDoctorCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(isTablet ? 30.0 : 25.0),
                   color: const Color.fromARGB(
                     255,
-                    182,
-                    178,
-                    178,
-                  ).withOpacity(0.6),
+                    165,
+                    171,
+                    244,
+                    // ignore: deprecated_member_use
+                  ).withOpacity(0.9),
                 ),
               ),
             ),
@@ -117,25 +98,61 @@ class NearbyDoctorCard extends StatelessWidget {
                     borderRadius: BorderRadius.all(
                       Radius.circular(isTablet ? 30.0 : 25.0),
                     ),
-                    child: Image.asset(
-                      AppImages.doctor,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Container(
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 60, 106, 235),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(isTablet ? 30.0 : 25.0),
-                            ),
+                    child: info.imageUrl.isNotEmpty && info.imageUrl != 'null'
+                        ? Image.network(
+                            info.imageUrl,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Image.asset(
+                                AppImages.doctor,
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) {
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                      color: const Color.fromARGB(
+                                        255,
+                                        60,
+                                        106,
+                                        235,
+                                      ),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(isTablet ? 30.0 : 25.0),
+                                      ),
+                                    ),
+                                    child: Icon(
+                                      Icons.person,
+                                      size: isTablet ? 60.0 : 50.0,
+                                      color: Colors.white,
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                          )
+                        : Image.asset(
+                            AppImages.doctor,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Container(
+                                decoration: BoxDecoration(
+                                  color: const Color.fromARGB(
+                                    255,
+                                    60,
+                                    106,
+                                    235,
+                                  ),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(isTablet ? 30.0 : 25.0),
+                                  ),
+                                ),
+                                child: Icon(
+                                  Icons.person,
+                                  size: isTablet ? 60.0 : 50.0,
+                                  color: Colors.white,
+                                ),
+                              );
+                            },
                           ),
-                          child: Icon(
-                            Icons.person,
-                            size: isTablet ? 60.0 : 50.0,
-                            color: Colors.white,
-                          ),
-                        );
-                      },
-                    ),
                   ),
                 ),
                 Expanded(
@@ -146,7 +163,8 @@ class NearbyDoctorCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          doctor.name,
+                          info.fullName.isNotEmpty ? info.fullName : 'طبيب',
+                          // doctor.name,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: isTablet ? 16.0 : 14.0,
@@ -157,31 +175,50 @@ class NearbyDoctorCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                         SizedBox(height: isTablet ? 4.0 : 2.0),
-                        Text(
-                          doctor.specialty,
-                          style: TextStyle(
-                            color: Colors.white70,
-                            fontSize: isTablet ? 12.0 : 10.0,
-                            fontFamily: 'AlmaraiRegular',
+                        if (info.specialtyName.isNotEmpty) ...[
+                          SizedBox(height: isTablet ? 4.0 : 2.0),
+                          Text(
+                            info.specialtyName,
+                            // doctor.specialty,
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: isTablet ? 12.0 : 10.0,
+                              fontFamily: 'AlmaraiRegular',
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        SizedBox(height: isTablet ? 4.0 : 2.0),
-                        Text(
-                          'طريق الأمير تركي الأول',
-                          style: TextStyle(
-                            color: Colors.white70,
-                            fontSize: isTablet ? 11.0 : 9.0,
-                            fontFamily: 'AlmaraiRegular',
+                        ],
+                        if (info.university.isNotEmpty) ...[
+                          SizedBox(height: isTablet ? 4.0 : 2.0),
+                          Text(
+                            info.university,
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: isTablet ? 11.0 : 9.0,
+                              fontFamily: 'AlmaraiRegular',
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        SizedBox(height: isTablet ? 35.0 : 30.0),
+                        ],
+                        if (doctor.address.isNotEmpty) ...[
+                          SizedBox(height: isTablet ? 4.0 : 2.0),
+                          Text(
+                            doctor.address,
+                            style: TextStyle(
+                              color: Colors.white60,
+                              fontSize: isTablet ? 10.0 : 8.0,
+                              fontFamily: 'AlmaraiRegular',
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                        SizedBox(height: isTablet ? 10.0 : 5.0),
                         Padding(
                           padding: EdgeInsets.only(
-                            right: isTablet ? 60.0 : 55.0,
+                            right: isTablet ? 110.0 : 100.0,
                           ),
                           child: Container(
                             padding: EdgeInsets.symmetric(
@@ -198,7 +235,8 @@ class NearbyDoctorCard extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
-                                  '${doctor.distance} كيلومتر  \n    ',
+                                  '${(doctor.distance / 1000).toStringAsFixed(1)} كم',
+
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: isTablet ? 10.0 : 8.0,
@@ -216,6 +254,29 @@ class NearbyDoctorCard extends StatelessWidget {
                             ),
                           ),
                         ),
+                        if (info.rate > 0) ...[
+                          SizedBox(height: isTablet ? 4.0 : 2.0),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.star,
+                                color: Colors.yellow,
+                                size: isTablet ? 14.0 : 12.0,
+                              ),
+                              const SizedBox(width: 2.0),
+                              Text(
+                                info.rates > 0
+                                    ? '${info.rate.toStringAsFixed(1)} (${info.rates})'
+                                    : '${info.rate.toStringAsFixed(1)}',
+                                style: TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: isTablet ? 10.0 : 8.0,
+                                  fontFamily: 'AlmaraiRegular',
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ],
                     ),
                   ),

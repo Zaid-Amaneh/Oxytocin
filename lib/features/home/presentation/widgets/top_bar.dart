@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:oxytocin/features/home/presentation/widgets/profile_avatar_with_shadow.dart';
 
 class TopBar extends StatelessWidget {
   const TopBar({super.key});
+
+  String _getCurrentDate() {
+    final now = DateTime.now();
+    final formatter = DateFormat('EEEE، d MMMM yyyy', 'ar');
+    return formatter.format(now);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        // أيقونة الإشعارات في أقصى اليسار
-        ProfileAvatarWithShadow(),
-        SizedBox(width: 38),
+        const ProfileAvatarWithShadow(),
+        const SizedBox(width: 38),
         Expanded(
           child: SizedBox(
             height: 70,
@@ -19,7 +25,7 @@ class TopBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'مرحباً، نتمنى لك يوماً سعيداً!',
                   style: TextStyle(
                     fontFamily: 'AlmaraiBold',
@@ -27,8 +33,11 @@ class TopBar extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'الثلاثاء، 17 يونيو 2025',
-                  style: TextStyle(fontFamily: 'AlmaraiBold', fontSize: 13),
+                  _getCurrentDate(),
+                  style: const TextStyle(
+                    fontFamily: 'AlmaraiBold',
+                    fontSize: 13,
+                  ),
                 ),
               ],
             ),
@@ -44,9 +53,10 @@ class TopBar extends StatelessWidget {
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
+                  // ignore: deprecated_member_use
                   color: Colors.black.withOpacity(0.13),
                   blurRadius: 7,
-                  offset: Offset(0, 3),
+                  offset: const Offset(0, 3),
                 ),
               ],
             ),

@@ -66,6 +66,7 @@ class DoctorCard extends StatelessWidget {
                   image: const AssetImage(AppImages.bgPattern),
                   fit: BoxFit.cover,
                   colorFilter: ColorFilter.mode(
+                    // ignore: deprecated_member_use
                     const Color(0xFF2A4A7A).withOpacity(0.8),
                     BlendMode.srcATop,
                   ),
@@ -73,6 +74,7 @@ class DoctorCard extends StatelessWidget {
               ),
               child: Container(
                 decoration: BoxDecoration(
+                  // ignore: deprecated_member_use
                   color: const Color(0xFF1A2A5A).withOpacity(0.2),
                   borderRadius: BorderRadius.circular(isTablet ? 25.0 : 20.0),
                 ),
@@ -89,7 +91,7 @@ class DoctorCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    doctor.name,
+                    doctor.fullName,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: isTablet ? 18.0 : 16.0,
@@ -101,7 +103,7 @@ class DoctorCard extends StatelessWidget {
                   ),
                   SizedBox(height: isTablet ? 4.0 : 2.0),
                   Text(
-                    doctor.specialty,
+                    doctor.specialtyName,
                     style: TextStyle(
                       color: Colors.white70,
                       fontSize: isTablet ? 14.0 : 12.0,
@@ -110,9 +112,9 @@ class DoctorCard extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(height: isTablet ? 12.0 : 8.0),
+                  SizedBox(height: isTablet ? 46.0 : 16.0),
                   Text(
-                    'العيادة: ${doctor.clinic}',
+                    doctor.university,
                     style: TextStyle(
                       color: Colors.white70,
                       fontSize: isTablet ? 12.0 : 10.0,
@@ -121,24 +123,24 @@ class DoctorCard extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  Text(
-                    'يبعد عنك ${doctor.distance.toStringAsFixed(1)} كم',
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: isTablet ? 12.0 : 10.0,
-                      fontFamily: 'AlmaraiRegular',
-                    ),
-                  ),
-                  Text(
-                    'أقرب موعد اليوم الساعة ${doctor.nextAvailableTime}',
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: isTablet ? 12.0 : 10.0,
-                      fontFamily: 'AlmaraiRegular',
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                  // Text(
+                  //   'التقييم: ${doctor.rate}/5',
+                  //   style: TextStyle(
+                  //     color: Colors.white70,
+                  //     fontSize: isTablet ? 12.0 : 10.0,
+                  //     fontFamily: 'AlmaraiRegular',
+                  //   ),
+                  // ),
+                  // Text(
+                  //   'عدد التقييمات: ${doctor}',
+                  //   style: TextStyle(
+                  //     color: Colors.white70,
+                  //     fontSize: isTablet ? 12.0 : 10.0,
+                  //     fontFamily: 'AlmaraiRegular',
+                  //   ),
+                  //   maxLines: 1,
+                  //   overflow: TextOverflow.ellipsis,
+                  // ),
                 ],
               ),
             ),
@@ -177,10 +179,75 @@ class DoctorCard extends StatelessWidget {
                     topRight: Radius.circular(isTablet ? 16.0 : 12.0),
                     bottomRight: Radius.circular(isTablet ? 16.0 : 12.0),
                   ),
-                  image: const DecorationImage(
-                    image: AssetImage(AppImages.doctorCard),
-                    fit: BoxFit.cover,
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(isTablet ? 16.0 : 12.0),
+                    bottomRight: Radius.circular(isTablet ? 16.0 : 12.0),
                   ),
+                  child: doctor.imageUrl.isNotEmpty
+                      ? Image.network(
+                          doctor.formattedImageUrl,
+                          fit: BoxFit.cover,
+                          width: imageWidth,
+                          height: imageHeight,
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return Container(
+                              width: imageWidth,
+                              height: imageHeight,
+                              color: Colors.grey[300],
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    CircularProgressIndicator(
+                                      value:
+                                          loadingProgress.expectedTotalBytes !=
+                                              null
+                                          ? loadingProgress
+                                                    .cumulativeBytesLoaded /
+                                                loadingProgress
+                                                    .expectedTotalBytes!
+                                          : null,
+                                      color: Colors.blue,
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      'جاري تحميل الصورة...',
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: Colors.grey[600],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                          errorBuilder: (context, error, stackTrace) {
+                            return Container(
+                              width: 200,
+                              height: 200,
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage(AppImages.doctorCard),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            );
+                          },
+                        )
+                      : Container(
+                          width: imageWidth,
+                          height: imageHeight,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(AppImages.doctorCard),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
                 ),
               ),
             ),
@@ -271,7 +338,7 @@ class DoctorCard extends StatelessWidget {
                               ),
                               SizedBox(width: isTablet ? 2.0 : 1.0),
                               Text(
-                                '${doctor.rating}/5',
+                                doctor.rate.toString(),
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: isTablet ? 10.0 : 8.0,
@@ -281,7 +348,7 @@ class DoctorCard extends StatelessWidget {
                             ],
                           ),
                           Text(
-                            'بناءً على ${doctor.reviewsCount} تقييمات',
+                            'بناءً على ${doctor.rates} تقييمات',
                             style: TextStyle(
                               fontSize: isTablet ? 10.0 : 8.0,
                               color: Colors.black87,
