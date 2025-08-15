@@ -65,7 +65,7 @@ class DoctorProfileViewBodyHeader extends StatelessWidget {
   }
 
   Widget _buildDoctorImage(double width, double height) {
-    final imageSize = width * 0.32;
+    final imageSize = width * 0.33;
     return SizedBox(
       width: imageSize,
       height: imageSize,
@@ -265,9 +265,9 @@ class DoctorProfileViewBodyHeader extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
-        SizedBox(height: height * 0.005),
-        _buildRatingStars(width, height),
-        SizedBox(height: height * 0.008),
+        SizedBox(height: height * 0.01),
+        _buildRatingStars(width, height, context),
+        SizedBox(height: height * 0.01),
         Text(
           specialty,
           style: AppStyles.almaraiBold(
@@ -280,11 +280,15 @@ class DoctorProfileViewBodyHeader extends StatelessWidget {
     );
   }
 
-  Widget _buildRatingStars(double width, double height) {
+  Widget _buildRatingStars(double width, double height, BuildContext context) {
     final starSize = width * 0.04;
+    final fullStars = rating.floor();
+    final hasHalfStar = (rating - fullStars) >= 0.5;
+    final emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
     return Row(
       children: [
-        ...List.generate(5, (index) {
+        ...List.generate(fullStars, (index) {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: width * 0.005),
             child: SvgPicture.asset(
@@ -294,14 +298,61 @@ class DoctorProfileViewBodyHeader extends StatelessWidget {
             ),
           );
         }),
+
+        if (hasHalfStar)
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: width * 0.005),
+            child: Stack(
+              children: [
+                SvgPicture.asset(
+                  AppImages.starOutline,
+                  height: starSize,
+                  width: starSize,
+                  colorFilter: ColorFilter.mode(
+                    Colors.grey.shade300,
+                    BlendMode.srcIn,
+                  ),
+                ),
+                ClipRect(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    widthFactor: 0.5,
+                    child: SvgPicture.asset(
+                      AppImages.starSolid,
+                      height: starSize,
+                      width: starSize,
+                      colorFilter: const ColorFilter.mode(
+                        Colors.yellow,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+        ...List.generate(emptyStars, (index) {
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: width * 0.005),
+            child: SvgPicture.asset(
+              AppImages.starOutline,
+              height: starSize,
+              width: starSize,
+              colorFilter: ColorFilter.mode(
+                Colors.grey.shade300,
+                BlendMode.srcIn,
+              ),
+            ),
+          );
+        }),
+
         SizedBox(width: width * 0.01),
         Text(
           rating.toStringAsFixed(1),
-          style: TextStyle(
-            fontSize: width * 0.03,
-            color: Colors.grey[600],
-            fontWeight: FontWeight.w500,
-          ),
+          style: AppStyles.almaraiBold(
+            context,
+          ).copyWith(color: AppColors.textSecondary, fontSize: width * 0.034),
         ),
       ],
     );

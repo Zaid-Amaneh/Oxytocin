@@ -139,7 +139,10 @@
   "server_error": "An unexpected error occurred. Please try again later",
   "no_doctor_found": "We couldnt find any doctor matching your search. Try different keywords or check your spelling",
   "profile":"profile",
-  "d":"D"
+  "d":"D",
+  "clinicLocation":"Clinic location",
+  "easilyLocateClinic":"Easily locate the clinic, and find your way there",
+  "oneClick":"With one click."
 
 
 }

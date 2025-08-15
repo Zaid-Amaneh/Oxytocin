@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oxytocin/core/routing/app_router.dart';
@@ -8,10 +9,11 @@ import 'package:oxytocin/l10n/app_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'features/auth_complete/presentation/cubit/profile_info_cubit.dart';
 
-void main() {
+void main() async {
   final navigationService = NavigationService();
 
   final router = AppRouter.createRouter(navigationService);
+  await dotenv.load(fileName: ".env");
   runApp(OxytocinApp(router: router));
 }
 

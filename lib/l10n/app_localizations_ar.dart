@@ -469,4 +469,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get d => 'د';
+
+  @override
+  String get clinicLocation => 'موقع العيادة';
+
+  @override
+  String get easilyLocateClinic =>
+      'اعرف مكان العيادة بسهولة، وحدّد طريقك إليها';
+
+  @override
+  String get oneClick => 'بنقرة واحدة.';
 }

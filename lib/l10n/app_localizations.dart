@@ -943,6 +943,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'D'**
   String get d;
+
+  /// No description provided for @clinicLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Clinic location'**
+  String get clinicLocation;
+
+  /// No description provided for @easilyLocateClinic.
+  ///
+  /// In en, this message translates to:
+  /// **'Easily locate the clinic, and find your way there'**
+  String get easilyLocateClinic;
+
+  /// No description provided for @oneClick.
+  ///
+  /// In en, this message translates to:
+  /// **'With one click.'**
+  String get oneClick;
 }
 
 class _AppLocalizationsDelegate

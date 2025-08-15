@@ -52,6 +52,7 @@ class AppImages {
   static const String illustration = 'assets/images/illustration.png';
   static const String imagesMedicalrecord = "assets/images/medicalrecord.gif";
   static const String sensitive = 'assets/images/sensitive.svg';
+  static const String starOutline = 'assets/images/starOutline.svg';
   static const String imagesMedicines = "assets/images/medicines.svg";
   static const String alcohol = 'assets/images/alcohol.png';
 

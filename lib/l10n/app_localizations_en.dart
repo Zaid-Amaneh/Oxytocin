@@ -479,4 +479,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get d => 'D';
+
+  @override
+  String get clinicLocation => 'Clinic location';
+
+  @override
+  String get easilyLocateClinic =>
+      'Easily locate the clinic, and find your way there';
+
+  @override
+  String get oneClick => 'With one click.';
 }
