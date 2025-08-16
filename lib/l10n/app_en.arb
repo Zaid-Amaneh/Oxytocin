@@ -144,7 +144,29 @@
   "easilyLocateClinic":"Easily locate the clinic, and find your way there",
   "oneClick":"With one click.",
   "clinicPhotos":"Clinic photos",
-  "noClinicImage": "Sorry, no photos are available for this clinic."
+  "noClinicImage": "Sorry, no photos are available for this clinic.",
+  "clinicEvaluation":"Overall Clinic Evaluation",
+  "realPastPatients":"Real reviews from past patients",
+  "viewMore":"View more",
+  "about":"About",
+  "placeStudy":"Place of study",
+  "aboutDoctor":"About the doctor",
+  "show_all_days": "Show all days of the month",
+  "select_booking_time": "Select booking time",
+  "book_now":"Book now",
+  "available":"Available",
+  "remainingAppointmentsMessage": "{remainingCount} appointments\nstill available for today",
+  "noAppointmentsMessage": "No appointments\navailable",
+  "noAppointments": "No appointments",
+  "monday": "Monday",
+  "tuesday": "Tuesday",
+  "wednesday": "Wednesday",
+  "thursday": "Thursday",
+  "friday": "Friday",
+  "saturday": "Saturday",
+  "sunday": "Sunday",
+  "am": "AM",
+  "pm": "PM"
 
 
 }

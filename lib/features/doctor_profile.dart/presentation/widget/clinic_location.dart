@@ -305,7 +305,7 @@ class _ClinicLocationPageState extends State<ClinicLocationPage> {
                   text: context.tr.oneClick,
                   style: TextStyle(
                     color: Theme.of(context).primaryColor,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w900,
                     decoration: TextDecoration.underline,
                     decorationColor: Theme.of(context).primaryColor,
                   ),

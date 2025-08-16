@@ -50,13 +50,13 @@ class ClinicPhotosGallery extends StatelessWidget {
               context.tr.clinicPhotos,
               style: AppStyles.almaraiBold(
                 context,
-              ).copyWith(color: AppColors.textPrimary),
+              ).copyWith(color: AppColors.textPrimary, fontSize: 18),
             ),
           ),
           const SizedBox(height: 16),
 
           SizedBox(
-            height: height * 0.2,
+            height: height * 0.17,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16.0),

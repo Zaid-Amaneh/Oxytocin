@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
+import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/rate_stars.dart';
 
 class DoctorProfileViewBodyHeader extends StatelessWidget {
   final String doctorName;
   final String imageUrl;
-  final double rating;
+  final double rate;
   final String specialty;
   final VoidCallback? onTap;
   final EdgeInsetsGeometry? margin;
@@ -18,7 +17,7 @@ class DoctorProfileViewBodyHeader extends StatelessWidget {
     super.key,
     required this.doctorName,
     required this.imageUrl,
-    required this.rating,
+    required this.rate,
     required this.specialty,
     this.onTap,
     this.margin,
@@ -37,7 +36,7 @@ class DoctorProfileViewBodyHeader extends StatelessWidget {
             vertical: height * 0.01,
           ),
       width: width,
-      height: height * 0.2,
+      height: height * 0.23,
       child: Material(
         color: Colors.transparent,
         child: InkWell(
@@ -51,6 +50,7 @@ class DoctorProfileViewBodyHeader extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.all(width * 0.04),
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   _buildDoctorImage(width, height),
                   SizedBox(width: width * 0.04),
@@ -65,7 +65,7 @@ class DoctorProfileViewBodyHeader extends StatelessWidget {
   }
 
   Widget _buildDoctorImage(double width, double height) {
-    final imageSize = width * 0.33;
+    final imageSize = width * 0.37;
     return SizedBox(
       width: imageSize,
       height: imageSize,
@@ -266,7 +266,7 @@ class DoctorProfileViewBodyHeader extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
         ),
         SizedBox(height: height * 0.01),
-        _buildRatingStars(width, height, context),
+        RateStars(rate: rate, withText: true, starSize: 0.04),
         SizedBox(height: height * 0.01),
         Text(
           specialty,
@@ -275,84 +275,6 @@ class DoctorProfileViewBodyHeader extends StatelessWidget {
           ).copyWith(fontSize: width * 0.035, color: AppColors.textSecondary),
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
-        ),
-      ],
-    );
-  }
-
-  Widget _buildRatingStars(double width, double height, BuildContext context) {
-    final starSize = width * 0.04;
-    final fullStars = rating.floor();
-    final hasHalfStar = (rating - fullStars) >= 0.5;
-    final emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-
-    return Row(
-      children: [
-        ...List.generate(fullStars, (index) {
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: width * 0.005),
-            child: SvgPicture.asset(
-              AppImages.starSolid,
-              height: starSize,
-              width: starSize,
-            ),
-          );
-        }),
-
-        if (hasHalfStar)
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: width * 0.005),
-            child: Stack(
-              children: [
-                SvgPicture.asset(
-                  AppImages.starOutline,
-                  height: starSize,
-                  width: starSize,
-                  colorFilter: ColorFilter.mode(
-                    Colors.grey.shade300,
-                    BlendMode.srcIn,
-                  ),
-                ),
-                ClipRect(
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    widthFactor: 0.5,
-                    child: SvgPicture.asset(
-                      AppImages.starSolid,
-                      height: starSize,
-                      width: starSize,
-                      colorFilter: const ColorFilter.mode(
-                        Colors.yellow,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-        ...List.generate(emptyStars, (index) {
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: width * 0.005),
-            child: SvgPicture.asset(
-              AppImages.starOutline,
-              height: starSize,
-              width: starSize,
-              colorFilter: ColorFilter.mode(
-                Colors.grey.shade300,
-                BlendMode.srcIn,
-              ),
-            ),
-          );
-        }),
-
-        SizedBox(width: width * 0.01),
-        Text(
-          rating.toStringAsFixed(1),
-          style: AppStyles.almaraiBold(
-            context,
-          ).copyWith(color: AppColors.textSecondary, fontSize: width * 0.034),
         ),
       ],
     );

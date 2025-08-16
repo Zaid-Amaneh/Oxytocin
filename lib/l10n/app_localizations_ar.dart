@@ -485,4 +485,72 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noClinicImage => 'عذرًا، لا توجد صور متاحة لهذه العيادة.';
+
+  @override
+  String get clinicEvaluation => 'التقييم العام للعيادة';
+
+  @override
+  String get realPastPatients => 'آراء حقيقية من مرضى سابقين';
+
+  @override
+  String get viewMore => 'عرض المزيد';
+
+  @override
+  String get about => 'نبذة';
+
+  @override
+  String get placeStudy => 'مكان الدراسة';
+
+  @override
+  String get aboutDoctor => 'عن الطبيب';
+
+  @override
+  String get show_all_days => 'عرض جميع أيام الشهر';
+
+  @override
+  String get select_booking_time => 'اختر ميعاد الحجز';
+
+  @override
+  String get book_now => 'احجز الآن';
+
+  @override
+  String get available => 'متاح';
+
+  @override
+  String remainingAppointmentsMessage(Object remainingCount) {
+    return 'ما زال هناك $remainingCount مواعيد\nمتاحة لهذا اليوم';
+  }
+
+  @override
+  String get noAppointmentsMessage => 'لا يوجد مواعيد\nمتاحة';
+
+  @override
+  String get noAppointments => 'لا توجد مواعيد';
+
+  @override
+  String get monday => 'الإثنين';
+
+  @override
+  String get tuesday => 'الثلاثاء';
+
+  @override
+  String get wednesday => 'الأربعاء';
+
+  @override
+  String get thursday => 'الخميس';
+
+  @override
+  String get friday => 'الجمعة';
+
+  @override
+  String get saturday => 'السبت';
+
+  @override
+  String get sunday => 'الأحد';
+
+  @override
+  String get am => 'صباحاً';
+
+  @override
+  String get pm => 'مساءً';
 }

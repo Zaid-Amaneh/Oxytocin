@@ -495,4 +495,72 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noClinicImage => 'Sorry, no photos are available for this clinic.';
+
+  @override
+  String get clinicEvaluation => 'Overall Clinic Evaluation';
+
+  @override
+  String get realPastPatients => 'Real reviews from past patients';
+
+  @override
+  String get viewMore => 'View more';
+
+  @override
+  String get about => 'About';
+
+  @override
+  String get placeStudy => 'Place of study';
+
+  @override
+  String get aboutDoctor => 'About the doctor';
+
+  @override
+  String get show_all_days => 'Show all days of the month';
+
+  @override
+  String get select_booking_time => 'Select booking time';
+
+  @override
+  String get book_now => 'Book now';
+
+  @override
+  String get available => 'Available';
+
+  @override
+  String remainingAppointmentsMessage(Object remainingCount) {
+    return '$remainingCount appointments\nstill available for today';
+  }
+
+  @override
+  String get noAppointmentsMessage => 'No appointments\navailable';
+
+  @override
+  String get noAppointments => 'No appointments';
+
+  @override
+  String get monday => 'Monday';
+
+  @override
+  String get tuesday => 'Tuesday';
+
+  @override
+  String get wednesday => 'Wednesday';
+
+  @override
+  String get thursday => 'Thursday';
+
+  @override
+  String get friday => 'Friday';
+
+  @override
+  String get saturday => 'Saturday';
+
+  @override
+  String get sunday => 'Sunday';
+
+  @override
+  String get am => 'AM';
+
+  @override
+  String get pm => 'PM';
 }

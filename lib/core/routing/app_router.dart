@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
+import 'package:oxytocin/features/doctor_profile.dart/presentation/views/all_reviews_view.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/doctor_profile_view.dart';
 import 'package:oxytocin/features/search_doctors_page/data/services/doctor_search_service.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/viewmodels/doctorSearch/doctor_search_cubit.dart';
@@ -58,7 +59,11 @@ class AppRouter {
           name: RouteNames.categories,
           builder: (context, state) => const CategoriesView(),
         ),
-
+        GoRoute(
+          path: '/${RouteNames.allReviewsView}',
+          name: RouteNames.allReviewsView,
+          builder: (context, state) => const AllReviewsView(),
+        ),
         GoRoute(
           path: '/${RouteNames.profileInfo}',
           name: RouteNames.profileInfo,

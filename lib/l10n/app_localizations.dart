@@ -973,6 +973,138 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sorry, no photos are available for this clinic.'**
   String get noClinicImage;
+
+  /// No description provided for @clinicEvaluation.
+  ///
+  /// In en, this message translates to:
+  /// **'Overall Clinic Evaluation'**
+  String get clinicEvaluation;
+
+  /// No description provided for @realPastPatients.
+  ///
+  /// In en, this message translates to:
+  /// **'Real reviews from past patients'**
+  String get realPastPatients;
+
+  /// No description provided for @viewMore.
+  ///
+  /// In en, this message translates to:
+  /// **'View more'**
+  String get viewMore;
+
+  /// No description provided for @about.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get about;
+
+  /// No description provided for @placeStudy.
+  ///
+  /// In en, this message translates to:
+  /// **'Place of study'**
+  String get placeStudy;
+
+  /// No description provided for @aboutDoctor.
+  ///
+  /// In en, this message translates to:
+  /// **'About the doctor'**
+  String get aboutDoctor;
+
+  /// No description provided for @show_all_days.
+  ///
+  /// In en, this message translates to:
+  /// **'Show all days of the month'**
+  String get show_all_days;
+
+  /// No description provided for @select_booking_time.
+  ///
+  /// In en, this message translates to:
+  /// **'Select booking time'**
+  String get select_booking_time;
+
+  /// No description provided for @book_now.
+  ///
+  /// In en, this message translates to:
+  /// **'Book now'**
+  String get book_now;
+
+  /// No description provided for @available.
+  ///
+  /// In en, this message translates to:
+  /// **'Available'**
+  String get available;
+
+  /// No description provided for @remainingAppointmentsMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'{remainingCount} appointments\nstill available for today'**
+  String remainingAppointmentsMessage(Object remainingCount);
+
+  /// No description provided for @noAppointmentsMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'No appointments\navailable'**
+  String get noAppointmentsMessage;
+
+  /// No description provided for @noAppointments.
+  ///
+  /// In en, this message translates to:
+  /// **'No appointments'**
+  String get noAppointments;
+
+  /// No description provided for @monday.
+  ///
+  /// In en, this message translates to:
+  /// **'Monday'**
+  String get monday;
+
+  /// No description provided for @tuesday.
+  ///
+  /// In en, this message translates to:
+  /// **'Tuesday'**
+  String get tuesday;
+
+  /// No description provided for @wednesday.
+  ///
+  /// In en, this message translates to:
+  /// **'Wednesday'**
+  String get wednesday;
+
+  /// No description provided for @thursday.
+  ///
+  /// In en, this message translates to:
+  /// **'Thursday'**
+  String get thursday;
+
+  /// No description provided for @friday.
+  ///
+  /// In en, this message translates to:
+  /// **'Friday'**
+  String get friday;
+
+  /// No description provided for @saturday.
+  ///
+  /// In en, this message translates to:
+  /// **'Saturday'**
+  String get saturday;
+
+  /// No description provided for @sunday.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunday'**
+  String get sunday;
+
+  /// No description provided for @am.
+  ///
+  /// In en, this message translates to:
+  /// **'AM'**
+  String get am;
+
+  /// No description provided for @pm.
+  ///
+  /// In en, this message translates to:
+  /// **'PM'**
+  String get pm;
 }
 
 class _AppLocalizationsDelegate
