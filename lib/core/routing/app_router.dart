@@ -78,11 +78,8 @@ class AppRouter {
           builder: (context, state) => BlocProvider(
             create: (_) {
               final cubit = HomeCubit();
-              cubit.loadDoctors(); // تحميل الأطباء العاديين
-              cubit.loadNearbyDoctors(
-                33.5260220,
-                36.2864360,
-              ); // تحميل الأطباء القريبين
+              cubit.loadDoctors(33.5260220, 36.2864360);
+              cubit.loadNearbyDoctors(33.5260220, 36.2864360);
               return cubit;
             },
             child: const HomeView(),

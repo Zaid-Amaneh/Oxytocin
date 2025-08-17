@@ -127,11 +127,14 @@ class _CategoriesViewState extends State<CategoriesView> {
   }
 
   void _showSubspecialtiesBottomSheet(BuildContext context, category) {
+    final categoriesCubit = context.read<CategoriesCubit>();
+
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (context) => SubspecialtiesBottomSheet(category: category),
+      builder: (context) =>
+          SubspecialtiesBottomSheet(category: category, cubit: categoriesCubit),
     );
   }
 }

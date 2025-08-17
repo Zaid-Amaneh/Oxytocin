@@ -1,7 +1,7 @@
 class ApiEndpoints {
   static const String baseURL =
       //  'https://actively-sound-tiger.ngrok-free.app';
-      "http://192.168.1.100:8000";
+      "http://192.168.1.106:8000";
   static const String signUp = '$baseURL/api/users/';
   static const String login = '$baseURL/api/patients/login/';
   static const String verifyOtp = '$baseURL/api/users/otp/signup/verify/';
@@ -12,11 +12,7 @@ class ApiEndpoints {
       '$baseURL/api/users/forget-password/verify-otp/';
   static const String changePassword =
       '$baseURL/api/users/forget-password/add-new-password/';
-
-  // Profile endpoints
   static const String userProfile = '$baseURL/api/patients/me/';
-
-  // Doctor endpoints
   static const String highestRatedDoctors = '/api/doctors/highest-rated/';
   static const String doctorById = '/api/doctors';
   static const String nearestDoctors = '/api/doctors/clinics/nearest/';

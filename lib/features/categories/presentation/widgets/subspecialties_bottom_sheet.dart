@@ -5,8 +5,12 @@ import '../cubit/categories_cubit.dart';
 
 class SubspecialtiesBottomSheet extends StatelessWidget {
   final CategoryModel category;
-
-  const SubspecialtiesBottomSheet({super.key, required this.category});
+  final CategoriesCubit? cubit;
+  const SubspecialtiesBottomSheet({
+    super.key,
+    required this.category,
+    this.cubit,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -81,9 +85,10 @@ class SubspecialtiesBottomSheet extends StatelessWidget {
                     ),
                   ),
                   onTap: () {
-                    context.read<CategoriesCubit>().selectSubspecialty(
-                      subspecialty,
-                    );
+                    // استخدام الـ cubit الممرر أو البحث عنه في الـ context
+                    final categoriesCubit =
+                        cubit ?? context.read<CategoriesCubit>();
+                    categoriesCubit.selectSubspecialty(subspecialty);
                     Navigator.pop(context);
                   },
                 );

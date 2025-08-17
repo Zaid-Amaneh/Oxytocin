@@ -123,24 +123,57 @@ class DoctorCard extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  // Text(
-                  //   'التقييم: ${doctor.rate}/5',
-                  //   style: TextStyle(
-                  //     color: Colors.white70,
-                  //     fontSize: isTablet ? 12.0 : 10.0,
-                  //     fontFamily: 'AlmaraiRegular',
-                  //   ),
-                  // ),
-                  // Text(
-                  //   'عدد التقييمات: ${doctor}',
-                  //   style: TextStyle(
-                  //     color: Colors.white70,
-                  //     fontSize: isTablet ? 12.0 : 10.0,
-                  //     fontFamily: 'AlmaraiRegular',
-                  //   ),
-                  //   maxLines: 1,
-                  //   overflow: TextOverflow.ellipsis,
-                  // ),
+                  if (doctor.address != null && doctor.address!.isNotEmpty) ...[
+                    SizedBox(height: isTablet ? 4.0 : 2.0),
+                    Text(
+                      'العيادة:',
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: isTablet ? 11.0 : 9.0,
+                        fontFamily: 'AlmaraiRegular',
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    SizedBox(height: isTablet ? 2.0 : 1.0),
+                    Text(
+                      doctor.address!,
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: isTablet ? 11.0 : 9.0,
+                        fontFamily: 'AlmaraiRegular',
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                  if (doctor.clinicDistance != null) ...[
+                    SizedBox(height: isTablet ? 4.0 : 2.0),
+                    Text(
+                      'يبعد عنك ${doctor.formattedDistance}',
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: isTablet ? 11.0 : 9.0,
+                        fontFamily: 'AlmaraiRegular',
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                  if (doctor.hasAvailableAppointment) ...[
+                    SizedBox(height: isTablet ? 2.0 : 1.0),
+                    Text(
+                      'أقرب موعد متاح',
+                      style: TextStyle(
+                        color: Colors.green[300],
+                        fontSize: isTablet ? 10.0 : 8.0,
+                        fontFamily: 'AlmaraiRegular',
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
                 ],
               ),
             ),
@@ -229,9 +262,11 @@ class DoctorCard extends StatelessWidget {
                             return Container(
                               width: 200,
                               height: 200,
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                 image: DecorationImage(
-                                  image: AssetImage(AppImages.doctorCard),
+                                  image: AssetImage(
+                                    _getDefaultImage(doctor.gender),
+                                  ),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -241,9 +276,11 @@ class DoctorCard extends StatelessWidget {
                       : Container(
                           width: imageWidth,
                           height: imageHeight,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage(AppImages.doctorCard),
+                              image: AssetImage(
+                                _getDefaultImage(doctor.gender),
+                              ),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -366,5 +403,16 @@ class DoctorCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _getDefaultImage(String? gender) {
+    print('Gender: $gender'); // Debug print
+    if (gender == 'female') {
+      print('Using female image: ${AppImages.docWomen}');
+      return AppImages.docWomen;
+    } else {
+      print('Using male image: ${AppImages.doctorCard}');
+      return AppImages.doctorCard;
+    }
   }
 }

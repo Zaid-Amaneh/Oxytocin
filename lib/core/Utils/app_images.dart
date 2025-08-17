@@ -117,6 +117,7 @@ class AppImages {
   static const String bgPattern = 'assets/images/bg_pattern.png';
 
   static const String doctorCard = 'assets/images/doc.png';
+  static const String docWomen = 'assets/images/docWomen.png';
 
   static const String bg2 = 'assets/images/bg_2.png';
 

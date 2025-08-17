@@ -22,13 +22,16 @@ class HomeCubit extends Cubit<HomeState> {
   bool get isLoadingDoctors => _isLoadingDoctors;
   bool get isLoadingNearbyDoctors => _isLoadingNearbyDoctors;
 
-  void loadDoctors() async {
+  void loadDoctors(double latitude, double longitude) async {
     try {
       _isLoadingDoctors = true;
       if (_nearbyDoctors.isEmpty) {
         emit(HomeLoading());
       }
-      final doctors = await _doctorsService.getHighestRatedDoctors();
+      final doctors = await _doctorsService.getHighestRatedDoctors(
+        latitude: latitude,
+        longitude: longitude,
+      );
       _doctors = doctors;
       _isLoadingDoctors = false;
       if (_nearbyDoctors.isNotEmpty) {

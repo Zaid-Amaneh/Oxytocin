@@ -8,9 +8,13 @@ class DoctorsService {
   final String baseUrl;
 
   DoctorsService({required this.baseUrl});
-  Future<List<DoctorModel>> getHighestRatedDoctors() async {
+  Future<List<DoctorModel>> getHighestRatedDoctors({
+    required double latitude,
+    required double longitude,
+  }) async {
     try {
-      final url = '$baseUrl${ApiEndpoints.highestRatedDoctors}';
+      final url =
+          '$baseUrl${ApiEndpoints.highestRatedDoctors}?latitude=$latitude&longitude=$longitude';
       print('Fetching doctors from: $url');
 
       final response = await http.get(
