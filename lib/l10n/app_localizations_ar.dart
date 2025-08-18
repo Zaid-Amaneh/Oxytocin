@@ -583,4 +583,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get loadingRoute => 'جارٍ تحميل المسار...';
+
+  @override
+  String get errorOccurred => 'نعتذر، حدث خطأ ما. الرجاء إعادة المحاولة';
+
+  @override
+  String get retry => 'إعادة المحاولة';
 }

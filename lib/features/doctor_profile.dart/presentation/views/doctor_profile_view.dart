@@ -3,13 +3,13 @@ import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/doctor
 import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/doctor_profile_view_body.dart';
 
 class DoctorProfileView extends StatelessWidget {
-  const DoctorProfileView({super.key});
-
+  const DoctorProfileView({super.key, required this.id});
+  final int id;
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: DoctorProfileViewBody(),
-      appBar: DoctorAppBar(doctorName: 'Zaid Amaneh'),
+    return Scaffold(
+      body: DoctorProfileViewBody(doctorId: id),
+      appBar: const DoctorAppBar(doctorName: 'Zaid Amaneh'),
     );
   }
 }

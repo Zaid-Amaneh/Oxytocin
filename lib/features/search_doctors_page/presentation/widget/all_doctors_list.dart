@@ -3,7 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
+import 'package:oxytocin/core/routing/navigation_service.dart';
+import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
+import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/doctor_profile_cubit.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/viewmodels/doctorSearch/doctor_search_cubit.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/widget/doctor_card.dart';
 import 'package:shimmer/shimmer.dart';
@@ -74,7 +77,17 @@ class _AllDoctorsListState extends State<AllDoctorsList> {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.all(6),
-                    child: DoctorCard(doctorModel: state.doctors[index]),
+                    child: DoctorCard(
+                      doctorModel: state.doctors[index],
+                      onTap: () {
+                        NavigationService().pushToNamedWithParams(
+                          RouteNames.doctorProfileView,
+                          queryParams: {
+                            'id': state.doctors[index].user.id.toString(),
+                          },
+                        );
+                      },
+                    ),
                   );
                 },
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

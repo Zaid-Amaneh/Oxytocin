@@ -593,4 +593,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get loadingRoute => 'Loading route...';
+
+  @override
+  String get errorOccurred => 'Sorry, an error occurred. Please try again';
+
+  @override
+  String get retry => 'Retry';
 }

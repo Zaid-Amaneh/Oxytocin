@@ -4,10 +4,11 @@ import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
+import 'package:oxytocin/features/doctor_profile.dart/data/models/clinic_image.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ClinicPhotosGallery extends StatelessWidget {
-  final List<String> imageUrls;
+  final List<ClinicImage> imageUrls;
 
   const ClinicPhotosGallery({super.key, required this.imageUrls});
 
@@ -29,9 +30,12 @@ class ClinicPhotosGallery extends StatelessWidget {
               ).copyWith(color: AppColors.textPrimary),
             ),
             Center(
-              child: SvgPicture.asset(
-                AppImages.noClinicImage,
-                height: height * 0.3,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SvgPicture.asset(
+                  AppImages.noClinicImage,
+                  height: height * 0.2,
+                ),
               ),
             ),
           ],
@@ -74,7 +78,7 @@ class ClinicPhotosGallery extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                       child: Image.network(
-                        imageUrls[index],
+                        imageUrls[index].image,
                         fit: BoxFit.cover,
                         loadingBuilder: (context, child, loadingProgress) {
                           if (loadingProgress == null) return child;

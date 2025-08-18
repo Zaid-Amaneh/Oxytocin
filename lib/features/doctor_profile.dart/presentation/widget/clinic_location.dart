@@ -19,6 +19,7 @@ class ClinicLocationPage extends StatefulWidget {
   final double clinicLongitude;
   final String clinicName;
   final String clinicLocation;
+  final String clinicPhone;
 
   const ClinicLocationPage({
     super.key,
@@ -26,6 +27,7 @@ class ClinicLocationPage extends StatefulWidget {
     required this.clinicLongitude,
     required this.clinicName,
     required this.clinicLocation,
+    required this.clinicPhone,
   });
 
   @override
@@ -105,7 +107,7 @@ class _ClinicLocationPageState extends State<ClinicLocationPage> {
       position: LatLng(widget.clinicLatitude, widget.clinicLongitude),
       infoWindow: InfoWindow(
         title: '${context.tr.d}.${widget.clinicName}',
-        snippet: widget.clinicLocation,
+        snippet: widget.clinicPhone,
       ),
       icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
     );

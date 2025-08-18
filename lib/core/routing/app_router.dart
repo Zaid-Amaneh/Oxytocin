@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
+import 'package:oxytocin/features/doctor_profile.dart/data/services/doctor_profile_service.dart';
+import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/doctor_profile_cubit.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/all_reviews_view.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/doctor_profile_view.dart';
 import 'package:oxytocin/features/search_doctors_page/data/services/doctor_search_service.dart';
@@ -42,7 +44,7 @@ import 'package:oxytocin/features/medical_appointments/presentation/views/medica
 class AppRouter {
   static GoRouter createRouter(NavigationService navigationService) {
     final router = GoRouter(
-      initialLocation: '/${RouteNames.doctorProfileView}',
+      initialLocation: '/${RouteNames.searchDoctorsView}',
       routes: [
         GoRoute(
           path: '/${RouteNames.splash}',
@@ -238,7 +240,14 @@ class AppRouter {
         GoRoute(
           path: '/${RouteNames.doctorProfileView}',
           name: RouteNames.doctorProfileView,
-          builder: (context, state) => const DoctorProfileView(),
+          builder: (context, state) {
+            int id = int.tryParse(state.uri.queryParameters['id'] ?? '') ?? 0;
+            final doctorProfileService = DoctorProfileService();
+            return BlocProvider(
+              create: (context) => DoctorProfileCubit(doctorProfileService),
+              child: DoctorProfileView(id: id),
+            );
+          },
         ),
       ],
     );

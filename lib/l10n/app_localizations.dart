@@ -1165,6 +1165,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Loading route...'**
   String get loadingRoute;
+
+  /// No description provided for @errorOccurred.
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, an error occurred. Please try again'**
+  String get errorOccurred;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
 }
 
 class _AppLocalizationsDelegate

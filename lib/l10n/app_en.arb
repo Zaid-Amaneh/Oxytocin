@@ -176,7 +176,9 @@
   "routeError": "An error occurred while fetching the route",
   "noRouteFound": "No route found",
   "yourLocation": "Your location",
-  "loadingRoute": "Loading route..."
+  "loadingRoute": "Loading route...",
+  "errorOccurred": "Sorry, an error occurred. Please try again",
+  "retry": "Retry"
 
 
 }
