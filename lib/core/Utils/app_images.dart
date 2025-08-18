@@ -101,6 +101,12 @@ class AppImages {
 
   static const String imagesSurgery = "assets/images/surgery.svg";
 
+  static const String emptyImage = "assets/images/empty.svg";
+
+  static const String unexpectedError = "assets/images/unexpected_error.png";
+
+  static const String searchNotFound = "assets/images/search_not_found.png";
+
   static const String imagesUploadphoto = "assets/images/uploadphoto.png";
 
   static const String imagesUserNameIcon = "assets/images/userNameIcon.svg";

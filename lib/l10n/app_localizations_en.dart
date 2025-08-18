@@ -346,7 +346,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get operationSuccessfulTitle => 'Operation successful';
 
   @override
-  String get operationSuccessful => 'The operation was successful.';
+  String get login_success_message =>
+      'You have successfully logged in! Welcome back';
 
   @override
   String get changePasswordSuccess =>
@@ -387,4 +388,89 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get explore_and_choose_doctor =>
       'Explore doctors and choose the one that suits you best.';
+
+  @override
+  String get findRightDoctor => 'Find the right doctor for you';
+
+  @override
+  String get searchHistory => 'Search history';
+
+  @override
+  String get clearSearchHistory => 'Clear search history';
+
+  @override
+  String get undefined => 'Undefined';
+
+  @override
+  String get experience => 'Experience';
+
+  @override
+  String get rate => 'Rating';
+
+  @override
+  String get distance => 'Distance';
+
+  @override
+  String get descending => 'Descending';
+
+  @override
+  String get ascending => 'Ascending';
+
+  @override
+  String get registeredLocation => 'Registered Location';
+
+  @override
+  String get sortBy => 'Sort By';
+
+  @override
+  String get sortType => 'Sort Type';
+
+  @override
+  String get apply => 'Apply';
+
+  @override
+  String get locate => 'Locate';
+
+  @override
+  String get distanceKm => 'Distance (km)';
+
+  @override
+  String get km => 'km';
+
+  @override
+  String get m => 'm';
+
+  @override
+  String get filterSpecialty => 'Filter by Specialty';
+
+  @override
+  String get filterGender => 'Filter by Gender';
+
+  @override
+  String get location_services_disabled =>
+      'Location services are disabled. Please enable them to continue.';
+
+  @override
+  String get location_permission_denied => 'Location permission was denied.';
+
+  @override
+  String get location_permission_denied_forever =>
+      'Location permission was permanently denied. Please enable it from the app settings.';
+
+  @override
+  String get permissions_error_title => 'Permissions Error';
+
+  @override
+  String get authentication_failed => 'Authentication failed';
+
+  @override
+  String get reviews => 'reviews';
+
+  @override
+  String get server_error =>
+      'An unexpected error occurred. Please try again later';
+
+  @override
+  String get no_doctor_found =>
+      'We couldnt find any doctor matching your search. Try different keywords or check your spelling';
 }

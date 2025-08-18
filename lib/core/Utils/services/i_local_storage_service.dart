@@ -8,6 +8,9 @@ abstract class ILocalStorageService {
   Future<void> clearAll();
   Future<void> setKeepUserSignedIn(bool value);
   Future<bool> isUserKeptSignedIn();
+  Future<void> saveUserQuery(String value);
+  Future<List<String>> getUserSearchHistory();
+  Future<void> clearUserSearchHistory();
 
   // General storage methods
   Future<void> setValue(String key, dynamic value);

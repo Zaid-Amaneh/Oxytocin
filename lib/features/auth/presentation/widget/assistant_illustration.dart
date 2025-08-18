@@ -20,10 +20,10 @@ class AssistantIllustration extends StatelessWidget {
       left: width * 0.08,
       right: width * 0.08,
       child: form
-          ? Helper.isArabic()
+          ? Helper.isArabic(context)
                 ? imageList[1]
                 : imageList[0]
-          : Helper.isArabic()
+          : Helper.isArabic(context)
           ? imageList[0]
           : imageList[1],
     );

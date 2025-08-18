@@ -61,7 +61,7 @@ class _OtpFieldState extends State<OtpField> {
       ),
       errorTextMargin: const EdgeInsets.fromLTRB(16, 0, 16, 0),
       errorTextSpace: 5,
-      errorTextDirection: Helper.isArabic()
+      errorTextDirection: Helper.isArabic(context)
           ? TextDirection.rtl
           : TextDirection.ltr,
       enableActiveFill: true,

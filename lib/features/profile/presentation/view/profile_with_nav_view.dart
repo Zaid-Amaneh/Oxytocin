@@ -21,7 +21,7 @@ class _ProfileWithNavViewState extends State<ProfileWithNavView> {
       Navigator.of(context).pop();
     } else if (index == 1) {
       Navigator.of(context).pop();
-      NavigationService().pushToNamed(RouteNames.allDoctorsView);
+      NavigationService().pushToNamed(RouteNames.searchDoctorsView);
     } else if (index == 2) {
       Navigator.of(context).pop();
       NavigationService().pushToNamed(RouteNames.medicalAppointmentsView);

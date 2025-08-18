@@ -13,7 +13,6 @@ import 'package:oxytocin/core/widgets/custom_button.dart';
 import 'package:oxytocin/core/widgets/otp_field.dart';
 import 'package:oxytocin/core/widgets/resend_otp.dart';
 import 'package:oxytocin/core/widgets/sliver_spacer.dart';
-import 'package:oxytocin/extensions/failure_localization.dart';
 import 'package:oxytocin/features/auth/data/models/resend_otp_request.dart';
 import 'package:oxytocin/features/auth/data/models/verify_otp_request.dart';
 import 'package:oxytocin/features/auth/presentation/viewmodels/blocs/verification/otp_bloc.dart';

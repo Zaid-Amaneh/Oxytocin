@@ -11,6 +11,8 @@ class ApiEndpoints {
       '$baseURL/api/users/forget-password/verify-otp/';
   static const String changePassword =
       '$baseURL/api/users/forget-password/add-new-password/';
+  static const String doctorSearch = "$baseURL/api/doctors/search/";
+  static const String refreshToken = "$baseURL/api/users/refresh-token/";
   static const String userProfile = '$baseURL/api/patients/me/';
   static const String highestRatedDoctors = '/api/doctors/highest-rated/';
   static const String doctorById = '/api/doctors';

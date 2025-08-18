@@ -4,6 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:logger/web.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
+import 'package:oxytocin/core/Utils/services/local_storage_service.dart';
+import 'package:oxytocin/core/routing/navigation_service.dart';
+import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/viewmodels/password_view_model.dart';
 import 'package:oxytocin/core/viewmodels/phone_view_model.dart';
@@ -27,15 +30,24 @@ class SignInForm extends StatefulWidget {
 }
 
 class _SignInFormState extends State<SignInForm> {
-  final phoneNumberVM = PhoneViewModel();
-  final passwordVM = PasswordViewModel();
+  final formKey = GlobalKey<FormState>();
+  late final PhoneViewModel phoneNumberVM;
+  late final PasswordViewModel passwordVM;
+  bool rememberMe = false;
+
+  @override
+  void initState() {
+    super.initState();
+    phoneNumberVM = PhoneViewModel();
+    passwordVM = PasswordViewModel();
+  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     final width = size.width;
     final height = size.height;
-    var formKey = GlobalKey<FormState>();
+
     return BlocConsumer<SignInBloc, SignInState>(
       listener: (context, state) {
         if (state is SignInLoading) {
@@ -44,11 +56,17 @@ class _SignInFormState extends State<SignInForm> {
           context.pop();
           Helper.customToastification(
             title: context.tr.operationSuccessfulTitle,
-            description: context.tr.operationSuccessful,
+            description: context.tr.login_success_message,
             context: context,
             type: ToastificationType.success,
             seconds: 5,
           );
+
+          LocalStorageService localStorageService = LocalStorageService();
+          localStorageService.setKeepUserSignedIn(rememberMe);
+
+          NavigationService navigationService = NavigationService();
+          navigationService.goToNamed(RouteNames.home);
         } else if (state is SignInFailure) {
           context.pop();
           Logger logger = Logger();
@@ -57,7 +75,7 @@ class _SignInFormState extends State<SignInForm> {
           Helper.customToastification(
             context: context,
             type: ToastificationType.error,
-            title: context.tr.errorInvalidCredentialsTitle,  
+            title: context.tr.errorInvalidCredentialsTitle,
             description: message,
             seconds: 5,
           );
@@ -101,11 +119,19 @@ class _SignInFormState extends State<SignInForm> {
                     create: (_) => passwordVM,
                     child: const PasswordField(),
                   ),
-
                 ),
                 const SliverToBoxAdapter(child: ForgotPassword()),
                 SliverSpacer(height: height * 0.06),
-                const SliverToBoxAdapter(child: RememberMe()),
+                SliverToBoxAdapter(
+                  child: RememberMe(
+                    initialValue: rememberMe,
+                    onChanged: (value) {
+                      setState(() {
+                        rememberMe = value;
+                      });
+                    },
+                  ),
+                ),
                 SliverToBoxAdapter(
                   child: CustomButton(
                     borderRadius: 25,
@@ -115,8 +141,6 @@ class _SignInFormState extends State<SignInForm> {
                           phone: phoneNumberVM.phoneController.text,
                           password: passwordVM.passwordController.text,
                         );
-                        Logger().d(request.password);
-                        Logger().d(request.phone);
                         context.read<SignInBloc>().add(
                           SignInSubmitted(request),
                         );

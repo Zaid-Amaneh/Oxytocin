@@ -340,7 +340,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get operationSuccessfulTitle => 'تم العملية بنجاح';
 
   @override
-  String get operationSuccessful => 'تم العملية بنجاح.';
+  String get login_success_message => 'تم تسجيل دخولك بنجاح! أهلاً بعودتك';
 
   @override
   String get changePasswordSuccess => 'تم تغيير كلمة المرور بنجاح.';
@@ -379,4 +379,88 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get explore_and_choose_doctor => 'استكشف الأطباء واختر الأنسب لك';
+
+  @override
+  String get findRightDoctor => 'ابحث عن الطبيب المناسب لك';
+
+  @override
+  String get searchHistory => 'سجل البحث';
+
+  @override
+  String get clearSearchHistory => 'مسح سجل البحث';
+
+  @override
+  String get undefined => 'غير محدد';
+
+  @override
+  String get experience => 'الخبرة';
+
+  @override
+  String get rate => 'التقييم';
+
+  @override
+  String get distance => 'البعد';
+
+  @override
+  String get descending => 'تنازلي';
+
+  @override
+  String get ascending => 'تصاعدي';
+
+  @override
+  String get registeredLocation => 'موقعي المسجل';
+
+  @override
+  String get sortBy => 'الترتيب حسب';
+
+  @override
+  String get sortType => 'نوع الترتيب';
+
+  @override
+  String get apply => 'تطبيق';
+
+  @override
+  String get locate => 'تحديد الموقع';
+
+  @override
+  String get distanceKm => 'البعد (كم)';
+
+  @override
+  String get km => 'كيلومتر';
+
+  @override
+  String get m => 'متر';
+
+  @override
+  String get filterSpecialty => 'فلترة حسب التخصص';
+
+  @override
+  String get filterGender => 'فلترة حسب الجنس';
+
+  @override
+  String get location_services_disabled =>
+      'خدمات الموقع معطلة. الرجاء تفعيلها للمتابعة.';
+
+  @override
+  String get location_permission_denied => 'تم رفض إذن الوصول للموقع.';
+
+  @override
+  String get location_permission_denied_forever =>
+      'تم رفض إذن الموقع بشكل دائم. يرجى تفعيله من إعدادات التطبيق.';
+
+  @override
+  String get permissions_error_title => 'خطأ في الأذونات';
+
+  @override
+  String get authentication_failed => 'فشلت عملية المصادقة';
+
+  @override
+  String get reviews => 'تقييم';
+
+  @override
+  String get server_error => 'حدث خطأ غير متوقع. يرجى المحاولة لاحقًا';
+
+  @override
+  String get no_doctor_found =>
+      'لم نجد أي طبيب يطابق بحثك. جرّب كلمات أخرى أو تحقق من الإملاء';
 }

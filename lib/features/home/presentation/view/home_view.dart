@@ -5,6 +5,7 @@ import 'package:oxytocin/features/home/presentation/widgets/doctor_card.dart';
 import 'package:oxytocin/features/home/presentation/widgets/nearby_doctor_card.dart';
 import 'package:oxytocin/features/home/presentation/widgets/section_header.dart';
 import 'package:oxytocin/features/home/presentation/widgets/top_bar.dart';
+import 'package:oxytocin/features/search_doctors_page/presentation/views/search_doctors_view.dart';
 import '../cubit/home_cubit.dart';
 import '../cubit/home_state.dart';
 import 'package:oxytocin/features/categories/presentation/widgets/category_card.dart';
@@ -21,7 +22,6 @@ import 'package:oxytocin/features/profile/presentation/cubit/profile_cubit.dart'
 import 'package:oxytocin/features/profile/presentation/cubit/profile_state.dart';
 import 'package:oxytocin/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:oxytocin/features/profile/data/datasources/profile_data_source.dart';
-import 'package:oxytocin/features/all_doctors_page/presentation/views/all_doctors_view.dart';
 import 'package:oxytocin/features/medical_appointments/presentation/views/medical_appointments_view.dart';
 
 class HomeView extends StatefulWidget {
@@ -444,7 +444,7 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget _buildDoctorsPage() {
-    return const AllDoctorsView();
+    return const SearchDoctorsView();
   }
 
   Widget _buildAppointmentsPage() {

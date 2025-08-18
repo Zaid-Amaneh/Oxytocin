@@ -49,4 +49,9 @@ class SecureStorageService implements ISecureStorageService {
   Future<void> deleteRefreshToken() async {
     await _storage.delete(key: _refreshTokenKey);
   }
+
+  @override
+  Future<void> deleteAll() async {
+    await _storage.deleteAll();
+  }
 }

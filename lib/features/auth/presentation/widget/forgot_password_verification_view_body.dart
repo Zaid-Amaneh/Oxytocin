@@ -10,13 +10,11 @@ import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/widgets/custom_button.dart';
 import 'package:oxytocin/core/widgets/otp_field.dart';
 import 'package:oxytocin/core/widgets/sliver_spacer.dart';
-import 'package:oxytocin/extensions/failure_localization.dart';
 import 'package:oxytocin/features/auth/data/models/verify_otp_request.dart';
 import 'package:oxytocin/features/auth/presentation/viewmodels/blocs/verifyForgotPasswordOtp/verify_forgot_password_otp_bloc.dart';
 import 'package:oxytocin/features/auth/presentation/widget/change_wrong_number.dart';
 import 'package:oxytocin/features/auth/presentation/widget/forgot_password_view_header.dart';
 import 'package:oxytocin/l10n/app_localizations.dart';
-import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
 
 class ForgotPasswordVerificationViewBody extends StatelessWidget {
@@ -87,7 +85,9 @@ class ForgotPasswordVerificationViewBody extends StatelessWidget {
               // SliverToBoxAdapter(
               //   child: ChangeNotifierProvider(
               //     create: (_) => ResendOtpViewModel()..startTimer(),
-              //     child: ResendOtp(request: ResendOtpRequest(phone: 'phone')),
+              //     child: ResendOtp(
+              //       request: ResendOtpRequest(phone: '0944373305'),
+              //     ),
               //   ),
               // ),
               SliverSpacer(height: height * 0.24),

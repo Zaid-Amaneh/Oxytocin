@@ -4,14 +4,27 @@ import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 
 class RememberMe extends StatefulWidget {
-  const RememberMe({super.key});
+  final Function(bool) onChanged;
+  final bool initialValue;
+
+  const RememberMe({
+    super.key,
+    required this.onChanged,
+    this.initialValue = false,
+  });
 
   @override
   State<RememberMe> createState() => _RememberMeState();
 }
 
 class _RememberMeState extends State<RememberMe> {
-  bool? check = false;
+  bool? check;
+
+  @override
+  void initState() {
+    super.initState();
+    check = widget.initialValue;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +40,7 @@ class _RememberMeState extends State<RememberMe> {
         ),
         const SizedBox(width: 8),
         Container(
-          width: 20, // Checkbox size
+          width: 20,
           height: 20,
           decoration: BoxDecoration(
             color: Colors.white,
@@ -49,6 +62,7 @@ class _RememberMeState extends State<RememberMe> {
                 setState(() {
                   check = value;
                 });
+                widget.onChanged(value ?? false);
               },
               side: const BorderSide(
                 color: AppColors.textfieldBorder,

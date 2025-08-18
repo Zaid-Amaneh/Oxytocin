@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/l10n/app_localizations.dart';
 import 'package:toastification/toastification.dart';
 
 class Helper {
-  static bool isArabic() {
-    return Intl.getCurrentLocale() == 'ar';
+  static bool isArabic(BuildContext context) {
+    String currentLangCode = Localizations.localeOf(context).languageCode;
+    return currentLangCode == 'ar';
   }
 
   static ToastificationItem customToastification({

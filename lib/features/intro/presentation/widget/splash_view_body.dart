@@ -38,7 +38,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     final isNewUser = await localStorageService.isNewUser();
     final keepUser = await localStorageService.isUserKeptSignedIn();
     if (keepUser) {
-      // Go to Home
+      nav.goToNamed(RouteNames.home);
     } else if (isNewUser) {
       nav.goToNamed(RouteNames.intro);
     } else {

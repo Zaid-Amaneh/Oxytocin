@@ -16,7 +16,7 @@ class RouteNames {
   static const setLocation = 'SetLocation';
   static const congratView = 'CongratsView';
 
-  static const allDoctorsView = 'AllDoctorsView';
+  static const searchDoctorsView = 'SearchDoctorsView';
   static const medicalAppointmentsView = 'medicalAppointmentsView';
   static const profile = 'profile';
 }
