@@ -136,7 +136,8 @@ class LocalStorageService implements ILocalStorageService {
 
     if (categoryId != null && categoryNameAr != null) {
       print('✅ تم العثور على بيانات الاختصاص الأساسي');
-      return {'id': categoryId, 'nameAr': categoryNameAr};
+      // return {'id': categoryId, 'nameAr': categoryNameAr}; ????????????????
+      return {categoryNameAr: categoryId};
     } else {
       print('❌ لا توجد بيانات للاختصاص الأساسي');
       return null;

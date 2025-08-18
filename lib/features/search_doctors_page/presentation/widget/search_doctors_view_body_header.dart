@@ -38,7 +38,7 @@ class _SearchDoctorsViewBodyHeaderState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: height * 0.07),
+        SizedBox(height: height * 0.04),
         Row(
           children: [
             FilterIcon(
