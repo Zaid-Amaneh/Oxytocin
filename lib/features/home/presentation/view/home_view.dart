@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart' as http;
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/features/home/presentation/widgets/doctor_card.dart';
 import 'package:oxytocin/features/home/presentation/widgets/nearby_doctor_card.dart';
 import 'package:oxytocin/features/home/presentation/widgets/section_header.dart';
 import 'package:oxytocin/features/home/presentation/widgets/top_bar.dart';
+import 'package:oxytocin/features/search_doctors_page/data/services/doctor_search_service.dart';
+import 'package:oxytocin/features/search_doctors_page/presentation/viewmodels/doctorSearch/doctor_search_cubit.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/views/search_doctors_view.dart';
 import '../cubit/home_cubit.dart';
 import '../cubit/home_state.dart';
@@ -444,7 +447,11 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget _buildDoctorsPage() {
-    return const SearchDoctorsView();
+    final searchRepository = DoctorSearchService(http.Client());
+    return BlocProvider(
+      create: (_) => DoctorSearchCubit(searchRepository),
+      child: const SearchDoctorsView(),
+    );
   }
 
   Widget _buildAppointmentsPage() {

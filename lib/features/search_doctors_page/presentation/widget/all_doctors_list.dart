@@ -41,10 +41,6 @@ class _AllDoctorsListState extends State<AllDoctorsList> {
 
   @override
   Widget build(BuildContext context) {
-    // final size = MediaQuery.of(context).size;
-    // final width = size.width;
-    // final height = size.height;
-
     return BlocBuilder<DoctorSearchCubit, DoctorSearchState>(
       builder: (context, state) {
         if (state is DoctorSearchSuccess) {

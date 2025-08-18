@@ -13,6 +13,10 @@ class DoctorCard extends StatelessWidget {
   final DoctorModel doctorModel;
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final width = size.width;
+    final height = size.height;
+
     return Card(
       elevation: 8,
       shape: RoundedRectangleBorder(
@@ -28,20 +32,22 @@ class DoctorCard extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: CachedNetworkImage(
                   imageUrl: doctorModel.user.image,
-                  imageBuilder: (context, imageProvider) =>
-                      CircleAvatar(radius: 30, backgroundImage: imageProvider),
+                  imageBuilder: (context, imageProvider) => CircleAvatar(
+                    radius: width * 0.07,
+                    backgroundImage: imageProvider,
+                  ),
                   placeholder: (context, url) => Shimmer.fromColors(
                     baseColor: Colors.grey[300]!,
                     highlightColor: Colors.grey[100]!,
                     child: CircleAvatar(
-                      radius: 30,
+                      radius: width * 0.07,
                       backgroundColor: Colors.grey[300],
                     ),
                   ),
-                  errorWidget: (context, url, error) => const CircleAvatar(
-                    radius: 30,
+                  errorWidget: (context, url, error) => CircleAvatar(
+                    radius: width * 0.07,
                     backgroundColor: Colors.red,
-                    child: Icon(Icons.error, color: Colors.white),
+                    child: const Icon(Icons.error, color: Colors.white),
                   ),
                 ),
               ),
@@ -119,8 +125,8 @@ class DoctorCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  width: 40,
-                  height: 40,
+                  width: width * 0.09,
+                  height: width * 0.09,
                   decoration: const ShapeDecoration(
                     shape: OvalBorder(),
                     color: Color(0xFFDAE7FF),
