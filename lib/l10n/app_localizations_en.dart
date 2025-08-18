@@ -563,4 +563,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pm => 'PM';
+
+  @override
+  String get error => 'Something went wrong';
+
+  @override
+  String get locationError => 'An error occurred while detecting the location';
+
+  @override
+  String get routeNotFound => 'Route not found';
+
+  @override
+  String get locationTimeout => 'Location request timed out';
+
+  @override
+  String get quotaExceeded => 'Quota exceeded';
+
+  @override
+  String get apiKeyError => 'API key error';
+
+  @override
+  String get routeError => 'An error occurred while fetching the route';
+
+  @override
+  String get noRouteFound => 'No route found';
+
+  @override
+  String get yourLocation => 'Your location';
+
+  @override
+  String get loadingRoute => 'Loading route...';
 }

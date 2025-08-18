@@ -166,7 +166,17 @@
     "saturday": "السبت",
     "sunday": "الأحد",
     "am": "صباحاً",
-    "pm": "مساءً"
+    "pm": "مساءً",
+    "error":"حدث خطأ ما",
+    "locationError": "حدث خطأ أثناء تحديد الموقع",
+    "routeNotFound": "المسار غير موجود",
+    "locationTimeout": "انتهى وقت محاولة تحديد الموقع",
+    "quotaExceeded": "تم تجاوز الحد المسموح",
+    "apiKeyError": "خطأ في مفتاح API",
+    "routeError": "حدث خطأ أثناء جلب المسار",
+    "noRouteFound": "لم يتم العثور على أي مسار",
+    "yourLocation": "موقعك الحالي",
+    "loadingRoute": "جارٍ تحميل المسار..."
 
     
 }

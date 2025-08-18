@@ -1105,6 +1105,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'PM'**
   String get pm;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get error;
+
+  /// No description provided for @locationError.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred while detecting the location'**
+  String get locationError;
+
+  /// No description provided for @routeNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Route not found'**
+  String get routeNotFound;
+
+  /// No description provided for @locationTimeout.
+  ///
+  /// In en, this message translates to:
+  /// **'Location request timed out'**
+  String get locationTimeout;
+
+  /// No description provided for @quotaExceeded.
+  ///
+  /// In en, this message translates to:
+  /// **'Quota exceeded'**
+  String get quotaExceeded;
+
+  /// No description provided for @apiKeyError.
+  ///
+  /// In en, this message translates to:
+  /// **'API key error'**
+  String get apiKeyError;
+
+  /// No description provided for @routeError.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred while fetching the route'**
+  String get routeError;
+
+  /// No description provided for @noRouteFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No route found'**
+  String get noRouteFound;
+
+  /// No description provided for @yourLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Your location'**
+  String get yourLocation;
+
+  /// No description provided for @loadingRoute.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading route...'**
+  String get loadingRoute;
 }
 
 class _AppLocalizationsDelegate

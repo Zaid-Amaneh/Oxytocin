@@ -7,7 +7,7 @@ import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/clinic
 import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/doctor_info_section.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/doctor_profile_view_body_header.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/review.dart';
-import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/test.dart';
+import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/choose_appointment_date.dart';
 
 class DoctorProfileViewBody extends StatelessWidget {
   const DoctorProfileViewBody({super.key});
@@ -56,7 +56,7 @@ class DoctorProfileViewBody extends StatelessWidget {
         ),
 
         SliverToBoxAdapter(
-          child: AppointmentBookingWidget(
+          child: ChooseAppointmentDate(
             appointments: appointments,
             onBookAppointment: (date, time) {
               print('حجز موعد في $date الساعة $time');

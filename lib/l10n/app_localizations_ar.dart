@@ -553,4 +553,34 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get pm => 'مساءً';
+
+  @override
+  String get error => 'حدث خطأ ما';
+
+  @override
+  String get locationError => 'حدث خطأ أثناء تحديد الموقع';
+
+  @override
+  String get routeNotFound => 'المسار غير موجود';
+
+  @override
+  String get locationTimeout => 'انتهى وقت محاولة تحديد الموقع';
+
+  @override
+  String get quotaExceeded => 'تم تجاوز الحد المسموح';
+
+  @override
+  String get apiKeyError => 'خطأ في مفتاح API';
+
+  @override
+  String get routeError => 'حدث خطأ أثناء جلب المسار';
+
+  @override
+  String get noRouteFound => 'لم يتم العثور على أي مسار';
+
+  @override
+  String get yourLocation => 'موقعك الحالي';
+
+  @override
+  String get loadingRoute => 'جارٍ تحميل المسار...';
 }
