@@ -1,3 +1,5 @@
+import 'package:oxytocin/core/Utils/services/url_container.dart';
+
 class DoctorModel {
   final int id;
   final String firstName;
@@ -68,7 +70,7 @@ class DoctorModel {
       print('URL is already complete: $imageUrl');
       return imageUrl;
     }
-    final formattedUrl = 'http://192.168.1.100:8000$imageUrl';
+    final formattedUrl = '${UrlContainer.domainUrl}$imageUrl';
     return formattedUrl;
   }
 
