@@ -5,6 +5,7 @@ import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/features/doctor_profile.dart/data/services/doctor_profile_service.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/doctor_profile_cubit.dart';
+import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/evaluations_cubit.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/all_reviews_view.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/doctor_profile_view.dart';
 import 'package:oxytocin/features/search_doctors_page/data/services/doctor_search_service.dart';
@@ -61,10 +62,19 @@ class AppRouter {
           name: RouteNames.categories,
           builder: (context, state) => const CategoriesView(),
         ),
+
         GoRoute(
-          path: '/${RouteNames.allReviewsView}',
+          path: '/${RouteNames.allReviewsView}/:clinicId',
           name: RouteNames.allReviewsView,
-          builder: (context, state) => const AllReviewsView(),
+          builder: (context, state) {
+            final clinicId = int.parse(state.pathParameters['clinicId']!);
+            return BlocProvider(
+              create: (context) =>
+                  EvaluationsCubit(DoctorProfileService())
+                    ..fetchEvaluations(clinicId),
+              child: const AllReviewsView(),
+            );
+          },
         ),
         GoRoute(
           path: '/${RouteNames.profileInfo}',

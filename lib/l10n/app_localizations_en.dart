@@ -599,4 +599,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get retry => 'Retry';
+
+  @override
+  String get age => 'Age';
+
+  @override
+  String get subspecialties => 'Subspecialties';
+
+  @override
+  String get noCommentDoctor =>
+      'No one has left a comment yet. Book now and be the first to review this doctor!';
 }

@@ -21,12 +21,12 @@ class DoctorProfileViewBody extends StatelessWidget {
   final int doctorId;
   @override
   Widget build(BuildContext context) {
-    final List<String> clinicImages = [
-      'https://cdn.pixabay.com/photo/2016/09/27/17/14/heart-1698840_1280.jpg',
-      'https://cdn.pixabay.com/photo/2014/11/27/20/12/doctor-548133_1280.jpg',
-      'https://cdn.pixabay.com/photo/2017/08/06/07/12/dentist-2589771_1280.jpg',
-      'https://cdn.pixabay.com/photo/2019/04/03/03/05/medical-equipment-4099428_1280.jpg',
-    ];
+    // final List<String> clinicImages = [
+    //   'https://cdn.pixabay.com/photo/2016/09/27/17/14/heart-1698840_1280.jpg',
+    //   'https://cdn.pixabay.com/photo/2014/11/27/20/12/doctor-548133_1280.jpg',
+    //   'https://cdn.pixabay.com/photo/2017/08/06/07/12/dentist-2589771_1280.jpg',
+    //   'https://cdn.pixabay.com/photo/2019/04/03/03/05/medical-equipment-4099428_1280.jpg',
+    // ];
     final appointments = [
       AppointmentModel(
         date: DateTime.now(),
@@ -49,76 +49,80 @@ class DoctorProfileViewBody extends StatelessWidget {
         availableTimes: [], // لا توجد مواعيد
       ),
     ];
-    return BlocProvider(
-      create: (context) =>
-          DoctorProfileCubit(DoctorProfileService())
-            ..fetchDoctorProfileWithImages(doctorId),
-      child: BlocBuilder<DoctorProfileCubit, DoctorProfileState>(
-        builder: (context, state) {
-          if (state is DoctorProfileLoading) {
-            return const DoctorProfileShimmer();
-          } else if (state is DoctorProfileWithImagesSuccess) {
-            return CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: DoctorProfileViewBodyHeader(
-                    doctorName: state.doctorProfile.user.fullName,
-                    imageUrl: state.doctorProfile.user.image ?? "",
-                    rate: state.doctorProfile.rate,
-                    specialty: Helper.isArabic(context)
-                        ? state.doctorProfile.mainSpecialty.specialty.nameAr
-                        : state.doctorProfile.mainSpecialty.specialty.nameEn,
-                    margin: const EdgeInsets.all(0),
-                  ),
+    return BlocBuilder<DoctorProfileCubit, DoctorProfileState>(
+      builder: (context, state) {
+        if (state is DoctorProfileLoading) {
+          return const DoctorProfileShimmer();
+        } else if (state is DoctorProfileAllDataSuccess) {
+          return CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: DoctorProfileViewBodyHeader(
+                  doctorName: state.doctorProfile.user.fullName,
+                  imageUrl: state.doctorProfile.user.image ?? "",
+                  rate: state.doctorProfile.rate,
+                  specialty: Helper.isArabic(context)
+                      ? state.doctorProfile.mainSpecialty.specialty.nameAr
+                      : state.doctorProfile.mainSpecialty.specialty.nameEn,
+                  margin: const EdgeInsets.all(0),
                 ),
+              ),
 
-                SliverToBoxAdapter(
-                  child: ChooseAppointmentDate(
-                    appointments: appointments,
-                    onBookAppointment: (date, time) {
-                      print('حجز موعد في $date الساعة $time');
-                    },
-                    onShowAllMonthDays: () {
-                      print('عرض جميع أيام الشهر');
-                    },
-                  ),
+              SliverToBoxAdapter(
+                child: ChooseAppointmentDate(
+                  appointments: appointments,
+                  onBookAppointment: (date, time) {
+                    print('حجز موعد في $date الساعة $time');
+                  },
+                  onShowAllMonthDays: () {
+                    print('عرض جميع أيام الشهر');
+                  },
                 ),
-                // const SliverDivider(color: AppColors.textSecondary),
-                // SliverToBoxAdapter(
-                //   child: ClinicLocationPage(
-                //     clinicLatitude: state.doctorProfile.clinic.latitude,
-                //     clinicLongitude: state.doctorProfile.clinic.longitude,
-                //     clinicName: state.doctorProfile.user.fullName,
-                //     clinicLocation: state.doctorProfile.clinic.address,
-                //     clinicPhone: state.doctorProfile.clinic.phone,
-                //   ),
-                // ),
-                const SliverDivider(color: AppColors.textSecondary),
-                SliverToBoxAdapter(
-                  child: ClinicPhotosGallery(imageUrls: state.clinicImages),
+              ),
+              // const SliverDivider(color: AppColors.textSecondary),
+              // SliverToBoxAdapter(
+              //   child: ClinicLocationPage(
+              //     clinicLatitude: state.doctorProfile.clinic.latitude,
+              //     clinicLongitude: state.doctorProfile.clinic.longitude,
+              //     clinicName: state.doctorProfile.user.fullName,
+              //     clinicLocation: state.doctorProfile.clinic.address,
+              //     clinicPhone: state.doctorProfile.clinic.phone,
+              //   ),
+              // ),
+              const SliverDivider(color: AppColors.textSecondary),
+              SliverToBoxAdapter(
+                child: ClinicPhotosGallery(imageUrls: state.clinicImages),
+              ),
+              const SliverDivider(color: AppColors.textSecondary),
+              SliverToBoxAdapter(
+                child: ClinicEvaluation(
+                  rate: state.doctorProfile.rate,
+                  evaluations: state.evaluations.results,
+                  id: state.doctorProfile.user.id,
                 ),
-                const SliverDivider(color: AppColors.textSecondary),
-                const SliverToBoxAdapter(child: ClinicEvaluation(rate: 4.2)),
-                const SliverDivider(color: AppColors.textSecondary),
-                SliverToBoxAdapter(
-                  child: DoctorInfoSection(
-                    placeOfStudy: state.doctorProfile.education,
-                    about: state.doctorProfile.about,
-                  ),
+              ),
+              const SliverDivider(color: AppColors.textSecondary),
+              SliverToBoxAdapter(
+                child: DoctorInfoSection(
+                  placeOfStudy: state.doctorProfile.education,
+                  about: state.doctorProfile.about,
+                  age: state.doctorProfile.user.age ?? 0,
+                  gender: state.doctorProfile.user.gender,
+                  subSpecialty: state.doctorProfile.subspecialties,
                 ),
-              ],
-            );
-          } else if (state is DoctorProfileFailure) {
-            return ErrorDisplayWidget(
-              errorMessage: state.errorMessage,
-              onRetry: () {
-                context.read<DoctorProfileCubit>().fetchDoctorProfile(doctorId);
-              },
-            );
-          }
-          return const SizedBox.shrink();
-        },
-      ),
+              ),
+            ],
+          );
+        } else if (state is DoctorProfileFailure) {
+          return ErrorDisplayWidget(
+            errorMessage: state.errorMessage,
+            onRetry: () {
+              context.read<DoctorProfileCubit>().fetchDoctorProfile(doctorId);
+            },
+          );
+        }
+        return const SizedBox.shrink();
+      },
     );
   }
 }

@@ -1177,6 +1177,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Retry'**
   String get retry;
+
+  /// No description provided for @age.
+  ///
+  /// In en, this message translates to:
+  /// **'Age'**
+  String get age;
+
+  /// No description provided for @subspecialties.
+  ///
+  /// In en, this message translates to:
+  /// **'Subspecialties'**
+  String get subspecialties;
+
+  /// No description provided for @noCommentDoctor.
+  ///
+  /// In en, this message translates to:
+  /// **'No one has left a comment yet. Book now and be the first to review this doctor!'**
+  String get noCommentDoctor;
 }
 
 class _AppLocalizationsDelegate

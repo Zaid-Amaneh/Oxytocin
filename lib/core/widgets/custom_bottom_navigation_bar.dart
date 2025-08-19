@@ -19,7 +19,7 @@ class CustomBottomNavigationBar extends StatefulWidget {
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
-  late Animation<double> _widthAnimation;
+  late Animation<double> widthAnimation;
 
   @override
   void initState() {
@@ -28,7 +28,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
       duration: const Duration(milliseconds: 300),
       vsync: this,
     );
-    _widthAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+    widthAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
     );
   }
@@ -57,7 +57,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
           topLeft: Radius.circular(0),
           topRight: Radius.circular(0),
         ),
-        border: Border(top: BorderSide(color: Colors.black, width: 0.5)),
+        border: const Border(top: BorderSide(color: Colors.black, width: 0.5)),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),

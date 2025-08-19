@@ -33,17 +33,18 @@ class DoctorProfileCubit extends Cubit<DoctorProfileState> {
     }
   }
 
-  Future<void> fetchDoctorProfileWithImages(int doctorId) async {
+  Future<void> fetchAllDoctorData({required int clinicId}) async {
     emit(DoctorProfileLoading());
     try {
-      final results = await _doctorProfileService.fetchDoctorProfileWithImages(
-        doctorId,
-      );
+      final results = await _doctorProfileService.fetchAllDoctorData(clinicId);
 
       final doctorProfile = results['doctorProfile'];
       final clinicImages = results['clinicImages'];
+      final evaluations = results['evaluations'];
 
-      emit(DoctorProfileWithImagesSuccess(doctorProfile, clinicImages));
+      emit(
+        DoctorProfileAllDataSuccess(doctorProfile, clinicImages, evaluations),
+      );
     } catch (e) {
       emit(DoctorProfileFailure(e.toString()));
     }

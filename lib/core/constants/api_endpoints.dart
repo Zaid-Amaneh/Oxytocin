@@ -14,4 +14,5 @@ class ApiEndpoints {
   static const String doctorSearch = "$baseURL/api/doctors/search/";
   static const String refreshToken = "$baseURL/api/users/refresh-token/";
   static const String doctorProfile = "$baseURL/api/doctors/";
+  static const String evaluations = "$baseURL/api/evaluations/";
 }

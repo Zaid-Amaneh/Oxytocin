@@ -66,7 +66,6 @@ class _ProfileInfoState extends State<ProfileInfo> {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
-    final size = MediaQuery.sizeOf(context);
     return Builder(
       builder: (context) {
         return Scaffold(

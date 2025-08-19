@@ -589,4 +589,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get retry => 'إعادة المحاولة';
+
+  @override
+  String get age => 'العمر';
+
+  @override
+  String get subspecialties => 'الاختصاصات الفرعية';
+
+  @override
+  String get noCommentDoctor =>
+      'لم يترك أحد تعليقاً بعد. احجز الآن وكن أول من يقيّم هذا الطبيب!';
 }

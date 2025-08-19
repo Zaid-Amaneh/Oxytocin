@@ -5,7 +5,6 @@ import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/all_re
 
 class AllReviewsView extends StatelessWidget {
   const AllReviewsView({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

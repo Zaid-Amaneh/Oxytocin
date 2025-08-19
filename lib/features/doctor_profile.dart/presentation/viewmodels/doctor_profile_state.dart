@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:oxytocin/features/doctor_profile.dart/data/models/clinic_image.dart';
 import 'package:oxytocin/features/doctor_profile.dart/data/models/doctor_profile_model.dart';
+import 'package:oxytocin/features/doctor_profile.dart/data/models/paginated_evaluations_response.dart';
 
 abstract class DoctorProfileState extends Equatable {
   const DoctorProfileState();
@@ -51,12 +52,17 @@ class ClinicImagesFailure extends DoctorProfileState {
   List<Object> get props => [errorMessage];
 }
 
-class DoctorProfileWithImagesSuccess extends DoctorProfileState {
+class DoctorProfileAllDataSuccess extends DoctorProfileState {
   final DoctorProfileModel doctorProfile;
   final List<ClinicImage> clinicImages;
+  final PaginatedEvaluationsResponse evaluations;
 
-  const DoctorProfileWithImagesSuccess(this.doctorProfile, this.clinicImages);
+  const DoctorProfileAllDataSuccess(
+    this.doctorProfile,
+    this.clinicImages,
+    this.evaluations,
+  );
 
   @override
-  List<Object> get props => [doctorProfile, clinicImages];
+  List<Object> get props => [doctorProfile, clinicImages, evaluations];
 }

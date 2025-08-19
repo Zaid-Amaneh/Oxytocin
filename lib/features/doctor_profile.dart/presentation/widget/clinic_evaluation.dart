@@ -4,46 +4,23 @@ import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
+import 'package:oxytocin/features/doctor_profile.dart/data/models/paginated_evaluations_response.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/rate_stars.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/review.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/review_card.dart';
 
 class ClinicEvaluation extends StatelessWidget {
-  const ClinicEvaluation({super.key, required this.rate});
+  const ClinicEvaluation({
+    super.key,
+    required this.rate,
+    required this.evaluations,
+    required this.id,
+  });
+  final int id;
   final double rate;
-
+  final List<EvaluationModel> evaluations;
   @override
   Widget build(BuildContext context) {
-    final List<Review> reviews = [
-      Review(
-        patientName: "محمد الأحمد",
-        comment: "دكتور محترف جدًا ويشرح الحالة بتفصيل، العيادة نظيفة ومنظمة.",
-        rating: 4.0,
-      ),
-      Review(
-        patientName: "سامي الحسن",
-        comment: "تجربة جيدة، أنصح به، فقط تمنيت أن تكون العيادة أكبر.",
-        rating: 4.0,
-      ),
-      Review(
-        patientName: "رنا خليل",
-        comment:
-            "كانت تجربتي رائعة، لم أضطر للانتظار طويلا والدكتور كان دقيقًا جدًا.",
-        rating: 4.0,
-      ),
-      Review(
-        patientName: "رنا خليل",
-        comment:
-            "كانت تجربتي رائعة، لم أضطر للانتظار طويلا والدكتور كان دقيقًا جدًا.",
-        rating: 4.0,
-      ),
-      Review(
-        patientName: "رنا خليل",
-        comment:
-            "كانت تجربتي رائعة، لم أضطر للانتظار طويلا والدكتور كان دقيقًا جدًا.",
-        rating: 4.0,
-      ),
-    ];
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -74,19 +51,30 @@ class ClinicEvaluation extends StatelessWidget {
               context,
             ).copyWith(color: AppColors.textPrimary, fontSize: 18),
           ),
-          ListView.builder(
-            itemCount: reviews.length > 3 ? 3 : reviews.length,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return ReviewCard(review: reviews[index]);
-            },
-          ),
-          if (reviews.length > 3)
+          evaluations.isEmpty
+              ? Text(
+                  context.tr.noCommentDoctor,
+                  style: AppStyles.almaraiBold(
+                    context,
+                  ).copyWith(color: AppColors.textSecondary, fontSize: 14),
+                  textAlign: TextAlign.center,
+                )
+              : ListView.builder(
+                  itemCount: evaluations.length > 3 ? 3 : evaluations.length,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return ReviewCard(evaluation: evaluations[index]);
+                  },
+                ),
+          if (evaluations.length > 3)
             Center(
               child: TextButton(
                 onPressed: () {
-                  NavigationService().pushToNamed(RouteNames.allReviewsView);
+                  NavigationService().pushToNamedWithParams(
+                    RouteNames.allReviewsView,
+                    pathParams: {'clinicId': id.toString()},
+                  );
                 },
                 child: Text(
                   context.tr.viewMore,
