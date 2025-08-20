@@ -12,7 +12,7 @@ class DoctorProfileCubit extends Cubit<DoctorProfileState> {
     emit(DoctorProfileLoading());
     try {
       final doctorProfile = await _doctorProfileService.fetchDoctorProfile(
-        doctorId,
+        doctorId: doctorId,
       );
 
       emit(DoctorProfileSuccess(doctorProfile));
@@ -47,6 +47,23 @@ class DoctorProfileCubit extends Cubit<DoctorProfileState> {
       );
     } catch (e) {
       emit(DoctorProfileFailure(e.toString()));
+    }
+  }
+
+  void toggleFavoriteStatus() {
+    if (state is DoctorProfileAllDataSuccess) {
+      final currentState = state as DoctorProfileAllDataSuccess;
+      final oldProfile = currentState.doctorProfile;
+      final newProfile = oldProfile.copyWith(
+        isFavorite: !oldProfile.isFavorite,
+      );
+      emit(
+        DoctorProfileAllDataSuccess(
+          newProfile,
+          currentState.clinicImages,
+          currentState.evaluations,
+        ),
+      );
     }
   }
 

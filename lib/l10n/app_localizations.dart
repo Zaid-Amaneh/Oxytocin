@@ -1195,6 +1195,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No one has left a comment yet. Book now and be the first to review this doctor!'**
   String get noCommentDoctor;
+
+  /// No description provided for @doctor_added_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor added to favorites successfully'**
+  String get doctor_added_success;
+
+  /// No description provided for @doctor_added_failure_network.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to add doctor to favorites due to connection issues'**
+  String get doctor_added_failure_network;
+
+  /// No description provided for @doctor_added_failure_auth.
+  ///
+  /// In en, this message translates to:
+  /// **'You cannot add the doctor to favorites because you are not logged in'**
+  String get doctor_added_failure_auth;
+
+  /// No description provided for @failure_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get failure_title;
+
+  /// No description provided for @success_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Success'**
+  String get success_title;
+
+  /// No description provided for @doctor_removed_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor removed from favorites successfully'**
+  String get doctor_removed_success;
+
+  /// No description provided for @view_all_reservations.
+  ///
+  /// In en, this message translates to:
+  /// **'View All Reservations'**
+  String get view_all_reservations;
+
+  /// No description provided for @near_appointments.
+  ///
+  /// In en, this message translates to:
+  /// **'Nearby Appointments'**
+  String get near_appointments;
 }
 
 class _AppLocalizationsDelegate

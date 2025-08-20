@@ -609,4 +609,31 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get noCommentDoctor =>
       'No one has left a comment yet. Book now and be the first to review this doctor!';
+
+  @override
+  String get doctor_added_success => 'Doctor added to favorites successfully';
+
+  @override
+  String get doctor_added_failure_network =>
+      'Failed to add doctor to favorites due to connection issues';
+
+  @override
+  String get doctor_added_failure_auth =>
+      'You cannot add the doctor to favorites because you are not logged in';
+
+  @override
+  String get failure_title => 'Error';
+
+  @override
+  String get success_title => 'Success';
+
+  @override
+  String get doctor_removed_success =>
+      'Doctor removed from favorites successfully';
+
+  @override
+  String get view_all_reservations => 'View All Reservations';
+
+  @override
+  String get near_appointments => 'Nearby Appointments';
 }

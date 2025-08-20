@@ -599,4 +599,30 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get noCommentDoctor =>
       'لم يترك أحد تعليقاً بعد. احجز الآن وكن أول من يقيّم هذا الطبيب!';
+
+  @override
+  String get doctor_added_success => 'تمت إضافة الطبيب إلى المفضلة بنجاح';
+
+  @override
+  String get doctor_added_failure_network =>
+      'تعذر إضافة الطبيب إلى المفضلة بسبب مشاكل في الاتصال';
+
+  @override
+  String get doctor_added_failure_auth =>
+      'لا يمكنك إضافة الطبيب إلى المفضلة لأنك لم تسجل الدخول';
+
+  @override
+  String get failure_title => 'حدث خطأ';
+
+  @override
+  String get success_title => 'تم بنجاح';
+
+  @override
+  String get doctor_removed_success => 'تم حذف الطبيب من المفضلة بنجاح';
+
+  @override
+  String get view_all_reservations => 'عرض جميع الحجوزات';
+
+  @override
+  String get near_appointments => 'المواعيد القريبة';
 }

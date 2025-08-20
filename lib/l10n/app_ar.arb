@@ -181,7 +181,14 @@
     "retry": "إعادة المحاولة",
     "age":"العمر",
     "subspecialties":"الاختصاصات الفرعية",
-    "noCommentDoctor": "لم يترك أحد تعليقاً بعد. احجز الآن وكن أول من يقيّم هذا الطبيب!"
-
+    "noCommentDoctor": "لم يترك أحد تعليقاً بعد. احجز الآن وكن أول من يقيّم هذا الطبيب!",
+    "doctor_added_success": "تمت إضافة الطبيب إلى المفضلة بنجاح",
+    "doctor_added_failure_network": "تعذر إضافة الطبيب إلى المفضلة بسبب مشاكل في الاتصال",
+    "doctor_added_failure_auth": "لا يمكنك إضافة الطبيب إلى المفضلة لأنك لم تسجل الدخول",
+    "failure_title": "حدث خطأ",
+    "success_title": "تم بنجاح",
+    "doctor_removed_success": "تم حذف الطبيب من المفضلة بنجاح",
+    "view_all_reservations": "عرض جميع الحجوزات",
+    "near_appointments": "المواعيد القريبة"
     
 }

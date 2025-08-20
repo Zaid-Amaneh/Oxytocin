@@ -36,7 +36,7 @@ class _ChooseAppointmentDateState extends State<ChooseAppointmentDate> {
         Padding(
           padding: const EdgeInsets.only(left: 16, right: 16),
           child: Text(
-            context.tr.select_booking_time,
+            context.tr.near_appointments,
             style: AppStyles.almaraiBold(
               context,
             ).copyWith(color: AppColors.textPrimary, fontSize: 18),
@@ -105,8 +105,8 @@ class _ChooseAppointmentDateState extends State<ChooseAppointmentDate> {
           child: GestureDetector(
             onTap: widget.onShowAllMonthDays,
             child: Text(
-              context.tr.show_all_days,
-              style: AppStyles.almaraiBold(context).copyWith(
+              context.tr.view_all_reservations,
+              style: AppStyles.almaraiExtraBold(context).copyWith(
                 color: Theme.of(context).primaryColor,
                 decoration: TextDecoration.underline,
                 fontSize: 14,

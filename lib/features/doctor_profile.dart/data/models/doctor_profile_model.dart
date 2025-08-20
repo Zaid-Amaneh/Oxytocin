@@ -7,6 +7,7 @@ class DoctorProfileModel extends Equatable {
   final UserModel user;
   final String about;
   final String education;
+  final bool isFavorite;
   final int experience;
   final double rate;
   final MainSpecialtyModel mainSpecialty;
@@ -17,6 +18,7 @@ class DoctorProfileModel extends Equatable {
     required this.user,
     required this.about,
     required this.education,
+    required this.isFavorite,
     required this.experience,
     required this.rate,
     required this.mainSpecialty,
@@ -28,6 +30,7 @@ class DoctorProfileModel extends Equatable {
     return DoctorProfileModel(
       user: UserModel.fromJson(json['user']),
       about: json['about'],
+      isFavorite: json['is_favorite'] ?? false,
       education: json['education'],
       experience: json['experience'],
       rate: (json['rate'] as num).toDouble(),
@@ -36,6 +39,29 @@ class DoctorProfileModel extends Equatable {
         json['subspecialties'].map((x) => SubSpecialtyModel.fromJson(x)),
       ),
       clinic: ClinicModel.fromJson(json['clinic']),
+    );
+  }
+  DoctorProfileModel copyWith({
+    UserModel? user,
+    String? about,
+    String? education,
+    bool? isFavorite,
+    int? experience,
+    double? rate,
+    MainSpecialtyModel? mainSpecialty,
+    List<SubSpecialtyModel>? subspecialties,
+    ClinicModel? clinic,
+  }) {
+    return DoctorProfileModel(
+      user: user ?? this.user,
+      about: about ?? this.about,
+      education: education ?? this.education,
+      isFavorite: isFavorite ?? this.isFavorite,
+      experience: experience ?? this.experience,
+      rate: rate ?? this.rate,
+      mainSpecialty: mainSpecialty ?? this.mainSpecialty,
+      subspecialties: subspecialties ?? this.subspecialties,
+      clinic: clinic ?? this.clinic,
     );
   }
 

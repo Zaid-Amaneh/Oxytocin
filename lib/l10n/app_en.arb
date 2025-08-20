@@ -181,7 +181,17 @@
   "retry": "Retry",
   "age":"Age",
   "subspecialties":"Subspecialties",
-  "noCommentDoctor": "No one has left a comment yet. Book now and be the first to review this doctor!"
+  "noCommentDoctor": "No one has left a comment yet. Book now and be the first to review this doctor!",
+  "doctor_added_success": "Doctor added to favorites successfully",
+  "doctor_added_failure_network": "Failed to add doctor to favorites due to connection issues",
+  "doctor_added_failure_auth": "You cannot add the doctor to favorites because you are not logged in",
+  "failure_title": "Error",
+  "success_title": "Success",
+  "doctor_removed_success": "Doctor removed from favorites successfully",
+  "view_all_reservations": "View All Reservations",
+  "near_appointments": "Nearby Appointments"
+
+
 
 
 

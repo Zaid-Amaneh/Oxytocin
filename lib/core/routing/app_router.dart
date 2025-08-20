@@ -4,8 +4,10 @@ import 'package:http/http.dart' as http;
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/features/doctor_profile.dart/data/services/doctor_profile_service.dart';
+import 'package:oxytocin/features/doctor_profile.dart/data/services/favorites_service.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/doctor_profile_cubit.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/evaluations_cubit.dart';
+import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/favorites_cubit.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/all_reviews_view.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/doctor_profile_view.dart';
 import 'package:oxytocin/features/search_doctors_page/data/services/doctor_search_service.dart';
@@ -252,9 +254,18 @@ class AppRouter {
           name: RouteNames.doctorProfileView,
           builder: (context, state) {
             int id = int.tryParse(state.uri.queryParameters['id'] ?? '') ?? 0;
-            final doctorProfileService = DoctorProfileService();
-            return BlocProvider(
-              create: (context) => DoctorProfileCubit(doctorProfileService),
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (context) =>
+                      DoctorProfileCubit(DoctorProfileService())
+                        ..fetchAllDoctorData(clinicId: id),
+                ),
+                BlocProvider(
+                  create: (context) =>
+                      FavoritesCubit(FavoritesService(http.Client())),
+                ),
+              ],
               child: DoctorProfileView(id: id),
             );
           },

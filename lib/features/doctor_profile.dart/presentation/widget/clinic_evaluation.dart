@@ -6,7 +6,6 @@ import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/features/doctor_profile.dart/data/models/paginated_evaluations_response.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/rate_stars.dart';
-import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/review.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/review_card.dart';
 
 class ClinicEvaluation extends StatelessWidget {
