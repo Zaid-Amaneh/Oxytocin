@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
-import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/review.dart';
+import 'package:oxytocin/features/doctor_profile.dart/data/models/appointment_date_model.dart';
+import 'package:oxytocin/features/doctor_profile.dart/data/models/visit_time_model.dart';
 
 class AppointmentCard extends StatelessWidget {
   const AppointmentCard({
@@ -10,17 +11,26 @@ class AppointmentCard extends StatelessWidget {
     required this.appointment,
     this.onBookAppointment,
   });
-  final AppointmentModel appointment;
+  final AppointmentDate appointment;
   final Function(DateTime date, String time)? onBookAppointment;
   @override
   Widget build(BuildContext context) {
     // final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    final dayName = _getDayName(appointment.date, context);
-    final dateText = _getDateText(appointment.date, context);
-    final hasAvailableTimes = appointment.availableTimes.isNotEmpty;
-    final displayTimes = appointment.availableTimes.take(2).toList();
-    final remainingCount = appointment.availableTimes.length - 2;
+    final dayName = _getDayName(appointment.visitDate, context);
+    final dateText = appointment.visitDate;
+
+    List<VisitTime> availableTimes = [];
+    for (var i in appointment.visitTimes) {
+      if (!i.isBooked) {
+        availableTimes.add(i);
+      }
+    }
+    final hasAvailableTimes =
+        availableTimes.isNotEmpty &&
+        !isDateOlderThanToday(appointment.visitDate);
+    final displayTimes = availableTimes.take(2).toList();
+    final remainingCount = availableTimes.length - 2;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 4),
       decoration: BoxDecoration(
@@ -82,7 +92,7 @@ class AppointmentCard extends StatelessWidget {
                                   bottom: screenHeight * 0.005,
                                 ),
                                 child: Text(
-                                  '${context.tr.available}: ${_convertTo12Hour(time, context)}',
+                                  '${context.tr.available}: ${_convertTo12Hour(time.visitTime, context)}',
                                   style: AppStyles.almaraiBold(context)
                                       .copyWith(
                                         color: AppColors.textSecondary,
@@ -125,12 +135,12 @@ class AppointmentCard extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: hasAvailableTimes
-                ? () => onBookAppointment?.call(
-                    appointment.date,
-                    displayTimes.first,
-                  )
-                : null,
+            // onTap: hasAvailableTimes
+            //     ? () => onBookAppointment?.call(
+            //         appointment.date,
+            //         displayTimes.first,
+            //       )
+            //     : null,
             child: Container(
               width: double.infinity,
               height: screenHeight * 0.05,
@@ -162,7 +172,7 @@ class AppointmentCard extends StatelessWidget {
   }
 }
 
-String _getDayName(DateTime date, BuildContext context) {
+String _getDayName(String date, BuildContext context) {
   final weekdays = [
     context.tr.monday,
     context.tr.tuesday,
@@ -173,25 +183,9 @@ String _getDayName(DateTime date, BuildContext context) {
     context.tr.sunday,
   ];
 
-  return weekdays[date.weekday - 1];
-}
+  final parsedDate = DateTime.parse(date);
 
-String _getDateText(DateTime date, BuildContext context) {
-  final months = [
-    '01',
-    '02',
-    '03',
-    '04',
-    '05',
-    '06',
-    '07',
-    '08',
-    '09',
-    '10',
-    '11',
-    '12',
-  ];
-  return '${date.day.toString().padLeft(2, '0')}/${months[date.month - 1]}';
+  return weekdays[parsedDate.weekday - 1];
 }
 
 String _convertTo12Hour(String time24, BuildContext context) {
@@ -208,4 +202,11 @@ String _convertTo12Hour(String time24, BuildContext context) {
   } else {
     return '${hour - 12}:$minute ${context.tr.pm}';
   }
+}
+
+bool isDateOlderThanToday(String dateString) {
+  final inputDate = DateTime.parse(dateString);
+  final today = DateTime.now();
+  final todayDateOnly = DateTime(today.year, today.month, today.day);
+  return inputDate.isBefore(todayDateOnly);
 }

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:oxytocin/features/doctor_profile.dart/data/models/appointment_date_model.dart';
 import 'package:oxytocin/features/doctor_profile.dart/data/models/clinic_image.dart';
 import 'package:oxytocin/features/doctor_profile.dart/data/models/doctor_profile_model.dart';
 import 'package:oxytocin/features/doctor_profile.dart/data/models/paginated_evaluations_response.dart';
@@ -52,17 +53,44 @@ class ClinicImagesFailure extends DoctorProfileState {
   List<Object> get props => [errorMessage];
 }
 
+class AppointmentDatesLoading extends DoctorProfileState {}
+
+class AppointmentDatesSuccess extends DoctorProfileState {
+  final List<AppointmentDate> appointmentDates;
+
+  const AppointmentDatesSuccess(this.appointmentDates);
+
+  @override
+  List<Object> get props => [appointmentDates];
+}
+
+class AppointmentDatesFailure extends DoctorProfileState {
+  final String errorMessage;
+
+  const AppointmentDatesFailure(this.errorMessage);
+
+  @override
+  List<Object> get props => [errorMessage];
+}
+
 class DoctorProfileAllDataSuccess extends DoctorProfileState {
   final DoctorProfileModel doctorProfile;
   final List<ClinicImage> clinicImages;
   final PaginatedEvaluationsResponse evaluations;
+  final List<AppointmentDate> appointmentDates;
 
   const DoctorProfileAllDataSuccess(
     this.doctorProfile,
     this.clinicImages,
     this.evaluations,
+    this.appointmentDates,
   );
 
   @override
-  List<Object> get props => [doctorProfile, clinicImages, evaluations];
+  List<Object> get props => [
+    doctorProfile,
+    clinicImages,
+    evaluations,
+    appointmentDates,
+  ];
 }

@@ -4,6 +4,7 @@ import 'package:logger/logger.dart';
 import 'package:oxytocin/core/Utils/services/secure_storage_service.dart';
 import 'package:oxytocin/core/constants/api_endpoints.dart';
 import 'package:oxytocin/core/errors/failure.dart';
+import 'package:oxytocin/features/doctor_profile.dart/data/models/appointment_date_model.dart';
 import 'package:oxytocin/features/doctor_profile.dart/data/models/clinic_image.dart';
 import 'package:oxytocin/features/doctor_profile.dart/data/models/paginated_evaluations_response.dart';
 import '../models/doctor_profile_model.dart';
@@ -97,7 +98,7 @@ class DoctorProfileService {
 
   Future<List<ClinicImage>> fetchClinicImages(int clinicId) async {
     final url = Uri.parse(
-      '${ApiEndpoints.baseURL}/api/doctors/clinics/$clinicId/images',
+      '${ApiEndpoints.baseURL}/api/doctors/clinics/$clinicId/images/',
     );
     final response = await http.get(url);
     Logger().f('Clinic Images Response: ${response.body}');
@@ -134,18 +135,57 @@ class DoctorProfileService {
     }
   }
 
-  Future<Map<String, dynamic>> fetchAllDoctorData(int clinicId) async {
+  Future<List<AppointmentDate>> fetchAppointmentDates({
+    required int clinicId,
+    required String startDate,
+    required String endDate,
+  }) async {
+    final uri = Uri.parse(
+      '${ApiEndpoints.appointmentDate}$clinicId/dates-with-visit-times/',
+    ).replace(queryParameters: {"start-date": startDate, "end-date": endDate});
+    final headers = {'Accept': 'application/json'};
+
+    try {
+      final response = await http.get(uri, headers: headers);
+      _logger.t(
+        "Appointments response: ${response.statusCode}, Body: ${response.body}",
+      );
+
+      if (response.statusCode == 200) {
+        final List<dynamic> data = jsonDecode(response.body);
+        return data.map((json) => AppointmentDate.fromJson(json)).toList();
+      } else {
+        throw const ServerFailure();
+      }
+    } catch (e) {
+      if (e is Failure) rethrow;
+      _logger.e("Network failure while fetching appointments: ${e.toString()}");
+      throw const NetworkFailure();
+    }
+  }
+
+  Future<Map<String, dynamic>> fetchAllDoctorData({
+    required int clinicId,
+    required String startDate,
+    required String endDate,
+  }) async {
     try {
       final results = await Future.wait([
         fetchDoctorProfile(doctorId: clinicId),
         fetchClinicImages(clinicId),
         fetchClinicEvaluations(clinicId: clinicId),
+        fetchAppointmentDates(
+          clinicId: clinicId,
+          startDate: startDate,
+          endDate: endDate,
+        ),
       ]);
 
       return {
         'doctorProfile': results[0] as DoctorProfileModel,
         'clinicImages': results[1] as List<ClinicImage>,
         'evaluations': results[2] as PaginatedEvaluationsResponse,
+        'appointmentDates': results[3] as List<AppointmentDate>,
       };
     } catch (e) {
       rethrow;

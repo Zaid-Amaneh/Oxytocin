@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
+import 'package:oxytocin/core/routing/navigation_service.dart';
+import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/widgets/sliver_divider.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/doctor_profile_cubit.dart';
@@ -11,7 +13,6 @@ import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/doctor
 import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/doctor_profile_shimmer.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/doctor_profile_view_body_header.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/error_display_widget.dart';
-import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/review.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/choose_appointment_date.dart';
 
 class DoctorProfileViewBody extends StatelessWidget {
@@ -19,28 +20,6 @@ class DoctorProfileViewBody extends StatelessWidget {
   final int doctorId;
   @override
   Widget build(BuildContext context) {
-    final appointments = [
-      AppointmentModel(
-        date: DateTime.now(),
-        availableTimes: ['10:00', '08:00', '14:30', '16:45'],
-      ),
-      AppointmentModel(
-        date: DateTime.now().add(const Duration(days: 1)),
-        availableTimes: ['09:15', '11:30'],
-      ),
-      AppointmentModel(
-        date: DateTime.now().add(const Duration(days: 2)),
-        availableTimes: [], // لا توجد مواعيد
-      ),
-      AppointmentModel(
-        date: DateTime.now().add(const Duration(days: 3)),
-        availableTimes: [], // لا توجد مواعيد
-      ),
-      AppointmentModel(
-        date: DateTime.now().add(const Duration(days: 4)),
-        availableTimes: [], // لا توجد مواعيد
-      ),
-    ];
     return BlocBuilder<DoctorProfileCubit, DoctorProfileState>(
       builder: (context, state) {
         if (state is DoctorProfileLoading) {
@@ -62,12 +41,17 @@ class DoctorProfileViewBody extends StatelessWidget {
 
               SliverToBoxAdapter(
                 child: ChooseAppointmentDate(
-                  appointments: appointments,
+                  appointments: state.appointmentDates,
                   onBookAppointment: (date, time) {
                     print('حجز موعد في $date الساعة $time');
                   },
                   onShowAllMonthDays: () {
-                    print('عرض جميع أيام الشهر');
+                    NavigationService().pushToNamedWithParams(
+                      RouteNames.allAppointmentMonth,
+                      queryParams: {
+                        'id': state.doctorProfile.user.id.toString(),
+                      },
+                    );
                   },
                 ),
               ),
@@ -109,7 +93,19 @@ class DoctorProfileViewBody extends StatelessWidget {
           return ErrorDisplayWidget(
             errorMessage: state.errorMessage,
             onRetry: () {
-              context.read<DoctorProfileCubit>().fetchDoctorProfile(doctorId);
+              final now = DateTime.now();
+              final startDate = now;
+              final endDate = now.add(const Duration(days: 31));
+
+              final String formattedStartDate =
+                  "${startDate.year}-${startDate.month.toString().padLeft(2, '0')}-${startDate.day.toString().padLeft(2, '0')}";
+              final String formattedEndDate =
+                  "${endDate.year}-${endDate.month.toString().padLeft(2, '0')}-${endDate.day.toString().padLeft(2, '0')}";
+              context.read<DoctorProfileCubit>().fetchAllDoctorData(
+                clinicId: doctorId,
+                startDate: formattedStartDate,
+                endDate: formattedEndDate,
+              );
             },
           );
         }

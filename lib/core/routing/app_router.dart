@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
+import 'package:logger/logger.dart';
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/features/doctor_profile.dart/data/services/doctor_profile_service.dart';
@@ -8,6 +9,7 @@ import 'package:oxytocin/features/doctor_profile.dart/data/services/favorites_se
 import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/doctor_profile_cubit.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/evaluations_cubit.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/favorites_cubit.dart';
+import 'package:oxytocin/features/doctor_profile.dart/presentation/views/all_appointment_month.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/all_reviews_view.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/doctor_profile_view.dart';
 import 'package:oxytocin/features/search_doctors_page/data/services/doctor_search_service.dart';
@@ -254,12 +256,24 @@ class AppRouter {
           name: RouteNames.doctorProfileView,
           builder: (context, state) {
             int id = int.tryParse(state.uri.queryParameters['id'] ?? '') ?? 0;
+            final now = DateTime.now();
+            final startDate = now;
+            final endDate = now.add(const Duration(days: 31));
+
+            final String formattedStartDate =
+                "${startDate.year}-${startDate.month.toString().padLeft(2, '0')}-${startDate.day.toString().padLeft(2, '0')}";
+            final String formattedEndDate =
+                "${endDate.year}-${endDate.month.toString().padLeft(2, '0')}-${endDate.day.toString().padLeft(2, '0')}";
             return MultiBlocProvider(
               providers: [
                 BlocProvider(
                   create: (context) =>
                       DoctorProfileCubit(DoctorProfileService())
-                        ..fetchAllDoctorData(clinicId: id),
+                        ..fetchAllDoctorData(
+                          clinicId: id,
+                          startDate: formattedStartDate,
+                          endDate: formattedEndDate,
+                        ),
                 ),
                 BlocProvider(
                   create: (context) =>
@@ -267,6 +281,31 @@ class AppRouter {
                 ),
               ],
               child: DoctorProfileView(id: id),
+            );
+          },
+        ),
+
+        GoRoute(
+          path: '/${RouteNames.allAppointmentMonth}',
+          name: RouteNames.allAppointmentMonth,
+          builder: (context, state) {
+            int id = int.tryParse(state.uri.queryParameters['id'] ?? '') ?? 0;
+            final now = DateTime.now();
+            final startDate = DateTime(now.year, now.month, 1);
+            final endDate = DateTime(now.year, now.month + 1, 0);
+            final String formattedStartDate =
+                "${startDate.year}-${startDate.month.toString().padLeft(2, '0')}-${startDate.day.toString().padLeft(2, '0')}";
+
+            final String formattedEndDate =
+                "${endDate.year}-${endDate.month.toString().padLeft(2, '0')}-${endDate.day.toString().padLeft(2, '0')}";
+            return BlocProvider(
+              create: (context) => DoctorProfileCubit(DoctorProfileService())
+                ..fetchAppointmentDates(
+                  clinicId: id,
+                  startDate: formattedStartDate,
+                  endDate: formattedEndDate,
+                ),
+              child: AllAppointmentMonth(id: id),
             );
           },
         ),

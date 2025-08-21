@@ -189,8 +189,34 @@
   "success_title": "Success",
   "doctor_removed_success": "Doctor removed from favorites successfully",
   "view_all_reservations": "View All Reservations",
-  "near_appointments": "Nearby Appointments"
-
+  "near_appointments": "Nearby Appointments",
+  "appointments_expired": "Nearby appointments have ended. You can press \"View all reservations\" to choose the date and month that suits you.",
+  "appointments_calendar": "Appointments Calendar",
+  "choose_month": "Choose Month",
+  "select": "Select",
+  "cancel": "Cancel",
+  "january": "January",
+  "february": "February",
+  "march": "March",
+  "april": "April",
+  "may": "May",
+  "june": "June",
+  "july": "July",
+  "august": "August",
+  "september": "September",
+  "october": "October",
+  "november": "November",
+  "december": "December",
+  "no_appointments_available": "No appointments available",
+  "no_appointments_description": "No appointments found for this month",
+  "error_loading_appointments": "Error loading appointments", 
+  "please_try_again": "Please try again",
+  "available_appointments": "Available Appointments",
+  "appointment": "appointment",
+  "loadingAppointments": "Loading appointments...",
+  "availableDays": "Available Days",
+  "day": "Day",
+  "days": "Days"
 
 
 

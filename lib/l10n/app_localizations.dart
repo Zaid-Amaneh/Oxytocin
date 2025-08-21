@@ -1243,6 +1243,168 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Nearby Appointments'**
   String get near_appointments;
+
+  /// No description provided for @appointments_expired.
+  ///
+  /// In en, this message translates to:
+  /// **'Nearby appointments have ended. You can press \"View all reservations\" to choose the date and month that suits you.'**
+  String get appointments_expired;
+
+  /// No description provided for @appointments_calendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointments Calendar'**
+  String get appointments_calendar;
+
+  /// No description provided for @choose_month.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Month'**
+  String get choose_month;
+
+  /// No description provided for @select.
+  ///
+  /// In en, this message translates to:
+  /// **'Select'**
+  String get select;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @january.
+  ///
+  /// In en, this message translates to:
+  /// **'January'**
+  String get january;
+
+  /// No description provided for @february.
+  ///
+  /// In en, this message translates to:
+  /// **'February'**
+  String get february;
+
+  /// No description provided for @march.
+  ///
+  /// In en, this message translates to:
+  /// **'March'**
+  String get march;
+
+  /// No description provided for @april.
+  ///
+  /// In en, this message translates to:
+  /// **'April'**
+  String get april;
+
+  /// No description provided for @may.
+  ///
+  /// In en, this message translates to:
+  /// **'May'**
+  String get may;
+
+  /// No description provided for @june.
+  ///
+  /// In en, this message translates to:
+  /// **'June'**
+  String get june;
+
+  /// No description provided for @july.
+  ///
+  /// In en, this message translates to:
+  /// **'July'**
+  String get july;
+
+  /// No description provided for @august.
+  ///
+  /// In en, this message translates to:
+  /// **'August'**
+  String get august;
+
+  /// No description provided for @september.
+  ///
+  /// In en, this message translates to:
+  /// **'September'**
+  String get september;
+
+  /// No description provided for @october.
+  ///
+  /// In en, this message translates to:
+  /// **'October'**
+  String get october;
+
+  /// No description provided for @november.
+  ///
+  /// In en, this message translates to:
+  /// **'November'**
+  String get november;
+
+  /// No description provided for @december.
+  ///
+  /// In en, this message translates to:
+  /// **'December'**
+  String get december;
+
+  /// No description provided for @no_appointments_available.
+  ///
+  /// In en, this message translates to:
+  /// **'No appointments available'**
+  String get no_appointments_available;
+
+  /// No description provided for @no_appointments_description.
+  ///
+  /// In en, this message translates to:
+  /// **'No appointments found for this month'**
+  String get no_appointments_description;
+
+  /// No description provided for @error_loading_appointments.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading appointments'**
+  String get error_loading_appointments;
+
+  /// No description provided for @please_try_again.
+  ///
+  /// In en, this message translates to:
+  /// **'Please try again'**
+  String get please_try_again;
+
+  /// No description provided for @available_appointments.
+  ///
+  /// In en, this message translates to:
+  /// **'Available Appointments'**
+  String get available_appointments;
+
+  /// No description provided for @appointment.
+  ///
+  /// In en, this message translates to:
+  /// **'appointment'**
+  String get appointment;
+
+  /// No description provided for @loadingAppointments.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading appointments...'**
+  String get loadingAppointments;
+
+  /// No description provided for @availableDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Available Days'**
+  String get availableDays;
+
+  /// No description provided for @day.
+  ///
+  /// In en, this message translates to:
+  /// **'Day'**
+  String get day;
+
+  /// No description provided for @days.
+  ///
+  /// In en, this message translates to:
+  /// **'Days'**
+  String get days;
 }
 
 class _AppLocalizationsDelegate

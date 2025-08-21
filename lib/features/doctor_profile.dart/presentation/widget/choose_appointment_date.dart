@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
+import 'package:oxytocin/features/doctor_profile.dart/data/models/appointment_date_model.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/appointment_card.dart';
-import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/review.dart';
 
 class ChooseAppointmentDate extends StatefulWidget {
-  final List<AppointmentModel> appointments;
+  final List<AppointmentDate> appointments;
   final Function(DateTime date, String time)? onBookAppointment;
   final VoidCallback? onShowAllMonthDays;
 
@@ -58,7 +58,9 @@ class _ChooseAppointmentDateState extends State<ChooseAppointmentDate> {
                     child: Icon(
                       Icons.arrow_back_ios,
                       size: 25,
-                      color: currentStartIndex > 0 ? Colors.black : Colors.grey,
+                      color: currentStartIndex > 0
+                          ? AppColors.kPrimaryColor1
+                          : Colors.grey,
                     ),
                   ),
                 ),
@@ -92,7 +94,9 @@ class _ChooseAppointmentDateState extends State<ChooseAppointmentDate> {
                     onTap: _canGoToNextDays() ? _goToNextDays : null,
                     child: Icon(
                       Icons.arrow_forward_ios,
-                      color: _canGoToNextDays() ? Colors.black : Colors.grey,
+                      color: _canGoToNextDays()
+                          ? AppColors.kPrimaryColor1
+                          : Colors.grey,
                       size: 25,
                     ),
                   ),
@@ -127,9 +131,16 @@ class _ChooseAppointmentDateState extends State<ChooseAppointmentDate> {
         border: Border.all(color: Colors.grey.shade300),
       ),
       child: Center(
-        child: Text(
-          context.tr.noAppointments,
-          style: TextStyle(color: Colors.grey.shade500, fontSize: 12),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(2, 0, 2, 0),
+          child: Text(
+            context.tr.appointments_expired,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: AppColors.textSecondary,
+              fontSize: 12,
+            ),
+          ),
         ),
       ),
     );

@@ -625,4 +625,87 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get near_appointments => 'المواعيد القريبة';
+
+  @override
+  String get appointments_expired =>
+      'انتهت المواعيد القريبة. يمكنك الضغط على \"عرض جميع الحجوزات\" لاختيار التاريخ والشهر المناسب لك.';
+
+  @override
+  String get appointments_calendar => 'تقويم المواعيد';
+
+  @override
+  String get choose_month => 'اختر الشهر';
+
+  @override
+  String get select => 'اختيار';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get january => 'يناير';
+
+  @override
+  String get february => 'فبراير';
+
+  @override
+  String get march => 'مارس';
+
+  @override
+  String get april => 'أبريل';
+
+  @override
+  String get may => 'مايو';
+
+  @override
+  String get june => 'يونيو';
+
+  @override
+  String get july => 'يوليو';
+
+  @override
+  String get august => 'أغسطس';
+
+  @override
+  String get september => 'سبتمبر';
+
+  @override
+  String get october => 'أكتوبر';
+
+  @override
+  String get november => 'نوفمبر';
+
+  @override
+  String get december => 'ديسمبر';
+
+  @override
+  String get no_appointments_available => 'لا توجد مواعيد متاحة';
+
+  @override
+  String get no_appointments_description =>
+      'لم يتم العثور على أي مواعيد في هذا الشهر';
+
+  @override
+  String get error_loading_appointments => 'خطأ في تحميل المواعيد';
+
+  @override
+  String get please_try_again => 'يرجى المحاولة مرة أخرى';
+
+  @override
+  String get available_appointments => 'المواعيد المتاحة';
+
+  @override
+  String get appointment => 'موعد';
+
+  @override
+  String get loadingAppointments => 'جاري تحميل المواعيد...';
+
+  @override
+  String get availableDays => 'الأيام المتاحة';
+
+  @override
+  String get day => 'يوم';
+
+  @override
+  String get days => 'أيام';
 }

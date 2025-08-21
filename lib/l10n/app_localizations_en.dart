@@ -636,4 +636,87 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get near_appointments => 'Nearby Appointments';
+
+  @override
+  String get appointments_expired =>
+      'Nearby appointments have ended. You can press \"View all reservations\" to choose the date and month that suits you.';
+
+  @override
+  String get appointments_calendar => 'Appointments Calendar';
+
+  @override
+  String get choose_month => 'Choose Month';
+
+  @override
+  String get select => 'Select';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get january => 'January';
+
+  @override
+  String get february => 'February';
+
+  @override
+  String get march => 'March';
+
+  @override
+  String get april => 'April';
+
+  @override
+  String get may => 'May';
+
+  @override
+  String get june => 'June';
+
+  @override
+  String get july => 'July';
+
+  @override
+  String get august => 'August';
+
+  @override
+  String get september => 'September';
+
+  @override
+  String get october => 'October';
+
+  @override
+  String get november => 'November';
+
+  @override
+  String get december => 'December';
+
+  @override
+  String get no_appointments_available => 'No appointments available';
+
+  @override
+  String get no_appointments_description =>
+      'No appointments found for this month';
+
+  @override
+  String get error_loading_appointments => 'Error loading appointments';
+
+  @override
+  String get please_try_again => 'Please try again';
+
+  @override
+  String get available_appointments => 'Available Appointments';
+
+  @override
+  String get appointment => 'appointment';
+
+  @override
+  String get loadingAppointments => 'Loading appointments...';
+
+  @override
+  String get availableDays => 'Available Days';
+
+  @override
+  String get day => 'Day';
+
+  @override
+  String get days => 'Days';
 }

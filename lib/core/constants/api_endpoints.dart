@@ -16,4 +16,5 @@ class ApiEndpoints {
   static const String doctorProfile = "$baseURL/api/doctors/";
   static const String evaluations = "$baseURL/api/evaluations/";
   static const String favorites = "$baseURL/api/patients/favorites/";
+  static const String appointmentDate = "$baseURL/api/appointments/";
 }

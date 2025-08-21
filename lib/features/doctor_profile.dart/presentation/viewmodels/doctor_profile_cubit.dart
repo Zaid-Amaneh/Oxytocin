@@ -8,6 +8,9 @@ class DoctorProfileCubit extends Cubit<DoctorProfileState> {
   DoctorProfileCubit(this._doctorProfileService)
     : super(DoctorProfileInitial());
 
+  int? _lastClinicId;
+  String? _lastStartDate;
+  String? _lastEndDate;
   Future<void> fetchDoctorProfile(int doctorId) async {
     emit(DoctorProfileLoading());
     try {
@@ -33,20 +36,68 @@ class DoctorProfileCubit extends Cubit<DoctorProfileState> {
     }
   }
 
-  Future<void> fetchAllDoctorData({required int clinicId}) async {
+  Future<void> fetchAllDoctorData({
+    required int clinicId,
+    required String startDate,
+    required String endDate,
+  }) async {
     emit(DoctorProfileLoading());
     try {
-      final results = await _doctorProfileService.fetchAllDoctorData(clinicId);
+      final results = await _doctorProfileService.fetchAllDoctorData(
+        clinicId: clinicId,
+        startDate: startDate,
+        endDate: endDate,
+      );
 
       final doctorProfile = results['doctorProfile'];
       final clinicImages = results['clinicImages'];
       final evaluations = results['evaluations'];
+      final appointmentDates = results['appointmentDates'];
 
       emit(
-        DoctorProfileAllDataSuccess(doctorProfile, clinicImages, evaluations),
+        DoctorProfileAllDataSuccess(
+          doctorProfile,
+          clinicImages,
+          evaluations,
+          appointmentDates,
+        ),
       );
     } catch (e) {
       emit(DoctorProfileFailure(e.toString()));
+    }
+  }
+
+  Future<void> fetchAppointmentDates({
+    required int clinicId,
+    required String startDate,
+    required String endDate,
+  }) async {
+    _lastClinicId = clinicId;
+    _lastStartDate = startDate;
+    _lastEndDate = endDate;
+    emit(AppointmentDatesLoading());
+    try {
+      final appointmentDates = await _doctorProfileService
+          .fetchAppointmentDates(
+            clinicId: clinicId,
+            startDate: startDate,
+            endDate: endDate,
+          );
+      emit(AppointmentDatesSuccess(appointmentDates));
+    } catch (e) {
+      emit(AppointmentDatesFailure(e.toString()));
+    }
+  }
+
+  Future<void> refreshAppointmentDates() async {
+    if (_lastClinicId != null &&
+        _lastStartDate != null &&
+        _lastEndDate != null) {
+      await fetchAppointmentDates(
+        clinicId: _lastClinicId!,
+        startDate: _lastStartDate!,
+        endDate: _lastEndDate!,
+      );
     }
   }
 
@@ -62,6 +113,7 @@ class DoctorProfileCubit extends Cubit<DoctorProfileState> {
           newProfile,
           currentState.clinicImages,
           currentState.evaluations,
+          currentState.appointmentDates,
         ),
       );
     }
