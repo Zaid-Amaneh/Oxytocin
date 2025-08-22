@@ -29,11 +29,13 @@ class NavigationService {
     String name, {
     Map<String, String>? queryParams,
     Map<String, String>? pathParams,
+    Object? extra,
   }) {
     _router.pushNamed(
       name,
       queryParameters: queryParams ?? {},
       pathParameters: pathParams ?? {},
+      extra: extra,
     );
   }
 

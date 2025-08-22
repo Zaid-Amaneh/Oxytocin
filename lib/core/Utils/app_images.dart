@@ -103,6 +103,8 @@ class AppImages {
 
   static const String imagesSurgery = "assets/images/surgery.svg";
 
+  static const String successfully = "assets/images/successfully.png";
+
   static const String emptyImage = "assets/images/empty.svg";
 
   static const String backIcon = "assets/images/backIcon.svg";

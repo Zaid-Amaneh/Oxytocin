@@ -4,6 +4,10 @@ import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
+import 'package:oxytocin/features/book_appointment/presentation/views/appointment_successfully_booked.dart';
+import 'package:oxytocin/features/book_appointment/presentation/views/book_appointment_view.dart';
+import 'package:oxytocin/features/doctor_profile.dart/data/models/appointment_date.dart';
+import 'package:oxytocin/features/doctor_profile.dart/data/models/visit_time_model.dart';
 import 'package:oxytocin/features/doctor_profile.dart/data/services/doctor_profile_service.dart';
 import 'package:oxytocin/features/doctor_profile.dart/data/services/favorites_service.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/doctor_profile_cubit.dart';
@@ -49,7 +53,7 @@ import 'package:oxytocin/features/medical_appointments/presentation/views/medica
 class AppRouter {
   static GoRouter createRouter(NavigationService navigationService) {
     final router = GoRouter(
-      initialLocation: '/${RouteNames.searchDoctorsView}',
+      initialLocation: '/${RouteNames.appointmentSuccessfullyBooked}',
       routes: [
         GoRoute(
           path: '/${RouteNames.splash}',
@@ -289,6 +293,7 @@ class AppRouter {
           path: '/${RouteNames.allAppointmentMonth}',
           name: RouteNames.allAppointmentMonth,
           builder: (context, state) {
+            final args = state.extra as Map<String, dynamic>;
             int id = int.tryParse(state.uri.queryParameters['id'] ?? '') ?? 0;
             final now = DateTime.now();
             final startDate = DateTime(now.year, now.month, 1);
@@ -305,9 +310,35 @@ class AppRouter {
                   startDate: formattedStartDate,
                   endDate: formattedEndDate,
                 ),
-              child: AllAppointmentMonth(id: id),
+              child: AllAppointmentMonth(
+                id: id,
+                mainSpecialty: args['mainSpecialty'] as String,
+                address: args['address'] as String,
+              ),
             );
           },
+        ),
+        GoRoute(
+          path: '/${RouteNames.bookAppointment}',
+          name: RouteNames.bookAppointment,
+          builder: (context, state) {
+            final args = state.extra as Map<String, dynamic>;
+            return BookAppointmentView(
+              id: args['id'] as String,
+              mainSpecialty: args['mainSpecialty'] as String,
+              address: args['address'] as String,
+              dateText: args['dateText'] as String,
+              dayName: args['dayName'] as String,
+              availableTimes: List<VisitTime>.from(
+                args['availableTimes'] as List,
+              ),
+            );
+          },
+        ),
+        GoRoute(
+          path: '/${RouteNames.appointmentSuccessfullyBooked}',
+          name: RouteNames.appointmentSuccessfullyBooked,
+          builder: (context, state) => const AppointmentSuccessfullyBooked(),
         ),
       ],
     );

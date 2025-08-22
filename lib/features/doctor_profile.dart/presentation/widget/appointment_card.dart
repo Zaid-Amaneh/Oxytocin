@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
+import 'package:oxytocin/core/routing/navigation_service.dart';
+import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
-import 'package:oxytocin/features/doctor_profile.dart/data/models/appointment_date_model.dart';
+import 'package:oxytocin/features/doctor_profile.dart/data/models/appointment_date.dart';
 import 'package:oxytocin/features/doctor_profile.dart/data/models/visit_time_model.dart';
 
 class AppointmentCard extends StatelessWidget {
   const AppointmentCard({
     super.key,
     required this.appointment,
-    this.onBookAppointment,
+    required this.id,
+    required this.mainSpecialty,
+    required this.address,
   });
+  final String id, mainSpecialty, address;
   final AppointmentDate appointment;
-  final Function(DateTime date, String time)? onBookAppointment;
   @override
   Widget build(BuildContext context) {
     // final screenWidth = MediaQuery.of(context).size.width;
@@ -135,12 +139,21 @@ class AppointmentCard extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            // onTap: hasAvailableTimes
-            //     ? () => onBookAppointment?.call(
-            //         appointment.date,
-            //         displayTimes.first,
-            //       )
-            //     : null,
+            onTap: hasAvailableTimes
+                ? () {
+                    NavigationService().pushToNamedWithParams(
+                      RouteNames.bookAppointment,
+                      extra: {
+                        'dateText': dateText,
+                        'dayName': dayName,
+                        'availableTimes': availableTimes,
+                        'id': id,
+                        'mainSpecialty': mainSpecialty,
+                        'address': address,
+                      },
+                    );
+                  }
+                : null,
             child: Container(
               width: double.infinity,
               height: screenHeight * 0.05,

@@ -21,4 +21,6 @@ class RouteNames {
   static const medicalAppointmentsView = 'medicalAppointmentsView';
   static const doctorProfileView = 'doctorProfileView';
   static const allAppointmentMonth = 'AllAppointmentMonth';
+  static const bookAppointment = 'bookAppointment';
+  static const appointmentSuccessfullyBooked = 'appointmentSuccessfullyBooked';
 }

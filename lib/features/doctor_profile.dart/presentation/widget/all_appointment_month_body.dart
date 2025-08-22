@@ -277,7 +277,12 @@ class AllAppointmentMonthBody extends StatelessWidget {
                     onTap: () {
                       HapticFeedback.lightImpact();
                     },
-                    child: AppointmentCard(appointment: appointment),
+                    child: AppointmentCard(
+                      appointment: appointment,
+                      id: '',
+                      mainSpecialty: '',
+                      address: '',
+                    ),
                   ),
                 ),
               ),

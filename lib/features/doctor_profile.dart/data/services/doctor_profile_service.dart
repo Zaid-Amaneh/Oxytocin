@@ -4,7 +4,7 @@ import 'package:logger/logger.dart';
 import 'package:oxytocin/core/Utils/services/secure_storage_service.dart';
 import 'package:oxytocin/core/constants/api_endpoints.dart';
 import 'package:oxytocin/core/errors/failure.dart';
-import 'package:oxytocin/features/doctor_profile.dart/data/models/appointment_date_model.dart';
+import 'package:oxytocin/features/doctor_profile.dart/data/models/appointment_date.dart';
 import 'package:oxytocin/features/doctor_profile.dart/data/models/clinic_image.dart';
 import 'package:oxytocin/features/doctor_profile.dart/data/models/paginated_evaluations_response.dart';
 import '../models/doctor_profile_model.dart';

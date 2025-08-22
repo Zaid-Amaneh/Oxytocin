@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:oxytocin/features/doctor_profile.dart/data/models/appointment_date_model.dart';
+import 'package:oxytocin/features/doctor_profile.dart/data/models/appointment_date.dart';
 import 'package:oxytocin/features/doctor_profile.dart/data/models/clinic_image.dart';
 import 'package:oxytocin/features/doctor_profile.dart/data/models/doctor_profile_model.dart';
 import 'package:oxytocin/features/doctor_profile.dart/data/models/paginated_evaluations_response.dart';

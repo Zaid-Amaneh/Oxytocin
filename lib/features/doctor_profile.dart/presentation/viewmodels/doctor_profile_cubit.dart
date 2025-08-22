@@ -41,6 +41,9 @@ class DoctorProfileCubit extends Cubit<DoctorProfileState> {
     required String startDate,
     required String endDate,
   }) async {
+    _lastClinicId = clinicId;
+    _lastStartDate = startDate;
+    _lastEndDate = endDate;
     emit(DoctorProfileLoading());
     try {
       final results = await _doctorProfileService.fetchAllDoctorData(
@@ -64,6 +67,18 @@ class DoctorProfileCubit extends Cubit<DoctorProfileState> {
       );
     } catch (e) {
       emit(DoctorProfileFailure(e.toString()));
+    }
+  }
+
+  Future<void> refreshAllDoctorData() async {
+    if (_lastClinicId != null &&
+        _lastStartDate != null &&
+        _lastEndDate != null) {
+      await fetchAllDoctorData(
+        clinicId: _lastClinicId!,
+        startDate: _lastStartDate!,
+        endDate: _lastEndDate!,
+      );
     }
   }
 

@@ -555,7 +555,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pm => 'مساءً';
 
   @override
-  String get error => 'حدث خطأ ما';
+  String get error => 'حدث خطأ';
 
   @override
   String get locationError => 'حدث خطأ أثناء تحديد الموقع';
@@ -708,4 +708,109 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get days => 'أيام';
+
+  @override
+  String get appointmentInstructions =>
+      'يمكنك هنا كتابة أي شيء ترغب في أن يعرفه الطبيب قبل الموعد، مثل الأعراض التي تشعر بها، متى بدأت حالتك، أو أي تفاصيل تعتقد أنها مهمة.';
+
+  @override
+  String get tellDoctorHowYouFeel => 'أخبر الطبيب بما تشعر به';
+
+  @override
+  String get confirmBooking => 'تأكيد الحجز';
+
+  @override
+  String get bookingSuccess => 'تم حجز موعدك بنجاح!';
+
+  @override
+  String get thankYouMessage =>
+      'شكرًا لاستخدامك منصتنا. نتمنى لك دوام الصحة والعافية!';
+
+  @override
+  String get attachFiles =>
+      'يمكنك إرفاق أي ملفات ترغب أن يطّلع عليها الطبيب قبل الموعد';
+
+  @override
+  String get backToHome => 'العودة إلى الصفحة الرئيسية';
+
+  @override
+  String availableAppointments(Object dayDate) {
+    return 'هذه هي المواعيد المتاحة ليوم $dayDate، يرجى اختيار الوقت المناسب لك.';
+  }
+
+  @override
+  String get chooseTime => 'اختر الوقت المناسب';
+
+  @override
+  String get appointment_success => 'تم حجز موعدك بنجاح!';
+
+  @override
+  String get thank_you_message =>
+      'شكرًا لاستخدامك منصتنا. نتمنى لك دوام الصحة والعافية!';
+
+  @override
+  String get attach_files_hint =>
+      'يمكنك إرفاق أي ملفات ترغب أن يطّلع عليها الطبيب قبل الموعد';
+
+  @override
+  String get doctor => 'الطبيب:';
+
+  @override
+  String get specialization => 'التخصص:';
+
+  @override
+  String get date => 'التاريخ:';
+
+  @override
+  String get time => 'الوقت:';
+
+  @override
+  String get location => 'المكان:';
+
+  @override
+  String get add_file => 'أضف ملف';
+
+  @override
+  String get back_to_home => 'العودة إلى الصفحة الرئيسية';
+
+  @override
+  String get appointment_confirmed => 'تم تأكيد الموعد';
+
+  @override
+  String max_files_error(Object maxFiles) {
+    return 'لا يمكن رفع أكثر من $maxFiles ملفات';
+  }
+
+  @override
+  String file_size_error(Object fileName, Object maxFileSizeInMB) {
+    return 'حجم الملف $fileName أكبر من $maxFileSizeInMB ميجابايت';
+  }
+
+  @override
+  String allowed_files_limit(Object allowedCount, Object maxFiles) {
+    return 'تم إضافة $allowedCount ملفات فقط. الحد الأقصى $maxFiles ملفات';
+  }
+
+  @override
+  String get file_pick_error => 'حدث خطأ في اختيار الملفات';
+
+  @override
+  String get loading => 'جاري التحميل...';
+
+  @override
+  String get tap_to_select_files => 'اضغط لاختيار الملفات';
+
+  @override
+  String upload_hint(Object maxFileSizeInMB, Object maxFiles) {
+    return 'يمكنك رفع حتى $maxFiles ملفات، كل ملف حتى $maxFileSizeInMB ميجابايت';
+  }
+
+  @override
+  String get supported_formats =>
+      'الصيغ المدعومة: PDF, DOC, DOCX, TXT, JPG, PNG';
+
+  @override
+  String files_progress(Object maxFiles, Object selectedCount) {
+    return '$selectedCount من $maxFiles ملفات';
+  }
 }

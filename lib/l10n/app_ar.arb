@@ -167,7 +167,7 @@
     "sunday": "الأحد",
     "am": "صباحاً",
     "pm": "مساءً",
-    "error":"حدث خطأ ما",
+    "error":"حدث خطأ",
     "locationError": "حدث خطأ أثناء تحديد الموقع",
     "routeNotFound": "المسار غير موجود",
     "locationTimeout": "انتهى وقت محاولة تحديد الموقع",
@@ -216,7 +216,38 @@
     "loadingAppointments": "جاري تحميل المواعيد...",
     "availableDays": "الأيام المتاحة",
     "day": "يوم",
-    "days": "أيام"
+    "days": "أيام",
+    "appointmentInstructions": "يمكنك هنا كتابة أي شيء ترغب في أن يعرفه الطبيب قبل الموعد، مثل الأعراض التي تشعر بها، متى بدأت حالتك، أو أي تفاصيل تعتقد أنها مهمة.",
+    "tellDoctorHowYouFeel": "أخبر الطبيب بما تشعر به",
+    "confirmBooking": "تأكيد الحجز",
+    "bookingSuccess": "تم حجز موعدك بنجاح!",
+    "thankYouMessage": "شكرًا لاستخدامك منصتنا. نتمنى لك دوام الصحة والعافية!",
+    "attachFiles": "يمكنك إرفاق أي ملفات ترغب أن يطّلع عليها الطبيب قبل الموعد",
+    "backToHome": "العودة إلى الصفحة الرئيسية",
+    "availableAppointments": "هذه هي المواعيد المتاحة ليوم {dayDate}، يرجى اختيار الوقت المناسب لك.",
+    "chooseTime": "اختر الوقت المناسب",
+    "appointment_success": "تم حجز موعدك بنجاح!",
+    "thank_you_message": "شكرًا لاستخدامك منصتنا. نتمنى لك دوام الصحة والعافية!",
+    "attach_files_hint": "يمكنك إرفاق أي ملفات ترغب أن يطّلع عليها الطبيب قبل الموعد",
+    "doctor": "الطبيب:",
+    "specialization": "التخصص:",
+    "date": "التاريخ:",
+    "time": "الوقت:",
+    "location": "المكان:",
+    "add_file": "أضف ملف",
+    "back_to_home": "العودة إلى الصفحة الرئيسية",
+    "appointment_confirmed": "تم تأكيد الموعد",
+    "max_files_error": "لا يمكن رفع أكثر من {maxFiles} ملفات",
+    "file_size_error": "حجم الملف {fileName} أكبر من {maxFileSizeInMB} ميجابايت",
+    "allowed_files_limit": "تم إضافة {allowedCount} ملفات فقط. الحد الأقصى {maxFiles} ملفات",
+    "file_pick_error": "حدث خطأ في اختيار الملفات",
+    "loading": "جاري التحميل...",
+    "tap_to_select_files": "اضغط لاختيار الملفات",
+    "upload_hint": "يمكنك رفع حتى {maxFiles} ملفات، كل ملف حتى {maxFileSizeInMB} ميجابايت",
+    "supported_formats": "الصيغ المدعومة: PDF, DOC, DOCX, TXT, JPG, PNG",
+    "files_progress": "{selectedCount} من {maxFiles} ملفات"
+
+
 
     
 }

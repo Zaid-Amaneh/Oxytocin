@@ -1405,6 +1405,180 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Days'**
   String get days;
+
+  /// No description provided for @appointmentInstructions.
+  ///
+  /// In en, this message translates to:
+  /// **'You can write anything you want the doctor to know before the appointment, such as symptoms you feel, when your condition started, or any details you think are important.'**
+  String get appointmentInstructions;
+
+  /// No description provided for @tellDoctorHowYouFeel.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell the doctor how you feel'**
+  String get tellDoctorHowYouFeel;
+
+  /// No description provided for @confirmBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Booking'**
+  String get confirmBooking;
+
+  /// No description provided for @bookingSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Your appointment has been successfully booked!'**
+  String get bookingSuccess;
+
+  /// No description provided for @thankYouMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for using our platform. We wish you continued health and wellness!'**
+  String get thankYouMessage;
+
+  /// No description provided for @attachFiles.
+  ///
+  /// In en, this message translates to:
+  /// **'You can attach any files you want the doctor to review before the appointment'**
+  String get attachFiles;
+
+  /// No description provided for @backToHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Home'**
+  String get backToHome;
+
+  /// No description provided for @availableAppointments.
+  ///
+  /// In en, this message translates to:
+  /// **'These are the available appointments for {dayDate}. Please select a time that suits you.'**
+  String availableAppointments(Object dayDate);
+
+  /// No description provided for @chooseTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a suitable time'**
+  String get chooseTime;
+
+  /// No description provided for @appointment_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Your appointment has been successfully booked!'**
+  String get appointment_success;
+
+  /// No description provided for @thank_you_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for using our platform. We wish you good health and wellness!'**
+  String get thank_you_message;
+
+  /// No description provided for @attach_files_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'You can attach any files you would like the doctor to review before the appointment'**
+  String get attach_files_hint;
+
+  /// No description provided for @doctor.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor:'**
+  String get doctor;
+
+  /// No description provided for @specialization.
+  ///
+  /// In en, this message translates to:
+  /// **'Specialization:'**
+  String get specialization;
+
+  /// No description provided for @date.
+  ///
+  /// In en, this message translates to:
+  /// **'Date:'**
+  String get date;
+
+  /// No description provided for @time.
+  ///
+  /// In en, this message translates to:
+  /// **'Time:'**
+  String get time;
+
+  /// No description provided for @location.
+  ///
+  /// In en, this message translates to:
+  /// **'Location:'**
+  String get location;
+
+  /// No description provided for @add_file.
+  ///
+  /// In en, this message translates to:
+  /// **'Add File'**
+  String get add_file;
+
+  /// No description provided for @back_to_home.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Home'**
+  String get back_to_home;
+
+  /// No description provided for @appointment_confirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment confirmed'**
+  String get appointment_confirmed;
+
+  /// No description provided for @max_files_error.
+  ///
+  /// In en, this message translates to:
+  /// **'You cannot upload more than {maxFiles} files'**
+  String max_files_error(Object maxFiles);
+
+  /// No description provided for @file_size_error.
+  ///
+  /// In en, this message translates to:
+  /// **'The file {fileName} is larger than {maxFileSizeInMB} MB'**
+  String file_size_error(Object fileName, Object maxFileSizeInMB);
+
+  /// No description provided for @allowed_files_limit.
+  ///
+  /// In en, this message translates to:
+  /// **'{allowedCount} files were added only. Maximum allowed is {maxFiles} files'**
+  String allowed_files_limit(Object allowedCount, Object maxFiles);
+
+  /// No description provided for @file_pick_error.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred while picking files'**
+  String get file_pick_error;
+
+  /// No description provided for @loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
+
+  /// No description provided for @tap_to_select_files.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to select files'**
+  String get tap_to_select_files;
+
+  /// No description provided for @upload_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'You can upload up to {maxFiles} files, each up to {maxFileSizeInMB} MB'**
+  String upload_hint(Object maxFileSizeInMB, Object maxFiles);
+
+  /// No description provided for @supported_formats.
+  ///
+  /// In en, this message translates to:
+  /// **'Supported formats: PDF, DOC, DOCX, TXT, JPG, PNG'**
+  String get supported_formats;
+
+  /// No description provided for @files_progress.
+  ///
+  /// In en, this message translates to:
+  /// **'{selectedCount} of {maxFiles} files'**
+  String files_progress(Object maxFiles, Object selectedCount);
 }
 
 class _AppLocalizationsDelegate

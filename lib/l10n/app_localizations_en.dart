@@ -719,4 +719,110 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get days => 'Days';
+
+  @override
+  String get appointmentInstructions =>
+      'You can write anything you want the doctor to know before the appointment, such as symptoms you feel, when your condition started, or any details you think are important.';
+
+  @override
+  String get tellDoctorHowYouFeel => 'Tell the doctor how you feel';
+
+  @override
+  String get confirmBooking => 'Confirm Booking';
+
+  @override
+  String get bookingSuccess => 'Your appointment has been successfully booked!';
+
+  @override
+  String get thankYouMessage =>
+      'Thank you for using our platform. We wish you continued health and wellness!';
+
+  @override
+  String get attachFiles =>
+      'You can attach any files you want the doctor to review before the appointment';
+
+  @override
+  String get backToHome => 'Back to Home';
+
+  @override
+  String availableAppointments(Object dayDate) {
+    return 'These are the available appointments for $dayDate. Please select a time that suits you.';
+  }
+
+  @override
+  String get chooseTime => 'Choose a suitable time';
+
+  @override
+  String get appointment_success =>
+      'Your appointment has been successfully booked!';
+
+  @override
+  String get thank_you_message =>
+      'Thank you for using our platform. We wish you good health and wellness!';
+
+  @override
+  String get attach_files_hint =>
+      'You can attach any files you would like the doctor to review before the appointment';
+
+  @override
+  String get doctor => 'Doctor:';
+
+  @override
+  String get specialization => 'Specialization:';
+
+  @override
+  String get date => 'Date:';
+
+  @override
+  String get time => 'Time:';
+
+  @override
+  String get location => 'Location:';
+
+  @override
+  String get add_file => 'Add File';
+
+  @override
+  String get back_to_home => 'Back to Home';
+
+  @override
+  String get appointment_confirmed => 'Appointment confirmed';
+
+  @override
+  String max_files_error(Object maxFiles) {
+    return 'You cannot upload more than $maxFiles files';
+  }
+
+  @override
+  String file_size_error(Object fileName, Object maxFileSizeInMB) {
+    return 'The file $fileName is larger than $maxFileSizeInMB MB';
+  }
+
+  @override
+  String allowed_files_limit(Object allowedCount, Object maxFiles) {
+    return '$allowedCount files were added only. Maximum allowed is $maxFiles files';
+  }
+
+  @override
+  String get file_pick_error => 'An error occurred while picking files';
+
+  @override
+  String get loading => 'Loading...';
+
+  @override
+  String get tap_to_select_files => 'Tap to select files';
+
+  @override
+  String upload_hint(Object maxFileSizeInMB, Object maxFiles) {
+    return 'You can upload up to $maxFiles files, each up to $maxFileSizeInMB MB';
+  }
+
+  @override
+  String get supported_formats =>
+      'Supported formats: PDF, DOC, DOCX, TXT, JPG, PNG';
+
+  @override
+  String files_progress(Object maxFiles, Object selectedCount) {
+    return '$selectedCount of $maxFiles files';
+  }
 }

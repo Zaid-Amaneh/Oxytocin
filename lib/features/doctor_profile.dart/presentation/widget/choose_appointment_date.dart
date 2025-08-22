@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
-import 'package:oxytocin/features/doctor_profile.dart/data/models/appointment_date_model.dart';
+import 'package:oxytocin/features/doctor_profile.dart/data/models/appointment_date.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/appointment_card.dart';
 
 class ChooseAppointmentDate extends StatefulWidget {
   final List<AppointmentDate> appointments;
-  final Function(DateTime date, String time)? onBookAppointment;
   final VoidCallback? onShowAllMonthDays;
-
+  final String id, mainSpecialty, address;
   const ChooseAppointmentDate({
     super.key,
     required this.appointments,
-    this.onBookAppointment,
     this.onShowAllMonthDays,
+    required this.id,
+    required this.mainSpecialty,
+    required this.address,
   });
 
   @override
@@ -78,7 +79,9 @@ class _ChooseAppointmentDateState extends State<ChooseAppointmentDate> {
                     return Flexible(
                       child: AppointmentCard(
                         appointment: widget.appointments[appointmentIndex],
-                        onBookAppointment: widget.onBookAppointment,
+                        id: widget.id,
+                        mainSpecialty: widget.mainSpecialty,
+                        address: widget.address,
                       ),
                     );
                   }),
