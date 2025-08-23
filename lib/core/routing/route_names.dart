@@ -15,8 +15,13 @@ class RouteNames {
   static const upload = 'UploadProfilePhoto';
   static const setLocation = 'SetLocation';
   static const congratView = 'CongratsView';
+  static const allReviewsView = 'AllReviewsView';
 
   static const searchDoctorsView = 'SearchDoctorsView';
   static const medicalAppointmentsView = 'medicalAppointmentsView';
   static const profile = 'profile';
+  static const doctorProfileView = 'doctorProfileView';
+  static const allAppointmentMonth = 'AllAppointmentMonth';
+  static const bookAppointment = 'bookAppointment';
+  static const appointmentSuccessfullyBooked = 'appointmentSuccessfullyBooked';
 }

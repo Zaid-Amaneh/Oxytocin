@@ -931,6 +931,684 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'We couldnt find any doctor matching your search. Try different keywords or check your spelling'**
   String get no_doctor_found;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'profile'**
+  String get profile;
+
+  /// No description provided for @d.
+  ///
+  /// In en, this message translates to:
+  /// **'D'**
+  String get d;
+
+  /// No description provided for @clinicLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Clinic location'**
+  String get clinicLocation;
+
+  /// No description provided for @easilyLocateClinic.
+  ///
+  /// In en, this message translates to:
+  /// **'Easily locate the clinic, and find your way there'**
+  String get easilyLocateClinic;
+
+  /// No description provided for @oneClick.
+  ///
+  /// In en, this message translates to:
+  /// **'With one click.'**
+  String get oneClick;
+
+  /// No description provided for @clinicPhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'Clinic photos'**
+  String get clinicPhotos;
+
+  /// No description provided for @noClinicImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, no photos are available for this clinic.'**
+  String get noClinicImage;
+
+  /// No description provided for @clinicEvaluation.
+  ///
+  /// In en, this message translates to:
+  /// **'Overall Clinic Evaluation'**
+  String get clinicEvaluation;
+
+  /// No description provided for @realPastPatients.
+  ///
+  /// In en, this message translates to:
+  /// **'Real reviews from past patients'**
+  String get realPastPatients;
+
+  /// No description provided for @viewMore.
+  ///
+  /// In en, this message translates to:
+  /// **'View more'**
+  String get viewMore;
+
+  /// No description provided for @about.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get about;
+
+  /// No description provided for @placeStudy.
+  ///
+  /// In en, this message translates to:
+  /// **'Place of study'**
+  String get placeStudy;
+
+  /// No description provided for @aboutDoctor.
+  ///
+  /// In en, this message translates to:
+  /// **'About the doctor'**
+  String get aboutDoctor;
+
+  /// No description provided for @show_all_days.
+  ///
+  /// In en, this message translates to:
+  /// **'Show all days of the month'**
+  String get show_all_days;
+
+  /// No description provided for @select_booking_time.
+  ///
+  /// In en, this message translates to:
+  /// **'Select booking time'**
+  String get select_booking_time;
+
+  /// No description provided for @book_now.
+  ///
+  /// In en, this message translates to:
+  /// **'Book now'**
+  String get book_now;
+
+  /// No description provided for @available.
+  ///
+  /// In en, this message translates to:
+  /// **'Available'**
+  String get available;
+
+  /// No description provided for @remainingAppointmentsMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'{remainingCount} appointments\nstill available for today'**
+  String remainingAppointmentsMessage(Object remainingCount);
+
+  /// No description provided for @noAppointmentsMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'No appointments\navailable'**
+  String get noAppointmentsMessage;
+
+  /// No description provided for @noAppointments.
+  ///
+  /// In en, this message translates to:
+  /// **'No appointments'**
+  String get noAppointments;
+
+  /// No description provided for @monday.
+  ///
+  /// In en, this message translates to:
+  /// **'Monday'**
+  String get monday;
+
+  /// No description provided for @tuesday.
+  ///
+  /// In en, this message translates to:
+  /// **'Tuesday'**
+  String get tuesday;
+
+  /// No description provided for @wednesday.
+  ///
+  /// In en, this message translates to:
+  /// **'Wednesday'**
+  String get wednesday;
+
+  /// No description provided for @thursday.
+  ///
+  /// In en, this message translates to:
+  /// **'Thursday'**
+  String get thursday;
+
+  /// No description provided for @friday.
+  ///
+  /// In en, this message translates to:
+  /// **'Friday'**
+  String get friday;
+
+  /// No description provided for @saturday.
+  ///
+  /// In en, this message translates to:
+  /// **'Saturday'**
+  String get saturday;
+
+  /// No description provided for @sunday.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunday'**
+  String get sunday;
+
+  /// No description provided for @am.
+  ///
+  /// In en, this message translates to:
+  /// **'AM'**
+  String get am;
+
+  /// No description provided for @pm.
+  ///
+  /// In en, this message translates to:
+  /// **'PM'**
+  String get pm;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get error;
+
+  /// No description provided for @locationError.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred while detecting the location'**
+  String get locationError;
+
+  /// No description provided for @routeNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Route not found'**
+  String get routeNotFound;
+
+  /// No description provided for @locationTimeout.
+  ///
+  /// In en, this message translates to:
+  /// **'Location request timed out'**
+  String get locationTimeout;
+
+  /// No description provided for @quotaExceeded.
+  ///
+  /// In en, this message translates to:
+  /// **'Quota exceeded'**
+  String get quotaExceeded;
+
+  /// No description provided for @apiKeyError.
+  ///
+  /// In en, this message translates to:
+  /// **'API key error'**
+  String get apiKeyError;
+
+  /// No description provided for @routeError.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred while fetching the route'**
+  String get routeError;
+
+  /// No description provided for @noRouteFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No route found'**
+  String get noRouteFound;
+
+  /// No description provided for @yourLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Your location'**
+  String get yourLocation;
+
+  /// No description provided for @loadingRoute.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading route...'**
+  String get loadingRoute;
+
+  /// No description provided for @errorOccurred.
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, an error occurred. Please try again'**
+  String get errorOccurred;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// No description provided for @age.
+  ///
+  /// In en, this message translates to:
+  /// **'Age'**
+  String get age;
+
+  /// No description provided for @subspecialties.
+  ///
+  /// In en, this message translates to:
+  /// **'Subspecialties'**
+  String get subspecialties;
+
+  /// No description provided for @noCommentDoctor.
+  ///
+  /// In en, this message translates to:
+  /// **'No one has left a comment yet. Book now and be the first to review this doctor!'**
+  String get noCommentDoctor;
+
+  /// No description provided for @doctor_added_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor added to favorites successfully'**
+  String get doctor_added_success;
+
+  /// No description provided for @doctor_added_failure_network.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to add doctor to favorites due to connection issues'**
+  String get doctor_added_failure_network;
+
+  /// No description provided for @doctor_added_failure_auth.
+  ///
+  /// In en, this message translates to:
+  /// **'You cannot add the doctor to favorites because you are not logged in'**
+  String get doctor_added_failure_auth;
+
+  /// No description provided for @failure_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get failure_title;
+
+  /// No description provided for @success_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Success'**
+  String get success_title;
+
+  /// No description provided for @doctor_removed_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor removed from favorites successfully'**
+  String get doctor_removed_success;
+
+  /// No description provided for @view_all_reservations.
+  ///
+  /// In en, this message translates to:
+  /// **'View All Reservations'**
+  String get view_all_reservations;
+
+  /// No description provided for @near_appointments.
+  ///
+  /// In en, this message translates to:
+  /// **'Nearby Appointments'**
+  String get near_appointments;
+
+  /// No description provided for @appointments_expired.
+  ///
+  /// In en, this message translates to:
+  /// **'Nearby appointments have ended. You can press \"View all reservations\" to choose the date and month that suits you.'**
+  String get appointments_expired;
+
+  /// No description provided for @appointments_calendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointments Calendar'**
+  String get appointments_calendar;
+
+  /// No description provided for @choose_month.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Month'**
+  String get choose_month;
+
+  /// No description provided for @select.
+  ///
+  /// In en, this message translates to:
+  /// **'Select'**
+  String get select;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @january.
+  ///
+  /// In en, this message translates to:
+  /// **'January'**
+  String get january;
+
+  /// No description provided for @february.
+  ///
+  /// In en, this message translates to:
+  /// **'February'**
+  String get february;
+
+  /// No description provided for @march.
+  ///
+  /// In en, this message translates to:
+  /// **'March'**
+  String get march;
+
+  /// No description provided for @april.
+  ///
+  /// In en, this message translates to:
+  /// **'April'**
+  String get april;
+
+  /// No description provided for @may.
+  ///
+  /// In en, this message translates to:
+  /// **'May'**
+  String get may;
+
+  /// No description provided for @june.
+  ///
+  /// In en, this message translates to:
+  /// **'June'**
+  String get june;
+
+  /// No description provided for @july.
+  ///
+  /// In en, this message translates to:
+  /// **'July'**
+  String get july;
+
+  /// No description provided for @august.
+  ///
+  /// In en, this message translates to:
+  /// **'August'**
+  String get august;
+
+  /// No description provided for @september.
+  ///
+  /// In en, this message translates to:
+  /// **'September'**
+  String get september;
+
+  /// No description provided for @october.
+  ///
+  /// In en, this message translates to:
+  /// **'October'**
+  String get october;
+
+  /// No description provided for @november.
+  ///
+  /// In en, this message translates to:
+  /// **'November'**
+  String get november;
+
+  /// No description provided for @december.
+  ///
+  /// In en, this message translates to:
+  /// **'December'**
+  String get december;
+
+  /// No description provided for @no_appointments_available.
+  ///
+  /// In en, this message translates to:
+  /// **'No appointments available'**
+  String get no_appointments_available;
+
+  /// No description provided for @no_appointments_description.
+  ///
+  /// In en, this message translates to:
+  /// **'No appointments found for this month'**
+  String get no_appointments_description;
+
+  /// No description provided for @error_loading_appointments.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading appointments'**
+  String get error_loading_appointments;
+
+  /// No description provided for @please_try_again.
+  ///
+  /// In en, this message translates to:
+  /// **'Please try again'**
+  String get please_try_again;
+
+  /// No description provided for @available_appointments.
+  ///
+  /// In en, this message translates to:
+  /// **'Available Appointments'**
+  String get available_appointments;
+
+  /// No description provided for @appointment.
+  ///
+  /// In en, this message translates to:
+  /// **'appointment'**
+  String get appointment;
+
+  /// No description provided for @loadingAppointments.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading appointments...'**
+  String get loadingAppointments;
+
+  /// No description provided for @availableDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Available Days'**
+  String get availableDays;
+
+  /// No description provided for @day.
+  ///
+  /// In en, this message translates to:
+  /// **'Day'**
+  String get day;
+
+  /// No description provided for @days.
+  ///
+  /// In en, this message translates to:
+  /// **'Days'**
+  String get days;
+
+  /// No description provided for @appointmentInstructions.
+  ///
+  /// In en, this message translates to:
+  /// **'You can write anything you want the doctor to know before the appointment, such as symptoms you feel, when your condition started, or any details you think are important.'**
+  String get appointmentInstructions;
+
+  /// No description provided for @tellDoctorHowYouFeel.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell the doctor how you feel'**
+  String get tellDoctorHowYouFeel;
+
+  /// No description provided for @confirmBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Booking'**
+  String get confirmBooking;
+
+  /// No description provided for @bookingSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Your appointment has been successfully booked!'**
+  String get bookingSuccess;
+
+  /// No description provided for @thankYouMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for using our platform. We wish you continued health and wellness!'**
+  String get thankYouMessage;
+
+  /// No description provided for @attachFiles.
+  ///
+  /// In en, this message translates to:
+  /// **'You can attach any files you want the doctor to review before the appointment'**
+  String get attachFiles;
+
+  /// No description provided for @backToHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Home'**
+  String get backToHome;
+
+  /// No description provided for @availableAppointments.
+  ///
+  /// In en, this message translates to:
+  /// **'These are the available appointments for {dayDate}. Please select a time that suits you.'**
+  String availableAppointments(Object dayDate);
+
+  /// No description provided for @chooseTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a suitable time'**
+  String get chooseTime;
+
+  /// No description provided for @appointment_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Your appointment has been successfully booked!'**
+  String get appointment_success;
+
+  /// No description provided for @thank_you_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for using our platform. We wish you good health and wellness!'**
+  String get thank_you_message;
+
+  /// No description provided for @attach_files_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'You can attach any files you would like the doctor to review before the appointment'**
+  String get attach_files_hint;
+
+  /// No description provided for @doctor.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor:'**
+  String get doctor;
+
+  /// No description provided for @specialization.
+  ///
+  /// In en, this message translates to:
+  /// **'Specialization:'**
+  String get specialization;
+
+  /// No description provided for @date.
+  ///
+  /// In en, this message translates to:
+  /// **'Date:'**
+  String get date;
+
+  /// No description provided for @time.
+  ///
+  /// In en, this message translates to:
+  /// **'Time:'**
+  String get time;
+
+  /// No description provided for @location.
+  ///
+  /// In en, this message translates to:
+  /// **'Location:'**
+  String get location;
+
+  /// No description provided for @add_file.
+  ///
+  /// In en, this message translates to:
+  /// **'Add File'**
+  String get add_file;
+
+  /// No description provided for @back_to_home.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Home'**
+  String get back_to_home;
+
+  /// No description provided for @appointment_confirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment confirmed'**
+  String get appointment_confirmed;
+
+  /// No description provided for @max_files_error.
+  ///
+  /// In en, this message translates to:
+  /// **'You cannot upload more than {maxFiles} files'**
+  String max_files_error(Object maxFiles);
+
+  /// No description provided for @file_size_error.
+  ///
+  /// In en, this message translates to:
+  /// **'The file {fileName} is larger than {maxFileSizeInMB} MB'**
+  String file_size_error(Object fileName, Object maxFileSizeInMB);
+
+  /// No description provided for @allowed_files_limit.
+  ///
+  /// In en, this message translates to:
+  /// **'{allowedCount} files were added only. Maximum allowed is {maxFiles} files'**
+  String allowed_files_limit(Object allowedCount, Object maxFiles);
+
+  /// No description provided for @file_pick_error.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred while picking files'**
+  String get file_pick_error;
+
+  /// No description provided for @loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
+
+  /// No description provided for @tap_to_select_files.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to select files'**
+  String get tap_to_select_files;
+
+  /// No description provided for @upload_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'You can upload up to {maxFiles} files, each up to {maxFileSizeInMB} MB'**
+  String upload_hint(Object maxFileSizeInMB, Object maxFiles);
+
+  /// No description provided for @supported_formats.
+  ///
+  /// In en, this message translates to:
+  /// **'Supported formats: PDF, DOC, DOCX, TXT, JPG, PNG'**
+  String get supported_formats;
+
+  /// No description provided for @files_progress.
+  ///
+  /// In en, this message translates to:
+  /// **'{selectedCount} of {maxFiles} files'**
+  String files_progress(Object maxFiles, Object selectedCount);
+
+  /// No description provided for @appointment_not_available.
+  ///
+  /// In en, this message translates to:
+  /// **'Unfortunately, the appointment you tried to book is no longer available as it has been taken by another patient.'**
+  String get appointment_not_available;
+
+  /// No description provided for @files_uploaded_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Files uploaded successfully! Your doctor can now review them.'**
+  String get files_uploaded_success;
+
+  /// No description provided for @files_upload_error.
+  ///
+  /// In en, this message translates to:
+  /// **'There was a problem uploading the files. Please try again.'**
+  String get files_upload_error;
+
+  /// No description provided for @invalid_uploaded_file.
+  ///
+  /// In en, this message translates to:
+  /// **'One of the uploaded files is invalid or contains an issue. Please check your files and try again.'**
+  String get invalid_uploaded_file;
+
+  /// No description provided for @next_appointment_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Your next appointment is waiting for you. We wish you continued health and wellness.'**
+  String get next_appointment_message;
 }
 
 class _AppLocalizationsDelegate

@@ -60,6 +60,11 @@ dependencies:
   cached_network_image: ^3.4.1
   shimmer: ^3.0.0
   location: ^8.0.1
+  flutter_polyline_points: ^3.0.1
+  flutter_dotenv: ^5.2.1
+  file_picker: ^10.3.2
+  flutter_local_notifications: ^19.4.0
+  permission_handler: ^12.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -84,6 +89,7 @@ flutter:
     - assets/images/
     - assets/lottie/
     - assets/images/categories/
+    - .env
 
   #   - images/a_dot_ham.jpeg
 

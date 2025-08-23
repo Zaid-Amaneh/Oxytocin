@@ -52,7 +52,9 @@ class AppImages {
   static const String illustration = 'assets/images/illustration.png';
   static const String imagesMedicalrecord = "assets/images/medicalrecord.gif";
   static const String sensitive = 'assets/images/sensitive.svg';
+  static const String starOutline = 'assets/images/starOutline.svg';
   static const String imagesMedicines = "assets/images/medicines.svg";
+  static const String noClinicImage = "assets/images/noClinicImage.svg";
   static const String alcohol = 'assets/images/alcohol.png';
 
   static const String imagesO = "assets/images/o-.png";
@@ -101,7 +103,11 @@ class AppImages {
 
   static const String imagesSurgery = "assets/images/surgery.svg";
 
+  static const String successfully = "assets/images/successfully.png";
+
   static const String emptyImage = "assets/images/empty.svg";
+
+  static const String backIcon = "assets/images/backIcon.svg";
 
   static const String unexpectedError = "assets/images/unexpected_error.png";
 

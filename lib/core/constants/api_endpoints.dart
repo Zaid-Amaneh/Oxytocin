@@ -17,4 +17,8 @@ class ApiEndpoints {
   static const String highestRatedDoctors = '/api/doctors/highest-rated/';
   static const String doctorById = '/api/doctors';
   static const String nearestDoctors = '/api/doctors/clinics/nearest/';
+  static const String doctorProfile = "$baseURL/api/doctors/";
+  static const String evaluations = "$baseURL/api/evaluations/";
+  static const String favorites = "$baseURL/api/patients/favorites/";
+  static const String appointmentDate = "$baseURL/api/appointments/";
 }

@@ -13,18 +13,19 @@ class AllDoctorsViewBody extends StatefulWidget {
 }
 
 class _AllDoctorsViewBodyState extends State<AllDoctorsViewBody> {
-  final _scrollController = ScrollController();
+  late final ScrollController scrollController;
   late final SearchViewModel searchViewModel;
   @override
   void initState() {
     super.initState();
+    scrollController = ScrollController();
     searchViewModel = SearchViewModel();
   }
 
   @override
   void dispose() {
     searchViewModel.dispose();
-    _scrollController.dispose();
+    scrollController.dispose();
     super.dispose();
   }
 
@@ -33,7 +34,7 @@ class _AllDoctorsViewBodyState extends State<AllDoctorsViewBody> {
     return ChangeNotifierProvider.value(
       value: searchViewModel,
       child: CustomScrollView(
-        controller: _scrollController,
+        controller: scrollController,
         slivers: [
           SliverToBoxAdapter(
             child: SearchDoctorsViewBodyHeader(
@@ -45,7 +46,7 @@ class _AllDoctorsViewBodyState extends State<AllDoctorsViewBody> {
             builder: (context, isFieldEmpty, child) {
               return isFieldEmpty
                   ? const SliverToBoxAdapter(child: SearchHistory())
-                  : AllDoctorsList(scrollController: _scrollController);
+                  : AllDoctorsList(scrollController: scrollController);
             },
           ),
         ],

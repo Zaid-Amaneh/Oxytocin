@@ -3,6 +3,22 @@ import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
+import 'package:oxytocin/features/book_appointment/data/models/booked_appointment_model.dart';
+import 'package:oxytocin/features/book_appointment/data/services/appointment_service.dart';
+import 'package:oxytocin/features/book_appointment/data/services/attachment_service.dart';
+import 'package:oxytocin/features/book_appointment/presentation/viewmodels/attachment_cubit.dart';
+import 'package:oxytocin/features/book_appointment/presentation/viewmodels/booking_cubit.dart';
+import 'package:oxytocin/features/book_appointment/presentation/views/appointment_successfully_booked.dart';
+import 'package:oxytocin/features/book_appointment/presentation/views/book_appointment_view.dart';
+import 'package:oxytocin/features/doctor_profile.dart/data/models/visit_time_model.dart';
+import 'package:oxytocin/features/doctor_profile.dart/data/services/doctor_profile_service.dart';
+import 'package:oxytocin/features/doctor_profile.dart/data/services/favorites_service.dart';
+import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/doctor_profile_cubit.dart';
+import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/evaluations_cubit.dart';
+import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/favorites_cubit.dart';
+import 'package:oxytocin/features/doctor_profile.dart/presentation/views/all_appointment_month.dart';
+import 'package:oxytocin/features/doctor_profile.dart/presentation/views/all_reviews_view.dart';
+import 'package:oxytocin/features/doctor_profile.dart/presentation/views/doctor_profile_view.dart';
 import 'package:oxytocin/features/search_doctors_page/data/services/doctor_search_service.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/viewmodels/doctorSearch/doctor_search_cubit.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/views/search_doctors_view.dart';
@@ -61,6 +77,19 @@ class AppRouter {
           builder: (context, state) => const CategoriesView(),
         ),
 
+        GoRoute(
+          path: '/${RouteNames.allReviewsView}/:clinicId',
+          name: RouteNames.allReviewsView,
+          builder: (context, state) {
+            final clinicId = int.parse(state.pathParameters['clinicId']!);
+            return BlocProvider(
+              create: (context) =>
+                  EvaluationsCubit(DoctorProfileService())
+                    ..fetchEvaluations(clinicId),
+              child: const AllReviewsView(),
+            );
+          },
+        ),
         GoRoute(
           path: '/${RouteNames.profileInfo}',
           name: RouteNames.profileInfo,
@@ -246,6 +275,101 @@ class AppRouter {
             create: (_) => ProfileDependencyInjection.getProfileCubit(),
             child: const ProfileView(),
           ),
+        ),
+
+        GoRoute(
+          path: '/${RouteNames.doctorProfileView}',
+          name: RouteNames.doctorProfileView,
+          builder: (context, state) {
+            int id = int.tryParse(state.uri.queryParameters['id'] ?? '') ?? 0;
+            final now = DateTime.now();
+            final startDate = now;
+            final endDate = now.add(const Duration(days: 31));
+
+            final String formattedStartDate =
+                "${startDate.year}-${startDate.month.toString().padLeft(2, '0')}-${startDate.day.toString().padLeft(2, '0')}";
+            final String formattedEndDate =
+                "${endDate.year}-${endDate.month.toString().padLeft(2, '0')}-${endDate.day.toString().padLeft(2, '0')}";
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (context) =>
+                      DoctorProfileCubit(DoctorProfileService())
+                        ..fetchAllDoctorData(
+                          clinicId: id,
+                          startDate: formattedStartDate,
+                          endDate: formattedEndDate,
+                        ),
+                ),
+                BlocProvider(
+                  create: (context) =>
+                      FavoritesCubit(FavoritesService(http.Client())),
+                ),
+              ],
+              child: DoctorProfileView(id: id),
+            );
+          },
+        ),
+
+        GoRoute(
+          path: '/${RouteNames.allAppointmentMonth}',
+          name: RouteNames.allAppointmentMonth,
+          builder: (context, state) {
+            int id = int.tryParse(state.uri.queryParameters['id'] ?? '') ?? 0;
+            final now = DateTime.now();
+            final startDate = DateTime(now.year, now.month, 1);
+            final endDate = DateTime(now.year, now.month + 1, 0);
+            final String formattedStartDate =
+                "${startDate.year}-${startDate.month.toString().padLeft(2, '0')}-${startDate.day.toString().padLeft(2, '0')}";
+
+            final String formattedEndDate =
+                "${endDate.year}-${endDate.month.toString().padLeft(2, '0')}-${endDate.day.toString().padLeft(2, '0')}";
+            return BlocProvider(
+              create: (context) => DoctorProfileCubit(DoctorProfileService())
+                ..fetchAppointmentDates(
+                  clinicId: id,
+                  startDate: formattedStartDate,
+                  endDate: formattedEndDate,
+                ),
+              child: AllAppointmentMonth(id: id),
+            );
+          },
+        ),
+        GoRoute(
+          path: '/${RouteNames.bookAppointment}',
+          name: RouteNames.bookAppointment,
+          builder: (context, state) {
+            final args = state.extra as Map<String, dynamic>;
+            final appointmentService = AppointmentService(http.Client());
+            return BlocProvider(
+              create: (_) => BookingCubit(appointmentService),
+              child: BookAppointmentView(
+                id: args['id'] as String,
+                dateText: args['dateText'] as String,
+                dayName: args['dayName'] as String,
+                availableTimes: List<VisitTime>.from(
+                  args['availableTimes'] as List,
+                ),
+              ),
+            );
+          },
+        ),
+        GoRoute(
+          path: '/${RouteNames.appointmentSuccessfullyBooked}',
+          name: RouteNames.appointmentSuccessfullyBooked,
+          builder: (context, state) {
+            final args = state.extra as Map<String, dynamic>;
+
+            final attachmentService = AttachmentService();
+
+            return BlocProvider(
+              create: (_) => AttachmentCubit(attachmentService),
+              child: AppointmentSuccessfullyBooked(
+                bookedAppointmentModel:
+                    args['bookedAppointmentModel'] as BookedAppointmentModel,
+              ),
+            );
+          },
         ),
       ],
     );
