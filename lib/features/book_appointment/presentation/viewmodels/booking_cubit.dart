@@ -1,9 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oxytocin/core/errors/failure.dart';
-import 'package:oxytocin/extensions/failure_localization.dart';
 import 'package:oxytocin/features/book_appointment/data/models/book_appointment_request_model.dart';
 import 'package:oxytocin/features/book_appointment/data/services/appointment_service.dart';
-import 'package:oxytocin/l10n/app_localizations.dart';
 import 'booking_state.dart';
 
 class BookingCubit extends Cubit<BookingState> {
