@@ -15,4 +15,6 @@ class AppColors {
   static const textfieldBorder = Color(0xFFD9D9D9);
   //container border side color
   static const containerBorder = Color.fromARGB(255, 231, 237, 243);
+  // Dark blue for profile card
+  static const profileCardBlue = Color(0xffbac000957);
 }

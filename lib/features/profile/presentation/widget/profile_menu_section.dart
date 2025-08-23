@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:feather_icons/feather_icons.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/Utils/size_config.dart';
 
-class ProfileMenuSection extends StatelessWidget {
+class ProfileMenuSection extends StatefulWidget {
   final VoidCallback onAccountTap;
   final VoidCallback onMedicalRecordsTap;
   final VoidCallback onFavoritesTap;
@@ -11,13 +10,24 @@ class ProfileMenuSection extends StatelessWidget {
   final VoidCallback onLogoutTap;
 
   const ProfileMenuSection({
-    Key? key,
+    super.key,
     required this.onAccountTap,
     required this.onMedicalRecordsTap,
     required this.onFavoritesTap,
     required this.onSettingsTap,
     required this.onLogoutTap,
-  }) : super(key: key);
+  });
+
+  @override
+  State<ProfileMenuSection> createState() => _ProfileMenuSectionState();
+}
+
+class _ProfileMenuSectionState extends State<ProfileMenuSection> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    SizeConfig.init(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,19 +36,19 @@ class ProfileMenuSection extends StatelessWidget {
         // First menu section
         _buildMenuCard([
           _buildMenuItem(
-            icon: FeatherIcons.user,
+            icon: Icons.person,
             title: 'حسابي',
-            onTap: onAccountTap,
+            onTap: widget.onAccountTap,
           ),
           _buildMenuItem(
-            icon: FeatherIcons.fileText,
+            icon: Icons.snippet_folder_sharp,
             title: 'سجلاتي الطبية',
-            onTap: onMedicalRecordsTap,
+            onTap: widget.onMedicalRecordsTap,
           ),
           _buildMenuItem(
-            icon: FeatherIcons.heart,
+            icon: Icons.favorite,
             title: 'المفضلة',
-            onTap: onFavoritesTap,
+            onTap: widget.onFavoritesTap,
             iconColor: AppColors.kPrimaryColor1,
           ),
         ]),
@@ -46,14 +56,14 @@ class ProfileMenuSection extends StatelessWidget {
         // Second menu section
         _buildMenuCard([
           _buildMenuItem(
-            icon: FeatherIcons.settings,
+            icon: Icons.settings,
             title: 'اعدادات',
-            onTap: onSettingsTap,
+            onTap: widget.onSettingsTap,
           ),
           _buildMenuItem(
-            icon: FeatherIcons.logOut,
+            icon: Icons.logout_sharp,
             title: 'تسجيل خروج',
-            onTap: onLogoutTap,
+            onTap: widget.onLogoutTap,
             isDestructive: true,
           ),
         ]),
@@ -64,13 +74,16 @@ class ProfileMenuSection extends StatelessWidget {
   Widget _buildMenuCard(List<Widget> children) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.grey[100],
-        borderRadius: BorderRadius.circular(16),
+        color: Color(0xffD9D9D9),
+        borderRadius: BorderRadius.circular(
+          SizeConfig.getProportionateScreenWidth(16),
+        ),
         boxShadow: [
           BoxShadow(
+            // ignore: deprecated_member_use
             color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
+            blurRadius: SizeConfig.getProportionateScreenWidth(10),
+            offset: Offset(0, SizeConfig.getProportionateScreenHeight(2)),
           ),
         ],
       ),
@@ -89,7 +102,9 @@ class ProfileMenuSection extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(
+          SizeConfig.getProportionateScreenWidth(16),
+        ),
         child: Container(
           padding: EdgeInsets.symmetric(
             horizontal: SizeConfig.getProportionateScreenWidth(20),
@@ -97,41 +112,26 @@ class ProfileMenuSection extends StatelessWidget {
           ),
           child: Row(
             children: [
-              // Icon
-              Container(
-                width: SizeConfig.getProportionateScreenWidth(40),
-                height: SizeConfig.getProportionateScreenWidth(40),
-                decoration: BoxDecoration(
-                  color: (iconColor ?? AppColors.textPrimary).withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Icon(
-                  icon,
-                  color: iconColor ?? AppColors.textPrimary,
-                  size: SizeConfig.getProportionateScreenWidth(20),
-                ),
+              Icon(
+                icon,
+                color: AppColors.profileCardBlue,
+                size: SizeConfig.getProportionateScreenWidth(24),
               ),
               SizedBox(width: SizeConfig.getProportionateScreenWidth(16)),
-              // Title
               Expanded(
                 child: Text(
                   title,
                   style: TextStyle(
-                    color: isDestructive
-                        ? AppColors.error
-                        : AppColors.textPrimary,
-                    fontSize: 16,
+                    color: AppColors.textPrimary,
+                    fontSize: SizeConfig.getProportionateScreenWidth(14),
                     fontFamily: 'AlmaraiBold',
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
-              // Arrow
               Icon(
-                FeatherIcons.chevronLeft,
-                color: isDestructive
-                    ? AppColors.error
-                    : AppColors.textSecondary,
+                Icons.chevron_right,
+                color: AppColors.profileCardBlue,
                 size: SizeConfig.getProportionateScreenWidth(20),
               ),
             ],

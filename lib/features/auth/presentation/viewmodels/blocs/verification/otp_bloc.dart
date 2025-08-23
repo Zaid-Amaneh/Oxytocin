@@ -24,6 +24,14 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
             SecureStorageService();
         await secureStorageService.saveAccessToken(result.accessToken);
         await secureStorageService.saveRefreshToken(result.refreshToken);
+
+        // طباعة الـ access token كاملاً للاستخدام في Postman
+        print('=== ACCESS TOKEN ===');
+        print(result.accessToken);
+        print('=== REFRESH TOKEN ===');
+        print(result.refreshToken);
+        print('===================');
+
         Logger().i(result.accessToken);
         Logger().i(result.refreshToken);
         emit(OtpSuccess(result));

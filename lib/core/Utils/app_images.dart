@@ -129,13 +129,12 @@ class AppImages {
   static const String bgPattern = 'assets/images/bg_pattern.png';
 
   static const String doctorCard = 'assets/images/doc.png';
+  static const String docWomen = 'assets/images/docWomen.png';
 
   static const String bg2 = 'assets/images/bg_2.png';
 
   static const String doctor = 'assets/images/doctor.jpg';
 
-  // =========categories
-  // Category Icons SVG - جميع الصور الموجودة في مجلد categories
   static const String categoryAnesthesia =
       "assets/images/categories/Anesthesia.svg";
   static const String categoryDentistry =
@@ -158,4 +157,9 @@ class AppImages {
   static const String categoryRays = "assets/images/categories/rays.svg";
   static const String categoryUrinaryTract =
       "assets/images/categories/urinary_tract.svg";
+
+  static const String plusImage = 'assets/images/plus.png';
+  static const String categoryDefault = "assets/images/categories/myself.svg";
+
+  static const String doctorDefault = "assets/images/categories/myself.svg";
 }

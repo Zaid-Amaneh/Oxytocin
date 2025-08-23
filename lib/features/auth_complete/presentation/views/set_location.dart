@@ -78,29 +78,15 @@ class _SetLocationState extends State<SetLocation> {
   }
 
   void sendLocation() async {
-    print('=== بدء إرسال معلومات الموقع ===');
-    print('فحص البيانات المطلوبة...');
-
     if (_locationName.isEmpty || _latitude == null || _longitude == null) {
-      print('❌ خطأ: بيانات الموقع غير مكتملة');
-      print('اسم الموقع: $_locationName');
-      print('خط العرض: $_latitude');
-      print('خط الطول: $_longitude');
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('يرجى إدخال الموقع وتحديده على الخريطة')),
       );
       return;
     }
-    print('✅ بيانات الموقع مكتملة');
-    print('اسم الموقع: $_locationName');
-    print('خط العرض: $_latitude');
-    print('خط الطول: $_longitude');
-    print('--- حفظ البيانات في State ---');
     context.read<ProfileInfoCubit>().setLocation(_locationName);
     context.read<ProfileInfoCubit>().setLatitude(_latitude.toString());
     context.read<ProfileInfoCubit>().setLongitude(_longitude.toString());
-
-    print('--- إرسال جميع المعلومات للباك إند ---');
     await context.read<ProfileInfoCubit>().submitMedicalInfo();
   }
 
@@ -116,7 +102,7 @@ class _SetLocationState extends State<SetLocation> {
                 backgroundColor: Colors.green,
               ),
             );
-            context.pushNamed(RouteNames.congratView);
+            context.pushNamed(RouteNames.upload);
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
@@ -124,7 +110,7 @@ class _SetLocationState extends State<SetLocation> {
                 backgroundColor: Colors.green,
               ),
             );
-            context.pushNamed(RouteNames.congratView);
+            context.pushNamed(RouteNames.upload);
           }
         } else if (state.errorMessage != null) {
           ScaffoldMessenger.of(context).showSnackBar(

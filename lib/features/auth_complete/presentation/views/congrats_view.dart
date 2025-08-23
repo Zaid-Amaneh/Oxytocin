@@ -41,7 +41,6 @@ class _CongratsViewState extends State<CongratsView> {
               children: [
                 SizedBox(height: SizeConfig.screenHigh * 0.08),
                 Text(
-                  // "تهانينا! لقد أتممت إنشاء حسابك بنجاح",
                   context.tr.congratsTitle,
                   textAlign: TextAlign.center,
                   style: AppStyles.almaraiBold(context).copyWith(

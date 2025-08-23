@@ -42,6 +42,7 @@ import 'package:oxytocin/features/auth/presentation/views/forgot_password_view.d
 import 'package:oxytocin/features/auth/presentation/views/reset_password_view.dart';
 import 'package:oxytocin/features/auth/presentation/views/verification_phone_number_view.dart';
 import 'package:oxytocin/features/categories/presentation/view/categories_view.dart';
+import 'package:oxytocin/features/home/presentation/cubit/home_cubit.dart';
 import 'package:oxytocin/features/home/presentation/view/home_view.dart';
 import 'package:oxytocin/features/intro/presentation/views/intro_view.dart';
 import 'package:oxytocin/features/intro/presentation/views/splash_view.dart';
@@ -52,6 +53,8 @@ import 'package:oxytocin/features/auth_complete/presentation/views/profile_info_
 import 'package:oxytocin/features/auth_complete/presentation/views/set_location.dart';
 import 'package:oxytocin/features/auth_complete/presentation/views/upload_profile_photo.dart';
 import 'package:oxytocin/features/medical_appointments/presentation/views/medical_appointments_view.dart';
+import 'package:oxytocin/features/profile/presentation/view/profile_view.dart';
+import 'package:oxytocin/features/profile/di/profile_dependency_injection.dart';
 
 class AppRouter {
   static GoRouter createRouter(NavigationService navigationService) {
@@ -103,7 +106,15 @@ class AppRouter {
         GoRoute(
           path: '/${RouteNames.home}',
           name: RouteNames.home,
-          builder: (context, state) => const HomeView(),
+          builder: (context, state) => BlocProvider(
+            create: (_) {
+              final cubit = HomeCubit();
+              cubit.loadDoctors(33.5260220, 36.2864360);
+              cubit.loadNearbyDoctors(33.5260220, 36.2864360);
+              return cubit;
+            },
+            child: const HomeView(),
+          ),
         ),
         GoRoute(
           path: '/${RouteNames.signIn}',
@@ -256,6 +267,14 @@ class AppRouter {
           path: '/${RouteNames.medicalAppointmentsView}',
           name: RouteNames.medicalAppointmentsView,
           builder: (context, state) => const MedicalAppointmentsView(),
+        ),
+        GoRoute(
+          path: '/${RouteNames.profile}',
+          name: RouteNames.profile,
+          builder: (context, state) => BlocProvider(
+            create: (_) => ProfileDependencyInjection.getProfileCubit(),
+            child: const ProfileView(),
+          ),
         ),
 
         GoRoute(

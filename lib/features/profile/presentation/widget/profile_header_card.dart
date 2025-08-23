@@ -3,81 +3,157 @@ import 'package:feather_icons/feather_icons.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/size_config.dart';
+import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/features/profile/data/model/user_profile_model.dart';
+import 'package:oxytocin/core/Utils/services/secure_storage_service.dart';
 
-class ProfileHeaderCard extends StatelessWidget {
+class ProfileHeaderCard extends StatefulWidget {
   final UserProfileModel profile;
 
-  const ProfileHeaderCard({Key? key, required this.profile}) : super(key: key);
+  const ProfileHeaderCard({super.key, required this.profile});
+
+  @override
+  State<ProfileHeaderCard> createState() => _ProfileHeaderCardState();
+}
+
+class _ProfileHeaderCardState extends State<ProfileHeaderCard> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    SizeConfig.init(context);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [AppColors.kPrimaryColor1, AppColors.kPrimaryColor2],
-        ),
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.kPrimaryColor1.withOpacity(0.3),
-            blurRadius: 20,
-            offset: const Offset(0, 8),
-          ),
-        ],
-      ),
-      child: Stack(
-        children: [
-          // Background pattern
-          Positioned.fill(child: CustomPaint(painter: PlusPatternPainter())),
-          // Content
-          Padding(
-            padding: EdgeInsets.all(SizeConfig.getProportionateScreenWidth(24)),
-            child: Column(
-              children: [
-                SizedBox(height: SizeConfig.getProportionateScreenHeight(20)),
-                _buildProfileImage(),
-                SizedBox(height: SizeConfig.getProportionateScreenHeight(16)),
-                _buildUserInfo(),
-                SizedBox(height: SizeConfig.getProportionateScreenHeight(12)),
-                _buildMotivationalMessage(),
-                SizedBox(height: SizeConfig.getProportionateScreenHeight(20)),
+    return Stack(
+      children: [
+        Positioned(
+          top: SizeConfig.getProportionateScreenHeight(60),
+          left: SizeConfig.getProportionateScreenWidth(20),
+          right: SizeConfig.getProportionateScreenWidth(20),
+          child: Container(
+            height: SizeConfig.getProportionateScreenHeight(180),
+            decoration: BoxDecoration(
+              color: const Color(0xFF344CB7),
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0xFF344CB7).withOpacity(0.3),
+                  blurRadius: 15,
+                  offset: const Offset(0, 6),
+                ),
               ],
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildProfileImage() {
-    return Container(
-      width: SizeConfig.getProportionateScreenWidth(80),
-      height: SizeConfig.getProportionateScreenWidth(80),
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(color: Colors.white, width: 4),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
+        ),
+        // Main blue card with plus pattern
+        Padding(
+          padding: const EdgeInsets.only(top: 40.0),
+          child: Container(
+            width: double.infinity,
+            height: SizeConfig.getProportionateScreenHeight(200),
+            margin: EdgeInsets.only(
+              top: SizeConfig.getProportionateScreenHeight(40),
+            ),
+            decoration: BoxDecoration(
+              color: AppColors.profileCardBlue,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.profileCardBlue.withOpacity(0.3),
+                  blurRadius: 20,
+                  offset: const Offset(0, 8),
+                ),
+              ],
+            ),
+            child: Stack(
+              children: [
+                // Plus pattern background
+                Positioned.fill(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.asset(
+                      AppImages.plusImage,
+                      fit: BoxFit.cover,
+                      color: Colors.white.withOpacity(0.1),
+                      colorBlendMode: BlendMode.overlay,
+                    ),
+                  ),
+                ),
+                Positioned.fill(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: AppColors.profileCardBlue.withOpacity(0.8),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(
+                    SizeConfig.getProportionateScreenWidth(24),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: SizeConfig.getProportionateScreenHeight(60),
+                      ),
+                      _buildUserInfo(),
+                      SizedBox(
+                        height: SizeConfig.getProportionateScreenHeight(20),
+                      ),
+                      _buildMotivationalMessage(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
-        ],
-      ),
-      child: ClipOval(
-        child: profile.profileImage != null
-            ? Image.network(
-                profile.profileImage!,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) =>
-                    _buildDefaultAvatar(),
-              )
-            : _buildDefaultAvatar(),
-      ),
+        ),
+        Positioned(
+          top: 0,
+          bottom: 100,
+          left: 0,
+          right: 0,
+          child: Center(
+            child: Container(
+              width: SizeConfig.getProportionateScreenWidth(145),
+              height: SizeConfig.getProportionateScreenWidth(145),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white,
+                border: Border.all(color: Colors.white, width: 10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.3),
+                    blurRadius: 20,
+                    offset: const Offset(0, 8),
+                    spreadRadius: 2,
+                  ),
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 40,
+                    offset: const Offset(0, 16),
+                    spreadRadius: 0,
+                  ),
+                ],
+              ),
+              child: ClipOval(
+                child:
+                    widget.profile.image != null &&
+                        widget.profile.image!.isNotEmpty
+                    ? _AuthenticatedImage(
+                        imageUrl: widget.profile.image!,
+                        width: SizeConfig.getProportionateScreenWidth(145),
+                        height: SizeConfig.getProportionateScreenWidth(145),
+                        fit: BoxFit.cover,
+                      )
+                    : _buildDefaultAvatar(),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -87,10 +163,7 @@ class ProfileHeaderCard extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            Colors.white.withOpacity(0.9),
-            Colors.white.withOpacity(0.7),
-          ],
+          colors: [Colors.grey[200]!, Colors.grey[300]!],
         ),
       ),
       child: Icon(
@@ -102,100 +175,221 @@ class ProfileHeaderCard extends StatelessWidget {
   }
 
   Widget _buildUserInfo() {
-    return Column(
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          profile.name,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontFamily: 'AlmaraiBold',
-            fontWeight: FontWeight.w700,
+        if (widget.profile.fullName.isNotEmpty)
+          Text(
+            widget.profile.fullName,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: getResponsiveFontSize(context, fontSize: 17),
+              fontFamily: 'AlmaraiBold',
+              fontWeight: FontWeight.w700,
+              shadows: [
+                Shadow(
+                  offset: const Offset(0, 1),
+                  blurRadius: 3,
+                  // ignore: deprecated_member_use
+                  color: Colors.black.withOpacity(0.5),
+                ),
+              ],
+            ),
+            textAlign: TextAlign.center,
           ),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: SizeConfig.getProportionateScreenHeight(4)),
-        Text(
-          '${profile.age} عاماً',
-          style: TextStyle(
-            color: Colors.white.withOpacity(0.9),
-            fontSize: 14,
-            fontFamily: 'AlmaraiRegular',
-            fontWeight: FontWeight.w400,
+        if (widget.profile.fullName.isNotEmpty && widget.profile.age > 0)
+          SizedBox(height: SizeConfig.getProportionateScreenHeight(4)),
+        if (widget.profile.age > 0)
+          Text(
+            ' , ${widget.profile.age} عاماً',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: getResponsiveFontSize(context, fontSize: 17),
+              fontFamily: 'AlmaraiBold',
+              fontWeight: FontWeight.w700,
+              shadows: [
+                Shadow(
+                  offset: const Offset(0, 1),
+                  blurRadius: 3,
+                  // ignore: deprecated_member_use
+                  color: Colors.black.withOpacity(0.5),
+                ),
+              ],
+            ),
+            textAlign: TextAlign.center,
           ),
-          textAlign: TextAlign.center,
-        ),
+        if (widget.profile.fullName.isEmpty && widget.profile.age <= 0)
+          Text(
+            'مرحباً بك',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: getResponsiveFontSize(context, fontSize: 17),
+              fontFamily: 'AlmaraiBold',
+              fontWeight: FontWeight.w700,
+              shadows: [
+                Shadow(
+                  offset: const Offset(0, 1),
+                  blurRadius: 3,
+                  // ignore: deprecated_member_use
+                  color: Colors.black.withOpacity(0.5),
+                ),
+              ],
+            ),
+            textAlign: TextAlign.center,
+          ),
       ],
     );
   }
 
   Widget _buildMotivationalMessage() {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: SizeConfig.getProportionateScreenWidth(16),
-        vertical: SizeConfig.getProportionateScreenHeight(12),
-      ),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.15),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
-      ),
-      child: Row(
-        children: [
-          Icon(
-            FeatherIcons.droplet,
-            color: Colors.white.withOpacity(0.8),
-            size: SizeConfig.getProportionateScreenWidth(16),
-          ),
-          SizedBox(width: SizeConfig.getProportionateScreenWidth(8)),
-          Expanded(
-            child: Text(
-              'هل شربت ما يكفي من الماء اليوم؟ تذكر. الترطيب سر النشاط والصحة!',
-              style: TextStyle(
-                color: Colors.white.withOpacity(0.9),
-                fontSize: 12,
-                fontFamily: 'AlmaraiRegular',
-                fontWeight: FontWeight.w400,
-                height: 1.4,
-              ),
-              textAlign: TextAlign.center,
-            ),
+    return Text(
+      '“ 10 دقائق من المشي يومياً تصنع فرقاً كبيراً في صحتك ونشاطك. ابدأ الآن! ”',
+      style: TextStyle(
+        color: const Color(0xffCCCCCC),
+        fontSize: getResponsiveFontSize(context, fontSize: 12),
+        fontFamily: 'AlmaraiRegular',
+        fontWeight: FontWeight.w500,
+        height: 1.4,
+        shadows: [
+          Shadow(
+            offset: const Offset(0, 1),
+            blurRadius: 2,
+            // ignore: deprecated_member_use
+            color: Colors.black.withOpacity(0.4),
           ),
         ],
       ),
+      textAlign: TextAlign.center,
     );
   }
 }
 
-class PlusPatternPainter extends CustomPainter {
+class _AuthenticatedImage extends StatefulWidget {
+  final String imageUrl;
+  final double width;
+  final double height;
+  final BoxFit fit;
+
+  const _AuthenticatedImage({
+    required this.imageUrl,
+    required this.width,
+    required this.height,
+    this.fit = BoxFit.cover,
+  });
+
   @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.white.withOpacity(0.1)
-      ..strokeWidth = 2
-      ..strokeCap = StrokeCap.round;
+  State<_AuthenticatedImage> createState() => _AuthenticatedImageState();
+}
 
-    const spacing = 30.0;
-    const plusSize = 8.0;
+class _AuthenticatedImageState extends State<_AuthenticatedImage> {
+  String? authToken;
+  bool isLoading = true;
 
-    for (double x = spacing; x < size.width; x += spacing) {
-      for (double y = spacing; y < size.height; y += spacing) {
-        // Vertical line
-        canvas.drawLine(
-          Offset(x, y - plusSize),
-          Offset(x, y + plusSize),
-          paint,
-        );
-        // Horizontal line
-        canvas.drawLine(
-          Offset(x - plusSize, y),
-          Offset(x + plusSize, y),
-          paint,
-        );
-      }
+  @override
+  void initState() {
+    super.initState();
+    _loadAuthToken();
+  }
+
+  Future<void> _loadAuthToken() async {
+    try {
+      final secureStorage = SecureStorageService();
+      final token = await secureStorage.getAccessToken();
+      setState(() {
+        authToken = token;
+        isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  Widget build(BuildContext context) {
+    if (isLoading) {
+      return Container(
+        width: widget.width,
+        height: widget.height,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Colors.grey[200]!, Colors.grey[300]!],
+          ),
+        ),
+        child: const Center(
+          child: CircularProgressIndicator(
+            strokeWidth: 2,
+            valueColor: AlwaysStoppedAnimation<Color>(AppColors.kPrimaryColor1),
+          ),
+        ),
+      );
+    }
+
+    if (authToken == null || authToken!.isEmpty) {
+      return _buildDefaultAvatar();
+    }
+
+    return Image.network(
+      widget.imageUrl,
+      width: widget.width,
+      height: widget.height,
+      fit: widget.fit,
+      loadingBuilder: (context, child, loadingProgress) {
+        if (loadingProgress == null) return child;
+        return Container(
+          width: widget.width,
+          height: widget.height,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Colors.grey[200]!, Colors.grey[300]!],
+            ),
+          ),
+          child: Center(
+            child: CircularProgressIndicator(
+              value: loadingProgress.expectedTotalBytes != null
+                  ? loadingProgress.cumulativeBytesLoaded /
+                        loadingProgress.expectedTotalBytes!
+                  : null,
+              strokeWidth: 2,
+              valueColor: const AlwaysStoppedAnimation<Color>(
+                AppColors.kPrimaryColor1,
+              ),
+            ),
+          ),
+        );
+      },
+      errorBuilder: (context, error, stackTrace) {
+        print('❌ خطأ في تحميل صورة البروفايل: $error');
+        print('📷 URL الصورة: ${widget.imageUrl}');
+        print('🔑 Token موجود: ${authToken != null && authToken!.isNotEmpty}');
+        return _buildDefaultAvatar();
+      },
+      headers: {'Authorization': 'Bearer $authToken'},
+    );
+  }
+
+  Widget _buildDefaultAvatar() {
+    return Container(
+      width: widget.width,
+      height: widget.height,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Colors.grey[200]!, Colors.grey[300]!],
+        ),
+      ),
+      child: Icon(
+        FeatherIcons.user,
+        size: widget.width * 0.4,
+        color: AppColors.kPrimaryColor1,
+      ),
+    );
+  }
 }
