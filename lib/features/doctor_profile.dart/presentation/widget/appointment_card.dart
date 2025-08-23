@@ -12,10 +12,8 @@ class AppointmentCard extends StatelessWidget {
     super.key,
     required this.appointment,
     required this.id,
-    required this.mainSpecialty,
-    required this.address,
   });
-  final String id, mainSpecialty, address;
+  final String id;
   final AppointmentDate appointment;
   @override
   Widget build(BuildContext context) {
@@ -148,8 +146,6 @@ class AppointmentCard extends StatelessWidget {
                         'dayName': dayName,
                         'availableTimes': availableTimes,
                         'id': id,
-                        'mainSpecialty': mainSpecialty,
-                        'address': address,
                       },
                     );
                   }

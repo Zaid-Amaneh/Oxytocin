@@ -813,4 +813,24 @@ class AppLocalizationsAr extends AppLocalizations {
   String files_progress(Object maxFiles, Object selectedCount) {
     return '$selectedCount من $maxFiles ملفات';
   }
+
+  @override
+  String get appointment_not_available =>
+      'للأسف، الموعد الذي حاولت حجزه لم يعد متاحاً لأنه تم حجزه من مريض آخر.';
+
+  @override
+  String get files_uploaded_success =>
+      'تم رفع الملفات بنجاح! سيتمكن طبيبك من الاطلاع عليها.';
+
+  @override
+  String get files_upload_error =>
+      'حدثت مشكلة أثناء رفع الملفات. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get invalid_uploaded_file =>
+      'أحد الملفات التي قمت برفعها غير صالح أو يحتوي على مشكلة. يرجى التحقق من الملفات والمحاولة مرة أخرى.';
+
+  @override
+  String get next_appointment_message =>
+      'موعدك القادم في انتظارك. نتمنى لك دوام الصحة والعافية.';
 }

@@ -13,15 +13,18 @@ class NavigationService {
 
   void goToNamed(String name) => _router.goNamed(name);
   void pushToNamed(String name) => _router.pushNamed(name);
+  void pushReplacementNamed(String name) => _router.pushReplacementNamed(name);
   void goToNamedWithParams(
     String name, {
     Map<String, String>? queryParams,
     Map<String, String>? pathParams,
+    Object? extra,
   }) {
     _router.goNamed(
       name,
       queryParameters: queryParams ?? {},
       pathParameters: pathParams ?? {},
+      extra: extra,
     );
   }
 
@@ -32,6 +35,20 @@ class NavigationService {
     Object? extra,
   }) {
     _router.pushNamed(
+      name,
+      queryParameters: queryParams ?? {},
+      pathParameters: pathParams ?? {},
+      extra: extra,
+    );
+  }
+
+  void pushReplacementWithParams(
+    String name, {
+    Map<String, String>? queryParams,
+    Map<String, String>? pathParams,
+    Object? extra,
+  }) {
+    _router.pushReplacementNamed(
       name,
       queryParameters: queryParams ?? {},
       pathParameters: pathParams ?? {},

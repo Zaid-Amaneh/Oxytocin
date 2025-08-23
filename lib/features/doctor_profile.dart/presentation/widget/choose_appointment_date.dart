@@ -80,8 +80,6 @@ class _ChooseAppointmentDateState extends State<ChooseAppointmentDate> {
                       child: AppointmentCard(
                         appointment: widget.appointments[appointmentIndex],
                         id: widget.id,
-                        mainSpecialty: widget.mainSpecialty,
-                        address: widget.address,
                       ),
                     );
                   }),

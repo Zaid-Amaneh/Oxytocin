@@ -5,19 +5,13 @@ import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/all_ap
 import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/all_appointment_month_body.dart';
 
 class AllAppointmentMonth extends StatelessWidget {
-  const AllAppointmentMonth({
-    super.key,
-    required this.id,
-    required this.mainSpecialty,
-    required this.address,
-  });
+  const AllAppointmentMonth({super.key, required this.id});
   final int id;
-  final String mainSpecialty, address;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const AllAppointmentMonthBody(),
+      body: AllAppointmentMonthBody(id: id.toString()),
       appBar: AllAppointmentMonthAppBar(
         onMonthSelected: (DateTime selectedMonth) {
           final startDate = DateTime(

@@ -9,8 +9,8 @@ import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/do
 import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/appointment_card.dart';
 
 class AllAppointmentMonthBody extends StatelessWidget {
-  const AllAppointmentMonthBody({super.key});
-
+  const AllAppointmentMonthBody({super.key, required this.id});
+  final String id;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DoctorProfileCubit, DoctorProfileState>(
@@ -277,12 +277,7 @@ class AllAppointmentMonthBody extends StatelessWidget {
                     onTap: () {
                       HapticFeedback.lightImpact();
                     },
-                    child: AppointmentCard(
-                      appointment: appointment,
-                      id: '',
-                      mainSpecialty: '',
-                      address: '',
-                    ),
+                    child: AppointmentCard(appointment: appointment, id: id),
                   ),
                 ),
               ),

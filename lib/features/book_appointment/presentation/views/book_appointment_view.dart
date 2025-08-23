@@ -11,10 +11,8 @@ class BookAppointmentView extends StatelessWidget {
     required this.dayName,
     required this.availableTimes,
     required this.id,
-    required this.mainSpecialty,
-    required this.address,
   });
-  final String dateText, dayName, id, mainSpecialty, address;
+  final String dateText, dayName, id;
   final List<VisitTime> availableTimes;
   @override
   Widget build(BuildContext context) {
@@ -24,8 +22,6 @@ class BookAppointmentView extends StatelessWidget {
         dayName: dayName,
         availableTimes: availableTimes,
         id: id,
-        address: address,
-        mainSpecialty: mainSpecialty,
       ),
       appBar: CustomAppBar(titel: context.tr.chooseTime),
     );

@@ -75,7 +75,7 @@ class DoctorInfoSection extends StatelessWidget {
                 ).copyWith(color: AppColors.textPrimary, fontSize: 18),
               ),
               Text(
-                gender,
+                gender == "male" ? context.tr.male : context.tr.female,
                 style: AppStyles.almaraiRegular(
                   context,
                 ).copyWith(color: AppColors.textSecondary, fontSize: 16),

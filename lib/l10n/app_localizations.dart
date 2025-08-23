@@ -1579,6 +1579,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{selectedCount} of {maxFiles} files'**
   String files_progress(Object maxFiles, Object selectedCount);
+
+  /// No description provided for @appointment_not_available.
+  ///
+  /// In en, this message translates to:
+  /// **'Unfortunately, the appointment you tried to book is no longer available as it has been taken by another patient.'**
+  String get appointment_not_available;
+
+  /// No description provided for @files_uploaded_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Files uploaded successfully! Your doctor can now review them.'**
+  String get files_uploaded_success;
+
+  /// No description provided for @files_upload_error.
+  ///
+  /// In en, this message translates to:
+  /// **'There was a problem uploading the files. Please try again.'**
+  String get files_upload_error;
+
+  /// No description provided for @invalid_uploaded_file.
+  ///
+  /// In en, this message translates to:
+  /// **'One of the uploaded files is invalid or contains an issue. Please check your files and try again.'**
+  String get invalid_uploaded_file;
+
+  /// No description provided for @next_appointment_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Your next appointment is waiting for you. We wish you continued health and wellness.'**
+  String get next_appointment_message;
 }
 
 class _AppLocalizationsDelegate

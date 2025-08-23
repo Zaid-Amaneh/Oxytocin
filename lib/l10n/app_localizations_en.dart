@@ -825,4 +825,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String files_progress(Object maxFiles, Object selectedCount) {
     return '$selectedCount of $maxFiles files';
   }
+
+  @override
+  String get appointment_not_available =>
+      'Unfortunately, the appointment you tried to book is no longer available as it has been taken by another patient.';
+
+  @override
+  String get files_uploaded_success =>
+      'Files uploaded successfully! Your doctor can now review them.';
+
+  @override
+  String get files_upload_error =>
+      'There was a problem uploading the files. Please try again.';
+
+  @override
+  String get invalid_uploaded_file =>
+      'One of the uploaded files is invalid or contains an issue. Please check your files and try again.';
+
+  @override
+  String get next_appointment_message =>
+      'Your next appointment is waiting for you. We wish you continued health and wellness.';
 }

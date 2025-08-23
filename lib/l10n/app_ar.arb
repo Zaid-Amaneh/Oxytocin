@@ -245,7 +245,12 @@
     "tap_to_select_files": "اضغط لاختيار الملفات",
     "upload_hint": "يمكنك رفع حتى {maxFiles} ملفات، كل ملف حتى {maxFileSizeInMB} ميجابايت",
     "supported_formats": "الصيغ المدعومة: PDF, DOC, DOCX, TXT, JPG, PNG",
-    "files_progress": "{selectedCount} من {maxFiles} ملفات"
+    "files_progress": "{selectedCount} من {maxFiles} ملفات",
+    "appointment_not_available": "للأسف، الموعد الذي حاولت حجزه لم يعد متاحاً لأنه تم حجزه من مريض آخر.",
+    "files_uploaded_success": "تم رفع الملفات بنجاح! سيتمكن طبيبك من الاطلاع عليها.",
+    "files_upload_error": "حدثت مشكلة أثناء رفع الملفات. يرجى المحاولة مرة أخرى.",
+    "invalid_uploaded_file": "أحد الملفات التي قمت برفعها غير صالح أو يحتوي على مشكلة. يرجى التحقق من الملفات والمحاولة مرة أخرى.",
+    "next_appointment_message": "موعدك القادم في انتظارك. نتمنى لك دوام الصحة والعافية."
 
 
 

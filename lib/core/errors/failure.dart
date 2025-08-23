@@ -63,3 +63,15 @@ class InvalidTokenFailure extends Failure {
 class AuthenticationFailure extends Failure {
   const AuthenticationFailure() : super("authentication_failed");
 }
+
+class AppointmentNotAvailableFailure extends Failure {
+  const AppointmentNotAvailableFailure() : super("appointment_not_available");
+}
+
+class FilesUploadErrorFailure extends Failure {
+  const FilesUploadErrorFailure() : super("files_upload_error");
+}
+
+class InvalidUploadedFileFailure extends Failure {
+  const InvalidUploadedFileFailure() : super("invalid_uploaded_file");
+}
