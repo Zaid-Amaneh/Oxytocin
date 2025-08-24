@@ -110,7 +110,6 @@ void showFilterSheet(BuildContext context, DoctorSearchCubit cubit) {
         context.tr.male: 'male',
         context.tr.female: 'female',
       };
-      // here is the problem ********************
       final Map<String, String?> sortOptions = {
         context.tr.undefined: '',
         context.tr.experience: 'experience',
