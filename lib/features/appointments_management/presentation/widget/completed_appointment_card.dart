@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
-import 'package:oxytocin/features/medical_appointments/presentation/widget/custom_appointment_card_button.dart';
-import 'package:oxytocin/features/medical_appointments/presentation/widget/custom_appointment_card_info.dart';
-import 'package:oxytocin/features/medical_appointments/presentation/widget/custom_appointment_card_side.dart';
-import 'package:oxytocin/features/medical_appointments/presentation/widget/show_rating_sheet.dart';
+import 'package:oxytocin/features/appointments_management/data/models/appointment_model.dart';
+import 'package:oxytocin/features/appointments_management/presentation/widget/custom_appointment_card_button.dart';
+import 'package:oxytocin/features/appointments_management/presentation/widget/custom_appointment_card_info.dart';
+import 'package:oxytocin/features/appointments_management/presentation/widget/custom_appointment_card_side.dart';
+import 'package:oxytocin/features/appointments_management/presentation/widget/show_rating_sheet.dart';
 
 class CompletedAppointmentCard extends StatelessWidget {
-  const CompletedAppointmentCard({super.key});
+  const CompletedAppointmentCard({super.key, required this.appointmentModel});
+  final AppointmentModel appointmentModel;
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +42,7 @@ class CompletedAppointmentCard extends StatelessWidget {
           Expanded(
             child: Column(
               children: [
-                const CustomAppointmentCardInfo(
-                  image:
-                      "https://img.freepik.com/premium-photo/female-doctor-smiling-white-background_1038537-86.jpg",
-                  doctorName: "د. فراس القاسم",
-                  specialization: "طب الأسنان",
-                  address: "دمشق - المالكي",
-                ),
+                CustomAppointmentCardInfo(clinic: appointmentModel.clinic),
                 const Spacer(),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
@@ -54,7 +51,7 @@ class CompletedAppointmentCard extends StatelessWidget {
                     children: [
                       CustomAppointmentCardButton(
                         t: false,
-                        text: 'قيّم الطبيب',
+                        text: context.tr.rateDoctor,
                         icon: SvgPicture.asset(
                           width: 16,
                           height: 16,
@@ -70,7 +67,7 @@ class CompletedAppointmentCard extends StatelessWidget {
                       ),
                       CustomAppointmentCardButton(
                         t: false,
-                        text: 'تفاصيل',
+                        text: context.tr.details,
                         icon: SvgPicture.asset(AppImages.infoIcon),
                       ),
                     ],
@@ -79,10 +76,10 @@ class CompletedAppointmentCard extends StatelessWidget {
               ],
             ),
           ),
-          const CustomAppointmentCardSide(
-            color: Color(0xFF00FF04),
+          CustomAppointmentCardSide(
+            color: const Color(0xFF00FF04),
             textcolor: AppColors.textPrimary,
-            text: '19 يونيو 2025\n 04:30 مساءً ',
+            appointmentModel: appointmentModel,
             gif: AppImages.doneAppointmentGif,
           ),
         ],

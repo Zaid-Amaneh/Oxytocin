@@ -1609,6 +1609,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your next appointment is waiting for you. We wish you continued health and wellness.'**
   String get next_appointment_message;
+
+  /// No description provided for @reservationCanceledSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'You have successfully canceled this reservation.'**
+  String get reservationCanceledSuccess;
+
+  /// No description provided for @allReservations.
+  ///
+  /// In en, this message translates to:
+  /// **'All Reservations'**
+  String get allReservations;
+
+  /// No description provided for @currentReservations.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Reservations'**
+  String get currentReservations;
+
+  /// No description provided for @pastReservations.
+  ///
+  /// In en, this message translates to:
+  /// **'Past Reservations'**
+  String get pastReservations;
+
+  /// No description provided for @canceledReservations.
+  ///
+  /// In en, this message translates to:
+  /// **'Canceled Reservations'**
+  String get canceledReservations;
+
+  /// No description provided for @rebook.
+  ///
+  /// In en, this message translates to:
+  /// **'Rebook'**
+  String get rebook;
+
+  /// No description provided for @loginRequiredForCurrentReservations.
+  ///
+  /// In en, this message translates to:
+  /// **'You cannot view current reservations because you are not logged in yet. Please log in to enjoy all the app features.'**
+  String get loginRequiredForCurrentReservations;
+
+  /// No description provided for @edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// No description provided for @reschedule.
+  ///
+  /// In en, this message translates to:
+  /// **'Reschedule'**
+  String get reschedule;
+
+  /// No description provided for @cancelReservation.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel Reservation'**
+  String get cancelReservation;
+
+  /// No description provided for @sessionFeedbackTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How was your session? Rate your experience with us!'**
+  String get sessionFeedbackTitle;
+
+  /// No description provided for @sessionFeedbackSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Share your feedback to help others.. What did you like or dislike?'**
+  String get sessionFeedbackSubtitle;
+
+  /// No description provided for @send.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get send;
+
+  /// No description provided for @map.
+  ///
+  /// In en, this message translates to:
+  /// **'Map'**
+  String get map;
+
+  /// No description provided for @rateDoctor.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate Doctor'**
+  String get rateDoctor;
+
+  /// No description provided for @details.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get details;
+
+  /// No description provided for @call.
+  ///
+  /// In en, this message translates to:
+  /// **'Call'**
+  String get call;
+
+  /// No description provided for @callErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, we couldn\'t make the call'**
+  String get callErrorTitle;
+
+  /// No description provided for @callErrorMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to open the call app. Please try again later or dial manually.'**
+  String get callErrorMessage;
+
+  /// No description provided for @missed_reservation.
+  ///
+  /// In en, this message translates to:
+  /// **'You missed this reservation. We hope you can attend next time.'**
+  String get missed_reservation;
 }
 
 class _AppLocalizationsDelegate

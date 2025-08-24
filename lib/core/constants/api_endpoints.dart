@@ -21,4 +21,5 @@ class ApiEndpoints {
   static const String evaluations = "$baseURL/api/evaluations/";
   static const String favorites = "$baseURL/api/patients/favorites/";
   static const String appointmentDate = "$baseURL/api/appointments/";
+  static const String appointments = '$baseURL/api/appointments/';
 }

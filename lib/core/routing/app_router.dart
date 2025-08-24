@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
+import 'package:oxytocin/features/appointments_management/data/services/appointments_fetch_service.dart';
+import 'package:oxytocin/features/appointments_management/presentation/viewmodels/appointments_cubit.dart';
 import 'package:oxytocin/features/book_appointment/data/models/booked_appointment_model.dart';
 import 'package:oxytocin/features/book_appointment/data/services/appointment_service.dart';
 import 'package:oxytocin/features/book_appointment/data/services/attachment_service.dart';
@@ -52,14 +54,14 @@ import 'package:oxytocin/features/auth_complete/presentation/views/medical_info_
 import 'package:oxytocin/features/auth_complete/presentation/views/profile_info_view.dart';
 import 'package:oxytocin/features/auth_complete/presentation/views/set_location.dart';
 import 'package:oxytocin/features/auth_complete/presentation/views/upload_profile_photo.dart';
-import 'package:oxytocin/features/medical_appointments/presentation/views/medical_appointments_view.dart';
+import 'package:oxytocin/features/appointments_management/presentation/views/appointments_management_view.dart';
 import 'package:oxytocin/features/profile/presentation/view/profile_view.dart';
 import 'package:oxytocin/features/profile/di/profile_dependency_injection.dart';
 
 class AppRouter {
   static GoRouter createRouter(NavigationService navigationService) {
     final router = GoRouter(
-      initialLocation: '/${RouteNames.splash}',
+      initialLocation: '/${RouteNames.appointmentsManagementView}',
       routes: [
         GoRoute(
           path: '/${RouteNames.splash}',
@@ -264,9 +266,14 @@ class AppRouter {
         ),
 
         GoRoute(
-          path: '/${RouteNames.medicalAppointmentsView}',
-          name: RouteNames.medicalAppointmentsView,
-          builder: (context, state) => const MedicalAppointmentsView(),
+          path: '/${RouteNames.appointmentsManagementView}',
+          name: RouteNames.appointmentsManagementView,
+          builder: (context, state) => BlocProvider(
+            create: (context) => AppointmentsCubit(
+              appointmentsFetchService: AppointmentsFetchService(http.Client()),
+            ),
+            child: const AppointmentsManagementView(),
+          ),
         ),
         GoRoute(
           path: '/${RouteNames.profile}',

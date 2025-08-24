@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 
 void showEditAppointmentBottomSheet(BuildContext context) {
@@ -17,7 +18,7 @@ void showEditAppointmentBottomSheet(BuildContext context) {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'تعديل',
+              context.tr.edit,
               style: AppStyles.cairoExtraBold(
                 context,
               ).copyWith(color: AppColors.textPrimary, fontSize: 20),
@@ -35,7 +36,7 @@ void showEditAppointmentBottomSheet(BuildContext context) {
                 ),
               ),
               title: Text(
-                'تغيير الموعد',
+                context.tr.reschedule,
                 style: AppStyles.cairoExtraBold(
                   context,
                 ).copyWith(color: AppColors.textSecondary, fontSize: 16),
@@ -51,7 +52,7 @@ void showEditAppointmentBottomSheet(BuildContext context) {
                 AppImages.canceledIcon,
               ),
               title: Text(
-                'إلغاء الحجز',
+                context.tr.cancelReservation,
                 style: AppStyles.cairoExtraBold(
                   context,
                 ).copyWith(color: const Color(0xffEF3039), fontSize: 16),

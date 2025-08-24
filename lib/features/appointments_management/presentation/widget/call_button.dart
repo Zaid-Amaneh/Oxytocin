@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
-import 'package:oxytocin/features/medical_appointments/presentation/widget/custom_appointment_card_button.dart';
+import 'package:oxytocin/features/appointments_management/presentation/widget/custom_appointment_card_button.dart';
 import 'package:toastification/toastification.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -13,7 +13,7 @@ class CallButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomAppointmentCardButton(
       t: true,
-      text: 'اتصال',
+      text: context.tr.call,
       icon: SvgPicture.asset(AppImages.callIcon),
       onTap: () {
         _makingPhoneCall(phoneNumber, context);
@@ -35,8 +35,8 @@ _makingPhoneCall(String phoneNumber, BuildContext context) async {
       Helper.customToastification(
         context: context,
         type: ToastificationType.error,
-        title: 'عذرًا، لم نتمكن من إجراء المكالمة',
-        description: 'تعذّر فتح تطبيق الاتصال. جرّب لاحقًا أو اتصل يدويًا.',
+        title: context.tr.callErrorTitle,
+        description: context.tr.callErrorMessage,
         seconds: 5,
       );
     }

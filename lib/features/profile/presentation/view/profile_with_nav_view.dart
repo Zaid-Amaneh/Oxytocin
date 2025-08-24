@@ -24,7 +24,7 @@ class _ProfileWithNavViewState extends State<ProfileWithNavView> {
       NavigationService().pushToNamed(RouteNames.searchDoctorsView);
     } else if (index == 2) {
       Navigator.of(context).pop();
-      NavigationService().pushToNamed(RouteNames.medicalAppointmentsView);
+      NavigationService().pushToNamed(RouteNames.appointmentsManagementView);
     } else {
       setState(() {
         _currentIndex = index;

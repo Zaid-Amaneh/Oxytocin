@@ -4,6 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 
 void showRatingSheet(BuildContext context) {
@@ -43,7 +44,7 @@ void showRatingSheet(BuildContext context) {
 
                 const SizedBox(height: 20),
                 Text(
-                  'كيف كانت جلستك؟ قيّم تجربتك معنا!',
+                  context.tr.sessionFeedbackTitle,
                   style: AppStyles.tajawalBold(
                     context,
                   ).copyWith(color: AppColors.kPrimaryColor1),
@@ -77,8 +78,7 @@ void showRatingSheet(BuildContext context) {
                   controller: commentController,
                   maxLines: 3,
                   decoration: InputDecoration(
-                    hintText:
-                        'شاركنا رأيك ليساعد غيرك.. ما الذي أعجبك أو لم يعجبك؟',
+                    hintText: context.tr.sessionFeedbackSubtitle,
                     hintStyle: AppStyles.almaraiRegular(
                       context,
                     ).copyWith(color: AppColors.textPrimary, fontSize: 14),
@@ -99,7 +99,7 @@ void showRatingSheet(BuildContext context) {
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Text(
-                        "إرسال",
+                        context.tr.send,
                         style: AppStyles.almaraiBold(
                           context,
                         ).copyWith(color: AppColors.textPrimary, fontSize: 16),

@@ -25,7 +25,7 @@ import 'package:oxytocin/features/profile/presentation/cubit/profile_cubit.dart'
 import 'package:oxytocin/features/profile/presentation/cubit/profile_state.dart';
 import 'package:oxytocin/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:oxytocin/features/profile/data/datasources/profile_data_source.dart';
-import 'package:oxytocin/features/medical_appointments/presentation/views/medical_appointments_view.dart';
+import 'package:oxytocin/features/appointments_management/presentation/views/appointments_management_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -455,7 +455,7 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget _buildAppointmentsPage() {
-    return const MedicalAppointmentsView();
+    return const AppointmentsManagementView();
   }
 
   Widget _buildProfilePage() {

@@ -19,6 +19,7 @@ class DoctorProfileService {
       'Accept': 'application/json',
       if (accessToken != null) 'Authorization': 'Bearer $accessToken',
     };
+    _logger.f(accessToken);
     try {
       final response = await http.get(uri, headers: headers);
       _logger.t(

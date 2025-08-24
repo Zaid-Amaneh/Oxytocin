@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
-import 'package:oxytocin/features/medical_appointments/presentation/widget/call_button.dart';
-import 'package:oxytocin/features/medical_appointments/presentation/widget/custom_appointment_card_side.dart';
-import 'package:oxytocin/features/medical_appointments/presentation/widget/custom_appointment_card_button.dart';
-import 'package:oxytocin/features/medical_appointments/presentation/widget/custom_appointment_card_info.dart';
+import 'package:oxytocin/features/appointments_management/data/models/appointment_model.dart';
+import 'package:oxytocin/features/appointments_management/presentation/widget/call_button.dart';
+import 'package:oxytocin/features/appointments_management/presentation/widget/custom_appointment_card_side.dart';
+import 'package:oxytocin/features/appointments_management/presentation/widget/custom_appointment_card_button.dart';
+import 'package:oxytocin/features/appointments_management/presentation/widget/custom_appointment_card_info.dart';
 
 class CanceledAppointmentCard extends StatelessWidget {
-  const CanceledAppointmentCard({super.key});
+  const CanceledAppointmentCard({super.key, required this.appointmentModel});
+  final AppointmentModel appointmentModel;
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +41,7 @@ class CanceledAppointmentCard extends StatelessWidget {
           Expanded(
             child: Column(
               children: [
-                const CustomAppointmentCardInfo(
-                  image:
-                      "https://img.freepik.com/premium-photo/female-doctor-smiling-white-background_1038537-86.jpg",
-                  doctorName: "د. فراس القاسم",
-                  specialization: "طب الأسنان",
-                  address: "دمشق - المالكي",
-                ),
+                CustomAppointmentCardInfo(clinic: appointmentModel.clinic),
                 const Spacer(),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
@@ -53,7 +50,7 @@ class CanceledAppointmentCard extends StatelessWidget {
                     children: [
                       CustomAppointmentCardButton(
                         t: false,
-                        text: 'إعادة الحجز',
+                        text: context.tr.rebook,
                         icon: SvgPicture.asset(AppImages.rescheduleIcon),
                       ),
                       const CallButton(phoneNumber: "0944373305"),
@@ -63,10 +60,11 @@ class CanceledAppointmentCard extends StatelessWidget {
               ],
             ),
           ),
-          const CustomAppointmentCardSide(
-            color: Color(0xFFFF2400),
+          CustomAppointmentCardSide(
+            color: const Color(0xFFD32F2F),
             textcolor: AppColors.background,
-            text: 'لقد قمت بإلغاء هذا الحجز بنجاح.',
+            appointmentModel: appointmentModel,
+            text: context.tr.reservationCanceledSuccess,
             gif: AppImages.canceledAppointmentGif,
           ),
         ],

@@ -250,7 +250,29 @@
   "files_uploaded_success": "Files uploaded successfully! Your doctor can now review them.",
   "files_upload_error": "There was a problem uploading the files. Please try again.",
   "invalid_uploaded_file": "One of the uploaded files is invalid or contains an issue. Please check your files and try again.",
-  "next_appointment_message": "Your next appointment is waiting for you. We wish you continued health and wellness."
+  "next_appointment_message": "Your next appointment is waiting for you. We wish you continued health and wellness.",
+  "reservationCanceledSuccess": "You have successfully canceled this reservation.",
+  "allReservations": "All Reservations",
+  "currentReservations": "Current Reservations",
+  "pastReservations": "Past Reservations",
+  "canceledReservations": "Canceled Reservations",
+  "rebook": "Rebook",
+  "loginRequiredForCurrentReservations": "You cannot view current reservations because you are not logged in yet. Please log in to enjoy all the app features.",
+  "edit": "Edit",
+  "reschedule": "Reschedule",
+  "cancelReservation": "Cancel Reservation",
+  "sessionFeedbackTitle": "How was your session? Rate your experience with us!",
+  "sessionFeedbackSubtitle": "Share your feedback to help others.. What did you like or dislike?",
+  "send": "Send",
+  "map": "Map",
+  "rateDoctor": "Rate Doctor",
+  "details": "Details",
+  "call": "Call",
+  "callErrorTitle": "Sorry, we couldn't make the call",
+  "callErrorMessage": "Failed to open the call app. Please try again later or dial manually.",
+  "missed_reservation":"You missed this reservation. We hope you can attend next time."
+
+
 
 
 

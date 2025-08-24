@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
+import 'package:oxytocin/features/appointments_management/data/models/appointment_model.dart';
 
 class CustomAppointmentCardInfo extends StatelessWidget {
-  const CustomAppointmentCardInfo({
-    super.key,
-    required this.doctorName,
-    required this.specialization,
-    required this.address,
-    required this.image,
-  });
-  final String doctorName, specialization, address, image;
+  const CustomAppointmentCardInfo({super.key, required this.clinic});
+  final ClinicModel clinic;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
@@ -21,11 +17,11 @@ class CustomAppointmentCardInfo extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           child: Container(
             width: width * 0.22,
-            height: width * 0.22,
+            height: width * 0.24,
             decoration: ShapeDecoration(
               image: DecorationImage(
-                image: NetworkImage(image),
-                fit: BoxFit.fitHeight,
+                image: NetworkImage(clinic.doctor.user.image ?? ""),
+                fit: BoxFit.fitWidth,
               ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(25),
@@ -41,7 +37,7 @@ class CustomAppointmentCardInfo extends StatelessWidget {
               spacing: 5,
               children: [
                 Text(
-                  doctorName,
+                  clinic.doctor.user.fullName,
                   style: AppStyles.almaraiBold(
                     context,
                   ).copyWith(fontSize: 16, color: AppColors.textPrimary),
@@ -49,7 +45,9 @@ class CustomAppointmentCardInfo extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  specialization,
+                  Helper.isArabic(context)
+                      ? clinic.doctor.mainSpecialty.specialty.nameAr
+                      : clinic.doctor.mainSpecialty.specialty.nameEn,
                   style: AppStyles.almaraiBold(
                     context,
                   ).copyWith(fontSize: 13, color: AppColors.textPrimary),
@@ -57,12 +55,12 @@ class CustomAppointmentCardInfo extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  address,
+                  clinic.address,
                   style: AppStyles.almaraiBold(
                     context,
                   ).copyWith(fontSize: 13, color: AppColors.textPrimary),
                   overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
+                  maxLines: 2,
                 ),
               ],
             ),

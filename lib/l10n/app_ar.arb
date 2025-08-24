@@ -250,7 +250,28 @@
     "files_uploaded_success": "تم رفع الملفات بنجاح! سيتمكن طبيبك من الاطلاع عليها.",
     "files_upload_error": "حدثت مشكلة أثناء رفع الملفات. يرجى المحاولة مرة أخرى.",
     "invalid_uploaded_file": "أحد الملفات التي قمت برفعها غير صالح أو يحتوي على مشكلة. يرجى التحقق من الملفات والمحاولة مرة أخرى.",
-    "next_appointment_message": "موعدك القادم في انتظارك. نتمنى لك دوام الصحة والعافية."
+    "next_appointment_message": "موعدك القادم في انتظارك. نتمنى لك دوام الصحة والعافية.",
+    "reservationCanceledSuccess": "لقد قمت بإلغاء هذا الحجز بنجاح.",
+    "allReservations": "جميع الحجوزات",
+    "currentReservations": "الحجوزات الحالية",
+    "pastReservations": "الحجوزات السابقة",
+    "canceledReservations": "الحجوزات الملغاة",
+    "rebook": "إعادة الحجز",
+    "loginRequiredForCurrentReservations": "لا يمكنك عرض الحجوزات الحالية لأنك لم تقم بتسجيل الدخول بعد. سجّل الدخول واستفد من جميع ميزات التطبيق.",
+    "edit": "تعديل",
+    "reschedule": "تغيير الموعد",
+    "cancelReservation": "إلغاء الحجز",
+    "sessionFeedbackTitle": "كيف كانت جلستك؟ قيّم تجربتك معنا!",
+    "sessionFeedbackSubtitle": "شاركنا رأيك ليساعد غيرك.. ما الذي أعجبك أو لم يعجبك؟",
+    "send": "إرسال",
+    "map": "الخريطة",
+    "rateDoctor": "قيّم الطبيب",
+    "details": "تفاصيل",
+    "call": "اتصال",
+    "callErrorTitle": "عذرًا، لم نتمكن من إجراء المكالمة",
+    "callErrorMessage": "تعذّر فتح تطبيق الاتصال. جرّب لاحقًا أو اتصل يدويًا.",
+    "missed_reservation":"لم تحضر هذا الحجز. نتمنى أن تتمكن من الحضور في المرات القادمة."
+
 
 
 

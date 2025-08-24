@@ -845,4 +845,70 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get next_appointment_message =>
       'Your next appointment is waiting for you. We wish you continued health and wellness.';
+
+  @override
+  String get reservationCanceledSuccess =>
+      'You have successfully canceled this reservation.';
+
+  @override
+  String get allReservations => 'All Reservations';
+
+  @override
+  String get currentReservations => 'Current Reservations';
+
+  @override
+  String get pastReservations => 'Past Reservations';
+
+  @override
+  String get canceledReservations => 'Canceled Reservations';
+
+  @override
+  String get rebook => 'Rebook';
+
+  @override
+  String get loginRequiredForCurrentReservations =>
+      'You cannot view current reservations because you are not logged in yet. Please log in to enjoy all the app features.';
+
+  @override
+  String get edit => 'Edit';
+
+  @override
+  String get reschedule => 'Reschedule';
+
+  @override
+  String get cancelReservation => 'Cancel Reservation';
+
+  @override
+  String get sessionFeedbackTitle =>
+      'How was your session? Rate your experience with us!';
+
+  @override
+  String get sessionFeedbackSubtitle =>
+      'Share your feedback to help others.. What did you like or dislike?';
+
+  @override
+  String get send => 'Send';
+
+  @override
+  String get map => 'Map';
+
+  @override
+  String get rateDoctor => 'Rate Doctor';
+
+  @override
+  String get details => 'Details';
+
+  @override
+  String get call => 'Call';
+
+  @override
+  String get callErrorTitle => 'Sorry, we couldn\'t make the call';
+
+  @override
+  String get callErrorMessage =>
+      'Failed to open the call app. Please try again later or dial manually.';
+
+  @override
+  String get missed_reservation =>
+      'You missed this reservation. We hope you can attend next time.';
 }

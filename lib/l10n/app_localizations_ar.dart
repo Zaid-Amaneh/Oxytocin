@@ -833,4 +833,68 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get next_appointment_message =>
       'موعدك القادم في انتظارك. نتمنى لك دوام الصحة والعافية.';
+
+  @override
+  String get reservationCanceledSuccess => 'لقد قمت بإلغاء هذا الحجز بنجاح.';
+
+  @override
+  String get allReservations => 'جميع الحجوزات';
+
+  @override
+  String get currentReservations => 'الحجوزات الحالية';
+
+  @override
+  String get pastReservations => 'الحجوزات السابقة';
+
+  @override
+  String get canceledReservations => 'الحجوزات الملغاة';
+
+  @override
+  String get rebook => 'إعادة الحجز';
+
+  @override
+  String get loginRequiredForCurrentReservations =>
+      'لا يمكنك عرض الحجوزات الحالية لأنك لم تقم بتسجيل الدخول بعد. سجّل الدخول واستفد من جميع ميزات التطبيق.';
+
+  @override
+  String get edit => 'تعديل';
+
+  @override
+  String get reschedule => 'تغيير الموعد';
+
+  @override
+  String get cancelReservation => 'إلغاء الحجز';
+
+  @override
+  String get sessionFeedbackTitle => 'كيف كانت جلستك؟ قيّم تجربتك معنا!';
+
+  @override
+  String get sessionFeedbackSubtitle =>
+      'شاركنا رأيك ليساعد غيرك.. ما الذي أعجبك أو لم يعجبك؟';
+
+  @override
+  String get send => 'إرسال';
+
+  @override
+  String get map => 'الخريطة';
+
+  @override
+  String get rateDoctor => 'قيّم الطبيب';
+
+  @override
+  String get details => 'تفاصيل';
+
+  @override
+  String get call => 'اتصال';
+
+  @override
+  String get callErrorTitle => 'عذرًا، لم نتمكن من إجراء المكالمة';
+
+  @override
+  String get callErrorMessage =>
+      'تعذّر فتح تطبيق الاتصال. جرّب لاحقًا أو اتصل يدويًا.';
+
+  @override
+  String get missed_reservation =>
+      'لم تحضر هذا الحجز. نتمنى أن تتمكن من الحضور في المرات القادمة.';
 }
