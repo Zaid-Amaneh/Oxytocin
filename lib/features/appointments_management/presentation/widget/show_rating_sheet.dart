@@ -2,12 +2,21 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:logger/logger.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
+import 'package:oxytocin/features/appointments_management/presentation/viewmodels/management_appointments_cubit.dart';
 
-void showRatingSheet(BuildContext context) {
+void showRatingSheet(
+  BuildContext context,
+  int id,
+  ManagementAppointmentsCubit cubit,
+) {
+  double selectedRating = 0;
+  final TextEditingController commentController = TextEditingController();
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
@@ -15,9 +24,6 @@ void showRatingSheet(BuildContext context) {
       borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
     ),
     builder: (context) {
-      double selectedRating = 0;
-      final TextEditingController commentController = TextEditingController();
-
       return Padding(
         padding: EdgeInsets.only(
           bottom: MediaQuery.of(context).viewInsets.bottom,
@@ -94,7 +100,16 @@ void showRatingSheet(BuildContext context) {
                     onPressed: selectedRating == 0
                         ? null
                         : () {
-                            Navigator.pop(context);
+                            Logger().f(commentController.text);
+                            Logger().f(selectedRating.toInt());
+                            cubit.submitEvaluation(
+                              appointmentId: id,
+                              rate: selectedRating.toInt(),
+                              comment: commentController.text,
+                            );
+                            if (context.mounted) {
+                              context.pop();
+                            }
                           },
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),

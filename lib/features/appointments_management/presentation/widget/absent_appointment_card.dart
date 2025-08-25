@@ -53,7 +53,7 @@ class AbsentAppointmentCard extends StatelessWidget {
                         text: context.tr.map,
                         icon: SvgPicture.asset(AppImages.mapLocationIcon),
                       ),
-                      const CallButton(phoneNumber: "0944373305"),
+                      CallButton(phoneNumber: appointmentModel.clinic.phone),
                     ],
                   ),
                 ),

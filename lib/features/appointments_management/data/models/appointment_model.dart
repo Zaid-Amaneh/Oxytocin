@@ -28,6 +28,34 @@ class AppointmentModel {
     this.evaluation,
   });
 
+  AppointmentModel copyWith({
+    int? id,
+    String? visitDate,
+    String? visitTime,
+    String? status,
+    String? notes,
+    String? createdAt,
+    String? updatedAt,
+    String? cancelledAt,
+    dynamic cancelledBy,
+    ClinicModel? clinic,
+    EvaluationModel? evaluation,
+  }) {
+    return AppointmentModel(
+      id: id ?? this.id,
+      visitDate: visitDate ?? this.visitDate,
+      visitTime: visitTime ?? this.visitTime,
+      status: status ?? this.status,
+      notes: notes ?? this.notes,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      cancelledAt: cancelledAt ?? this.cancelledAt,
+      cancelledBy: cancelledBy ?? this.cancelledBy,
+      clinic: clinic ?? this.clinic,
+      evaluation: evaluation ?? this.evaluation,
+    );
+  }
+
   factory AppointmentModel.fromJson(Map<String, dynamic> json) {
     return AppointmentModel(
       id: json['id'],
@@ -50,12 +78,14 @@ class AppointmentModel {
 class ClinicModel {
   final DoctorModel doctor;
   final String address;
+  final String phone;
   final double longitude;
   final double latitude;
 
   ClinicModel({
     required this.doctor,
     required this.address,
+    required this.phone,
     required this.longitude,
     required this.latitude,
   });
@@ -64,6 +94,7 @@ class ClinicModel {
     return ClinicModel(
       doctor: DoctorModel.fromJson(json['doctor']),
       address: json['address'],
+      phone: json['phone'],
       longitude: json['longitude'],
       latitude: json['latitude'],
     );
@@ -99,7 +130,7 @@ class DoctorModel {
 class EvaluationModel {
   final int id;
   final int rate;
-  final String comment;
+  final String? comment;
   final String createdAt;
   final String updatedAt;
 

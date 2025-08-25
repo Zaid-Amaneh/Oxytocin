@@ -73,7 +73,7 @@ class CurrentAppointmentCard extends StatelessWidget {
                               : showEditAppointmentBottomSheet(context);
                         },
                       ),
-                      const CallButton(phoneNumber: "0944373305"),
+                      CallButton(phoneNumber: appointmentModel.clinic.phone),
                     ],
                   ),
                 ),

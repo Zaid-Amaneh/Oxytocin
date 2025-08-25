@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:logger/logger.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/errors/failure.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/widgets/un_expected_error.dart';
-import 'package:oxytocin/features/appointments_management/presentation/viewmodels/appointments_cubit.dart';
-import 'package:oxytocin/features/appointments_management/presentation/viewmodels/appointments_state.dart';
+import 'package:oxytocin/features/appointments_management/presentation/viewmodels/management_appointments_cubit.dart';
+import 'package:oxytocin/features/appointments_management/presentation/viewmodels/management_appointments_state.dart';
 import 'package:oxytocin/features/appointments_management/presentation/widget/absent_appointment_card.dart';
 import 'package:oxytocin/features/appointments_management/presentation/widget/canceled_appointment_card.dart';
 import 'package:oxytocin/features/appointments_management/presentation/widget/completed_appointment_card.dart';
 import 'package:oxytocin/features/appointments_management/presentation/widget/current_appointment_card.dart';
+import 'package:toastification/toastification.dart';
 
 class AppointmentsManagementViewBody extends StatefulWidget {
   const AppointmentsManagementViewBody({super.key});
@@ -29,7 +32,7 @@ class _AppointmentsManagementViewBodyState
   @override
   void initState() {
     super.initState();
-    context.read<AppointmentsCubit>().fetchAppointments(status: '');
+    context.read<ManagementAppointmentsCubit>().fetchAppointments(status: '');
     _scrollController.addListener(_onScroll);
   }
 
@@ -44,7 +47,7 @@ class _AppointmentsManagementViewBodyState
       },
       'past': {
         'displayText': context.tr.pastReservations,
-        'apiStatus': "abuse,completed",
+        'apiStatus': "completed,absent",
       },
       'cancelled': {
         'displayText': context.tr.canceledReservations,
@@ -63,7 +66,7 @@ class _AppointmentsManagementViewBodyState
 
   void _onScroll() {
     if (_isBottom) {
-      context.read<AppointmentsCubit>().fetchMoreAppointments();
+      context.read<ManagementAppointmentsCubit>().fetchMoreAppointments();
     }
   }
 
@@ -77,114 +80,157 @@ class _AppointmentsManagementViewBodyState
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
-    final width = size.width;
     final height = size.height;
-    return CustomScrollView(
-      controller: _scrollController,
-      slivers: [
-        SliverToBoxAdapter(child: SizedBox(height: height * 0.06)),
-        SliverToBoxAdapter(
-          child: SizedBox(
-            height: height * 0.1,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: _filters.length,
-              itemBuilder: (context, index) {
-                final key = _filters.keys.elementAt(index);
-                final filterData = _filters[key]!;
-                final displayText = filterData['displayText'] as String;
-                final apiStatus = filterData['apiStatus'] as String;
-                final isSelected = _selectedFilterKey == key;
-                return Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 12, 8, 12),
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _selectedFilterKey = key;
-                        context.read<AppointmentsCubit>().fetchAppointments(
-                          status: apiStatus,
-                        );
-                      });
-                    },
-                    //this Container need some edit and make it responsive for the text inside him, and make it more modern and putifull
-                    child: Container(
-                      width: width * 0.25,
-                      decoration: ShapeDecoration(
-                        color: isSelected
-                            ? AppColors.kPrimaryColor2
-                            : AppColors.background,
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                            width: 1,
+    return BlocConsumer<
+      ManagementAppointmentsCubit,
+      ManagementAppointmentsState
+    >(
+      listenWhen: (previous, current) {
+        return current is EvaluationLoading ||
+            current is EvaluationSuccess ||
+            current is EvaluationFailure;
+      },
+      listener: (context, state) {
+        if (state is EvaluationLoading) {
+          Helper.showCircularProgressIndicator(context);
+        } else if (state is EvaluationFailure) {
+          Logger().e(state.errorMessage);
+          context.pop();
+          Helper.customToastification(
+            context: context,
+            type: ToastificationType.error,
+            title: context.tr.error,
+            description: context.tr.ratingFailed,
+            seconds: 5,
+          );
+        } else if (state is EvaluationSuccess) {
+          context.pop();
+          Helper.customToastification(
+            context: context,
+            type: ToastificationType.success,
+            title: context.tr.success_title,
+            description: context.tr.ratingSuccess,
+            seconds: 5,
+          );
+        }
+      },
+      buildWhen: (previous, current) {
+        return current is! EvaluationLoading &&
+            current is! EvaluationSuccess &&
+            current is! EvaluationFailure;
+      },
+      builder: (context, state) {
+        return CustomScrollView(
+          controller: _scrollController,
+          slivers: [
+            SliverToBoxAdapter(child: SizedBox(height: height * 0.06)),
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: height * 0.1,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: _filters.length,
+                  itemBuilder: (context, index) {
+                    final key = _filters.keys.elementAt(index);
+                    final filterData = _filters[key]!;
+                    final displayText = filterData['displayText'] as String;
+                    final apiStatus = filterData['apiStatus'] as String;
+                    final isSelected = _selectedFilterKey == key;
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 12, 8, 12),
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _selectedFilterKey = key;
+                            context
+                                .read<ManagementAppointmentsCubit>()
+                                .fetchAppointments(status: apiStatus);
+                          });
+                        },
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 10,
+                          ),
+                          decoration: BoxDecoration(
                             color: isSelected
                                 ? AppColors.kPrimaryColor2
-                                : AppColors.textfieldBorder,
+                                : AppColors.background,
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: isSelected
+                                  ? AppColors.kPrimaryColor2
+                                  : AppColors.textfieldBorder,
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: isSelected
+                                    ? AppColors.kPrimaryColor2.withAlpha(
+                                        (255 * 0.3).round(),
+                                      )
+                                    : Colors.black.withAlpha(
+                                        (255 * 0.1).round(),
+                                      ),
+                                blurRadius: 4,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
                           ),
-                          borderRadius: BorderRadius.circular(12),
+                          child: Center(
+                            child: Text(
+                              displayText,
+                              style: AppStyles.almaraiExtraBold(context)
+                                  .copyWith(
+                                    fontSize: 12,
+                                    color: isSelected
+                                        ? AppColors.background
+                                        : AppColors.textPrimary,
+                                  ),
+                            ),
+                          ),
                         ),
-                        shadows: [
-                          const BoxShadow(
-                            color: Color(0x3F000000),
-                            blurRadius: 4,
-                            offset: Offset(0, 4),
-                            spreadRadius: 0,
-                          ),
-                        ],
                       ),
-                      child: Center(
-                        child: Text(
-                          displayText,
-                          style: AppStyles.almaraiExtraBold(context).copyWith(
-                            fontSize: 10,
-                            color: isSelected
-                                ? AppColors.background
-                                : AppColors.textPrimary,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
+                    );
+                  },
+                ),
+              ),
             ),
-          ),
-        ),
-        SliverToBoxAdapter(child: SizedBox(height: height * 0.02)),
-        BlocBuilder<AppointmentsCubit, AppointmentsState>(
-          builder: (context, state) {
-            if (state is AppointmentsLoading) {
-              return SliverToBoxAdapter(
+            SliverToBoxAdapter(child: SizedBox(height: height * 0.02)),
+            if (state is AppointmentsLoading)
+              SliverToBoxAdapter(
                 child: Helper.buildShimmerBox(
-                  width: width * 0.9,
+                  width: size.width * 0.9,
                   height: height * 0.25,
                   count: 3,
                 ),
-              );
-            } else if (state is AppointmentsFailure) {
-              if (state.failure is AuthenticationFailure) {
-                return SliverToBoxAdapter(
-                  child: Text(
-                    context.tr.loginRequiredForCurrentReservations,
-                    style: AppStyles.almaraiBold(
-                      context,
-                    ).copyWith(color: AppColors.kPrimaryColor1, fontSize: 22),
-                  ),
-                );
-              }
-              return const SliverToBoxAdapter(child: UnExpectedError());
-            } else if (state is AppointmentsLoaded) {
-              final int itemCount = state.appointments.length;
-              return SliverList.builder(
-                itemCount: itemCount,
+              )
+            else if (state is AppointmentsFailure)
+              SliverToBoxAdapter(
+                child: state.failure is AuthenticationFailure
+                    ? Text(
+                        context.tr.loginRequiredForCurrentReservations,
+                        style: AppStyles.almaraiBold(context).copyWith(
+                          color: AppColors.kPrimaryColor1,
+                          fontSize: 22,
+                        ),
+                      )
+                    : const UnExpectedError(),
+              )
+            else if (state is AppointmentsLoaded)
+              SliverList.builder(
+                itemCount:
+                    state.appointments.length + (state.hasReachedMax ? 0 : 1),
                 itemBuilder: (context, index) {
-                  if (index == itemCount - 1 && !state.hasReachedMax) {
+                  if (index >= state.appointments.length) {
                     return const Padding(
                       padding: EdgeInsets.all(12.0),
                       child: Center(child: CircularProgressIndicator()),
                     );
                   }
-                  final String status = state.appointments[index].status;
+
                   final appointmentModel = state.appointments[index];
+                  final String status = appointmentModel.status;
                   return Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: status == "waiting" || status == "in_consultation"
@@ -195,7 +241,7 @@ class _AppointmentsManagementViewBodyState
                         ? CanceledAppointmentCard(
                             appointmentModel: appointmentModel,
                           )
-                        : status == "abuse"
+                        : status == "absent"
                         ? AbsentAppointmentCard(
                             appointmentModel: appointmentModel,
                           )
@@ -204,12 +250,12 @@ class _AppointmentsManagementViewBodyState
                           ),
                   );
                 },
-              );
-            }
-            return const SliverToBoxAdapter(child: SizedBox.shrink());
-          },
-        ),
-      ],
+              )
+            else
+              const SliverToBoxAdapter(child: SizedBox.shrink()),
+          ],
+        );
+      },
     );
   }
 }

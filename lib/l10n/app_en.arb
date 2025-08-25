@@ -270,7 +270,11 @@
   "call": "Call",
   "callErrorTitle": "Sorry, we couldn't make the call",
   "callErrorMessage": "Failed to open the call app. Please try again later or dial manually.",
-  "missed_reservation":"You missed this reservation. We hope you can attend next time."
+  "missed_reservation":"You missed this reservation. We hope you can attend next time.",
+  "ratingFailed": "Your rating could not be submitted due to an error. Please try again later.",
+  "ratingSuccess": "Your rating has been submitted successfully. Thank you!",
+  "alreadyRatedOrCommented": "Rated",
+  "visitCompleted": "Your visit has been completed successfully. Wishing you good health and wellness!"
 
 
 

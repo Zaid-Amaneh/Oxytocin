@@ -4,7 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/features/appointments_management/data/services/appointments_fetch_service.dart';
-import 'package:oxytocin/features/appointments_management/presentation/viewmodels/appointments_cubit.dart';
+import 'package:oxytocin/features/appointments_management/data/services/evaluation_service.dart';
+import 'package:oxytocin/features/appointments_management/presentation/viewmodels/management_appointments_cubit.dart';
 import 'package:oxytocin/features/book_appointment/data/models/booked_appointment_model.dart';
 import 'package:oxytocin/features/book_appointment/data/services/appointment_service.dart';
 import 'package:oxytocin/features/book_appointment/data/services/attachment_service.dart';
@@ -269,7 +270,8 @@ class AppRouter {
           path: '/${RouteNames.appointmentsManagementView}',
           name: RouteNames.appointmentsManagementView,
           builder: (context, state) => BlocProvider(
-            create: (context) => AppointmentsCubit(
+            create: (context) => ManagementAppointmentsCubit(
+              evaluationService: EvaluationService(http.Client()),
               appointmentsFetchService: AppointmentsFetchService(http.Client()),
             ),
             child: const AppointmentsManagementView(),

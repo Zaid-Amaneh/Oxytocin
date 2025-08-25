@@ -22,7 +22,7 @@ class CustomAppointmentCardButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: width * (t ? 0.2 : 0.24),
+        width: width * (t ? 0.2 : 0.3),
         height: width * 0.12,
         decoration: ShapeDecoration(
           color: AppColors.kPrimaryColor1,
@@ -41,17 +41,14 @@ class CustomAppointmentCardButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: Text(
-                text,
-                textAlign: TextAlign.right,
-                style: AppStyles.almaraiBold(
-                  context,
-                ).copyWith(fontSize: 10, color: AppColors.background),
-              ),
+            Text(
+              text,
+              textAlign: TextAlign.right,
+              style: AppStyles.almaraiBold(
+                context,
+              ).copyWith(fontSize: 12, color: AppColors.background),
             ),
-            Padding(padding: const EdgeInsets.all(2.0), child: icon),
+            icon,
           ],
         ),
       ),

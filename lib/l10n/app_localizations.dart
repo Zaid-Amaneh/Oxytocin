@@ -1729,6 +1729,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You missed this reservation. We hope you can attend next time.'**
   String get missed_reservation;
+
+  /// No description provided for @ratingFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rating could not be submitted due to an error. Please try again later.'**
+  String get ratingFailed;
+
+  /// No description provided for @ratingSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rating has been submitted successfully. Thank you!'**
+  String get ratingSuccess;
+
+  /// No description provided for @alreadyRatedOrCommented.
+  ///
+  /// In en, this message translates to:
+  /// **'Rated'**
+  String get alreadyRatedOrCommented;
+
+  /// No description provided for @visitCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Your visit has been completed successfully. Wishing you good health and wellness!'**
+  String get visitCompleted;
 }
 
 class _AppLocalizationsDelegate

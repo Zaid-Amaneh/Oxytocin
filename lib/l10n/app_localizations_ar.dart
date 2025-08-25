@@ -897,4 +897,18 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get missed_reservation =>
       'لم تحضر هذا الحجز. نتمنى أن تتمكن من الحضور في المرات القادمة.';
+
+  @override
+  String get ratingFailed =>
+      'لم يتم رفع تقييمك بسبب حدوث خطأ، يرجى المحاولة لاحقًا.';
+
+  @override
+  String get ratingSuccess => 'تم رفع تقييمك بنجاح، شكرًا لك!';
+
+  @override
+  String get alreadyRatedOrCommented => 'تم التقييم';
+
+  @override
+  String get visitCompleted =>
+      'تمت زيارتك بنجاح. نتمنى لك دوام الصحة والعافية!';
 }

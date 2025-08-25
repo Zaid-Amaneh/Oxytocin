@@ -911,4 +911,19 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get missed_reservation =>
       'You missed this reservation. We hope you can attend next time.';
+
+  @override
+  String get ratingFailed =>
+      'Your rating could not be submitted due to an error. Please try again later.';
+
+  @override
+  String get ratingSuccess =>
+      'Your rating has been submitted successfully. Thank you!';
+
+  @override
+  String get alreadyRatedOrCommented => 'Rated';
+
+  @override
+  String get visitCompleted =>
+      'Your visit has been completed successfully. Wishing you good health and wellness!';
 }

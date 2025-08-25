@@ -4,10 +4,10 @@ import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/features/appointments_management/data/models/appointment_model.dart';
+import 'package:oxytocin/features/appointments_management/presentation/widget/add_rate_button.dart';
 import 'package:oxytocin/features/appointments_management/presentation/widget/custom_appointment_card_button.dart';
 import 'package:oxytocin/features/appointments_management/presentation/widget/custom_appointment_card_info.dart';
 import 'package:oxytocin/features/appointments_management/presentation/widget/custom_appointment_card_side.dart';
-import 'package:oxytocin/features/appointments_management/presentation/widget/show_rating_sheet.dart';
 
 class CompletedAppointmentCard extends StatelessWidget {
   const CompletedAppointmentCard({super.key, required this.appointmentModel});
@@ -49,22 +49,7 @@ class CompletedAppointmentCard extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      CustomAppointmentCardButton(
-                        t: false,
-                        text: context.tr.rateDoctor,
-                        icon: SvgPicture.asset(
-                          width: 16,
-                          height: 16,
-                          AppImages.starSolid,
-                          colorFilter: const ColorFilter.mode(
-                            Colors.white,
-                            BlendMode.srcIn,
-                          ),
-                        ),
-                        onTap: () {
-                          showRatingSheet(context);
-                        },
-                      ),
+                      AddRateButton(appointmentModel: appointmentModel),
                       CustomAppointmentCardButton(
                         t: false,
                         text: context.tr.details,
@@ -80,6 +65,7 @@ class CompletedAppointmentCard extends StatelessWidget {
             color: const Color(0xFF00FF04),
             textcolor: AppColors.textPrimary,
             appointmentModel: appointmentModel,
+            text: context.tr.visitCompleted,
             gif: AppImages.doneAppointmentGif,
           ),
         ],
