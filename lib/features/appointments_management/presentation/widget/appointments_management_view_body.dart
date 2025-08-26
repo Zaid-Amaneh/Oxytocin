@@ -26,6 +26,7 @@ class AppointmentsManagementViewBody extends StatefulWidget {
 class _AppointmentsManagementViewBodyState
     extends State<AppointmentsManagementViewBody> {
   String _selectedFilterKey = 'all';
+  bool _didInit = false;
   late final Map<String, Map<String, dynamic>> _filters;
   final _scrollController = ScrollController();
 
@@ -39,21 +40,25 @@ class _AppointmentsManagementViewBodyState
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _filters = {
-      'all': {'displayText': context.tr.allReservations, 'apiStatus': ""},
-      'current': {
-        'displayText': context.tr.currentReservations,
-        'apiStatus': "waiting,in_consultation",
-      },
-      'past': {
-        'displayText': context.tr.pastReservations,
-        'apiStatus': "completed,absent",
-      },
-      'cancelled': {
-        'displayText': context.tr.canceledReservations,
-        'apiStatus': "cancelled",
-      },
-    };
+    if (!_didInit) {
+      _filters = {
+        'all': {'displayText': context.tr.allReservations, 'apiStatus': ""},
+        'current': {
+          'displayText': context.tr.currentReservations,
+          'apiStatus': "waiting,in_consultation",
+        },
+        'past': {
+          'displayText': context.tr.pastReservations,
+          'apiStatus': "completed,absent",
+        },
+        'cancelled': {
+          'displayText': context.tr.canceledReservations,
+          'apiStatus': "cancelled",
+        },
+      };
+    }
+
+    _didInit = true;
   }
 
   @override
@@ -88,7 +93,10 @@ class _AppointmentsManagementViewBodyState
       listenWhen: (previous, current) {
         return current is EvaluationLoading ||
             current is EvaluationSuccess ||
-            current is EvaluationFailure;
+            current is EvaluationFailure ||
+            current is AppointmentCancellationLoading ||
+            current is AppointmentCancellationSuccess ||
+            current is AppointmentCancellationFailure;
       },
       listener: (context, state) {
         if (state is EvaluationLoading) {
@@ -112,12 +120,36 @@ class _AppointmentsManagementViewBodyState
             description: context.tr.ratingSuccess,
             seconds: 5,
           );
+        } else if (state is AppointmentCancellationLoading) {
+          Helper.showCircularProgressIndicator(context);
+        } else if (state is AppointmentCancellationFailure) {
+          Logger().e(state.errorMessage);
+          context.pop();
+          Helper.customToastification(
+            context: context,
+            type: ToastificationType.error,
+            title: context.tr.error,
+            description: context.tr.cancellationFailed,
+            seconds: 5,
+          );
+        } else if (state is AppointmentCancellationSuccess) {
+          context.pop();
+          Helper.customToastification(
+            context: context,
+            type: ToastificationType.success,
+            title: context.tr.success_title,
+            description: context.tr.cancellationSuccess,
+            seconds: 5,
+          );
         }
       },
       buildWhen: (previous, current) {
         return current is! EvaluationLoading &&
             current is! EvaluationSuccess &&
-            current is! EvaluationFailure;
+            current is! EvaluationFailure &&
+            current is! AppointmentCancellationLoading &&
+            current is! AppointmentCancellationSuccess &&
+            current is! AppointmentCancellationFailure;
       },
       builder: (context, state) {
         return CustomScrollView(

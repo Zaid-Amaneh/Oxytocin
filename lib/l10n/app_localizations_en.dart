@@ -926,4 +926,50 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get visitCompleted =>
       'Your visit has been completed successfully. Wishing you good health and wellness!';
+
+  @override
+  String get noNotes => 'No notes recorded';
+
+  @override
+  String get patientNotes => 'Patient Notes';
+
+  @override
+  String get appointmentInfo => 'Appointment Information';
+
+  @override
+  String get doctorName => 'Doctor Name:';
+
+  @override
+  String get doctorInfo => 'Doctor Information';
+
+  @override
+  String get appointmentDetails => 'Appointment Details';
+
+  @override
+  String get address => 'Address:';
+
+  @override
+  String get clinicNumber => 'Clinic Number:';
+
+  @override
+  String get queue => 'Queue';
+
+  @override
+  String get cancellationSuccess =>
+      'The appointment has been cancelled successfully.';
+
+  @override
+  String get cancellationFailed =>
+      'The appointment could not be cancelled. Please try again later.';
+
+  @override
+  String get updateBookingSuccess =>
+      'Your booking has been updated successfully.';
+
+  @override
+  String get updateBookingFailed =>
+      'Failed to update your booking. Please try again later.';
+
+  @override
+  String get editUploadedFiles => 'Edit Files';
 }

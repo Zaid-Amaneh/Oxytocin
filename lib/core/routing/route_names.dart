@@ -24,4 +24,6 @@ class RouteNames {
   static const allAppointmentMonth = 'AllAppointmentMonth';
   static const bookAppointment = 'bookAppointment';
   static const appointmentSuccessfullyBooked = 'appointmentSuccessfullyBooked';
+  static const reAppointment = 'reAppointment';
+  static const reBookAppointment = 'reBookAppointment';
 }

@@ -53,7 +53,10 @@ class CanceledAppointmentCard extends StatelessWidget {
                         text: context.tr.rebook,
                         icon: SvgPicture.asset(AppImages.rescheduleIcon),
                       ),
-                      CallButton(phoneNumber: appointmentModel.clinic.phone),
+                      CallButton(
+                        phoneNumber: appointmentModel.clinic.phone,
+                        t: false,
+                      ),
                     ],
                   ),
                 ),

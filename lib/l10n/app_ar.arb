@@ -274,7 +274,21 @@
     "ratingFailed": "لم يتم رفع تقييمك بسبب حدوث خطأ، يرجى المحاولة لاحقًا.",
     "ratingSuccess": "تم رفع تقييمك بنجاح، شكرًا لك!",
     "alreadyRatedOrCommented": "تم التقييم",
-    "visitCompleted": "تمت زيارتك بنجاح. نتمنى لك دوام الصحة والعافية!"
+    "visitCompleted": "تمت زيارتك بنجاح. نتمنى لك دوام الصحة والعافية!",
+    "noNotes": "لا توجد ملاحظات مسجلة",
+    "patientNotes": "ملاحظات المريض",
+    "appointmentInfo": "معلومات الموعد",
+    "doctorName": "اسم الطبيب:",
+    "doctorInfo": "معلومات الطبيب",
+    "appointmentDetails": "تفاصيل الموعد",
+    "address": "العنوان:",
+    "clinicNumber": "رقم العيادة:",
+    "queue":"الطابور",
+    "cancellationSuccess": "تم إلغاء الموعد بنجاح.",
+    "cancellationFailed": "لم يتم إلغاء الموعد. يرجى المحاولة لاحقًا.",
+    "updateBookingSuccess": "تم تعديل حجزك بنجاح.",
+    "updateBookingFailed": "فشل تعديل حجزك. يرجى المحاولة لاحقًا.",
+    "editUploadedFiles": "تعديل الملفات"
 
 
 

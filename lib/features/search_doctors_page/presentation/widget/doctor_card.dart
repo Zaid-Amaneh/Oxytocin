@@ -17,7 +17,8 @@ class DoctorCard extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final width = size.width;
     // final height = size.height;
-
+    double num = doctorModel.rate;
+    String rate = num.toStringAsFixed(1);
     return GestureDetector(
       onTap: onTap,
       child: Card(
@@ -99,7 +100,7 @@ class DoctorCard extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            '${doctorModel.rate}/5',
+                            '$rate/5',
                             style: AppStyles.almaraiBold(context).copyWith(
                               fontSize: 12,
                               color: AppColors.textPrimary,

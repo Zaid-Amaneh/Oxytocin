@@ -3,9 +3,14 @@ import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
+import 'package:oxytocin/features/appointments_management/data/services/appointment_cancellation_service.dart';
 import 'package:oxytocin/features/appointments_management/data/services/appointments_fetch_service.dart';
 import 'package:oxytocin/features/appointments_management/data/services/evaluation_service.dart';
+import 'package:oxytocin/features/appointments_management/data/services/re_book_appointment_service.dart';
 import 'package:oxytocin/features/appointments_management/presentation/viewmodels/management_appointments_cubit.dart';
+import 'package:oxytocin/features/appointments_management/presentation/viewmodels/re_booking_cubit.dart';
+import 'package:oxytocin/features/appointments_management/presentation/views/re_appointment_view.dart';
+import 'package:oxytocin/features/appointments_management/presentation/views/re_book_Appointment_view.dart';
 import 'package:oxytocin/features/book_appointment/data/models/booked_appointment_model.dart';
 import 'package:oxytocin/features/book_appointment/data/services/appointment_service.dart';
 import 'package:oxytocin/features/book_appointment/data/services/attachment_service.dart';
@@ -62,7 +67,7 @@ import 'package:oxytocin/features/profile/di/profile_dependency_injection.dart';
 class AppRouter {
   static GoRouter createRouter(NavigationService navigationService) {
     final router = GoRouter(
-      initialLocation: '/${RouteNames.appointmentsManagementView}',
+      initialLocation: '/${RouteNames.splash}',
       routes: [
         GoRoute(
           path: '/${RouteNames.splash}',
@@ -273,6 +278,9 @@ class AppRouter {
             create: (context) => ManagementAppointmentsCubit(
               evaluationService: EvaluationService(http.Client()),
               appointmentsFetchService: AppointmentsFetchService(http.Client()),
+              cancellationService: AppointmentCancellationService(
+                http.Client(),
+              ),
             ),
             child: const AppointmentsManagementView(),
           ),
@@ -376,6 +384,53 @@ class AppRouter {
               child: AppointmentSuccessfullyBooked(
                 bookedAppointmentModel:
                     args['bookedAppointmentModel'] as BookedAppointmentModel,
+              ),
+            );
+          },
+        ),
+        GoRoute(
+          path: '/${RouteNames.reAppointment}',
+          name: RouteNames.reAppointment,
+          builder: (context, state) {
+            final args = state.extra as Map<String, dynamic>;
+            final id = args['id'] as int;
+            final appointmentId = args['appointmentId'] as int;
+            final now = DateTime.now();
+            final startDate = DateTime(now.year, now.month, 1);
+            final endDate = DateTime(now.year, now.month + 1, 0);
+            final String formattedStartDate =
+                "${startDate.year}-${startDate.month.toString().padLeft(2, '0')}-${startDate.day.toString().padLeft(2, '0')}";
+
+            final String formattedEndDate =
+                "${endDate.year}-${endDate.month.toString().padLeft(2, '0')}-${endDate.day.toString().padLeft(2, '0')}";
+
+            return BlocProvider(
+              create: (context) => DoctorProfileCubit(DoctorProfileService())
+                ..fetchAppointmentDates(
+                  clinicId: id,
+                  startDate: formattedStartDate,
+                  endDate: formattedEndDate,
+                ),
+              child: ReAppointmentView(id: id, appointmentId: appointmentId),
+            );
+          },
+        ),
+
+        GoRoute(
+          path: '/${RouteNames.reBookAppointment}',
+          name: RouteNames.reBookAppointment,
+          builder: (context, state) {
+            final args = state.extra as Map<String, dynamic>;
+            final appointmentService = ReBookAppointmentService(http.Client());
+            return BlocProvider(
+              create: (_) => ReBookingCubit(appointmentService),
+              child: ReBookAppointmentView(
+                id: args['id'] as String,
+                dateText: args['dateText'] as String,
+                dayName: args['dayName'] as String,
+                availableTimes: List<VisitTime>.from(
+                  args['availableTimes'] as List,
+                ),
               ),
             );
           },

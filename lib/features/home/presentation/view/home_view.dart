@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:oxytocin/core/Utils/app_images.dart';
+import 'package:oxytocin/features/appointments_management/data/services/appointment_cancellation_service.dart';
+import 'package:oxytocin/features/appointments_management/data/services/appointments_fetch_service.dart';
+import 'package:oxytocin/features/appointments_management/data/services/evaluation_service.dart';
+import 'package:oxytocin/features/appointments_management/data/services/re_book_appointment_service.dart';
+import 'package:oxytocin/features/appointments_management/presentation/viewmodels/management_appointments_cubit.dart';
 import 'package:oxytocin/features/home/presentation/widgets/doctor_card.dart';
 import 'package:oxytocin/features/home/presentation/widgets/nearby_doctor_card.dart';
 import 'package:oxytocin/features/home/presentation/widgets/section_header.dart';
@@ -455,7 +460,19 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget _buildAppointmentsPage() {
-    return const AppointmentsManagementView();
+    final appointmentsFetchService = AppointmentsFetchService(http.Client());
+    final evaluationService = EvaluationService(http.Client());
+    final appointmentCancellationService = AppointmentCancellationService(
+      http.Client(),
+    );
+    return BlocProvider(
+      create: (context) => ManagementAppointmentsCubit(
+        appointmentsFetchService: appointmentsFetchService,
+        evaluationService: evaluationService,
+        cancellationService: appointmentCancellationService,
+      ),
+      child: const AppointmentsManagementView(),
+    );
   }
 
   Widget _buildProfilePage() {

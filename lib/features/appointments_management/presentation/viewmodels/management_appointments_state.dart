@@ -12,6 +12,7 @@ abstract class ManagementAppointmentsState extends Equatable {
 
 class ManagementAppointmentsInitial extends ManagementAppointmentsState {}
 
+// --- States for fetching appointments ---
 class AppointmentsLoading extends ManagementAppointmentsState {}
 
 class AppointmentsLoaded extends ManagementAppointmentsState {
@@ -57,6 +58,7 @@ class AppointmentsFailure extends ManagementAppointmentsState {
   List<Object> get props => [errorMessage, failure];
 }
 
+// --- States for evaluation ---
 class EvaluationLoading extends ManagementAppointmentsState {}
 
 class EvaluationSuccess extends ManagementAppointmentsState {
@@ -72,6 +74,20 @@ class EvaluationFailure extends ManagementAppointmentsState {
   final String errorMessage;
 
   const EvaluationFailure(this.errorMessage);
+
+  @override
+  List<Object> get props => [errorMessage];
+}
+
+// --- States for appointment cancellation ---
+class AppointmentCancellationLoading extends ManagementAppointmentsState {}
+
+class AppointmentCancellationSuccess extends ManagementAppointmentsState {}
+
+class AppointmentCancellationFailure extends ManagementAppointmentsState {
+  final String errorMessage;
+
+  const AppointmentCancellationFailure(this.errorMessage);
 
   @override
   List<Object> get props => [errorMessage];

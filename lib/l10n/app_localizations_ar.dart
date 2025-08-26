@@ -911,4 +911,46 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get visitCompleted =>
       'تمت زيارتك بنجاح. نتمنى لك دوام الصحة والعافية!';
+
+  @override
+  String get noNotes => 'لا توجد ملاحظات مسجلة';
+
+  @override
+  String get patientNotes => 'ملاحظات المريض';
+
+  @override
+  String get appointmentInfo => 'معلومات الموعد';
+
+  @override
+  String get doctorName => 'اسم الطبيب:';
+
+  @override
+  String get doctorInfo => 'معلومات الطبيب';
+
+  @override
+  String get appointmentDetails => 'تفاصيل الموعد';
+
+  @override
+  String get address => 'العنوان:';
+
+  @override
+  String get clinicNumber => 'رقم العيادة:';
+
+  @override
+  String get queue => 'الطابور';
+
+  @override
+  String get cancellationSuccess => 'تم إلغاء الموعد بنجاح.';
+
+  @override
+  String get cancellationFailed => 'لم يتم إلغاء الموعد. يرجى المحاولة لاحقًا.';
+
+  @override
+  String get updateBookingSuccess => 'تم تعديل حجزك بنجاح.';
+
+  @override
+  String get updateBookingFailed => 'فشل تعديل حجزك. يرجى المحاولة لاحقًا.';
+
+  @override
+  String get editUploadedFiles => 'تعديل الملفات';
 }

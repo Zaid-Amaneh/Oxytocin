@@ -22,4 +22,6 @@ class ApiEndpoints {
   static const String favorites = "$baseURL/api/patients/favorites/";
   static const String appointmentDate = "$baseURL/api/appointments/";
   static const String appointments = '$baseURL/api/appointments/';
+  static String rebookAppointment(int appointmentId) =>
+      '/api/appointments/$appointmentId/rebook/';
 }

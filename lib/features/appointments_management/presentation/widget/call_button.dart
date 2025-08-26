@@ -7,12 +7,13 @@ import 'package:toastification/toastification.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CallButton extends StatelessWidget {
-  const CallButton({super.key, required this.phoneNumber});
+  const CallButton({super.key, required this.phoneNumber, required this.t});
   final String phoneNumber;
+  final bool t;
   @override
   Widget build(BuildContext context) {
     return CustomAppointmentCardButton(
-      t: true,
+      t: t,
       text: context.tr.call,
       icon: SvgPicture.asset(AppImages.callIcon),
       onTap: () {

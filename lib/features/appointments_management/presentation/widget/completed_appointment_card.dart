@@ -8,6 +8,7 @@ import 'package:oxytocin/features/appointments_management/presentation/widget/ad
 import 'package:oxytocin/features/appointments_management/presentation/widget/custom_appointment_card_button.dart';
 import 'package:oxytocin/features/appointments_management/presentation/widget/custom_appointment_card_info.dart';
 import 'package:oxytocin/features/appointments_management/presentation/widget/custom_appointment_card_side.dart';
+import 'package:oxytocin/features/appointments_management/presentation/widget/show_appointment_details_sheet.dart';
 
 class CompletedAppointmentCard extends StatelessWidget {
   const CompletedAppointmentCard({super.key, required this.appointmentModel});
@@ -54,6 +55,12 @@ class CompletedAppointmentCard extends StatelessWidget {
                         t: false,
                         text: context.tr.details,
                         icon: SvgPicture.asset(AppImages.infoIcon),
+                        onTap: () {
+                          showAppointmentDetailsSheet(
+                            context,
+                            appointmentModel,
+                          );
+                        },
                       ),
                     ],
                   ),

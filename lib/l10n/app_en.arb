@@ -274,7 +274,21 @@
   "ratingFailed": "Your rating could not be submitted due to an error. Please try again later.",
   "ratingSuccess": "Your rating has been submitted successfully. Thank you!",
   "alreadyRatedOrCommented": "Rated",
-  "visitCompleted": "Your visit has been completed successfully. Wishing you good health and wellness!"
+  "visitCompleted": "Your visit has been completed successfully. Wishing you good health and wellness!",
+  "noNotes": "No notes recorded",
+  "patientNotes": "Patient Notes",
+  "appointmentInfo": "Appointment Information",
+  "doctorName": "Doctor Name:",
+  "doctorInfo": "Doctor Information",
+  "appointmentDetails": "Appointment Details",
+  "address": "Address:",
+  "clinicNumber": "Clinic Number:",
+  "queue":"Queue",
+  "cancellationSuccess": "The appointment has been cancelled successfully.",
+  "cancellationFailed": "The appointment could not be cancelled. Please try again later.",
+  "updateBookingSuccess": "Your booking has been updated successfully.",
+  "updateBookingFailed": "Failed to update your booking. Please try again later.",
+  "editUploadedFiles": "Edit Files"
 
 
 

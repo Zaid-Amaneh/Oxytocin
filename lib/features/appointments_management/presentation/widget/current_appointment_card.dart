@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
-import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/features/appointments_management/data/models/appointment_model.dart';
 import 'package:oxytocin/features/appointments_management/presentation/widget/call_button.dart';
+import 'package:oxytocin/features/appointments_management/presentation/widget/clinic_location_button.dart';
 import 'package:oxytocin/features/appointments_management/presentation/widget/custom_appointment_card_side.dart';
-import 'package:oxytocin/features/appointments_management/presentation/widget/custom_appointment_card_button.dart';
 import 'package:oxytocin/features/appointments_management/presentation/widget/custom_appointment_card_info.dart';
-import 'package:oxytocin/features/appointments_management/presentation/widget/show_edit_appointment_bottom_sheet.dart';
+import 'package:oxytocin/features/appointments_management/presentation/widget/edit_appointment_button.dart';
 
 class CurrentAppointmentCard extends StatelessWidget {
   const CurrentAppointmentCard({super.key, required this.appointmentModel});
@@ -49,31 +47,21 @@ class CurrentAppointmentCard extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      CustomAppointmentCardButton(
+                      ClinicLocationButton(
+                        appointmentModel: appointmentModel,
                         t: true,
-                        text: context.tr.map,
-                        icon: SvgPicture.asset(AppImages.mapLocationIcon),
                       ),
-                      CustomAppointmentCardButton(
+                      EditAppointmentButton(
+                        isWithin24Hours: isWithin24Hours(
+                          appointmentModel.visitDate,
+                          appointmentModel.visitTime,
+                        ),
+                        appointmentModel: appointmentModel,
+                      ),
+                      CallButton(
+                        phoneNumber: appointmentModel.clinic.phone,
                         t: true,
-                        text:
-                            isWithin24Hours(
-                              appointmentModel.visitDate,
-                              appointmentModel.visitTime,
-                            )
-                            ? context.tr.about
-                            : context.tr.edit,
-                        icon: SvgPicture.asset(AppImages.editIcon),
-                        onTap: () {
-                          isWithin24Hours(
-                                appointmentModel.visitDate,
-                                appointmentModel.visitTime,
-                              )
-                              ? null
-                              : showEditAppointmentBottomSheet(context);
-                        },
                       ),
-                      CallButton(phoneNumber: appointmentModel.clinic.phone),
                     ],
                   ),
                 ),

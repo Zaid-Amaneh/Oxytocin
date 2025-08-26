@@ -3,6 +3,7 @@ import 'package:logger/logger.dart';
 import 'package:oxytocin/core/errors/failure.dart';
 import 'package:oxytocin/features/appointments_management/data/models/appointment_model.dart';
 import 'package:oxytocin/features/appointments_management/data/models/evaluation_request_model.dart';
+import 'package:oxytocin/features/appointments_management/data/services/appointment_cancellation_service.dart';
 import 'package:oxytocin/features/appointments_management/data/services/appointments_fetch_service.dart';
 import 'package:oxytocin/features/appointments_management/data/services/evaluation_service.dart';
 import 'management_appointments_state.dart';
@@ -10,31 +11,40 @@ import 'management_appointments_state.dart';
 class ManagementAppointmentsCubit extends Cubit<ManagementAppointmentsState> {
   final AppointmentsFetchService _appointmentsFetchService;
   final EvaluationService _evaluationService;
+  final AppointmentCancellationService _cancellationService;
   final Logger _logger = Logger();
-
+  int _fetchRequestCounter = 0;
   ManagementAppointmentsCubit({
     required AppointmentsFetchService appointmentsFetchService,
     required EvaluationService evaluationService,
+    required AppointmentCancellationService cancellationService,
   }) : _appointmentsFetchService = appointmentsFetchService,
        _evaluationService = evaluationService,
+       _cancellationService = cancellationService,
        super(ManagementAppointmentsInitial());
 
   Future<void> fetchAppointments({required String status}) async {
+    _fetchRequestCounter++;
+    final int requestCallId = _fetchRequestCounter;
     emit(AppointmentsLoading());
+
     try {
       final response = await _appointmentsFetchService.getAppointments(
         status: status,
         page: 1,
       );
-
-      emit(
-        AppointmentsLoaded(
-          appointments: response.results,
-          hasReachedMax: response.next == null,
-          currentPage: 1,
-          status: status,
-        ),
-      );
+      if (requestCallId == _fetchRequestCounter) {
+        emit(
+          AppointmentsLoaded(
+            appointments: response.results,
+            hasReachedMax: response.next == null,
+            currentPage: 1,
+            status: status,
+          ),
+        );
+      } else {
+        _logger.w("Ignored an outdated fetch appointments response.");
+      }
     } on Failure catch (e) {
       emit(AppointmentsFailure(errorMessage: e.toString(), failure: e));
     }
@@ -113,6 +123,32 @@ class ManagementAppointmentsCubit extends Cubit<ManagementAppointmentsState> {
           "An unexpected error occurred. Please try again.",
         ),
       );
+      if (currentState is AppointmentsLoaded) {
+        emit(currentState);
+      }
+    }
+  }
+
+  Future<void> cancelAppointment({required int appointmentId}) async {
+    final currentState = state;
+    emit(AppointmentCancellationLoading());
+
+    try {
+      await _cancellationService.cancelAppointment(
+        appointmentId: appointmentId,
+      );
+      emit(AppointmentCancellationSuccess());
+
+      if (currentState is AppointmentsLoaded) {
+        final updatedAppointments = currentState.appointments
+            .where((appointment) => appointment.id != appointmentId)
+            .toList();
+
+        emit(currentState.copyWith(appointments: updatedAppointments));
+      }
+    } catch (e) {
+      _logger.e("Failed to cancel appointment: ${e.toString()}");
+      emit(AppointmentCancellationFailure(e.toString()));
       if (currentState is AppointmentsLoaded) {
         emit(currentState);
       }

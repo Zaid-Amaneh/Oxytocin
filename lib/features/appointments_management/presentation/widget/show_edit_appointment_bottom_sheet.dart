@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
+import 'package:oxytocin/core/routing/navigation_service.dart';
+import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
+import 'package:oxytocin/features/appointments_management/data/models/appointment_model.dart';
+import 'package:oxytocin/features/appointments_management/presentation/viewmodels/management_appointments_cubit.dart';
 
-void showEditAppointmentBottomSheet(BuildContext context) {
+void showEditAppointmentBottomSheet(
+  BuildContext context,
+  ManagementAppointmentsCubit cubit,
+  int id,
+  AppointmentModel appointmentModel,
+) {
   showModalBottomSheet(
     context: context,
     shape: const RoundedRectangleBorder(
@@ -41,7 +51,39 @@ void showEditAppointmentBottomSheet(BuildContext context) {
                   context,
                 ).copyWith(color: AppColors.textSecondary, fontSize: 16),
               ),
-              onTap: () {},
+              onTap: () {
+                NavigationService().pushToNamedWithParams(
+                  RouteNames.reAppointment,
+                  extra: {
+                    'id': appointmentModel.clinic.doctor.user.id,
+                    'appointmentId': id,
+                  },
+                );
+              },
+            ),
+            const Divider(color: Colors.grey),
+            ListTile(
+              leading: SvgPicture.asset(
+                height: 22,
+                width: 22,
+                colorFilter: const ColorFilter.mode(
+                  AppColors.textSecondary,
+                  BlendMode.srcIn,
+                ),
+                AppImages.fileIcon,
+              ),
+              title: Text(
+                context.tr.editUploadedFiles,
+                style: AppStyles.cairoExtraBold(
+                  context,
+                ).copyWith(color: AppColors.textSecondary, fontSize: 16),
+              ),
+              onTap: () {
+                // cubit.cancelAppointment(appointmentId: id);
+                // if (context.mounted) {
+                //   context.pop();
+                // }
+              },
             ),
             const Divider(color: Colors.grey),
             ListTile(
@@ -58,7 +100,10 @@ void showEditAppointmentBottomSheet(BuildContext context) {
                 ).copyWith(color: const Color(0xffEF3039), fontSize: 16),
               ),
               onTap: () {
-                // Handle cancellation
+                cubit.cancelAppointment(appointmentId: id);
+                if (context.mounted) {
+                  context.pop();
+                }
               },
             ),
             const Divider(color: Colors.grey),

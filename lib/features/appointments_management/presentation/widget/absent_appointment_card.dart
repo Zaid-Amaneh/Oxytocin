@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/features/appointments_management/data/models/appointment_model.dart';
 import 'package:oxytocin/features/appointments_management/presentation/widget/call_button.dart';
+import 'package:oxytocin/features/appointments_management/presentation/widget/clinic_location_button.dart';
 import 'package:oxytocin/features/appointments_management/presentation/widget/custom_appointment_card_side.dart';
-import 'package:oxytocin/features/appointments_management/presentation/widget/custom_appointment_card_button.dart';
 import 'package:oxytocin/features/appointments_management/presentation/widget/custom_appointment_card_info.dart';
 
 class AbsentAppointmentCard extends StatelessWidget {
@@ -48,12 +47,14 @@ class AbsentAppointmentCard extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      CustomAppointmentCardButton(
+                      ClinicLocationButton(
+                        appointmentModel: appointmentModel,
                         t: false,
-                        text: context.tr.map,
-                        icon: SvgPicture.asset(AppImages.mapLocationIcon),
                       ),
-                      CallButton(phoneNumber: appointmentModel.clinic.phone),
+                      CallButton(
+                        phoneNumber: appointmentModel.clinic.phone,
+                        t: false,
+                      ),
                     ],
                   ),
                 ),

@@ -1753,6 +1753,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your visit has been completed successfully. Wishing you good health and wellness!'**
   String get visitCompleted;
+
+  /// No description provided for @noNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'No notes recorded'**
+  String get noNotes;
+
+  /// No description provided for @patientNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Patient Notes'**
+  String get patientNotes;
+
+  /// No description provided for @appointmentInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment Information'**
+  String get appointmentInfo;
+
+  /// No description provided for @doctorName.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor Name:'**
+  String get doctorName;
+
+  /// No description provided for @doctorInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor Information'**
+  String get doctorInfo;
+
+  /// No description provided for @appointmentDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment Details'**
+  String get appointmentDetails;
+
+  /// No description provided for @address.
+  ///
+  /// In en, this message translates to:
+  /// **'Address:'**
+  String get address;
+
+  /// No description provided for @clinicNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Clinic Number:'**
+  String get clinicNumber;
+
+  /// No description provided for @queue.
+  ///
+  /// In en, this message translates to:
+  /// **'Queue'**
+  String get queue;
+
+  /// No description provided for @cancellationSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'The appointment has been cancelled successfully.'**
+  String get cancellationSuccess;
+
+  /// No description provided for @cancellationFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'The appointment could not be cancelled. Please try again later.'**
+  String get cancellationFailed;
+
+  /// No description provided for @updateBookingSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Your booking has been updated successfully.'**
+  String get updateBookingSuccess;
+
+  /// No description provided for @updateBookingFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update your booking. Please try again later.'**
+  String get updateBookingFailed;
+
+  /// No description provided for @editUploadedFiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Files'**
+  String get editUploadedFiles;
 }
 
 class _AppLocalizationsDelegate

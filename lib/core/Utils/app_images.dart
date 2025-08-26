@@ -55,6 +55,7 @@ class AppImages {
   static const String starOutline = 'assets/images/starOutline.svg';
   static const String imagesMedicines = "assets/images/medicines.svg";
   static const String noClinicImage = "assets/images/noClinicImage.svg";
+  static const String queueIcon = "assets/images/queueIcon.svg";
   static const String alcohol = 'assets/images/alcohol.png';
 
   static const String imagesO = "assets/images/o-.png";
@@ -92,6 +93,8 @@ class AppImages {
   static const String rescheduleIcon = "assets/images/reschedule.svg";
 
   static const String editIcon = "assets/images/edit.svg";
+
+  static const String fileIcon = "assets/images/filesEdit.svg";
 
   static const String mapLocationIcon = "assets/images/map_location.svg";
 
