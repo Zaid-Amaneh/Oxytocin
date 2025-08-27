@@ -33,7 +33,13 @@ extension FailureLocalization on AppLocalizations {
       case 'token_not_valid':
         return 'tokenNotValid';
       case 'authentication_failed':
-        return 'authentication_failed';
+        return authentication_failed;
+      case 'appointment_not_available':
+        return appointment_not_available;
+      case 'files_upload_error':
+        return files_upload_error;
+      case 'invalid_uploaded_file':
+        return invalid_uploaded_file;
       default:
         return errorUnknown;
     }

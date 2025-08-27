@@ -473,4 +473,376 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get no_doctor_found =>
       'We couldnt find any doctor matching your search. Try different keywords or check your spelling';
+
+  @override
+  String get profile => 'profile';
+
+  @override
+  String get d => 'D';
+
+  @override
+  String get clinicLocation => 'Clinic location';
+
+  @override
+  String get easilyLocateClinic =>
+      'Easily locate the clinic, and find your way there';
+
+  @override
+  String get oneClick => 'With one click.';
+
+  @override
+  String get clinicPhotos => 'Clinic photos';
+
+  @override
+  String get noClinicImage => 'Sorry, no photos are available for this clinic.';
+
+  @override
+  String get clinicEvaluation => 'Overall Clinic Evaluation';
+
+  @override
+  String get realPastPatients => 'Real reviews from past patients';
+
+  @override
+  String get viewMore => 'View more';
+
+  @override
+  String get about => 'About';
+
+  @override
+  String get placeStudy => 'Place of study';
+
+  @override
+  String get aboutDoctor => 'About the doctor';
+
+  @override
+  String get show_all_days => 'Show all days of the month';
+
+  @override
+  String get select_booking_time => 'Select booking time';
+
+  @override
+  String get book_now => 'Book now';
+
+  @override
+  String get available => 'Available';
+
+  @override
+  String remainingAppointmentsMessage(Object remainingCount) {
+    return '$remainingCount appointments\nstill available for today';
+  }
+
+  @override
+  String get noAppointmentsMessage => 'No appointments\navailable';
+
+  @override
+  String get noAppointments => 'No appointments';
+
+  @override
+  String get monday => 'Monday';
+
+  @override
+  String get tuesday => 'Tuesday';
+
+  @override
+  String get wednesday => 'Wednesday';
+
+  @override
+  String get thursday => 'Thursday';
+
+  @override
+  String get friday => 'Friday';
+
+  @override
+  String get saturday => 'Saturday';
+
+  @override
+  String get sunday => 'Sunday';
+
+  @override
+  String get am => 'AM';
+
+  @override
+  String get pm => 'PM';
+
+  @override
+  String get error => 'Something went wrong';
+
+  @override
+  String get locationError => 'An error occurred while detecting the location';
+
+  @override
+  String get routeNotFound => 'Route not found';
+
+  @override
+  String get locationTimeout => 'Location request timed out';
+
+  @override
+  String get quotaExceeded => 'Quota exceeded';
+
+  @override
+  String get apiKeyError => 'API key error';
+
+  @override
+  String get routeError => 'An error occurred while fetching the route';
+
+  @override
+  String get noRouteFound => 'No route found';
+
+  @override
+  String get yourLocation => 'Your location';
+
+  @override
+  String get loadingRoute => 'Loading route...';
+
+  @override
+  String get errorOccurred => 'Sorry, an error occurred. Please try again';
+
+  @override
+  String get retry => 'Retry';
+
+  @override
+  String get age => 'Age';
+
+  @override
+  String get subspecialties => 'Subspecialties';
+
+  @override
+  String get noCommentDoctor =>
+      'No one has left a comment yet. Book now and be the first to review this doctor!';
+
+  @override
+  String get doctor_added_success => 'Doctor added to favorites successfully';
+
+  @override
+  String get doctor_added_failure_network =>
+      'Failed to add doctor to favorites due to connection issues';
+
+  @override
+  String get doctor_added_failure_auth =>
+      'You cannot add the doctor to favorites because you are not logged in';
+
+  @override
+  String get failure_title => 'Error';
+
+  @override
+  String get success_title => 'Success';
+
+  @override
+  String get doctor_removed_success =>
+      'Doctor removed from favorites successfully';
+
+  @override
+  String get view_all_reservations => 'View All Reservations';
+
+  @override
+  String get near_appointments => 'Nearby Appointments';
+
+  @override
+  String get appointments_expired =>
+      'Nearby appointments have ended. You can press \"View all reservations\" to choose the date and month that suits you.';
+
+  @override
+  String get appointments_calendar => 'Appointments Calendar';
+
+  @override
+  String get choose_month => 'Choose Month';
+
+  @override
+  String get select => 'Select';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get january => 'January';
+
+  @override
+  String get february => 'February';
+
+  @override
+  String get march => 'March';
+
+  @override
+  String get april => 'April';
+
+  @override
+  String get may => 'May';
+
+  @override
+  String get june => 'June';
+
+  @override
+  String get july => 'July';
+
+  @override
+  String get august => 'August';
+
+  @override
+  String get september => 'September';
+
+  @override
+  String get october => 'October';
+
+  @override
+  String get november => 'November';
+
+  @override
+  String get december => 'December';
+
+  @override
+  String get no_appointments_available => 'No appointments available';
+
+  @override
+  String get no_appointments_description =>
+      'No appointments found for this month';
+
+  @override
+  String get error_loading_appointments => 'Error loading appointments';
+
+  @override
+  String get please_try_again => 'Please try again';
+
+  @override
+  String get available_appointments => 'Available Appointments';
+
+  @override
+  String get appointment => 'appointment';
+
+  @override
+  String get loadingAppointments => 'Loading appointments...';
+
+  @override
+  String get availableDays => 'Available Days';
+
+  @override
+  String get day => 'Day';
+
+  @override
+  String get days => 'Days';
+
+  @override
+  String get appointmentInstructions =>
+      'You can write anything you want the doctor to know before the appointment, such as symptoms you feel, when your condition started, or any details you think are important.';
+
+  @override
+  String get tellDoctorHowYouFeel => 'Tell the doctor how you feel';
+
+  @override
+  String get confirmBooking => 'Confirm Booking';
+
+  @override
+  String get bookingSuccess => 'Your appointment has been successfully booked!';
+
+  @override
+  String get thankYouMessage =>
+      'Thank you for using our platform. We wish you continued health and wellness!';
+
+  @override
+  String get attachFiles =>
+      'You can attach any files you want the doctor to review before the appointment';
+
+  @override
+  String get backToHome => 'Back to Home';
+
+  @override
+  String availableAppointments(Object dayDate) {
+    return 'These are the available appointments for $dayDate. Please select a time that suits you.';
+  }
+
+  @override
+  String get chooseTime => 'Choose a suitable time';
+
+  @override
+  String get appointment_success =>
+      'Your appointment has been successfully booked!';
+
+  @override
+  String get thank_you_message =>
+      'Thank you for using our platform. We wish you good health and wellness!';
+
+  @override
+  String get attach_files_hint =>
+      'You can attach any files you would like the doctor to review before the appointment';
+
+  @override
+  String get doctor => 'Doctor:';
+
+  @override
+  String get specialization => 'Specialization:';
+
+  @override
+  String get date => 'Date:';
+
+  @override
+  String get time => 'Time:';
+
+  @override
+  String get location => 'Location:';
+
+  @override
+  String get add_file => 'Add File';
+
+  @override
+  String get back_to_home => 'Back to Home';
+
+  @override
+  String get appointment_confirmed => 'Appointment confirmed';
+
+  @override
+  String max_files_error(Object maxFiles) {
+    return 'You cannot upload more than $maxFiles files';
+  }
+
+  @override
+  String file_size_error(Object fileName, Object maxFileSizeInMB) {
+    return 'The file $fileName is larger than $maxFileSizeInMB MB';
+  }
+
+  @override
+  String allowed_files_limit(Object allowedCount, Object maxFiles) {
+    return '$allowedCount files were added only. Maximum allowed is $maxFiles files';
+  }
+
+  @override
+  String get file_pick_error => 'An error occurred while picking files';
+
+  @override
+  String get loading => 'Loading...';
+
+  @override
+  String get tap_to_select_files => 'Tap to select files';
+
+  @override
+  String upload_hint(Object maxFileSizeInMB, Object maxFiles) {
+    return 'You can upload up to $maxFiles files, each up to $maxFileSizeInMB MB';
+  }
+
+  @override
+  String get supported_formats =>
+      'Supported formats: PDF, DOC, DOCX, TXT, JPG, PNG';
+
+  @override
+  String files_progress(Object maxFiles, Object selectedCount) {
+    return '$selectedCount of $maxFiles files';
+  }
+
+  @override
+  String get appointment_not_available =>
+      'Unfortunately, the appointment you tried to book is no longer available as it has been taken by another patient.';
+
+  @override
+  String get files_uploaded_success =>
+      'Files uploaded successfully! Your doctor can now review them.';
+
+  @override
+  String get files_upload_error =>
+      'There was a problem uploading the files. Please try again.';
+
+  @override
+  String get invalid_uploaded_file =>
+      'One of the uploaded files is invalid or contains an issue. Please check your files and try again.';
+
+  @override
+  String get next_appointment_message =>
+      'Your next appointment is waiting for you. We wish you continued health and wellness.';
 }

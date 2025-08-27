@@ -463,4 +463,374 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get no_doctor_found =>
       'لم نجد أي طبيب يطابق بحثك. جرّب كلمات أخرى أو تحقق من الإملاء';
+
+  @override
+  String get profile => 'ملف';
+
+  @override
+  String get d => 'د';
+
+  @override
+  String get clinicLocation => 'موقع العيادة';
+
+  @override
+  String get easilyLocateClinic =>
+      'اعرف مكان العيادة بسهولة، وحدّد طريقك إليها';
+
+  @override
+  String get oneClick => 'بنقرة واحدة.';
+
+  @override
+  String get clinicPhotos => 'صور العيادة';
+
+  @override
+  String get noClinicImage => 'عذرًا، لا توجد صور متاحة لهذه العيادة.';
+
+  @override
+  String get clinicEvaluation => 'التقييم العام للعيادة';
+
+  @override
+  String get realPastPatients => 'آراء حقيقية من مرضى سابقين';
+
+  @override
+  String get viewMore => 'عرض المزيد';
+
+  @override
+  String get about => 'نبذة';
+
+  @override
+  String get placeStudy => 'مكان الدراسة';
+
+  @override
+  String get aboutDoctor => 'عن الطبيب';
+
+  @override
+  String get show_all_days => 'عرض جميع أيام الشهر';
+
+  @override
+  String get select_booking_time => 'اختر ميعاد الحجز';
+
+  @override
+  String get book_now => 'احجز الآن';
+
+  @override
+  String get available => 'متاح';
+
+  @override
+  String remainingAppointmentsMessage(Object remainingCount) {
+    return 'ما زال هناك $remainingCount مواعيد\nمتاحة لهذا اليوم';
+  }
+
+  @override
+  String get noAppointmentsMessage => 'لا يوجد مواعيد\nمتاحة';
+
+  @override
+  String get noAppointments => 'لا توجد مواعيد';
+
+  @override
+  String get monday => 'الإثنين';
+
+  @override
+  String get tuesday => 'الثلاثاء';
+
+  @override
+  String get wednesday => 'الأربعاء';
+
+  @override
+  String get thursday => 'الخميس';
+
+  @override
+  String get friday => 'الجمعة';
+
+  @override
+  String get saturday => 'السبت';
+
+  @override
+  String get sunday => 'الأحد';
+
+  @override
+  String get am => 'صباحاً';
+
+  @override
+  String get pm => 'مساءً';
+
+  @override
+  String get error => 'حدث خطأ';
+
+  @override
+  String get locationError => 'حدث خطأ أثناء تحديد الموقع';
+
+  @override
+  String get routeNotFound => 'المسار غير موجود';
+
+  @override
+  String get locationTimeout => 'انتهى وقت محاولة تحديد الموقع';
+
+  @override
+  String get quotaExceeded => 'تم تجاوز الحد المسموح';
+
+  @override
+  String get apiKeyError => 'خطأ في مفتاح API';
+
+  @override
+  String get routeError => 'حدث خطأ أثناء جلب المسار';
+
+  @override
+  String get noRouteFound => 'لم يتم العثور على أي مسار';
+
+  @override
+  String get yourLocation => 'موقعك الحالي';
+
+  @override
+  String get loadingRoute => 'جارٍ تحميل المسار...';
+
+  @override
+  String get errorOccurred => 'نعتذر، حدث خطأ ما. الرجاء إعادة المحاولة';
+
+  @override
+  String get retry => 'إعادة المحاولة';
+
+  @override
+  String get age => 'العمر';
+
+  @override
+  String get subspecialties => 'الاختصاصات الفرعية';
+
+  @override
+  String get noCommentDoctor =>
+      'لم يترك أحد تعليقاً بعد. احجز الآن وكن أول من يقيّم هذا الطبيب!';
+
+  @override
+  String get doctor_added_success => 'تمت إضافة الطبيب إلى المفضلة بنجاح';
+
+  @override
+  String get doctor_added_failure_network =>
+      'تعذر إضافة الطبيب إلى المفضلة بسبب مشاكل في الاتصال';
+
+  @override
+  String get doctor_added_failure_auth =>
+      'لا يمكنك إضافة الطبيب إلى المفضلة لأنك لم تسجل الدخول';
+
+  @override
+  String get failure_title => 'حدث خطأ';
+
+  @override
+  String get success_title => 'تم بنجاح';
+
+  @override
+  String get doctor_removed_success => 'تم حذف الطبيب من المفضلة بنجاح';
+
+  @override
+  String get view_all_reservations => 'عرض جميع الحجوزات';
+
+  @override
+  String get near_appointments => 'المواعيد القريبة';
+
+  @override
+  String get appointments_expired =>
+      'انتهت المواعيد القريبة. يمكنك الضغط على \"عرض جميع الحجوزات\" لاختيار التاريخ والشهر المناسب لك.';
+
+  @override
+  String get appointments_calendar => 'تقويم المواعيد';
+
+  @override
+  String get choose_month => 'اختر الشهر';
+
+  @override
+  String get select => 'اختيار';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get january => 'يناير';
+
+  @override
+  String get february => 'فبراير';
+
+  @override
+  String get march => 'مارس';
+
+  @override
+  String get april => 'أبريل';
+
+  @override
+  String get may => 'مايو';
+
+  @override
+  String get june => 'يونيو';
+
+  @override
+  String get july => 'يوليو';
+
+  @override
+  String get august => 'أغسطس';
+
+  @override
+  String get september => 'سبتمبر';
+
+  @override
+  String get october => 'أكتوبر';
+
+  @override
+  String get november => 'نوفمبر';
+
+  @override
+  String get december => 'ديسمبر';
+
+  @override
+  String get no_appointments_available => 'لا توجد مواعيد متاحة';
+
+  @override
+  String get no_appointments_description =>
+      'لم يتم العثور على أي مواعيد في هذا الشهر';
+
+  @override
+  String get error_loading_appointments => 'خطأ في تحميل المواعيد';
+
+  @override
+  String get please_try_again => 'يرجى المحاولة مرة أخرى';
+
+  @override
+  String get available_appointments => 'المواعيد المتاحة';
+
+  @override
+  String get appointment => 'موعد';
+
+  @override
+  String get loadingAppointments => 'جاري تحميل المواعيد...';
+
+  @override
+  String get availableDays => 'الأيام المتاحة';
+
+  @override
+  String get day => 'يوم';
+
+  @override
+  String get days => 'أيام';
+
+  @override
+  String get appointmentInstructions =>
+      'يمكنك هنا كتابة أي شيء ترغب في أن يعرفه الطبيب قبل الموعد، مثل الأعراض التي تشعر بها، متى بدأت حالتك، أو أي تفاصيل تعتقد أنها مهمة.';
+
+  @override
+  String get tellDoctorHowYouFeel => 'أخبر الطبيب بما تشعر به';
+
+  @override
+  String get confirmBooking => 'تأكيد الحجز';
+
+  @override
+  String get bookingSuccess => 'تم حجز موعدك بنجاح!';
+
+  @override
+  String get thankYouMessage =>
+      'شكرًا لاستخدامك منصتنا. نتمنى لك دوام الصحة والعافية!';
+
+  @override
+  String get attachFiles =>
+      'يمكنك إرفاق أي ملفات ترغب أن يطّلع عليها الطبيب قبل الموعد';
+
+  @override
+  String get backToHome => 'العودة إلى الصفحة الرئيسية';
+
+  @override
+  String availableAppointments(Object dayDate) {
+    return 'هذه هي المواعيد المتاحة ليوم $dayDate، يرجى اختيار الوقت المناسب لك.';
+  }
+
+  @override
+  String get chooseTime => 'اختر الوقت المناسب';
+
+  @override
+  String get appointment_success => 'تم حجز موعدك بنجاح!';
+
+  @override
+  String get thank_you_message =>
+      'شكرًا لاستخدامك منصتنا. نتمنى لك دوام الصحة والعافية!';
+
+  @override
+  String get attach_files_hint =>
+      'يمكنك إرفاق أي ملفات ترغب أن يطّلع عليها الطبيب قبل الموعد';
+
+  @override
+  String get doctor => 'الطبيب:';
+
+  @override
+  String get specialization => 'التخصص:';
+
+  @override
+  String get date => 'التاريخ:';
+
+  @override
+  String get time => 'الوقت:';
+
+  @override
+  String get location => 'المكان:';
+
+  @override
+  String get add_file => 'أضف ملف';
+
+  @override
+  String get back_to_home => 'العودة إلى الصفحة الرئيسية';
+
+  @override
+  String get appointment_confirmed => 'تم تأكيد الموعد';
+
+  @override
+  String max_files_error(Object maxFiles) {
+    return 'لا يمكن رفع أكثر من $maxFiles ملفات';
+  }
+
+  @override
+  String file_size_error(Object fileName, Object maxFileSizeInMB) {
+    return 'حجم الملف $fileName أكبر من $maxFileSizeInMB ميجابايت';
+  }
+
+  @override
+  String allowed_files_limit(Object allowedCount, Object maxFiles) {
+    return 'تم إضافة $allowedCount ملفات فقط. الحد الأقصى $maxFiles ملفات';
+  }
+
+  @override
+  String get file_pick_error => 'حدث خطأ في اختيار الملفات';
+
+  @override
+  String get loading => 'جاري التحميل...';
+
+  @override
+  String get tap_to_select_files => 'اضغط لاختيار الملفات';
+
+  @override
+  String upload_hint(Object maxFileSizeInMB, Object maxFiles) {
+    return 'يمكنك رفع حتى $maxFiles ملفات، كل ملف حتى $maxFileSizeInMB ميجابايت';
+  }
+
+  @override
+  String get supported_formats =>
+      'الصيغ المدعومة: PDF, DOC, DOCX, TXT, JPG, PNG';
+
+  @override
+  String files_progress(Object maxFiles, Object selectedCount) {
+    return '$selectedCount من $maxFiles ملفات';
+  }
+
+  @override
+  String get appointment_not_available =>
+      'للأسف، الموعد الذي حاولت حجزه لم يعد متاحاً لأنه تم حجزه من مريض آخر.';
+
+  @override
+  String get files_uploaded_success =>
+      'تم رفع الملفات بنجاح! سيتمكن طبيبك من الاطلاع عليها.';
+
+  @override
+  String get files_upload_error =>
+      'حدثت مشكلة أثناء رفع الملفات. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get invalid_uploaded_file =>
+      'أحد الملفات التي قمت برفعها غير صالح أو يحتوي على مشكلة. يرجى التحقق من الملفات والمحاولة مرة أخرى.';
+
+  @override
+  String get next_appointment_message =>
+      'موعدك القادم في انتظارك. نتمنى لك دوام الصحة والعافية.';
 }
