@@ -246,7 +246,12 @@ void _showCancelConfirmationDialog(
             ),
           ),
           const SizedBox(width: 12),
-          Text(context.tr.confirmCancel),
+          Text(
+            context.tr.confirmCancel,
+            style: AppStyles.almaraiBold(
+              context,
+            ).copyWith(color: AppColors.textPrimary, fontSize: 18),
+          ),
         ],
       ),
       content: Text(
