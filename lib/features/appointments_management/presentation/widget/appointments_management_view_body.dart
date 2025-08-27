@@ -182,7 +182,7 @@ class _AppointmentsManagementViewBodyState
         return CustomScrollView(
           controller: _scrollController,
           slivers: [
-            SliverToBoxAdapter(child: SizedBox(height: height * 0.06)),
+            SliverToBoxAdapter(child: SizedBox(height: height * 0.022)),
             SliverToBoxAdapter(
               child: SizedBox(
                 height: height * 0.1,
