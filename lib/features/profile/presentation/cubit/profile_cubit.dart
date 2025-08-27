@@ -1,4 +1,3 @@
-// // features/profile/presentation/cubit/profile_cubit.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oxytocin/features/profile/data/model/user_profile_model.dart';
 import 'package:oxytocin/features/profile/data/repositories/profile_repository_impl.dart';
@@ -17,13 +16,19 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
   }
 
-  Future<void> updateProfile(UserProfileModel profile) async {
-    emit(ProfileUpdating());
+  void refreshWith(UserProfileModel profile) {
+    emit(ProfileLoaded(profile));
+  }
+
+  Future<void> logout() async {
+    emit(ProfileLoading());
     try {
-      final updatedProfile = await repository.updateProfile(profile);
-      emit(ProfileLoaded(updatedProfile));
+      await repository.logout();
+      await Future.delayed(const Duration(milliseconds: 500));
+      emit(ProfileLoggedOut());
     } catch (e) {
-      emit(ProfileError(e.toString()));
+      await Future.delayed(const Duration(milliseconds: 500));
+      emit(ProfileLoggedOut());
     }
   }
 }

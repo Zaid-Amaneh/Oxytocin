@@ -6,7 +6,6 @@ import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/Utils/size_config.dart';
 import 'package:oxytocin/features/auth_complete/presentation/widget/profile_action_button.dart';
-import 'package:oxytocin/core/constants/app_constants.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,22 +25,16 @@ class _UploadProfilePhotoState extends State<UploadProfilePhoto> {
 
   void _handleNextButtonPress() {
     if (_selectedImage != null) {
-      // رفع الصورة أولاً
       context
           .read<ProfileInfoCubit>()
           .uploadProfileImage(_selectedImage!)
           .then((_) {
-            // الانتقال للصفحة التالية بعد نجاح الرفع
             if (mounted) {
               context.pushNamed(RouteNames.congratView);
             }
           })
-          .catchError((error) {
-            // معالجة الخطأ إذا فشل الرفع
-            print('Error uploading image: $error');
-          });
+          .catchError((error) {});
     } else {
-      // الانتقال مباشرة إذا لم يتم اختيار صورة
       context.pushNamed(RouteNames.congratView);
     }
   }
@@ -82,8 +75,7 @@ class _UploadProfilePhotoState extends State<UploadProfilePhoto> {
         context.read<ProfileInfoCubit>().setProfileImage(_selectedImage!);
       }
     } catch (e) {
-      // Handle error
-      print('Error picking image: $e');
+      print(e);
     }
   }
 
@@ -133,18 +125,7 @@ class _UploadProfilePhotoState extends State<UploadProfilePhoto> {
       listener: (context, state) {
         if (state.isSuccess) {
           context.pushNamed(RouteNames.congratView);
-        } else if (state.errorMessage != null) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                'فشل في رفع الصورة: ${state.errorMessage}',
-                style: AppStyles.almaraiRegular(context),
-                textAlign: TextAlign.center,
-              ),
-              backgroundColor: Colors.red,
-            ),
-          );
-        }
+        } else if (state.errorMessage != null) {}
       },
       child: Scaffold(
         backgroundColor: AppColors.background,
@@ -181,6 +162,7 @@ class _UploadProfilePhotoState extends State<UploadProfilePhoto> {
                       color: const Color(0xFFF3F3F3),
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
+                        // ignore: deprecated_member_use
                         color: AppColors.kPrimaryColor1.withOpacity(0.3),
                         width: 1,
                       ),
@@ -215,7 +197,7 @@ class _UploadProfilePhotoState extends State<UploadProfilePhoto> {
                               color: AppColors.kPrimaryColor1.withOpacity(0.8),
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            child: Icon(
+                            child: const Icon(
                               Icons.camera_alt,
                               color: Colors.white,
                               size: 20,
@@ -253,7 +235,7 @@ class _UploadProfilePhotoState extends State<UploadProfilePhoto> {
                             if (state.isSubmitting) {
                               return ProfileActionButton(
                                 text: "التالي",
-                                onPressed: () {}, // دالة فارغة بدلاً من null
+                                onPressed: () {},
                                 filled: true,
                                 borderRadius: 20,
                                 fontSize: 16,
@@ -265,12 +247,10 @@ class _UploadProfilePhotoState extends State<UploadProfilePhoto> {
                                 text: "التالي",
                                 onPressed: () {
                                   if (_selectedImage != null) {
-                                    // رفع الصورة فقط - الانتقال سيتم عبر BlocListener
                                     context
                                         .read<ProfileInfoCubit>()
                                         .uploadProfileImage(_selectedImage!);
                                   } else {
-                                    // الانتقال مباشرة إذا لم يتم اختيار صورة
                                     context.pushNamed(RouteNames.congratView);
                                   }
                                 },

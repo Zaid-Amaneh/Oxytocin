@@ -86,6 +86,7 @@ class UserProfileModel {
         'birth_date': birthDate?.toIso8601String(),
       },
       'address': address,
+      'location': address,
       'job': job,
       'blood_type': bloodType,
       'medical_history': medicalHistory,

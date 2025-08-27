@@ -33,7 +33,6 @@ class _ProfileMenuSectionState extends State<ProfileMenuSection> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // First menu section
         _buildMenuCard([
           _buildMenuItem(
             icon: Icons.person,
@@ -53,7 +52,6 @@ class _ProfileMenuSectionState extends State<ProfileMenuSection> {
           ),
         ]),
         SizedBox(height: SizeConfig.getProportionateScreenHeight(16)),
-        // Second menu section
         _buildMenuCard([
           _buildMenuItem(
             icon: Icons.settings,

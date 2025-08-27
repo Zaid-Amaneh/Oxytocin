@@ -14,11 +14,19 @@ class ProfileRepository {
     }
   }
 
-  Future<UserProfileModel> updateProfile(UserProfileModel profile) async {
+  Future<UserProfileModel> updateProfile(
+    Map<String, dynamic> updatedFields,
+  ) async {
     try {
-      return await dataSource.updateProfile(profile);
+      return await dataSource.updateProfileFields(updatedFields);
     } catch (e) {
       throw Exception('فشل في التحديث: ${e.toString()}');
     }
+  }
+
+  Future<void> logout() async {
+    try {
+      await dataSource.logout();
+    } catch (e) {}
   }
 }

@@ -38,7 +38,6 @@ class SubspecialtiesBottomSheet extends StatelessWidget {
             ),
           ),
 
-          // Header
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
             child: Row(
@@ -63,8 +62,6 @@ class SubspecialtiesBottomSheet extends StatelessWidget {
           ),
 
           const Divider(height: 1),
-
-          // Scrollable list (Arabic only)
           Expanded(
             child: ListView.separated(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -85,7 +82,6 @@ class SubspecialtiesBottomSheet extends StatelessWidget {
                     ),
                   ),
                   onTap: () {
-                    // استخدام الـ cubit الممرر أو البحث عنه في الـ context
                     final categoriesCubit =
                         cubit ?? context.read<CategoriesCubit>();
                     categoriesCubit.selectSubspecialty(subspecialty);

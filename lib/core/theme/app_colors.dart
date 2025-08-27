@@ -11,10 +11,9 @@ class AppColors {
   static const textPrimary = Color.fromARGB(255, 0, 0, 0);
   static const textSecondary = Color(0xFF666666);
   static const error = Color(0xFFFF4D4F);
-  //textfield border side color
   static const textfieldBorder = Color(0xFFD9D9D9);
-  //container border side color
+
   static const containerBorder = Color.fromARGB(255, 231, 237, 243);
-  // Dark blue for profile card
+
   static const profileCardBlue = Color(0xffbac000957);
 }

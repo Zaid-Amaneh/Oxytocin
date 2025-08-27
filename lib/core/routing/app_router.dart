@@ -56,7 +56,6 @@ import 'package:oxytocin/features/auth/presentation/views/forgot_password_view.d
 import 'package:oxytocin/features/auth/presentation/views/reset_password_view.dart';
 import 'package:oxytocin/features/auth/presentation/views/verification_phone_number_view.dart';
 import 'package:oxytocin/features/categories/presentation/view/categories_view.dart';
-import 'package:oxytocin/features/home/presentation/cubit/home_cubit.dart';
 import 'package:oxytocin/features/home/presentation/view/home_view.dart';
 import 'package:oxytocin/features/intro/presentation/views/intro_view.dart';
 import 'package:oxytocin/features/intro/presentation/views/splash_view.dart';
@@ -73,7 +72,7 @@ import 'package:oxytocin/features/profile/di/profile_dependency_injection.dart';
 class AppRouter {
   static GoRouter createRouter(NavigationService navigationService) {
     final router = GoRouter(
-      initialLocation: '/${RouteNames.splash}',
+      initialLocation: '/${RouteNames.signIn}',
       routes: [
         GoRoute(
           path: '/${RouteNames.splash}',
@@ -120,15 +119,9 @@ class AppRouter {
         GoRoute(
           path: '/${RouteNames.home}',
           name: RouteNames.home,
-          builder: (context, state) => BlocProvider(
-            create: (_) {
-              final cubit = HomeCubit();
-              cubit.loadDoctors(33.5260220, 36.2864360);
-              cubit.loadNearbyDoctors(33.5260220, 36.2864360);
-              return cubit;
-            },
-            child: const HomeView(),
-          ),
+          builder: (context, state) => const HomeView(),
+          // builder: (context, state) =>
+          //     BlocProvider(create: (_) => HomeCubit(), child: const HomeView()),
         ),
         GoRoute(
           path: '/${RouteNames.signIn}',

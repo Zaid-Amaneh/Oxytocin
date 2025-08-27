@@ -16,7 +16,6 @@ class NearbyDoctorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('🟠 Building card for: ${doctor.doctor.fullName}');
     final screenWidth = MediaQuery.of(context).size.width;
     final isTablet = screenWidth > 600;
 
@@ -98,61 +97,26 @@ class NearbyDoctorCard extends StatelessWidget {
                     borderRadius: BorderRadius.all(
                       Radius.circular(isTablet ? 30.0 : 25.0),
                     ),
-                    child: info.imageUrl.isNotEmpty && info.imageUrl != 'null'
-                        ? Image.network(
-                            info.imageUrl,
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Image.asset(
-                                AppImages.doctor,
-                                fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) {
-                                  return Container(
-                                    decoration: BoxDecoration(
-                                      color: const Color.fromARGB(
-                                        255,
-                                        60,
-                                        106,
-                                        235,
-                                      ),
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(isTablet ? 30.0 : 25.0),
-                                      ),
-                                    ),
-                                    child: Icon(
-                                      Icons.person,
-                                      size: isTablet ? 60.0 : 50.0,
-                                      color: Colors.white,
-                                    ),
-                                  );
-                                },
-                              );
-                            },
-                          )
-                        : Image.asset(
-                            AppImages.doctor,
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Container(
-                                decoration: BoxDecoration(
-                                  color: const Color.fromARGB(
-                                    255,
-                                    60,
-                                    106,
-                                    235,
-                                  ),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(isTablet ? 30.0 : 25.0),
-                                  ),
-                                ),
-                                child: Icon(
-                                  Icons.person,
-                                  size: isTablet ? 60.0 : 50.0,
-                                  color: Colors.white,
-                                ),
-                              );
-                            },
+                    child: Image.asset(
+                      _getDefaultImageNearby(info.gender),
+
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 60, 106, 235),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(isTablet ? 30.0 : 25.0),
+                            ),
                           ),
+                          child: Icon(
+                            Icons.person,
+                            size: isTablet ? 60.0 : 50.0,
+                            color: Colors.white,
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
                 Expanded(
@@ -164,7 +128,7 @@ class NearbyDoctorCard extends StatelessWidget {
                       children: [
                         Text(
                           info.fullName.isNotEmpty ? info.fullName : 'طبيب',
-                          // doctor.name,
+
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: isTablet ? 16.0 : 14.0,
@@ -179,7 +143,6 @@ class NearbyDoctorCard extends StatelessWidget {
                           SizedBox(height: isTablet ? 4.0 : 2.0),
                           Text(
                             info.specialtyName,
-                            // doctor.specialty,
                             style: TextStyle(
                               color: Colors.white70,
                               fontSize: isTablet ? 12.0 : 10.0,
@@ -287,6 +250,7 @@ class NearbyDoctorCard extends StatelessWidget {
                     width: isTablet ? 82.0 : 70.0,
                     height: isTablet ? 145.0 : 130.0,
                     decoration: BoxDecoration(
+                      // ignore: deprecated_member_use
                       color: const Color(0xFF2E3A87).withOpacity(0.8),
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(isTablet ? 30.0 : 25.0),
@@ -332,5 +296,13 @@ class NearbyDoctorCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _getDefaultImageNearby(String? gender) {
+    if (gender == 'female') {
+      return AppImages.doctor;
+    } else {
+      return AppImages.doctor;
+    }
   }
 }

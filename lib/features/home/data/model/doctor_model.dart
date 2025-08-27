@@ -1,5 +1,3 @@
-import 'package:oxytocin/core/Utils/services/url_container.dart';
-
 class DoctorModel {
   final int id;
   final String firstName;
@@ -7,6 +5,7 @@ class DoctorModel {
   final String imageUrl;
   final String specialtyNameEn;
   final String specialtyNameAr;
+
   final String university;
   final double rate;
   final int rates;
@@ -35,7 +34,7 @@ class DoctorModel {
     this.gender,
   });
   String get fullName => '$firstName $lastName';
-  String get specialtyName => specialtyNameAr; // Default to Arabic
+  String get specialtyName => specialtyNameAr;
   String get formattedDistance {
     if (clinicDistance == null) return '';
     if (clinicDistance! < 1000) {
@@ -49,29 +48,13 @@ class DoctorModel {
     if (appointment == null) return false;
 
     try {
-      // إذا كان appointment يحتوي على تاريخ، نتحقق من أنه خلال 30 يوم
       final appointmentDate = DateTime.parse(appointment!);
       final now = DateTime.now();
       final difference = appointmentDate.difference(now).inDays;
-
-      // إذا كان الموعد متاح خلال أقل من 30 يوم
       return difference >= 0 && difference <= 30;
     } catch (e) {
-      // إذا كان appointment ليس تاريخ صحيح، نعتبره متاح
       return true;
     }
-  }
-
-  String get formattedImageUrl {
-    if (imageUrl.isEmpty) {
-      return '';
-    }
-    if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
-      print('URL is already complete: $imageUrl');
-      return imageUrl;
-    }
-    final formattedUrl = '${UrlContainer.domainUrl}$imageUrl';
-    return formattedUrl;
   }
 
   String get defaultImageAsset {

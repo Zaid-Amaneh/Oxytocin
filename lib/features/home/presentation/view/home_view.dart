@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:oxytocin/core/Utils/app_images.dart';
+import 'package:oxytocin/features/favorites/data/services/favorite_manager.dart';
 import 'package:oxytocin/features/appointments_management/data/services/appointment_cancellation_service.dart';
 import 'package:oxytocin/features/appointments_management/data/services/appointments_fetch_service.dart';
 import 'package:oxytocin/features/appointments_management/data/services/evaluation_service.dart';
@@ -15,6 +16,7 @@ import 'package:oxytocin/features/home/presentation/widgets/top_bar.dart';
 import 'package:oxytocin/features/search_doctors_page/data/services/doctor_search_service.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/viewmodels/doctorSearch/doctor_search_cubit.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/views/search_doctors_view.dart';
+import 'package:provider/provider.dart';
 import '../cubit/home_cubit.dart';
 import '../cubit/home_state.dart';
 import 'package:oxytocin/features/categories/presentation/widgets/category_card.dart';
@@ -52,6 +54,15 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _loadDoctorsWithCurrentLocation();
+    });
+  }
+
+  void _loadDoctorsWithCurrentLocation() {
+    final cubit = context.read<HomeCubit>();
+    cubit.loadDoctorsWithCurrentLocation(context);
   }
 
   void _onDoctorCardTap(int doctorIndex) {
@@ -84,7 +95,6 @@ class _HomeViewState extends State<HomeView> {
   }
 
   void _showSubspecialtiesBottomSheet(BuildContext context, category) {
-    // الحصول على الـ cubit من الـ context
     final categoriesCubit = context.read<CategoriesCubit>();
 
     showModalBottomSheet(
@@ -248,46 +258,69 @@ class _HomeViewState extends State<HomeView> {
             if (state is HomeLoading) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is HomeLoaded) {
-              return Padding(
-                padding: const EdgeInsets.only(left: 8.0, right: 8),
-                child: SizedBox(
-                  height: isTablet ? 320.0 : 260.0,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: state.doctors.length,
-                    itemBuilder: (context, index) {
-                      return DoctorCard(
-                        doctor: state.doctors[index],
-                        onTap: () => _onDoctorCardTap(index),
-                        onFavoriteTap: () => _onDoctorFavoriteTap(index),
-                        onBookTap: () => _onDoctorBookTap(index),
-                      );
-                    },
-                    separatorBuilder: (_, __) =>
-                        SizedBox(width: isTablet ? 8.0 : 6.0),
-                  ),
-                ),
+              return Consumer<FavoriteManager>(
+                builder: (context, favoriteManager, child) {
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 8.0, right: 8),
+                    child: SizedBox(
+                      height: isTablet ? 320.0 : 260.0,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: state.doctors.length,
+                        itemBuilder: (context, index) {
+                          final doctor = state.doctors[index];
+                          final isFavorite = favoriteManager.isFavorite(
+                            doctor.id,
+                          );
+                          return DoctorCard(
+                            doctor: doctor,
+                            isFavorite: isFavorite,
+                            onTap: () {
+                              NavigationService().pushToNamedWithParams(
+                                RouteNames.doctorProfileView,
+                                queryParams: {'id': 'doctor.id'},
+                              );
+                            },
+                            onFavoriteTap: () => _onDoctorFavoriteTap(index),
+                            onBookTap: () => _onDoctorBookTap(index),
+                          );
+                        },
+                        separatorBuilder: (_, __) =>
+                            SizedBox(width: isTablet ? 8.0 : 6.0),
+                      ),
+                    ),
+                  );
+                },
               );
             } else if (state is HomeFullyLoaded) {
-              return Padding(
-                padding: const EdgeInsets.only(left: 8.0, right: 8),
-                child: SizedBox(
-                  height: isTablet ? 320.0 : 260.0,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: state.doctors.length,
-                    itemBuilder: (context, index) {
-                      return DoctorCard(
-                        doctor: state.doctors[index],
-                        onTap: () => _onDoctorCardTap(index),
-                        onFavoriteTap: () => _onDoctorFavoriteTap(index),
-                        onBookTap: () => _onDoctorBookTap(index),
-                      );
-                    },
-                    separatorBuilder: (_, __) =>
-                        SizedBox(width: isTablet ? 8.0 : 6.0),
-                  ),
-                ),
+              return Consumer<FavoriteManager>(
+                builder: (context, favoriteManager, child) {
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 8.0, right: 8),
+                    child: SizedBox(
+                      height: isTablet ? 320.0 : 260.0,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: state.doctors.length,
+                        itemBuilder: (context, index) {
+                          final doctor = state.doctors[index];
+                          final isFavorite = favoriteManager.isFavorite(
+                            doctor.id,
+                          );
+                          return DoctorCard(
+                            isFavorite: isFavorite,
+                            doctor: doctor,
+                            onTap: () => _onDoctorCardTap(index),
+                            onFavoriteTap: () => _onDoctorFavoriteTap(index),
+                            onBookTap: () => _onDoctorBookTap(index),
+                          );
+                        },
+                        separatorBuilder: (_, __) =>
+                            SizedBox(width: isTablet ? 8.0 : 6.0),
+                      ),
+                    ),
+                  );
+                },
               );
             } else if (state is HomeError) {
               return Center(
@@ -313,12 +346,21 @@ class _HomeViewState extends State<HomeView> {
                     const SizedBox(height: 16),
                     ElevatedButton(
                       onPressed: () {
-                        context.read<HomeCubit>().loadDoctors(
-                          33.5260220,
-                          36.2864360,
-                        );
+                        _loadDoctorsWithCurrentLocation();
                       },
-                      child: const Text('إعادة المحاولة'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: const Text(
+                        'إعادة المحاولة',
+                        style: TextStyle(
+                          fontFamily: 'AlmaraiBold',
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -335,8 +377,6 @@ class _HomeViewState extends State<HomeView> {
 
         BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
-            debugPrint('Current State: ${state.runtimeType}');
-
             if (state is NearbyDoctorsLoaded) {
               final nearbyDoctorsWithDistance = state.nearbyDoctors
                   .where((d) => d.distance > 0)
@@ -437,6 +477,25 @@ class _HomeViewState extends State<HomeView> {
                           fontSize: isTablet ? 14.0 : 12.0,
                           color: Colors.grey[600],
                           fontFamily: 'AlmaraiRegular',
+                        ),
+                      ),
+                      const SizedBox(height: 16.0),
+                      ElevatedButton(
+                        onPressed: () {
+                          _loadDoctorsWithCurrentLocation();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        child: const Text(
+                          'إعادة المحاولة',
+                          style: TextStyle(
+                            fontFamily: 'AlmaraiBold',
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],

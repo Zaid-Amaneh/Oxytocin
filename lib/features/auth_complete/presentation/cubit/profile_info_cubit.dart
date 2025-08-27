@@ -5,7 +5,6 @@ import 'package:oxytocin/features/auth_complete/data/models/complete_register_mo
 
 import 'profile_info_state.dart';
 import 'dart:io';
-import 'dart:convert';
 
 class ProfileInfoCubit extends Cubit<ProfileInfoState> {
   final ProfileRemoteDataSource _dataSource = ProfileRemoteDataSource();
@@ -179,7 +178,7 @@ class ProfileInfoCubit extends Cubit<ProfileInfoState> {
         emit(state.copyWith(isSuccess: true, profileExists: true));
       }
     } catch (e) {
-      print('❌ خطأ في التحقق من الملف الشخصي: $e');
+      print(' $e');
     }
   }
 }
