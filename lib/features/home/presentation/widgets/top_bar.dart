@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:oxytocin/features/home/presentation/widgets/profile_avatar_with_shadow.dart';
 import 'package:oxytocin/features/profile/data/model/user_profile_model.dart';
+import 'package:oxytocin/features/home/presentation/cubit/home_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TopBar extends StatelessWidget {
   final UserProfileModel? profile;
@@ -46,8 +48,9 @@ class TopBar extends StatelessWidget {
             ),
           ),
         ),
+
         Padding(
-          padding: const EdgeInsets.only(left: 20),
+          padding: const EdgeInsets.only(left: 10),
           child: Container(
             width: 38,
             height: 38,

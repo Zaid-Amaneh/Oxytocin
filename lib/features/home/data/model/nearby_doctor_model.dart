@@ -28,6 +28,7 @@ class DoctorInfo {
   final String university;
   final double rate;
   final int rates;
+  final String? gender;
 
   DoctorInfo({
     required this.id,
@@ -39,10 +40,19 @@ class DoctorInfo {
     required this.university,
     required this.rate,
     required this.rates,
+    this.gender,
   });
 
   String get fullName => '$firstName $lastName';
   String get specialtyName => specialtyNameAr;
+
+  String get defaultImageAssetNearby {
+    if (gender == 'female') {
+      return 'assets/images/doctor.jpg';
+    } else {
+      return 'assets/images/doctor.jpg';
+    }
+  }
 
   factory DoctorInfo.fromJson(Map<String, dynamic> json) {
     final user = json['user'] ?? {};
@@ -54,6 +64,7 @@ class DoctorInfo {
       firstName: user['first_name'] ?? '',
       lastName: user['last_name'] ?? '',
       imageUrl: user['image'] ?? '',
+      gender: user['gender'] ?? '',
       specialtyNameEn: specialty['name_en'] ?? '',
       specialtyNameAr: specialty['name_ar'] ?? '',
       university: mainSpecialty['university'] ?? '',

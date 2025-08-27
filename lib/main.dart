@@ -4,8 +4,11 @@ import 'package:go_router/go_router.dart';
 import 'package:oxytocin/core/routing/app_router.dart';
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/theme/app_theme.dart';
+import 'package:oxytocin/features/favorites/data/services/favorite_manager.dart';
+import 'package:oxytocin/features/home/presentation/cubit/home_cubit.dart';
 import 'package:oxytocin/l10n/app_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'features/auth_complete/presentation/cubit/profile_info_cubit.dart';
 
 void main() {
@@ -22,19 +25,27 @@ class OxytocinApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => ProfileInfoCubit())],
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        locale: const Locale('ar'),
-        localizationsDelegates: [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
+      providers: [
+        BlocProvider(create: (context) => ProfileInfoCubit()),
+        BlocProvider(create: (context) => HomeCubit()),
+      ],
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => FavoriteManager()),
         ],
-        supportedLocales: AppLocalizations.supportedLocales,
-        theme: AppTheme.lightTheme,
-        routerConfig: router,
+        child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          locale: const Locale('ar'),
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          theme: AppTheme.lightTheme,
+          routerConfig: router,
+        ),
       ),
     );
   }

@@ -2,24 +2,53 @@ import 'package:flutter/material.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/features/home/data/model/doctor_model.dart';
 
-class DoctorCard extends StatelessWidget {
+class DoctorCard extends StatefulWidget {
   final DoctorModel doctor;
   final VoidCallback? onTap;
-  final VoidCallback? onFavoriteTap;
+  final VoidCallback onFavoriteTap;
   final VoidCallback? onBookTap;
+  final bool isFavorite;
 
   const DoctorCard({
     super.key,
     required this.doctor,
     this.onTap,
-    this.onFavoriteTap,
+    required this.onFavoriteTap,
+    required this.isFavorite,
     this.onBookTap,
   });
 
   @override
+  State<DoctorCard> createState() => _DoctorCardState();
+}
+
+class _DoctorCardState extends State<DoctorCard> {
+  late bool _isFavorite;
+
+  @override
+  void initState() {
+    super.initState();
+    _isFavorite = widget.isFavorite;
+  }
+
+  @override
+  void didUpdateWidget(DoctorCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.isFavorite != widget.isFavorite) {
+      _isFavorite = widget.isFavorite;
+    }
+  }
+
+  void _onFavoriteTap() {
+    setState(() {
+      _isFavorite = !_isFavorite;
+    });
+    widget.onFavoriteTap();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     final isTablet = screenWidth > 600;
     final isLargeScreen = screenWidth > 900;
 
@@ -45,7 +74,7 @@ class DoctorCard extends StatelessWidget {
         : 220.0;
 
     return GestureDetector(
-      onTap: onTap,
+      onTap: widget.onTap,
       child: Container(
         width: cardWidth,
         height: cardHeight,
@@ -91,7 +120,7 @@ class DoctorCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    doctor.fullName,
+                    widget.doctor.fullName,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: isTablet ? 18.0 : 16.0,
@@ -103,7 +132,7 @@ class DoctorCard extends StatelessWidget {
                   ),
                   SizedBox(height: isTablet ? 4.0 : 2.0),
                   Text(
-                    doctor.specialtyName,
+                    widget.doctor.specialtyName,
                     style: TextStyle(
                       color: Colors.white70,
                       fontSize: isTablet ? 14.0 : 12.0,
@@ -114,7 +143,7 @@ class DoctorCard extends StatelessWidget {
                   ),
                   SizedBox(height: isTablet ? 46.0 : 16.0),
                   Text(
-                    doctor.university,
+                    widget.doctor.university,
                     style: TextStyle(
                       color: Colors.white70,
                       fontSize: isTablet ? 12.0 : 10.0,
@@ -123,7 +152,8 @@ class DoctorCard extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  if (doctor.address != null && doctor.address!.isNotEmpty) ...[
+                  if (widget.doctor.address != null &&
+                      widget.doctor.address!.isNotEmpty) ...[
                     SizedBox(height: isTablet ? 4.0 : 2.0),
                     Text(
                       'العيادة:',
@@ -137,7 +167,7 @@ class DoctorCard extends StatelessWidget {
                     ),
                     SizedBox(height: isTablet ? 2.0 : 1.0),
                     Text(
-                      doctor.address!,
+                      widget.doctor.address!,
                       style: TextStyle(
                         color: Colors.white70,
                         fontSize: isTablet ? 11.0 : 9.0,
@@ -147,10 +177,10 @@ class DoctorCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ],
-                  if (doctor.clinicDistance != null) ...[
+                  if (widget.doctor.clinicDistance != null) ...[
                     SizedBox(height: isTablet ? 4.0 : 2.0),
                     Text(
-                      'يبعد عنك ${doctor.formattedDistance}',
+                      'يبعد عنك ${widget.doctor.formattedDistance}',
                       style: TextStyle(
                         color: Colors.white70,
                         fontSize: isTablet ? 11.0 : 9.0,
@@ -160,7 +190,7 @@ class DoctorCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ],
-                  if (doctor.hasAvailableAppointment) ...[
+                  if (widget.doctor.hasAvailableAppointment) ...[
                     SizedBox(height: isTablet ? 2.0 : 1.0),
                     Text(
                       'أقرب موعد متاح',
@@ -175,30 +205,6 @@ class DoctorCard extends StatelessWidget {
                     ),
                   ],
                 ],
-              ),
-            ),
-            Positioned(
-              top: isTablet ? 12.0 : 8.0,
-              right: isTablet ? 12.0 : 8.0,
-              child: GestureDetector(
-                onTap: onFavoriteTap,
-                child: Container(
-                  width: isTablet ? 32.0 : 28.0,
-                  height: isTablet ? 32.0 : 28.0,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: const Color(0xFF1A2A5A),
-                      width: 1,
-                    ),
-                  ),
-                  child: Icon(
-                    Icons.favorite_border,
-                    color: const Color(0xFF1A2A5A),
-                    size: isTablet ? 18.0 : 16.0,
-                  ),
-                ),
               ),
             ),
             Positioned(
@@ -218,73 +224,18 @@ class DoctorCard extends StatelessWidget {
                     topRight: Radius.circular(isTablet ? 16.0 : 12.0),
                     bottomRight: Radius.circular(isTablet ? 16.0 : 12.0),
                   ),
-                  child: doctor.imageUrl.isNotEmpty
-                      ? Image.network(
-                          doctor.formattedImageUrl,
-                          fit: BoxFit.cover,
-                          width: imageWidth,
-                          height: imageHeight,
-                          loadingBuilder: (context, child, loadingProgress) {
-                            if (loadingProgress == null) return child;
-                            return Container(
-                              width: imageWidth,
-                              height: imageHeight,
-                              color: Colors.grey[300],
-                              child: Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    CircularProgressIndicator(
-                                      value:
-                                          loadingProgress.expectedTotalBytes !=
-                                              null
-                                          ? loadingProgress
-                                                    .cumulativeBytesLoaded /
-                                                loadingProgress
-                                                    .expectedTotalBytes!
-                                          : null,
-                                      color: Colors.blue,
-                                    ),
-                                    const SizedBox(height: 8),
-                                    Text(
-                                      'جاري تحميل الصورة...',
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        color: Colors.grey[600],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                          errorBuilder: (context, error, stackTrace) {
-                            return Container(
-                              width: 200,
-                              height: 200,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                    _getDefaultImage(doctor.gender),
-                                  ),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            );
-                          },
-                        )
-                      : Container(
-                          width: imageWidth,
-                          height: imageHeight,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(
-                                _getDefaultImage(doctor.gender),
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                  child: Container(
+                    width: imageWidth,
+                    height: imageHeight,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                          _getDefaultImage(widget.doctor.gender),
                         ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -315,7 +266,7 @@ class DoctorCard extends StatelessWidget {
                 child: Row(
                   children: [
                     GestureDetector(
-                      onTap: onBookTap,
+                      onTap: widget.onBookTap,
                       child: Container(
                         padding: EdgeInsets.symmetric(
                           horizontal: isTablet ? 12.0 : 10.0,
@@ -375,7 +326,7 @@ class DoctorCard extends StatelessWidget {
                               ),
                               SizedBox(width: isTablet ? 2.0 : 1.0),
                               Text(
-                                doctor.rate.toString(),
+                                widget.doctor.rate.toString(),
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: isTablet ? 10.0 : 8.0,
@@ -385,7 +336,7 @@ class DoctorCard extends StatelessWidget {
                             ],
                           ),
                           Text(
-                            'بناءً على ${doctor.rates} تقييمات',
+                            'بناءً على ${widget.doctor.rates} تقييمات',
                             style: TextStyle(
                               fontSize: isTablet ? 10.0 : 8.0,
                               color: Colors.black87,
@@ -399,6 +350,30 @@ class DoctorCard extends StatelessWidget {
                 ),
               ),
             ),
+            Positioned(
+              top: isTablet ? 12.0 : 8.0,
+              right: isTablet ? 12.0 : 8.0,
+              child: GestureDetector(
+                onTap: _onFavoriteTap,
+                child: Container(
+                  width: isTablet ? 42.0 : 38.0,
+                  height: isTablet ? 42.0 : 38.0,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: const Color(0xFF1A2A5A),
+                      width: 1,
+                    ),
+                  ),
+                  child: Icon(
+                    _isFavorite ? Icons.favorite : Icons.favorite_border,
+                    color: _isFavorite ? Colors.red : const Color(0xFF1A2A5A),
+                    size: isTablet ? 28.0 : 26.0,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -406,12 +381,9 @@ class DoctorCard extends StatelessWidget {
   }
 
   String _getDefaultImage(String? gender) {
-    print('Gender: $gender'); // Debug print
     if (gender == 'female') {
-      print('Using female image: ${AppImages.docWomen}');
       return AppImages.docWomen;
     } else {
-      print('Using male image: ${AppImages.doctorCard}');
       return AppImages.doctorCard;
     }
   }

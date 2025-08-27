@@ -38,11 +38,7 @@ class _CategoriesViewState extends State<CategoriesView> {
           ),
           child: Column(
             children: [
-              CategorySearchBar(
-                onChanged: (value) {
-                  // يمكن إضافة البحث هنا لاحقاً
-                },
-              ),
+              CategorySearchBar(onChanged: (value) {}),
               const SizedBox(height: 16),
               Expanded(
                 child: BlocConsumer<CategoriesCubit, CategoriesState>(
@@ -67,7 +63,7 @@ class _CategoriesViewState extends State<CategoriesView> {
                               color: Colors.red,
                             ),
                             const SizedBox(height: 16),
-                            Text(
+                            const Text(
                               'حدث خطأ في تحميل الفئات',
                               style: TextStyle(
                                 fontSize: 16,

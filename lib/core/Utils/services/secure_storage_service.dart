@@ -7,8 +7,6 @@ class SecureStorageService implements ISecureStorageService {
 
   static const String _accessTokenKey = 'access_token';
   static const String _refreshTokenKey = 'refresh_token';
-
-  // Access Token Methods
   @override
   Future<void> saveAccessToken(String token) async {
     await _storage.write(key: _accessTokenKey, value: token);
@@ -29,7 +27,6 @@ class SecureStorageService implements ISecureStorageService {
     await _storage.delete(key: _accessTokenKey);
   }
 
-  // Refresh Token Methods
   @override
   Future<void> saveRefreshToken(String token) async {
     await _storage.write(key: _refreshTokenKey, value: token);
@@ -53,5 +50,8 @@ class SecureStorageService implements ISecureStorageService {
   @override
   Future<void> deleteAll() async {
     await _storage.deleteAll();
+
+    final hasAccess = await hasAccessToken();
+    final hasRefresh = await hasRefreshToken();
   }
 }

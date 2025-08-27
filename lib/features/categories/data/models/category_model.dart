@@ -1,11 +1,13 @@
-import 'package:flutter/material.dart';
-
 class SubspecialtyModel {
   final int id;
   final String nameEn;
   final String nameAr;
 
-  SubspecialtyModel({required this.id, required this.nameEn, required this.nameAr});
+  SubspecialtyModel({
+    required this.id,
+    required this.nameEn,
+    required this.nameAr,
+  });
 
   factory SubspecialtyModel.fromJson(Map<String, dynamic> json) {
     return SubspecialtyModel(

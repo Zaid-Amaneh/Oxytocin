@@ -3,9 +3,11 @@ import 'package:http/http.dart' as http;
 import 'package:oxytocin/core/constants/api_endpoints.dart';
 import 'package:oxytocin/features/home/data/model/doctor_model.dart';
 import 'package:oxytocin/features/home/data/model/nearby_doctor_model.dart';
+import 'package:oxytocin/core/Utils/services/secure_storage_service.dart';
 
 class DoctorsService {
   final String baseUrl;
+  final SecureStorageService _secureStorageService = SecureStorageService();
 
   DoctorsService({required this.baseUrl});
   Future<List<DoctorModel>> getHighestRatedDoctors({
@@ -15,7 +17,6 @@ class DoctorsService {
     try {
       final url =
           '$baseUrl${ApiEndpoints.highestRatedDoctors}?latitude=$latitude&longitude=$longitude';
-      print('Fetching doctors from: $url');
 
       final response = await http.get(
         Uri.parse(url),
@@ -25,10 +26,6 @@ class DoctorsService {
           // 'Authorization': 'Bearer $token',
         },
       );
-
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
-
       if (response.statusCode == 200) {
         final List<dynamic> jsonData = json.decode(response.body);
         final doctors = jsonData.map((json) {
@@ -46,12 +43,16 @@ class DoctorsService {
 
   Future<DoctorModel> getDoctorById(int doctorId) async {
     try {
+      final String? authToken = await _secureStorageService.getAccessToken();
+      final String? refreshToken = await _secureStorageService
+          .getRefreshToken();
+
       final response = await http.get(
         Uri.parse('$baseUrl${ApiEndpoints.doctorById}/$doctorId'),
         headers: {
           'Content-Type': 'application/json',
-          // Add authorization header if needed
-          // 'Authorization': 'Bearer $token',
+          'Authorization': 'Bearer $authToken',
+          'Refresh': 'Bearer $refreshToken',
         },
       );
 

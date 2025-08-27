@@ -301,7 +301,6 @@ class _MedicalInfoBodyState extends State<MedicalInfoBody> {
                       child: BlocConsumer<ProfileInfoCubit, ProfileInfoState>(
                         listener: (context, state) {
                           if (state.errorMessage != null) {
-                            print('Error message: ${state.errorMessage}');
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(state.errorMessage!),
@@ -312,8 +311,6 @@ class _MedicalInfoBodyState extends State<MedicalInfoBody> {
                           if (state.isSuccess == true) {
                             context.pushNamed(
                               RouteNames.setLocation,
-
-                              // RouteNames.upload,
                               extra: context.read<ProfileInfoCubit>(),
                             );
                           }

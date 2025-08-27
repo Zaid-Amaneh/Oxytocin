@@ -15,6 +15,7 @@ class ProfileAvatarWithShadow extends StatefulWidget {
 
 class _ProfileAvatarWithShadowState extends State<ProfileAvatarWithShadow> {
   String? authToken;
+  String? refreshToken;
   bool isLoading = true;
 
   @override
@@ -27,8 +28,10 @@ class _ProfileAvatarWithShadowState extends State<ProfileAvatarWithShadow> {
     try {
       final secureStorage = SecureStorageService();
       final token = await secureStorage.getAccessToken();
+      final refreshTokenValue = await secureStorage.getRefreshToken();
       setState(() {
         authToken = token;
+        refreshToken = refreshTokenValue;
         isLoading = false;
       });
     } catch (e) {
@@ -98,14 +101,17 @@ class _ProfileAvatarWithShadowState extends State<ProfileAvatarWithShadow> {
         width: 66, // radius * 2
         height: 66,
         fit: BoxFit.cover,
-        headers: {'Authorization': 'Bearer $authToken'},
+        headers: {
+          'Authorization': 'Bearer $authToken',
+          'Refresh': 'Bearer $refreshToken',
+        },
         loadingBuilder: (context, child, loadingProgress) {
           if (loadingProgress == null) return child;
           return Container(
             width: 66,
             height: 66,
-            decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 40, 9, 144),
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 40, 9, 144),
             ),
             child: Center(
               child: CircularProgressIndicator(
@@ -120,13 +126,11 @@ class _ProfileAvatarWithShadowState extends State<ProfileAvatarWithShadow> {
           );
         },
         errorBuilder: (context, error, stackTrace) {
-          print('❌ خطأ في تحميل صورة البروفايل: $error');
-          print('📷 URL الصورة: ${widget.profile!.image}');
           return Container(
             width: 66,
             height: 66,
-            decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 40, 9, 144),
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 40, 9, 144),
             ),
             child: Icon(FeatherIcons.user, size: 40, color: Colors.grey[400]),
           );
@@ -136,7 +140,7 @@ class _ProfileAvatarWithShadowState extends State<ProfileAvatarWithShadow> {
     return Container(
       width: 66,
       height: 66,
-      decoration: BoxDecoration(color: const Color.fromARGB(255, 40, 9, 144)),
+      decoration: const BoxDecoration(color: Color.fromARGB(255, 40, 9, 144)),
       child: Icon(FeatherIcons.user, size: 40, color: Colors.grey[400]),
     );
   }

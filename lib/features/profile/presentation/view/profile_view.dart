@@ -6,10 +6,18 @@ import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/size_config.dart';
 import 'package:oxytocin/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:oxytocin/features/profile/presentation/cubit/profile_state.dart';
+import 'package:oxytocin/features/profile/presentation/cubit/profile_edit_cubit.dart';
+
 import 'package:oxytocin/features/profile/presentation/widget/profile_header_card.dart';
 import 'package:oxytocin/features/profile/presentation/widget/profile_menu_section.dart';
+import 'package:oxytocin/features/profile/presentation/widget/profile_edit_form.dart';
 import 'package:oxytocin/features/profile/presentation/view/account_details_view.dart';
+import 'package:oxytocin/features/profile/presentation/view/profile_edit_view.dart';
 import 'package:oxytocin/features/profile/data/model/user_profile_model.dart';
+import 'package:oxytocin/features/profile/di/profile_dependency_injection.dart';
+import 'package:oxytocin/core/routing/route_names.dart';
+import 'package:go_router/go_router.dart';
+import 'package:oxytocin/features/favorites/presentation/views/favorites_page.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -24,6 +32,17 @@ class _ProfileViewState extends State<ProfileView>
   late AnimationController _slideController;
   late Animation<double> _fadeAnimation;
   late Animation<Offset> _slideAnimation;
+
+  void _handleAccountTap() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => BlocProvider(
+          create: (_) => ProfileDependencyInjection.getProfileCubit(),
+          child: const AccountDetailsView(),
+        ),
+      ),
+    );
+  }
 
   @override
   void initState() {
@@ -66,6 +85,13 @@ class _ProfileViewState extends State<ProfileView>
     context.read<ProfileCubit>().getProfile();
   }
 
+  void _handleFavoritesTap() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const FavoritesPage()),
+    );
+  }
+
   @override
   void dispose() {
     _fadeController.dispose();
@@ -97,7 +123,15 @@ class _ProfileViewState extends State<ProfileView>
                   ),
                 ),
               );
-            } else if (state is ProfileLoaded) {}
+            } else if (state is ProfileLoaded) {
+            } else if (state is ProfileLoggedOut) {
+              WidgetsBinding.instance.addPostFrameCallback((_) async {
+                await Future.delayed(const Duration(milliseconds: 300));
+                if (mounted) {
+                  context.go('/${RouteNames.signIn}');
+                }
+              });
+            }
           },
           builder: (context, state) {
             return CustomScrollView(
@@ -125,8 +159,8 @@ class _ProfileViewState extends State<ProfileView>
                               _buildLoadingState()
                             else if (state is ProfileLoaded)
                               _buildProfileContent(state.profile)
-                            else if (state is ProfileError)
-                              _buildErrorState()
+                            // else if (state is ProfileError)
+                            //   _buildErrorState()
                             else
                               _buildInitialState(),
                             SizedBox(
@@ -198,62 +232,8 @@ class _ProfileViewState extends State<ProfileView>
           onSettingsTap: () => _handleSettingsTap(),
           onLogoutTap: () => _handleLogoutTap(),
         ),
+        SizedBox(height: SizeConfig.getProportionateScreenHeight(24)),
       ],
-    );
-  }
-
-  Widget _buildErrorState() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: SizeConfig.getProportionateScreenWidth(80),
-            height: SizeConfig.getProportionateScreenWidth(80),
-            decoration: BoxDecoration(
-              // ignore: deprecated_member_use
-              color: AppColors.error.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(40),
-            ),
-            child: Icon(
-              FeatherIcons.alertCircle,
-              size: SizeConfig.getProportionateScreenWidth(40),
-              color: AppColors.error,
-            ),
-          ),
-          SizedBox(height: SizeConfig.getProportionateScreenHeight(16)),
-          Text(
-            'حدث خطأ في تحميل البيانات',
-            style: TextStyle(
-              color: AppColors.textPrimary,
-              fontSize: getResponsiveFontSize(context, fontSize: 16),
-              fontFamily: 'AlmaraiBold',
-            ),
-          ),
-          SizedBox(height: SizeConfig.getProportionateScreenHeight(16)),
-          ElevatedButton(
-            onPressed: _loadProfileData,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.kPrimaryColor1,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              padding: EdgeInsets.symmetric(
-                horizontal: SizeConfig.getProportionateScreenWidth(24),
-                vertical: SizeConfig.getProportionateScreenHeight(12),
-              ),
-            ),
-            child: Text(
-              'إعادة المحاولة',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: getResponsiveFontSize(context, fontSize: 14),
-                fontFamily: 'AlmaraiBold',
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 
@@ -261,23 +241,8 @@ class _ProfileViewState extends State<ProfileView>
     return const SizedBox.shrink();
   }
 
-  void _handleAccountTap() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => BlocProvider.value(
-          value: context.read<ProfileCubit>(),
-          child: const AccountDetailsView(),
-        ),
-      ),
-    );
-  }
-
   void _handleMedicalRecordsTap() {
     print('تم النقر على السجلات الطبية');
-  }
-
-  void _handleFavoritesTap() {
-    print('تم النقر على المفضلة');
   }
 
   void _handleSettingsTap() {
@@ -324,8 +289,9 @@ class _ProfileViewState extends State<ProfileView>
             ),
           ),
           ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
               Navigator.of(context).pop();
+              await Future.delayed(const Duration(milliseconds: 200));
               _handleLogout();
             },
             style: ElevatedButton.styleFrom(
@@ -349,6 +315,29 @@ class _ProfileViewState extends State<ProfileView>
   }
 
   void _handleLogout() {
-    print('تم تسجيل الخروج بنجاح');
+    try {
+      context.read<ProfileCubit>().logout();
+    } catch (e) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        await Future.delayed(const Duration(milliseconds: 300));
+        if (mounted) {
+          context.go('/${RouteNames.signIn}');
+        }
+      });
+    }
+  }
+
+  void _handleEditProfile(UserProfileModel profile) {
+    Navigator.of(context)
+        .push(
+          MaterialPageRoute(
+            builder: (context) => ProfileEditView(profile: profile),
+          ),
+        )
+        .then((result) {
+          if (result is UserProfileModel) {
+            context.read<ProfileCubit>().refreshWith(result);
+          }
+        });
   }
 }

@@ -96,30 +96,11 @@ class _SetLocationState extends State<SetLocation> {
       listener: (context, state) {
         if (state.isSuccess) {
           if (state.profileExists == true) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('تم تحديث معلوماتك بنجاح'),
-                backgroundColor: Colors.green,
-              ),
-            );
             context.pushNamed(RouteNames.upload);
           } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('تم إنشاء ملفك الشخصي بنجاح'),
-                backgroundColor: Colors.green,
-              ),
-            );
             context.pushNamed(RouteNames.upload);
           }
-        } else if (state.errorMessage != null) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.errorMessage!),
-              backgroundColor: Colors.red,
-            ),
-          );
-        }
+        } else if (state.errorMessage != null) {}
       },
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -130,7 +111,6 @@ class _SetLocationState extends State<SetLocation> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 40),
-
                 const Padding(
                   padding: EdgeInsets.all(20.0),
                   child: Text(
@@ -159,12 +139,8 @@ class _SetLocationState extends State<SetLocation> {
 
                 const SizedBox(height: 12),
                 const Padding(
-                  padding: const EdgeInsets.only(
-                    left: 20.0,
-                    right: 20,
-                    bottom: 10,
-                  ),
-                  child: const Text(
+                  padding: EdgeInsets.only(left: 20.0, right: 20, bottom: 10),
+                  child: Text(
                     "اكتب عنوانك أو اسم منطقتك (مثال: شارع بغداد).",
                     style: TextStyle(
                       fontSize: 10,
@@ -173,10 +149,9 @@ class _SetLocationState extends State<SetLocation> {
                     ),
                   ),
                 ),
-                // const SizedBox(height: 32),
                 const Padding(
-                  padding: const EdgeInsets.only(left: 20.0, right: 20),
-                  child: const Text(
+                  padding: EdgeInsets.only(left: 20.0, right: 20),
+                  child: Text(
                     "حرك الخريطة أو استخدم الموقع الحالي لتحديد موقعك بدقة",
                     style: TextStyle(
                       fontSize: 18,

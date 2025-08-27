@@ -18,6 +18,7 @@ class CategorySearchBar extends StatelessWidget {
               border: Border.all(color: Color(0xFF344CB7), width: 1),
               boxShadow: [
                 BoxShadow(
+                  // ignore: deprecated_member_use
                   color: Colors.black.withOpacity(0.08),
                   blurRadius: 4,
                   offset: const Offset(0, 2),
@@ -53,7 +54,6 @@ class CategorySearchBar extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 8),
-        // أيقونة السهم للخلف
         Container(
           width: 44,
           height: 44,

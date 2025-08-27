@@ -1,10 +1,13 @@
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'i_local_storage_service.dart';
 
 class LocalStorageService implements ILocalStorageService {
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   static const String _searchHistoryKey = 'user_search_history';
-
+  static const String _categoryHistoryKey = 'category_history';
+  static const String _subspecialtyHistoryKey = 'subspecialty_history';
   @override
   Future<void> setNewUserFlag(bool value) async {
     final prefs = await _prefs;
@@ -84,7 +87,6 @@ class LocalStorageService implements ILocalStorageService {
     return prefs.get(key);
   }
 
-  // Category and Subspecialty storage methods
   @override
   Future<void> saveSelectedCategory(
     int categoryId,
@@ -93,17 +95,6 @@ class LocalStorageService implements ILocalStorageService {
     final prefs = await _prefs;
     await prefs.setInt('selected_category_id', categoryId);
     await prefs.setString('selected_category_name_ar', categoryNameAr);
-
-    print('💾 تم حفظ الاختصاص الأساسي في SharedPreferences:');
-    print('   Key: selected_category_id, Value: $categoryId');
-    print('   Key: selected_category_name_ar, Value: $categoryNameAr');
-
-    // التحقق من الحفظ
-    final savedId = prefs.getInt('selected_category_id');
-    final savedName = prefs.getString('selected_category_name_ar');
-    print('🔍 التحقق من الحفظ:');
-    print('   ID محفوظ: $savedId');
-    print('   Name محفوظ: $savedName');
   }
 
   @override
@@ -111,17 +102,6 @@ class LocalStorageService implements ILocalStorageService {
     final prefs = await _prefs;
     await prefs.setInt('selected_sub_id', subId);
     await prefs.setString('selected_sub_name_ar', subNameAr);
-
-    print('💾 تم حفظ الاختصاص الفرعي في SharedPreferences:');
-    print('   Key: selected_sub_id, Value: $subId');
-    print('   Key: selected_sub_name_ar, Value: $subNameAr');
-
-    // التحقق من الحفظ
-    final savedId = prefs.getInt('selected_sub_id');
-    final savedName = prefs.getString('selected_sub_name_ar');
-    print('🔍 التحقق من الحفظ:');
-    print('   ID محفوظ: $savedId');
-    print('   Name محفوظ: $savedName');
   }
 
   @override
@@ -130,16 +110,9 @@ class LocalStorageService implements ILocalStorageService {
     final categoryId = prefs.getInt('selected_category_id');
     final categoryNameAr = prefs.getString('selected_category_name_ar');
 
-    print('📖 جاري قراءة الاختصاص الأساسي من SharedPreferences:');
-    print('   Key: selected_category_id, Value: $categoryId');
-    print('   Key: selected_category_name_ar, Value: $categoryNameAr');
-
     if (categoryId != null && categoryNameAr != null) {
-      print('✅ تم العثور على بيانات الاختصاص الأساسي');
-      // return {'id': categoryId, 'nameAr': categoryNameAr}; ????????????????
-      return {categoryNameAr: categoryId};
+      return {'id': categoryId, 'nameAr': categoryNameAr};
     } else {
-      print('❌ لا توجد بيانات للاختصاص الأساسي');
       return null;
     }
   }
@@ -149,16 +122,9 @@ class LocalStorageService implements ILocalStorageService {
     final prefs = await _prefs;
     final subId = prefs.getInt('selected_sub_id');
     final subNameAr = prefs.getString('selected_sub_name_ar');
-
-    print('📖 جاري قراءة الاختصاص الفرعي من SharedPreferences:');
-    print('   Key: selected_sub_id, Value: $subId');
-    print('   Key: selected_sub_name_ar, Value: $subNameAr');
-
     if (subId != null && subNameAr != null) {
-      print('✅ تم العثور على بيانات الاختصاص الفرعي');
       return {'id': subId, 'nameAr': subNameAr};
     } else {
-      print('❌ لا توجد بيانات للاختصاص الفرعي');
       return null;
     }
   }
@@ -168,7 +134,6 @@ class LocalStorageService implements ILocalStorageService {
     final prefs = await _prefs;
     await prefs.remove('selected_category_id');
     await prefs.remove('selected_category_name_ar');
-    print('🗑️ تم مسح بيانات الاختصاص الأساسي من SharedPreferences');
   }
 
   @override
@@ -176,6 +141,66 @@ class LocalStorageService implements ILocalStorageService {
     final prefs = await _prefs;
     await prefs.remove('selected_sub_id');
     await prefs.remove('selected_sub_name_ar');
-    print('🗑️ تم مسح بيانات الاختصاص الفرعي من SharedPreferences');
+  }
+
+  @override
+  Future<void> addCategoryToHistory(
+    int categoryId,
+    String categoryNameAr,
+  ) async {
+    final prefs = await _prefs;
+    final history = await getCategoryHistory();
+    final newEntry = {'id': categoryId, 'nameAr': categoryNameAr};
+    history.removeWhere((item) => item['id'] == categoryId);
+    history.insert(0, newEntry);
+    final historyJson = jsonEncode(history);
+    await prefs.setString(_categoryHistoryKey, historyJson);
+  }
+
+  @override
+  Future<void> addSubspecialtyToHistory(int subId, String subNameAr) async {
+    final prefs = await _prefs;
+    final history = await getSubspecialtyHistory();
+    final newEntry = {'id': subId, 'nameAr': subNameAr};
+
+    history.removeWhere((item) => item['id'] == subId);
+    history.insert(0, newEntry);
+
+    final historyJson = jsonEncode(history);
+    await prefs.setString(_subspecialtyHistoryKey, historyJson);
+  }
+
+  @override
+  Future<List<Map<String, dynamic>>> getCategoryHistory() async {
+    final prefs = await _prefs;
+    final historyJson = prefs.getString(_categoryHistoryKey);
+    if (historyJson != null) {
+      final List<dynamic> historyList = jsonDecode(historyJson);
+      return historyList.cast<Map<String, dynamic>>();
+    }
+    return [];
+  }
+
+  @override
+  Future<List<Map<String, dynamic>>> getSubspecialtyHistory() async {
+    final prefs = await _prefs;
+    final historyJson = prefs.getString(_subspecialtyHistoryKey);
+    if (historyJson != null) {
+      final List<dynamic> historyList = jsonDecode(historyJson);
+      return historyList.cast<Map<String, dynamic>>();
+    }
+    return [];
+  }
+
+  @override
+  Future<void> clearCategoryHistory() async {
+    final prefs = await _prefs;
+    await prefs.remove(_categoryHistoryKey);
+  }
+
+  @override
+  Future<void> clearSubspecialtyHistory() async {
+    final prefs = await _prefs;
+    await prefs.remove(_subspecialtyHistoryKey);
   }
 }

@@ -284,6 +284,7 @@ class _AuthenticatedImage extends StatefulWidget {
 
 class _AuthenticatedImageState extends State<_AuthenticatedImage> {
   String? authToken;
+  String? refreshToken;
   bool isLoading = true;
 
   @override
@@ -296,8 +297,10 @@ class _AuthenticatedImageState extends State<_AuthenticatedImage> {
     try {
       final secureStorage = SecureStorageService();
       final token = await secureStorage.getAccessToken();
+      final refreshTokenValue = await secureStorage.getRefreshToken();
       setState(() {
         authToken = token;
+        refreshToken = refreshTokenValue;
         isLoading = false;
       });
     } catch (e) {
@@ -365,12 +368,12 @@ class _AuthenticatedImageState extends State<_AuthenticatedImage> {
         );
       },
       errorBuilder: (context, error, stackTrace) {
-        print('❌ خطأ في تحميل صورة البروفايل: $error');
-        print('📷 URL الصورة: ${widget.imageUrl}');
-        print('🔑 Token موجود: ${authToken != null && authToken!.isNotEmpty}');
         return _buildDefaultAvatar();
       },
-      headers: {'Authorization': 'Bearer $authToken'},
+      headers: {
+        'Authorization': 'Bearer $authToken',
+        'Refresh': 'Bearer $refreshToken',
+      },
     );
   }
 
