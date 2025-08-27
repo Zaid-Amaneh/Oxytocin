@@ -1016,4 +1016,140 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get delete => 'حذف';
+
+  @override
+  String get canceled => 'ألغى';
+
+  @override
+  String get absent => 'غائب';
+
+  @override
+  String get waiting => 'ينتظر';
+
+  @override
+  String get inExamination => 'يُفحص الآن';
+
+  @override
+  String get finished => 'انتهى';
+
+  @override
+  String enteredAt(Object time) {
+    return 'دخل: $time';
+  }
+
+  @override
+  String exitedAt(Object time) {
+    return 'خرج: $time';
+  }
+
+  @override
+  String appointmentAt(Object time) {
+    return 'الموعد: $time';
+  }
+
+  @override
+  String get you => 'أنت';
+
+  @override
+  String patientNumber(Object number) {
+    return 'مريض رقم $number';
+  }
+
+  @override
+  String get inQueue => 'في الانتظار';
+
+  @override
+  String get yourPosition => 'موقعك';
+
+  @override
+  String get completed => 'مكتمل';
+
+  @override
+  String queueProgress(Object progress, Object total) {
+    return '$progress من $total';
+  }
+
+  @override
+  String get queueProgressText => 'تقدم الطابور';
+
+  @override
+  String get close => 'إغلاق';
+
+  @override
+  String averageDelay(Object minutes) {
+    return 'متوسط التأخير: $minutesد';
+  }
+
+  @override
+  String averageExamination(Object minutes) {
+    return 'متوسط الفحص: $minutesد';
+  }
+
+  @override
+  String yourNumber(Object number) {
+    return 'رقمك: $number';
+  }
+
+  @override
+  String estimatedWait(Object minutes) {
+    return '$minutes دقيقة تقريباً';
+  }
+
+  @override
+  String get expectedWaitTime => 'الوقت المتوقع للانتظار';
+
+  @override
+  String get waitingQueue => 'طابور الانتظار';
+
+  @override
+  String get queueLoading => 'جاري تحميل بيانات الطابور...';
+
+  @override
+  String get pleaseWait => 'يرجى الانتظار قليلاً';
+
+  @override
+  String get queueLoadFailed => 'فشل في تحميل الطابور';
+
+  @override
+  String get serverError =>
+      'تعذر الاتصال بالخادم. يرجى التحقق من الاتصال بالإنترنت.';
+
+  @override
+  String get noQueue => 'لا يوجد طابور حالياً';
+
+  @override
+  String doctorUnavailable(Object doctorName) {
+    return 'د. $doctorName غير متاح حالياً أو لا توجد مواعيد مجدولة';
+  }
+
+  @override
+  String get checkLater => 'يمكنك العودة لاحقاً للتحقق من حالة الطابور';
+
+  @override
+  String get unknownState => 'حالة غير معروفة';
+
+  @override
+  String get unexpectedError => 'حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى';
+
+  @override
+  String get cancelAppointment => 'نعم، إلغاء الموعد';
+
+  @override
+  String get back => 'تراجع';
+
+  @override
+  String get confirmCancel => 'تأكيد الإلغاء';
+
+  @override
+  String get cancelConfirmationMsg =>
+      'هل أنت متأكد من إلغاء هذا الموعد؟ لن تتمكن من التراجع عن هذا الإجراء.';
+
+  @override
+  String get cancelAppointmentPermanently => 'إلغاء الموعد نهائياً';
+
+  @override
+  String get addRemovemanageAttachments => 'إضافة أو حذف الملفات المرفقة';
+
+  @override
+  String get changeAppointmentDateTime => 'تغيير تاريخ أو وقت الموعد';
 }

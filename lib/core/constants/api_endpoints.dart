@@ -28,4 +28,6 @@ class ApiEndpoints {
       '$baseURL/api/appointments/$appointmentId/attachments/';
   static String deleteAttachment(int appointmentId, int attachmentId) =>
       '$baseURL/api/appointments/$appointmentId/attachments/$attachmentId/delete/';
+  static String getAppointmentQueue(int appointmentId) =>
+      '$baseURL/api/appointments/$appointmentId/queue/';
 }

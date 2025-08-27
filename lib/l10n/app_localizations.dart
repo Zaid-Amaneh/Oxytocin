@@ -1957,6 +1957,234 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Delete'**
   String get delete;
+
+  /// No description provided for @canceled.
+  ///
+  /// In en, this message translates to:
+  /// **'Canceled'**
+  String get canceled;
+
+  /// No description provided for @absent.
+  ///
+  /// In en, this message translates to:
+  /// **'Absent'**
+  String get absent;
+
+  /// No description provided for @waiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting'**
+  String get waiting;
+
+  /// No description provided for @inExamination.
+  ///
+  /// In en, this message translates to:
+  /// **'In Examination'**
+  String get inExamination;
+
+  /// No description provided for @finished.
+  ///
+  /// In en, this message translates to:
+  /// **'Finished'**
+  String get finished;
+
+  /// No description provided for @enteredAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Entered at: {time}'**
+  String enteredAt(Object time);
+
+  /// No description provided for @exitedAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Exited at: {time}'**
+  String exitedAt(Object time);
+
+  /// No description provided for @appointmentAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment: {time}'**
+  String appointmentAt(Object time);
+
+  /// No description provided for @you.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get you;
+
+  /// No description provided for @patientNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Patient No. {number}'**
+  String patientNumber(Object number);
+
+  /// No description provided for @inQueue.
+  ///
+  /// In en, this message translates to:
+  /// **'In Queue'**
+  String get inQueue;
+
+  /// No description provided for @yourPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Position'**
+  String get yourPosition;
+
+  /// No description provided for @completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completed;
+
+  /// No description provided for @queueProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{progress} of {total}'**
+  String queueProgress(Object progress, Object total);
+
+  /// No description provided for @queueProgressText.
+  ///
+  /// In en, this message translates to:
+  /// **'Queue Progress'**
+  String get queueProgressText;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @averageDelay.
+  ///
+  /// In en, this message translates to:
+  /// **'Average Delay: {minutes}m'**
+  String averageDelay(Object minutes);
+
+  /// No description provided for @averageExamination.
+  ///
+  /// In en, this message translates to:
+  /// **'Average Examination: {minutes}m'**
+  String averageExamination(Object minutes);
+
+  /// No description provided for @yourNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Number: {number}'**
+  String yourNumber(Object number);
+
+  /// No description provided for @estimatedWait.
+  ///
+  /// In en, this message translates to:
+  /// **'Approximately {minutes} minutes'**
+  String estimatedWait(Object minutes);
+
+  /// No description provided for @expectedWaitTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Expected Waiting Time'**
+  String get expectedWaitTime;
+
+  /// No description provided for @waitingQueue.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting Queue'**
+  String get waitingQueue;
+
+  /// No description provided for @queueLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading queue data...'**
+  String get queueLoading;
+
+  /// No description provided for @pleaseWait.
+  ///
+  /// In en, this message translates to:
+  /// **'Please wait a moment'**
+  String get pleaseWait;
+
+  /// No description provided for @queueLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load queue'**
+  String get queueLoadFailed;
+
+  /// No description provided for @serverError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not connect to the server. Please check your internet connection.'**
+  String get serverError;
+
+  /// No description provided for @noQueue.
+  ///
+  /// In en, this message translates to:
+  /// **'No queue available'**
+  String get noQueue;
+
+  /// No description provided for @doctorUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Dr. {doctorName} is currently unavailable or no appointments are scheduled'**
+  String doctorUnavailable(Object doctorName);
+
+  /// No description provided for @checkLater.
+  ///
+  /// In en, this message translates to:
+  /// **'You can come back later to check the queue status'**
+  String get checkLater;
+
+  /// No description provided for @unknownState.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown state'**
+  String get unknownState;
+
+  /// No description provided for @unexpectedError.
+  ///
+  /// In en, this message translates to:
+  /// **'An unexpected error occurred, please try again'**
+  String get unexpectedError;
+
+  /// No description provided for @cancelAppointment.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, cancel the appointment'**
+  String get cancelAppointment;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @confirmCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm cancellation'**
+  String get confirmCancel;
+
+  /// No description provided for @cancelConfirmationMsg.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to cancel this appointment? You will not be able to undo this action.'**
+  String get cancelConfirmationMsg;
+
+  /// No description provided for @cancelAppointmentPermanently.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel the appointment permanently'**
+  String get cancelAppointmentPermanently;
+
+  /// No description provided for @addRemovemanageAttachments.
+  ///
+  /// In en, this message translates to:
+  /// **'Add or remove attachments'**
+  String get addRemovemanageAttachments;
+
+  /// No description provided for @changeAppointmentDateTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Change appointment date or time'**
+  String get changeAppointmentDateTime;
 }
 
 class _AppLocalizationsDelegate

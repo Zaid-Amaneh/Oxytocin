@@ -3,8 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
-import 'package:oxytocin/core/routing/navigation_service.dart';
-import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/doctor_profile_cubit.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/doctor_profile_state.dart';

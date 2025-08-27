@@ -31,7 +31,7 @@ class OxytocinApp extends StatelessWidget {
       providers: [BlocProvider(create: (context) => ProfileInfoCubit())],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        locale: const Locale('ar'),
+        locale: const Locale('en'),
         localizationsDelegates: [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,

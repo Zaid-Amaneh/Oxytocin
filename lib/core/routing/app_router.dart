@@ -7,10 +7,12 @@ import 'package:oxytocin/features/appointments_management/data/services/appointm
 import 'package:oxytocin/features/appointments_management/data/services/appointments_fetch_service.dart';
 import 'package:oxytocin/features/appointments_management/data/services/evaluation_service.dart';
 import 'package:oxytocin/features/appointments_management/data/services/manage_attachment_service.dart';
+import 'package:oxytocin/features/appointments_management/data/services/queue_service.dart';
 import 'package:oxytocin/features/appointments_management/data/services/re_book_appointment_service.dart';
 import 'package:oxytocin/features/appointments_management/data/services/rebook_appointment_service.dart';
 import 'package:oxytocin/features/appointments_management/presentation/viewmodels/attachments_manager_cubit.dart';
 import 'package:oxytocin/features/appointments_management/presentation/viewmodels/management_appointments_cubit.dart';
+import 'package:oxytocin/features/appointments_management/presentation/viewmodels/queue_cubit.dart';
 import 'package:oxytocin/features/appointments_management/presentation/viewmodels/re_booking_cubit.dart';
 import 'package:oxytocin/features/appointments_management/presentation/views/attachments_manager_screen.dart';
 import 'package:oxytocin/features/appointments_management/presentation/views/re_appointment_view.dart';
@@ -278,15 +280,24 @@ class AppRouter {
         GoRoute(
           path: '/${RouteNames.appointmentsManagementView}',
           name: RouteNames.appointmentsManagementView,
-          builder: (context, state) => BlocProvider(
-            create: (context) => ManagementAppointmentsCubit(
-              evaluationService: EvaluationService(http.Client()),
-              appointmentsFetchService: AppointmentsFetchService(http.Client()),
-              cancellationService: AppointmentCancellationService(
-                http.Client(),
+          builder: (context, state) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => ManagementAppointmentsCubit(
+                  evaluationService: EvaluationService(http.Client()),
+                  appointmentsFetchService: AppointmentsFetchService(
+                    http.Client(),
+                  ),
+                  cancellationService: AppointmentCancellationService(
+                    http.Client(),
+                  ),
+                  rebookService: RebookAppointmentService(http.Client()),
+                ),
               ),
-              rebookService: RebookAppointmentService(http.Client()),
-            ),
+              BlocProvider(
+                create: (context) => QueueCubit(QueueService(http.Client())),
+              ),
+            ],
             child: const AppointmentsManagementView(),
           ),
         ),

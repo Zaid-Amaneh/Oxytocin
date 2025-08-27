@@ -1039,4 +1039,142 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get delete => 'Delete';
+
+  @override
+  String get canceled => 'Canceled';
+
+  @override
+  String get absent => 'Absent';
+
+  @override
+  String get waiting => 'Waiting';
+
+  @override
+  String get inExamination => 'In Examination';
+
+  @override
+  String get finished => 'Finished';
+
+  @override
+  String enteredAt(Object time) {
+    return 'Entered at: $time';
+  }
+
+  @override
+  String exitedAt(Object time) {
+    return 'Exited at: $time';
+  }
+
+  @override
+  String appointmentAt(Object time) {
+    return 'Appointment: $time';
+  }
+
+  @override
+  String get you => 'You';
+
+  @override
+  String patientNumber(Object number) {
+    return 'Patient No. $number';
+  }
+
+  @override
+  String get inQueue => 'In Queue';
+
+  @override
+  String get yourPosition => 'Your Position';
+
+  @override
+  String get completed => 'Completed';
+
+  @override
+  String queueProgress(Object progress, Object total) {
+    return '$progress of $total';
+  }
+
+  @override
+  String get queueProgressText => 'Queue Progress';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String averageDelay(Object minutes) {
+    return 'Average Delay: ${minutes}m';
+  }
+
+  @override
+  String averageExamination(Object minutes) {
+    return 'Average Examination: ${minutes}m';
+  }
+
+  @override
+  String yourNumber(Object number) {
+    return 'Your Number: $number';
+  }
+
+  @override
+  String estimatedWait(Object minutes) {
+    return 'Approximately $minutes minutes';
+  }
+
+  @override
+  String get expectedWaitTime => 'Expected Waiting Time';
+
+  @override
+  String get waitingQueue => 'Waiting Queue';
+
+  @override
+  String get queueLoading => 'Loading queue data...';
+
+  @override
+  String get pleaseWait => 'Please wait a moment';
+
+  @override
+  String get queueLoadFailed => 'Failed to load queue';
+
+  @override
+  String get serverError =>
+      'Could not connect to the server. Please check your internet connection.';
+
+  @override
+  String get noQueue => 'No queue available';
+
+  @override
+  String doctorUnavailable(Object doctorName) {
+    return 'Dr. $doctorName is currently unavailable or no appointments are scheduled';
+  }
+
+  @override
+  String get checkLater => 'You can come back later to check the queue status';
+
+  @override
+  String get unknownState => 'Unknown state';
+
+  @override
+  String get unexpectedError =>
+      'An unexpected error occurred, please try again';
+
+  @override
+  String get cancelAppointment => 'Yes, cancel the appointment';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get confirmCancel => 'Confirm cancellation';
+
+  @override
+  String get cancelConfirmationMsg =>
+      'Are you sure you want to cancel this appointment? You will not be able to undo this action.';
+
+  @override
+  String get cancelAppointmentPermanently =>
+      'Cancel the appointment permanently';
+
+  @override
+  String get addRemovemanageAttachments => 'Add or remove attachments';
+
+  @override
+  String get changeAppointmentDateTime => 'Change appointment date or time';
 }

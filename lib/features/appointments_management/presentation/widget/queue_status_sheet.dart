@@ -1,69 +1,135 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart' as http;
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
+import 'package:oxytocin/features/appointments_management/data/models/queue_display_models.dart';
+import 'package:oxytocin/features/appointments_management/data/services/queue_service.dart';
+import 'package:oxytocin/features/appointments_management/presentation/viewmodels/queue_cubit.dart';
+import 'package:oxytocin/features/appointments_management/presentation/viewmodels/queue_state.dart';
+import 'package:oxytocin/features/appointments_management/presentation/widget/queue_mapper.dart';
+import 'package:oxytocin/features/appointments_management/presentation/widget/queue_states.dart';
 
-// حالات المرضى في الطابور
-enum PatientStatus {
-  completed, // تم الانتهاء من الموعد
-  inProgress, // يتم فحصه الآن
-  waiting, // ينتظر دوره
-  absent, // غائب عن موعده
-  cancelled, // ألغى موعده
-}
-
-// نموذج بيانات المريض في الطابور
-class QueuePatient {
-  final String appointmentTime; // وقت الموعد المحجوز
-  final String? actualEntryTime; // الوقت الفعلي للدخول (null إذا لم يدخل بعد)
-  final String? actualExitTime; // الوقت الفعلي للخروج (null إذا لم ينته بعد)
-  final PatientStatus status;
-  final int orderNumber;
-
-  QueuePatient({
-    required this.appointmentTime,
-    this.actualEntryTime,
-    this.actualExitTime,
-    required this.status,
-    required this.orderNumber,
-  });
-
-  // حساب مدة الانتظار الفعلية (بالدقائق)
-  int? get actualWaitingDuration {
-    if (actualEntryTime == null) return null;
-    // هنا يمكن إضافة منطق حساب الفرق بين الوقت المحجوز والدخول الفعلي
-    // مثال مبسط - يمكن تطويره حسب تنسيق التاريخ المستخدم
-    return null; // سيتم حسابه في التطبيق الفعلي
-  }
-
-  // حساب مدة الفحص الفعلية (بالدقائق)
-  int? get actualExaminationDuration {
-    if (actualEntryTime == null || actualExitTime == null) return null;
-    // هنا يمكن إضافة منطق حساب الفرق بين الدخول والخروج
-    // مثال مبسط - يمكن تطويره حسب تنسيق التاريخ المستخدم
-    return null; // سيتم حسابه في التطبيق الفعلي
-  }
-}
-
-void showQueueStatusSheet(
-  BuildContext context, {
-  required List<QueuePatient> queuePatients,
-  required int currentPatientOrder,
-  required int estimatedWaitingMinutes,
+void showQueueStatusSheet({
+  required BuildContext context,
+  required int appointmentId,
   required String doctorName,
-  int? averageExaminationTime, // متوسط وقت الفحص المحسوب من البيانات السابقة
-  int? averageDelayTime, // متوسط التأخير المحسوب من البيانات السابقة
 }) {
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
-    builder: (context) => QueueStatusModal(
-      queuePatients: queuePatients,
-      currentPatientOrder: currentPatientOrder,
-      estimatedWaitingMinutes: estimatedWaitingMinutes,
-      doctorName: doctorName,
-      averageExaminationTime: averageExaminationTime,
-      averageDelayTime: averageDelayTime,
-    ),
+    builder: (_) {
+      return BlocProvider(
+        create: (context) => QueueCubit(QueueService(http.Client())),
+        child: QueueStatusSheetContent(
+          appointmentId: appointmentId,
+          doctorName: doctorName,
+        ),
+      );
+    },
   );
+}
+
+class QueueStatusSheetContent extends StatefulWidget {
+  final int appointmentId;
+  final String doctorName;
+
+  const QueueStatusSheetContent({
+    super.key,
+    required this.appointmentId,
+    required this.doctorName,
+  });
+
+  @override
+  State<QueueStatusSheetContent> createState() =>
+      _QueueStatusSheetContentState();
+}
+
+class _QueueStatusSheetContentState extends State<QueueStatusSheetContent> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<QueueCubit>().fetchAppointmentQueue(
+      appointmentId: widget.appointmentId,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<QueueCubit, QueueState>(
+      builder: (context, state) {
+        if (state is QueueLoading) {
+          return const QueueLoadingState();
+        } else if (state is QueueError) {
+          return QueueErrorState(
+            errorMessage: context.tr.unexpectedError,
+            onRetry: () {
+              context.read<QueueCubit>().fetchAppointmentQueue(
+                appointmentId: widget.appointmentId,
+              );
+            },
+          );
+        } else if (state is QueueLoaded) {
+          if (state.queueResponse.queue.isEmpty) {
+            return QueueEmptyState(doctorName: widget.doctorName);
+          } else {
+            final mapper = QueueMapper();
+            final queuePatients = mapper.mapQueueItemsToQueuePatients(
+              state.queueResponse.queue,
+            );
+            final int currentPatientOrder = queuePatients
+                .firstWhere(
+                  (p) => p.status == PatientStatus.waiting,
+                  orElse: () => QueuePatient(
+                    orderNumber: queuePatients.length + 1,
+                    appointmentTime: '',
+                    status: PatientStatus.waiting,
+                  ),
+                )
+                .orderNumber;
+
+            List<Map<String, String>> averageExaminationTimeMap = [];
+            List<Map<String, String>> averageDelayTimeMap = [];
+
+            for (var i in state.queueResponse.queue) {
+              if (i.status == "completed") {
+                averageDelayTimeMap.add({
+                  "actual": i.actualStartTime!,
+                  "expected": i.visitTime,
+                });
+              }
+            }
+
+            for (var i in state.queueResponse.queue) {
+              if (i.status == "completed") {
+                averageExaminationTimeMap.add({
+                  "exit": i.actualEndTime!,
+                  "enter": i.actualStartTime!,
+                });
+              }
+            }
+
+            final averageExaminationTime = mapper
+                .calculateAverageExaminationTime(averageExaminationTimeMap);
+            final averageDelayTime = mapper.calculateAverageDelay(
+              averageDelayTimeMap,
+            );
+
+            return QueueStatusModal(
+              queuePatients: queuePatients,
+              currentPatientOrder: currentPatientOrder,
+              estimatedWaitingMinutes: state.queueResponse.estimatedWaitMinutes,
+              doctorName: widget.doctorName,
+              averageExaminationTime: averageExaminationTime.toInt(),
+              averageDelayTime: averageDelayTime.toInt(),
+            );
+          }
+        }
+
+        return const QueueUnknownState();
+      },
+    );
+  }
 }
 
 class QueueStatusModal extends StatefulWidget {
@@ -99,7 +165,6 @@ class _QueueStatusModalState extends State<QueueStatusModal>
   void initState() {
     super.initState();
 
-    // Animation للنبضة
     _pulseController = AnimationController(
       duration: const Duration(seconds: 2),
       vsync: this,
@@ -109,7 +174,6 @@ class _QueueStatusModalState extends State<QueueStatusModal>
     );
     _pulseController.repeat(reverse: true);
 
-    // Animation لشريط التقدم
     _progressController = AnimationController(
       duration: const Duration(milliseconds: 1500),
       vsync: this,
@@ -147,7 +211,6 @@ class _QueueStatusModalState extends State<QueueStatusModal>
       ),
       child: Column(
         children: [
-          // مقبض السحب
           Container(
             width: 50,
             height: 5,
@@ -158,7 +221,6 @@ class _QueueStatusModalState extends State<QueueStatusModal>
             ),
           ),
 
-          // العنوان
           Padding(
             padding: const EdgeInsets.all(20),
             child: Row(
@@ -168,7 +230,7 @@ class _QueueStatusModalState extends State<QueueStatusModal>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'طابور الانتظار',
+                      context.tr.waitingQueue,
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
@@ -176,7 +238,7 @@ class _QueueStatusModalState extends State<QueueStatusModal>
                       ),
                     ),
                     Text(
-                      'doctorName',
+                      widget.doctorName,
                       style: TextStyle(fontSize: 14, color: Colors.grey[600]),
                     ),
                   ],
@@ -191,12 +253,10 @@ class _QueueStatusModalState extends State<QueueStatusModal>
 
           Divider(color: Colors.grey[200], height: 1),
 
-          // شريط التقدم والانتظار مع الإحصائيات المحسنة
           Container(
             margin: const EdgeInsets.all(20),
             child: Column(
               children: [
-                // معلومات الانتظار مع التأثيرات
                 AnimatedBuilder(
                   animation: _pulseAnimation,
                   builder: (context, child) {
@@ -229,7 +289,6 @@ class _QueueStatusModalState extends State<QueueStatusModal>
                         ),
                         child: Column(
                           children: [
-                            // الصف الأول - الوقت المتوقع ورقم المريض
                             Row(
                               children: [
                                 Container(
@@ -251,7 +310,7 @@ class _QueueStatusModalState extends State<QueueStatusModal>
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'الوقت المتوقع للانتظار',
+                                        context.tr.expectedWaitTime,
                                         style: TextStyle(
                                           fontSize: 14,
                                           color: Colors.grey[700],
@@ -260,7 +319,9 @@ class _QueueStatusModalState extends State<QueueStatusModal>
                                       ),
                                       const SizedBox(height: 4),
                                       Text(
-                                        '${widget.estimatedWaitingMinutes} دقيقة تقريباً',
+                                        context.tr.estimatedWait(
+                                          widget.estimatedWaitingMinutes,
+                                        ),
                                         style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
@@ -280,7 +341,9 @@ class _QueueStatusModalState extends State<QueueStatusModal>
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: Text(
-                                    'رقمك: ${widget.currentPatientOrder}',
+                                    context.tr.yourNumber(
+                                      widget.currentPatientOrder,
+                                    ),
                                     style: const TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
@@ -291,7 +354,6 @@ class _QueueStatusModalState extends State<QueueStatusModal>
                               ],
                             ),
 
-                            // الصف الثاني - إحصائيات إضافية (إذا توفرت)
                             if (widget.averageExaminationTime != null ||
                                 widget.averageDelayTime != null)
                               Column(
@@ -320,7 +382,9 @@ class _QueueStatusModalState extends State<QueueStatusModal>
                                           const SizedBox(width: 6),
                                           Expanded(
                                             child: Text(
-                                              'متوسط الفحص: ${widget.averageExaminationTime}د',
+                                              context.tr.averageExamination(
+                                                widget.averageExaminationTime!,
+                                              ),
                                               style: TextStyle(
                                                 fontSize: 12,
                                                 color: Colors.grey[700],
@@ -350,7 +414,9 @@ class _QueueStatusModalState extends State<QueueStatusModal>
                                           const SizedBox(width: 6),
                                           Expanded(
                                             child: Text(
-                                              'متوسط التأخير: ${widget.averageDelayTime}د',
+                                              context.tr.averageDelay(
+                                                widget.averageDelayTime!,
+                                              ),
                                               style: TextStyle(
                                                 fontSize: 12,
                                                 color: Colors.grey[700],
@@ -373,13 +439,11 @@ class _QueueStatusModalState extends State<QueueStatusModal>
 
                 const SizedBox(height: 20),
 
-                // الشريط الزمني مع التقدم
                 _buildTimelineProgress(),
               ],
             ),
           ),
 
-          // قائمة المرضى
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -399,7 +463,6 @@ class _QueueStatusModalState extends State<QueueStatusModal>
             ),
           ),
 
-          // زر الإغلاق
           Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
@@ -417,7 +480,7 @@ class _QueueStatusModalState extends State<QueueStatusModal>
                   ),
                 ),
                 child: Text(
-                  'إغلاق',
+                  context.tr.close,
                   style: TextStyle(
                     color: Colors.grey[700],
                     fontWeight: FontWeight.w600,
@@ -433,7 +496,6 @@ class _QueueStatusModalState extends State<QueueStatusModal>
 
   Widget _buildTimelineProgress() {
     final totalPatients = widget.queuePatients.length;
-    // حساب المرضى الذين تم الانتهاء من مواعيدهم (مكتمل + غائب + ملغى)
     final processedPatients = widget.queuePatients
         .where(
           (p) =>
@@ -443,7 +505,6 @@ class _QueueStatusModalState extends State<QueueStatusModal>
         )
         .length;
 
-    // إضافة المريض الحالي إذا كان يُفحص الآن
     final currentPatientInProgress = widget.queuePatients.any(
       (p) =>
           p.orderNumber == widget.currentPatientOrder &&
@@ -464,7 +525,7 @@ class _QueueStatusModalState extends State<QueueStatusModal>
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'تقدم الطابور',
+              context.tr.queueProgressText,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -472,14 +533,13 @@ class _QueueStatusModalState extends State<QueueStatusModal>
               ),
             ),
             Text(
-              '$effectiveProgress من $totalPatients',
+              context.tr.queueProgress(effectiveProgress, totalPatients),
               style: TextStyle(fontSize: 12, color: Colors.grey[600]),
             ),
           ],
         ),
         const SizedBox(height: 12),
 
-        // شريط التقدم المتحرك
         AnimatedBuilder(
           animation: _progressAnimation,
           builder: (context, child) {
@@ -509,7 +569,6 @@ class _QueueStatusModalState extends State<QueueStatusModal>
                       borderRadius: BorderRadius.circular(4),
                     ),
                   ),
-                  // نقطة متحركة تشير للموقع الحالي
                   if (currentIndex >= 0)
                     AnimatedPositioned(
                       duration: const Duration(milliseconds: 500),
@@ -550,14 +609,13 @@ class _QueueStatusModalState extends State<QueueStatusModal>
 
         const SizedBox(height: 8),
 
-        // مؤشرات الحالة
         Row(
           children: [
-            _buildStatusIndicator(Colors.green[600]!, 'مكتمل'),
+            _buildStatusIndicator(Colors.blue[600]!, context.tr.completed),
             const SizedBox(width: 16),
-            _buildStatusIndicator(Colors.orange[500]!, 'موقعك'),
+            _buildStatusIndicator(Colors.orange[500]!, context.tr.yourPosition),
             const SizedBox(width: 16),
-            _buildStatusIndicator(Colors.grey[400]!, 'في الانتظار'),
+            _buildStatusIndicator(Colors.grey[400]!, context.tr.inQueue),
           ],
         ),
       ],
@@ -618,7 +676,6 @@ class _QueueStatusModalState extends State<QueueStatusModal>
               ),
               child: Row(
                 children: [
-                  // رقم المريض مع تأثير متحرك
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
                     width: 40,
@@ -652,7 +709,6 @@ class _QueueStatusModalState extends State<QueueStatusModal>
 
                   const SizedBox(width: 16),
 
-                  // معلومات المريض
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -661,7 +717,7 @@ class _QueueStatusModalState extends State<QueueStatusModal>
                           children: [
                             Expanded(
                               child: Text(
-                                'مريض رقم ${patient.orderNumber}',
+                                context.tr.patientNumber(patient.orderNumber),
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -682,9 +738,9 @@ class _QueueStatusModalState extends State<QueueStatusModal>
                                   color: Colors.blue[600],
                                   borderRadius: BorderRadius.circular(12),
                                 ),
-                                child: const Text(
-                                  'أنت',
-                                  style: TextStyle(
+                                child: Text(
+                                  context.tr.you,
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 10,
                                     fontWeight: FontWeight.bold,
@@ -698,18 +754,27 @@ class _QueueStatusModalState extends State<QueueStatusModal>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'الموعد: ${patient.appointmentTime}',
+                              context.tr.appointmentAt(
+                                _convertTo12Hour(
+                                  patient.appointmentTime,
+                                  context,
+                                ),
+                              ),
                               style: TextStyle(
                                 fontSize: 12,
                                 color: Colors.grey[600],
                               ),
                             ),
-                            // عرض الأوقات الفعلية للمرضى المكتملين
                             if (patient.status == PatientStatus.completed &&
                                 patient.actualEntryTime != null) ...[
                               const SizedBox(height: 2),
                               Text(
-                                'دخل: ${patient.actualEntryTime}',
+                                context.tr.enteredAt(
+                                  _convertTo12Hour(
+                                    patient.actualEntryTime!,
+                                    context,
+                                  ),
+                                ),
                                 style: TextStyle(
                                   fontSize: 11,
                                   color: Colors.green[600],
@@ -719,7 +784,12 @@ class _QueueStatusModalState extends State<QueueStatusModal>
                               if (patient.actualExitTime != null) ...[
                                 const SizedBox(height: 2),
                                 Text(
-                                  'خرج: ${patient.actualExitTime}',
+                                  context.tr.exitedAt(
+                                    _convertTo12Hour(
+                                      patient.actualExitTime!,
+                                      context,
+                                    ),
+                                  ),
                                   style: TextStyle(
                                     fontSize: 11,
                                     color: Colors.green[600],
@@ -728,12 +798,16 @@ class _QueueStatusModalState extends State<QueueStatusModal>
                                 ),
                               ],
                             ],
-                            // عرض وقت الدخول للمريض الحالي إذا كان يُفحص
                             if (patient.status == PatientStatus.inProgress &&
                                 patient.actualEntryTime != null) ...[
                               const SizedBox(height: 2),
                               Text(
-                                'دخل: ${patient.actualEntryTime}',
+                                context.tr.enteredAt(
+                                  _convertTo12Hour(
+                                    patient.actualEntryTime!,
+                                    context,
+                                  ),
+                                ),
                                 style: TextStyle(
                                   fontSize: 11,
                                   color: Colors.orange[600],
@@ -747,7 +821,6 @@ class _QueueStatusModalState extends State<QueueStatusModal>
                     ),
                   ),
 
-                  // حالة المريض مع تأثيرات
                   Column(
                     children: [
                       patient.status == PatientStatus.inProgress
@@ -795,32 +868,48 @@ class _QueueStatusModalState extends State<QueueStatusModal>
         return {
           'icon': Icons.check_circle,
           'color': Colors.green[600],
-          'text': 'انتهى',
+          'text': context.tr.finished,
         };
       case PatientStatus.inProgress:
         return {
           'icon': Icons.medical_services,
           'color': Colors.orange[600],
-          'text': 'يُفحص الآن',
+          'text': context.tr.inExamination,
         };
       case PatientStatus.waiting:
         return {
           'icon': Icons.schedule,
           'color': Colors.blue[600],
-          'text': 'ينتظر',
+          'text': context.tr.waiting,
         };
       case PatientStatus.absent:
         return {
           'icon': Icons.person_off,
           'color': Colors.red[600],
-          'text': 'غائب',
+          'text': context.tr.absent,
         };
       case PatientStatus.cancelled:
         return {
           'icon': Icons.cancel,
           'color': Colors.grey[600],
-          'text': 'ألغى',
+          'text': context.tr.canceled,
         };
+    }
+  }
+
+  String _convertTo12Hour(String time24, BuildContext context) {
+    final parts = time24.split(':');
+    final hour = int.parse(parts[0]);
+    final minute = parts[1];
+
+    if (hour == 0) {
+      return '12:$minute ${context.tr.am}';
+    } else if (hour < 12) {
+      return '$hour:$minute ${context.tr.am}';
+    } else if (hour == 12) {
+      return '12:$minute ${context.tr.pm}';
+    } else {
+      return '${hour - 12}:$minute ${context.tr.pm}';
     }
   }
 }
