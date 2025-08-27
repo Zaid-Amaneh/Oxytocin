@@ -79,10 +79,10 @@ void showEditAppointmentBottomSheet(
                 ).copyWith(color: AppColors.textSecondary, fontSize: 16),
               ),
               onTap: () {
-                // cubit.cancelAppointment(appointmentId: id);
-                // if (context.mounted) {
-                //   context.pop();
-                // }
+                NavigationService().pushToNamedWithParams(
+                  RouteNames.attachmentsManagerScreen,
+                  extra: {'id': appointmentModel.id},
+                );
               },
             ),
             const Divider(color: Colors.grey),

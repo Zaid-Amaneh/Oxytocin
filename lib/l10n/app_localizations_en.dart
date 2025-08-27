@@ -972,4 +972,71 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get editUploadedFiles => 'Edit Files';
+
+  @override
+  String get rebookingSuccess =>
+      'Your booking has been successfully rescheduled after cancellation.';
+
+  @override
+  String get rebookingFailed =>
+      'Rebooking failed, the requested time slot is already taken.';
+
+  @override
+  String get fileOpenFailed => 'Failed to load or open the file';
+
+  @override
+  String get fileLoadedNoViewer =>
+      'The file is loaded but no viewer is available to open it.';
+
+  @override
+  String get manageAttachments => 'Manage Attachments';
+
+  @override
+  String get attachments => 'Attachments';
+
+  @override
+  String attachmentsCount(Object count) {
+    return '$count of 5 files';
+  }
+
+  @override
+  String get uploading => 'Uploading...';
+
+  @override
+  String get addFile => 'Add File';
+
+  @override
+  String get loadingFiles => 'Loading files...';
+
+  @override
+  String get noAttachments => 'No attachments available';
+
+  @override
+  String get addFileHint =>
+      'Press the \'Add File\' button to upload your files';
+
+  @override
+  String get deleteFile => 'Delete File';
+
+  @override
+  String get maxFilesError => 'You cannot upload more than 5 files';
+
+  @override
+  String get uploadAlerts => 'Upload Alerts';
+
+  @override
+  String get fileSelectionError => 'An error occurred while selecting files';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get deleteConfirmationQuestion =>
+      'Are you sure you want to delete this file?';
+
+  @override
+  String get deleteConfirmation => 'Delete Confirmation';
+
+  @override
+  String get delete => 'Delete';
 }

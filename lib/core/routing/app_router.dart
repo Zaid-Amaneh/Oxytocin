@@ -6,9 +6,13 @@ import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/features/appointments_management/data/services/appointment_cancellation_service.dart';
 import 'package:oxytocin/features/appointments_management/data/services/appointments_fetch_service.dart';
 import 'package:oxytocin/features/appointments_management/data/services/evaluation_service.dart';
+import 'package:oxytocin/features/appointments_management/data/services/manage_attachment_service.dart';
 import 'package:oxytocin/features/appointments_management/data/services/re_book_appointment_service.dart';
+import 'package:oxytocin/features/appointments_management/data/services/rebook_appointment_service.dart';
+import 'package:oxytocin/features/appointments_management/presentation/viewmodels/attachments_manager_cubit.dart';
 import 'package:oxytocin/features/appointments_management/presentation/viewmodels/management_appointments_cubit.dart';
 import 'package:oxytocin/features/appointments_management/presentation/viewmodels/re_booking_cubit.dart';
+import 'package:oxytocin/features/appointments_management/presentation/views/attachments_manager_screen.dart';
 import 'package:oxytocin/features/appointments_management/presentation/views/re_appointment_view.dart';
 import 'package:oxytocin/features/appointments_management/presentation/views/re_book_Appointment_view.dart';
 import 'package:oxytocin/features/book_appointment/data/models/booked_appointment_model.dart';
@@ -281,6 +285,7 @@ class AppRouter {
               cancellationService: AppointmentCancellationService(
                 http.Client(),
               ),
+              rebookService: RebookAppointmentService(http.Client()),
             ),
             child: const AppointmentsManagementView(),
           ),
@@ -432,6 +437,21 @@ class AppRouter {
                   args['availableTimes'] as List,
                 ),
               ),
+            );
+          },
+        ),
+
+        GoRoute(
+          path: '/${RouteNames.attachmentsManagerScreen}',
+          name: RouteNames.attachmentsManagerScreen,
+          builder: (context, state) {
+            final args = state.extra as Map<String, dynamic>;
+            final manageAttachmentService = ManageAttachmentService(
+              http.Client(),
+            );
+            return BlocProvider(
+              create: (_) => AttachmentsManagerCubit(manageAttachmentService),
+              child: AttachmentsManagerScreen(appointmentId: args['id'] as int),
             );
           },
         ),

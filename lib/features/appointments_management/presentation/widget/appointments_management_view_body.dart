@@ -96,7 +96,10 @@ class _AppointmentsManagementViewBodyState
             current is EvaluationFailure ||
             current is AppointmentCancellationLoading ||
             current is AppointmentCancellationSuccess ||
-            current is AppointmentCancellationFailure;
+            current is AppointmentCancellationFailure ||
+            current is AppointmentRebookLoading ||
+            current is AppointmentRebookSuccess ||
+            current is AppointmentRebookFailure;
       },
       listener: (context, state) {
         if (state is EvaluationLoading) {
@@ -141,6 +144,27 @@ class _AppointmentsManagementViewBodyState
             description: context.tr.cancellationSuccess,
             seconds: 5,
           );
+        } else if (state is AppointmentRebookLoading) {
+          Helper.showCircularProgressIndicator(context);
+        } else if (state is AppointmentRebookFailure) {
+          Logger().e(state.errorMessage);
+          context.pop();
+          Helper.customToastification(
+            context: context,
+            type: ToastificationType.error,
+            title: context.tr.error,
+            description: context.tr.rebookingFailed,
+            seconds: 5,
+          );
+        } else if (state is AppointmentRebookSuccess) {
+          context.pop();
+          Helper.customToastification(
+            context: context,
+            type: ToastificationType.success,
+            title: context.tr.success_title,
+            description: context.tr.rebookingSuccess,
+            seconds: 5,
+          );
         }
       },
       buildWhen: (previous, current) {
@@ -149,7 +173,10 @@ class _AppointmentsManagementViewBodyState
             current is! EvaluationFailure &&
             current is! AppointmentCancellationLoading &&
             current is! AppointmentCancellationSuccess &&
-            current is! AppointmentCancellationFailure;
+            current is! AppointmentCancellationFailure &&
+            current is! AppointmentRebookLoading &&
+            current is! AppointmentRebookSuccess &&
+            current is! AppointmentRebookFailure;
       },
       builder: (context, state) {
         return CustomScrollView(

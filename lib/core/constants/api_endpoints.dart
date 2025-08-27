@@ -23,5 +23,9 @@ class ApiEndpoints {
   static const String appointmentDate = "$baseURL/api/appointments/";
   static const String appointments = '$baseURL/api/appointments/';
   static String rebookAppointment(int appointmentId) =>
-      '/api/appointments/$appointmentId/rebook/';
+      '$baseURL/api/appointments/$appointmentId/rebook/';
+  static String getAttachments(int appointmentId) =>
+      '$baseURL/api/appointments/$appointmentId/attachments/';
+  static String deleteAttachment(int appointmentId, int attachmentId) =>
+      '$baseURL/api/appointments/$appointmentId/attachments/$attachmentId/delete/';
 }

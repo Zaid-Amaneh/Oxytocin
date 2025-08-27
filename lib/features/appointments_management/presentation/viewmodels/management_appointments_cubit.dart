@@ -6,21 +6,25 @@ import 'package:oxytocin/features/appointments_management/data/models/evaluation
 import 'package:oxytocin/features/appointments_management/data/services/appointment_cancellation_service.dart';
 import 'package:oxytocin/features/appointments_management/data/services/appointments_fetch_service.dart';
 import 'package:oxytocin/features/appointments_management/data/services/evaluation_service.dart';
+import 'package:oxytocin/features/appointments_management/data/services/rebook_appointment_service.dart';
 import 'management_appointments_state.dart';
 
 class ManagementAppointmentsCubit extends Cubit<ManagementAppointmentsState> {
   final AppointmentsFetchService _appointmentsFetchService;
   final EvaluationService _evaluationService;
   final AppointmentCancellationService _cancellationService;
+  final RebookAppointmentService _rebookService;
   final Logger _logger = Logger();
   int _fetchRequestCounter = 0;
   ManagementAppointmentsCubit({
     required AppointmentsFetchService appointmentsFetchService,
     required EvaluationService evaluationService,
     required AppointmentCancellationService cancellationService,
+    required RebookAppointmentService rebookService,
   }) : _appointmentsFetchService = appointmentsFetchService,
        _evaluationService = evaluationService,
        _cancellationService = cancellationService,
+       _rebookService = rebookService,
        super(ManagementAppointmentsInitial());
 
   Future<void> fetchAppointments({required String status}) async {
@@ -149,6 +153,30 @@ class ManagementAppointmentsCubit extends Cubit<ManagementAppointmentsState> {
     } catch (e) {
       _logger.e("Failed to cancel appointment: ${e.toString()}");
       emit(AppointmentCancellationFailure(e.toString()));
+      if (currentState is AppointmentsLoaded) {
+        emit(currentState);
+      }
+    }
+  }
+
+  Future<void> rebookAppointment({required int appointmentId}) async {
+    final currentState = state;
+    emit(AppointmentRebookLoading());
+
+    try {
+      await _rebookService.rebookAppointment(appointmentId: appointmentId);
+      emit(AppointmentRebookSuccess());
+
+      if (currentState is AppointmentsLoaded) {
+        final updatedAppointments = currentState.appointments
+            .where((appointment) => appointment.id != appointmentId)
+            .toList();
+
+        emit(currentState.copyWith(appointments: updatedAppointments));
+      }
+    } catch (e) {
+      _logger.e("Failed to rebook appointment: ${e.toString()}");
+      emit(AppointmentRebookFailure(e.toString()));
       if (currentState is AppointmentsLoaded) {
         emit(currentState);
       }

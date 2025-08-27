@@ -6,6 +6,7 @@ import 'package:oxytocin/features/appointments_management/data/services/appointm
 import 'package:oxytocin/features/appointments_management/data/services/appointments_fetch_service.dart';
 import 'package:oxytocin/features/appointments_management/data/services/evaluation_service.dart';
 import 'package:oxytocin/features/appointments_management/data/services/re_book_appointment_service.dart';
+import 'package:oxytocin/features/appointments_management/data/services/rebook_appointment_service.dart';
 import 'package:oxytocin/features/appointments_management/presentation/viewmodels/management_appointments_cubit.dart';
 import 'package:oxytocin/features/home/presentation/widgets/doctor_card.dart';
 import 'package:oxytocin/features/home/presentation/widgets/nearby_doctor_card.dart';
@@ -465,11 +466,13 @@ class _HomeViewState extends State<HomeView> {
     final appointmentCancellationService = AppointmentCancellationService(
       http.Client(),
     );
+    final rebookService = RebookAppointmentService(http.Client());
     return BlocProvider(
       create: (context) => ManagementAppointmentsCubit(
         appointmentsFetchService: appointmentsFetchService,
         evaluationService: evaluationService,
         cancellationService: appointmentCancellationService,
+        rebookService: rebookService,
       ),
       child: const AppointmentsManagementView(),
     );

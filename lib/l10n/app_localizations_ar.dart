@@ -953,4 +953,67 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get editUploadedFiles => 'تعديل الملفات';
+
+  @override
+  String get rebookingSuccess => 'تمت إعادة حجزك بنجاح بعد الإلغاء.';
+
+  @override
+  String get rebookingFailed =>
+      'تعذّرت إعادة حجزك، الموعد المطلوب أصبح مشغولاً.';
+
+  @override
+  String get fileOpenFailed => 'فشل تحميل أو فتح الملف';
+
+  @override
+  String get fileLoadedNoViewer => 'تم التحميل ولا يوجد عارض مناسب لفتح الملف.';
+
+  @override
+  String get manageAttachments => 'إدارة الملفات المرفقة';
+
+  @override
+  String get attachments => 'الملفات المرفقة';
+
+  @override
+  String attachmentsCount(Object count) {
+    return '$count من 5 ملفات';
+  }
+
+  @override
+  String get uploading => 'جاري الرفع...';
+
+  @override
+  String get addFile => 'إضافة ملف';
+
+  @override
+  String get loadingFiles => 'جاري تحميل الملفات...';
+
+  @override
+  String get noAttachments => 'لا توجد ملفات مرفقة';
+
+  @override
+  String get addFileHint => 'اضغط على زر \"إضافة ملف\" لرفع ملفاتك';
+
+  @override
+  String get deleteFile => 'حذف الملف';
+
+  @override
+  String get maxFilesError => 'لا يمكن رفع أكثر من 5 ملفات';
+
+  @override
+  String get uploadAlerts => 'تنبيهات الرفع';
+
+  @override
+  String get fileSelectionError => 'حدث خطأ أثناء اختيار الملفات';
+
+  @override
+  String get ok => 'موافق';
+
+  @override
+  String get deleteConfirmationQuestion => 'هل أنت متأكد من حذف هذا الملف؟';
+
+  @override
+  String get deleteConfirmation => 'تأكيد الحذف';
+
+  @override
+  String get delete => 'حذف';
 }

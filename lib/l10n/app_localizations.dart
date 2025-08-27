@@ -1837,6 +1837,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Edit Files'**
   String get editUploadedFiles;
+
+  /// No description provided for @rebookingSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Your booking has been successfully rescheduled after cancellation.'**
+  String get rebookingSuccess;
+
+  /// No description provided for @rebookingFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Rebooking failed, the requested time slot is already taken.'**
+  String get rebookingFailed;
+
+  /// No description provided for @fileOpenFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load or open the file'**
+  String get fileOpenFailed;
+
+  /// No description provided for @fileLoadedNoViewer.
+  ///
+  /// In en, this message translates to:
+  /// **'The file is loaded but no viewer is available to open it.'**
+  String get fileLoadedNoViewer;
+
+  /// No description provided for @manageAttachments.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage Attachments'**
+  String get manageAttachments;
+
+  /// No description provided for @attachments.
+  ///
+  /// In en, this message translates to:
+  /// **'Attachments'**
+  String get attachments;
+
+  /// No description provided for @attachmentsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} of 5 files'**
+  String attachmentsCount(Object count);
+
+  /// No description provided for @uploading.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading...'**
+  String get uploading;
+
+  /// No description provided for @addFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Add File'**
+  String get addFile;
+
+  /// No description provided for @loadingFiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading files...'**
+  String get loadingFiles;
+
+  /// No description provided for @noAttachments.
+  ///
+  /// In en, this message translates to:
+  /// **'No attachments available'**
+  String get noAttachments;
+
+  /// No description provided for @addFileHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Press the \'Add File\' button to upload your files'**
+  String get addFileHint;
+
+  /// No description provided for @deleteFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete File'**
+  String get deleteFile;
+
+  /// No description provided for @maxFilesError.
+  ///
+  /// In en, this message translates to:
+  /// **'You cannot upload more than 5 files'**
+  String get maxFilesError;
+
+  /// No description provided for @uploadAlerts.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload Alerts'**
+  String get uploadAlerts;
+
+  /// No description provided for @fileSelectionError.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred while selecting files'**
+  String get fileSelectionError;
+
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get ok;
+
+  /// No description provided for @deleteConfirmationQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this file?'**
+  String get deleteConfirmationQuestion;
+
+  /// No description provided for @deleteConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Confirmation'**
+  String get deleteConfirmation;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
 }
 
 class _AppLocalizationsDelegate

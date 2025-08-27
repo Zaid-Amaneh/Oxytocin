@@ -26,4 +26,5 @@ class RouteNames {
   static const appointmentSuccessfullyBooked = 'appointmentSuccessfullyBooked';
   static const reAppointment = 'reAppointment';
   static const reBookAppointment = 'reBookAppointment';
+  static const attachmentsManagerScreen = 'attachmentsManagerScreen';
 }

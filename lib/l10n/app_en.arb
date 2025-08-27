@@ -288,7 +288,27 @@
   "cancellationFailed": "The appointment could not be cancelled. Please try again later.",
   "updateBookingSuccess": "Your booking has been updated successfully.",
   "updateBookingFailed": "Failed to update your booking. Please try again later.",
-  "editUploadedFiles": "Edit Files"
+  "editUploadedFiles": "Edit Files",
+  "rebookingSuccess": "Your booking has been successfully rescheduled after cancellation.",
+  "rebookingFailed": "Rebooking failed, the requested time slot is already taken.",
+  "fileOpenFailed": "Failed to load or open the file",
+  "fileLoadedNoViewer": "The file is loaded but no viewer is available to open it.",
+  "manageAttachments": "Manage Attachments",
+  "attachments": "Attachments",
+  "attachmentsCount": "{count} of 5 files",
+  "uploading": "Uploading...",
+  "addFile": "Add File",
+  "loadingFiles": "Loading files...",
+  "noAttachments": "No attachments available",
+  "addFileHint": "Press the 'Add File' button to upload your files",
+  "deleteFile": "Delete File",
+  "maxFilesError": "You cannot upload more than 5 files",
+  "uploadAlerts": "Upload Alerts",
+  "fileSelectionError": "An error occurred while selecting files",
+  "ok": "OK",
+  "deleteConfirmationQuestion": "Are you sure you want to delete this file?",
+  "deleteConfirmation": "Delete Confirmation",
+  "delete": "Delete"
 
 
 

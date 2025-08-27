@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/features/appointments_management/data/models/appointment_model.dart';
+import 'package:oxytocin/features/appointments_management/presentation/viewmodels/management_appointments_cubit.dart';
 import 'package:oxytocin/features/appointments_management/presentation/widget/call_button.dart';
 import 'package:oxytocin/features/appointments_management/presentation/widget/custom_appointment_card_side.dart';
 import 'package:oxytocin/features/appointments_management/presentation/widget/custom_appointment_card_button.dart';
 import 'package:oxytocin/features/appointments_management/presentation/widget/custom_appointment_card_info.dart';
+import 'package:oxytocin/features/appointments_management/presentation/widget/show_appointment_details_sheet.dart';
 
 class CanceledAppointmentCard extends StatelessWidget {
   const CanceledAppointmentCard({super.key, required this.appointmentModel});
@@ -52,10 +55,24 @@ class CanceledAppointmentCard extends StatelessWidget {
                         t: false,
                         text: context.tr.rebook,
                         icon: SvgPicture.asset(AppImages.rescheduleIcon),
+                        onTap: () {
+                          context
+                              .read<ManagementAppointmentsCubit>()
+                              .rebookAppointment(
+                                appointmentId: appointmentModel.id,
+                              );
+                        },
                       ),
-                      CallButton(
-                        phoneNumber: appointmentModel.clinic.phone,
+                      CustomAppointmentCardButton(
                         t: false,
+                        text: context.tr.details,
+                        icon: SvgPicture.asset(AppImages.infoIcon),
+                        onTap: () {
+                          showAppointmentDetailsSheet(
+                            context,
+                            appointmentModel,
+                          );
+                        },
                       ),
                     ],
                   ),

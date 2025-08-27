@@ -92,3 +92,17 @@ class AppointmentCancellationFailure extends ManagementAppointmentsState {
   @override
   List<Object> get props => [errorMessage];
 }
+
+// --- States for appointment rebooking ---
+class AppointmentRebookLoading extends ManagementAppointmentsState {}
+
+class AppointmentRebookSuccess extends ManagementAppointmentsState {}
+
+class AppointmentRebookFailure extends ManagementAppointmentsState {
+  final String errorMessage;
+
+  const AppointmentRebookFailure(this.errorMessage);
+
+  @override
+  List<Object> get props => [errorMessage];
+}

@@ -288,7 +288,27 @@
     "cancellationFailed": "لم يتم إلغاء الموعد. يرجى المحاولة لاحقًا.",
     "updateBookingSuccess": "تم تعديل حجزك بنجاح.",
     "updateBookingFailed": "فشل تعديل حجزك. يرجى المحاولة لاحقًا.",
-    "editUploadedFiles": "تعديل الملفات"
+    "editUploadedFiles": "تعديل الملفات",
+    "rebookingSuccess": "تمت إعادة حجزك بنجاح بعد الإلغاء.",
+    "rebookingFailed": "تعذّرت إعادة حجزك، الموعد المطلوب أصبح مشغولاً.",
+    "fileOpenFailed": "فشل تحميل أو فتح الملف",
+    "fileLoadedNoViewer": "تم التحميل ولا يوجد عارض مناسب لفتح الملف.",
+    "manageAttachments": "إدارة الملفات المرفقة",
+    "attachments": "الملفات المرفقة",
+    "attachmentsCount": "{count} من 5 ملفات",
+    "uploading": "جاري الرفع...",
+    "addFile": "إضافة ملف",
+    "loadingFiles": "جاري تحميل الملفات...",
+    "noAttachments": "لا توجد ملفات مرفقة",
+    "addFileHint": "اضغط على زر \"إضافة ملف\" لرفع ملفاتك",
+    "deleteFile": "حذف الملف",
+    "maxFilesError": "لا يمكن رفع أكثر من 5 ملفات",
+    "uploadAlerts": "تنبيهات الرفع",
+    "fileSelectionError": "حدث خطأ أثناء اختيار الملفات",
+    "ok": "موافق",
+    "deleteConfirmationQuestion": "هل أنت متأكد من حذف هذا الملف؟",
+    "deleteConfirmation": "تأكيد الحذف",
+    "delete": "حذف"
 
 
 

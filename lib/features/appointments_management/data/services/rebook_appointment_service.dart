@@ -13,9 +13,7 @@ class RebookAppointmentService {
   RebookAppointmentService(this.client);
 
   Future<void> rebookAppointment({required int appointmentId}) async {
-    final uri = Uri.parse(
-      '${ApiEndpoints.baseURL}${ApiEndpoints.rebookAppointment(appointmentId)}',
-    );
+    final uri = Uri.parse(ApiEndpoints.rebookAppointment(appointmentId));
 
     String? accessToken = await secureStorageService.getAccessToken();
     if (accessToken == null) {
@@ -82,7 +80,7 @@ class RebookAppointmentService {
       _logger.i("Retrying the original rebook request with new token");
 
       final originalUri = Uri.parse(
-        '${ApiEndpoints.baseURL}${ApiEndpoints.rebookAppointment(appointmentId)}',
+        ApiEndpoints.rebookAppointment(appointmentId),
       );
       final retryHeaders = {
         'Content-Type': 'application/json',
