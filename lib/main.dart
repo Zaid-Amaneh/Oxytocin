@@ -27,7 +27,6 @@ void main() async {
 class OxytocinApp extends StatelessWidget {
   const OxytocinApp({super.key, required this.router});
   final GoRouter router;
-
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
