@@ -64,13 +64,23 @@ class _BookAppointmentViewBodyState extends State<BookAppointmentViewBody> {
           final message = AppLocalizations.of(
             context,
           )!.getTranslatedError(state.error);
-          Helper.customToastification(
-            context: context,
-            type: ToastificationType.error,
-            title: context.tr.failure_title,
-            description: message,
-            seconds: 5,
-          );
+          if (message == context.tr.patientBannedTitle) {
+            Helper.customToastification(
+              context: context,
+              type: ToastificationType.error,
+              title: message,
+              description: context.tr.patientBannedDescription,
+              seconds: 5,
+            );
+          } else {
+            Helper.customToastification(
+              context: context,
+              type: ToastificationType.error,
+              title: context.tr.failure_title,
+              description: message,
+              seconds: 5,
+            );
+          }
         } else if (state is BookingSuccess) {
           context.pop();
           Helper.customToastification(

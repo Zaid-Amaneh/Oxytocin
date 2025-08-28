@@ -1152,4 +1152,20 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get changeAppointmentDateTime => 'تغيير تاريخ أو وقت الموعد';
+
+  @override
+  String get noCurrentAppointments => 'لا يوجد أي مواعيد حالية';
+
+  @override
+  String get noPastAppointments => 'لا يوجد أي مواعيد سابقة';
+
+  @override
+  String get noCancelledAppointments => 'لا يوجد أي مواعيد ملغاة';
+
+  @override
+  String get patientBannedTitle => 'تم حظر المريض';
+
+  @override
+  String get patientBannedDescription =>
+      'لقد قامت العيادة بحظر هذا الحساب. يمكنك التواصل مع العيادة لإزالة الحظر أو في حال كنت تظن أنه قد تم حظرك عن طريق الخطأ.';
 }

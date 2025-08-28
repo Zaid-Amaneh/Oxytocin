@@ -346,7 +346,15 @@
   "cancelConfirmationMsg": "Are you sure you want to cancel this appointment? You will not be able to undo this action.",
   "cancelAppointmentPermanently": "Cancel the appointment permanently",
   "addRemovemanageAttachments": "Add or remove attachments",
-  "changeAppointmentDateTime": "Change appointment date or time"
+  "changeAppointmentDateTime": "Change appointment date or time",
+  "noCurrentAppointments": "You have no current appointments",
+  "noPastAppointments": "You have no past appointments",
+  "noCancelledAppointments": "You have no cancelled appointments",
+  "patientBannedTitle": "Patient Banned",
+  "patientBannedDescription": "This account has been banned by the clinic. Please contact the clinic to remove the ban or if you believe this ban was applied by mistake."
+
+
+
 
 
 

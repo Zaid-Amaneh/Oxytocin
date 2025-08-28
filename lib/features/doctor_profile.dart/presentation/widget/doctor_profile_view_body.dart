@@ -8,6 +8,7 @@ import 'package:oxytocin/core/widgets/sliver_divider.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/doctor_profile_cubit.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/doctor_profile_state.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/clinic_evaluation.dart';
+import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/clinic_location.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/clinic_photos_gallery.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/doctor_info_section.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/widget/doctor_profile_shimmer.dart';

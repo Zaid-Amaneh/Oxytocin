@@ -1,5 +1,5 @@
 class ApiEndpoints {
-  static const String baseURL = 'https://actively-sound-tiger.ngrok-free.app';
+  static const String baseURL = 'https://overly-measured-panda.ngrok-free.app';
   // "http://192.168.1.100:8000";
   static const String signUp = '$baseURL/api/users/';
   static const String login = '$baseURL/api/patients/login/';

@@ -2185,6 +2185,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Change appointment date or time'**
   String get changeAppointmentDateTime;
+
+  /// No description provided for @noCurrentAppointments.
+  ///
+  /// In en, this message translates to:
+  /// **'You have no current appointments'**
+  String get noCurrentAppointments;
+
+  /// No description provided for @noPastAppointments.
+  ///
+  /// In en, this message translates to:
+  /// **'You have no past appointments'**
+  String get noPastAppointments;
+
+  /// No description provided for @noCancelledAppointments.
+  ///
+  /// In en, this message translates to:
+  /// **'You have no cancelled appointments'**
+  String get noCancelledAppointments;
+
+  /// No description provided for @patientBannedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Patient Banned'**
+  String get patientBannedTitle;
+
+  /// No description provided for @patientBannedDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'This account has been banned by the clinic. Please contact the clinic to remove the ban or if you believe this ban was applied by mistake.'**
+  String get patientBannedDescription;
 }
 
 class _AppLocalizationsDelegate

@@ -51,6 +51,14 @@ class AppointmentService {
           clinicId: clinicId,
           bookingData: bookingData,
         );
+      } else if (response.statusCode == 403) {
+        final errorData = jsonDecode(response.body);
+        final errorMessage = errorData['detail'] as String;
+        Logger().e(errorMessage);
+        if (errorMessage.contains('لقد تم حظرك من هذه العيادة')) {
+          throw const PatientBannedTitleFailure();
+        }
+        throw const ServerFailure();
       } else {
         final errorData = jsonDecode(response.body);
         final errorMessage = errorData['visit_time'][0] as String;

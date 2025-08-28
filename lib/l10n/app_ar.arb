@@ -346,7 +346,13 @@
     "cancelConfirmationMsg": "هل أنت متأكد من إلغاء هذا الموعد؟ لن تتمكن من التراجع عن هذا الإجراء.",
     "cancelAppointmentPermanently": "إلغاء الموعد نهائياً",
     "addRemovemanageAttachments": "إضافة أو حذف الملفات المرفقة",
-    "changeAppointmentDateTime": "تغيير تاريخ أو وقت الموعد"
+    "changeAppointmentDateTime": "تغيير تاريخ أو وقت الموعد",
+    "noCurrentAppointments": "لا يوجد أي مواعيد حالية",
+    "noPastAppointments": "لا يوجد أي مواعيد سابقة",
+    "noCancelledAppointments": "لا يوجد أي مواعيد ملغاة",
+    "patientBannedTitle": "تم حظر المريض",
+    "patientBannedDescription": "لقد قامت العيادة بحظر هذا الحساب. يمكنك التواصل مع العيادة لإزالة الحظر أو في حال كنت تظن أنه قد تم حظرك عن طريق الخطأ."
+
 
 
 

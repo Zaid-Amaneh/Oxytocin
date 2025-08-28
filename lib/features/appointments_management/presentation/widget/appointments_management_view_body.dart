@@ -82,6 +82,7 @@ class _AppointmentsManagementViewBodyState
     return currentScroll >= (maxScroll - 50);
   }
 
+  String textState = '';
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
@@ -200,6 +201,8 @@ class _AppointmentsManagementViewBodyState
                       child: GestureDetector(
                         onTap: () {
                           setState(() {
+                            textState = displayText;
+                            Logger().f(textState);
                             _selectedFilterKey = key;
                             context
                                 .read<ManagementAppointmentsCubit>()
@@ -276,6 +279,16 @@ class _AppointmentsManagementViewBodyState
                       )
                     : const UnExpectedError(),
               )
+            else if (state is AppointmentsLoaded && state.appointments.isEmpty)
+              SliverToBoxAdapter(
+                child: EmptyState(
+                  text: textState == context.tr.canceledReservations
+                      ? context.tr.noCancelledAppointments
+                      : textState == context.tr.currentReservations
+                      ? context.tr.noCurrentAppointments
+                      : context.tr.noPastAppointments,
+                ),
+              )
             else if (state is AppointmentsLoaded)
               SliverList.builder(
                 itemCount:
@@ -312,6 +325,64 @@ class _AppointmentsManagementViewBodyState
               )
             else
               const SliverToBoxAdapter(child: SizedBox.shrink()),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class EmptyState extends StatelessWidget {
+  final String text;
+
+  const EmptyState({super.key, required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        const double baseWidth = 375.0;
+        final double scale = constraints.maxWidth / baseWidth;
+
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            SizedBox(height: 180 * scale),
+            Container(
+              width: 120 * scale,
+              height: 120 * scale,
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(26, 190, 40, 40),
+                shape: BoxShape.circle,
+              ),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Container(
+                    width: 90 * scale,
+                    height: 90 * scale,
+                    decoration: const BoxDecoration(
+                      color: Color.fromARGB(51, 190, 39, 39),
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                  Icon(
+                    Icons.event_busy,
+                    size: 50 * scale,
+                    color: const Color.fromARGB(255, 196, 39, 39),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 26),
+            Text(
+              text,
+              style: TextStyle(
+                fontSize: 20 * scale,
+                fontWeight: FontWeight.w600,
+                color: const Color(0xFF2C3E50),
+              ),
+            ),
           ],
         );
       },

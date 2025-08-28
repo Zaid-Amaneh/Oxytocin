@@ -1177,4 +1177,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get changeAppointmentDateTime => 'Change appointment date or time';
+
+  @override
+  String get noCurrentAppointments => 'You have no current appointments';
+
+  @override
+  String get noPastAppointments => 'You have no past appointments';
+
+  @override
+  String get noCancelledAppointments => 'You have no cancelled appointments';
+
+  @override
+  String get patientBannedTitle => 'Patient Banned';
+
+  @override
+  String get patientBannedDescription =>
+      'This account has been banned by the clinic. Please contact the clinic to remove the ban or if you believe this ban was applied by mistake.';
 }
