@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:oxytocin/features/categories/presentation/view/doctors_page.dart';
 import '../../data/models/category_model.dart';
 import '../cubit/categories_cubit.dart';
 
@@ -81,11 +82,20 @@ class SubspecialtiesBottomSheet extends StatelessWidget {
                       fontFamily: 'AlmaraiRegular',
                     ),
                   ),
-                  onTap: () {
+                  onTap: () async {
                     final categoriesCubit =
                         cubit ?? context.read<CategoriesCubit>();
-                    categoriesCubit.selectSubspecialty(subspecialty);
+
+                    await categoriesCubit.selectSubspecialty(subspecialty);
+                    await categoriesCubit.loadDoctorsBySubspecialty(
+                      category.id,
+                    );
+
                     Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => DoctorsPage()),
+                    );
                   },
                 );
               },

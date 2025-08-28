@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
+import 'package:oxytocin/core/Utils/services/local_storage_service.dart';
 import 'package:oxytocin/core/routing/app_router.dart';
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/services/notification_service.dart';
 import 'package:oxytocin/core/theme/app_theme.dart';
+import 'package:oxytocin/features/categories/data/datasources/categories_remote_data_source.dart';
+import 'package:oxytocin/features/categories/presentation/cubit/categories_cubit.dart';
 import 'package:oxytocin/features/favorites/data/services/favorite_manager.dart';
 import 'package:oxytocin/features/home/presentation/cubit/home_cubit.dart';
 import 'package:oxytocin/l10n/app_localizations.dart';
@@ -33,6 +36,13 @@ class OxytocinApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => ProfileInfoCubit()),
         BlocProvider(create: (context) => HomeCubit()),
+
+        BlocProvider(
+          create: (_) => CategoriesCubit(
+            CategoriesRemoteDataSource(),
+            LocalStorageService(),
+          )..fetchCategories(),
+        ),
       ],
       child: MultiProvider(
         providers: [

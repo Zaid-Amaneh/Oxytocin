@@ -90,7 +90,8 @@ class _HomeViewState extends State<HomeView> {
 
   void _showSubspecialtiesBottomSheet(BuildContext context, category) {
     final categoriesCubit = context.read<CategoriesCubit>();
-
+    print('category======sub=========');
+    print(category.id);
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -224,6 +225,8 @@ class _HomeViewState extends State<HomeView> {
                                 cat,
                               );
                               _showSubspecialtiesBottomSheet(context, cat);
+                              print('cat===============');
+                              print(cat.id);
                             },
                           );
                         },
