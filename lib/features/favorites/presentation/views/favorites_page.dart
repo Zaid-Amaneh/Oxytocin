@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oxytocin/features/home/presentation/cubit/home_cubit.dart';
 import 'package:provider/provider.dart';
 import '../widgets/doctor_card.dart';
 import '../../data/models/favorite_response.dart';
@@ -25,6 +26,11 @@ class _FavoritesPageState extends State<FavoritesPage> {
   void initState() {
     super.initState();
     _loadFavorites();
+  }
+
+  void _onDoctorCardTap(int doctorIndex) {
+    final cubit = context.read<HomeCubit>();
+    cubit.onDoctorCardTap(doctorIndex);
   }
 
   Future<void> _loadFavorites() async {
@@ -156,7 +162,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
             child: DoctorCard(
               doctor: favoriteDoctor.doctor,
               isFavorite: true,
-              onTap: () {},
+              onTap: () => _onDoctorCardTap(index),
               onFavoriteTap: () => _removeFavorite(favoriteDoctor),
             ),
           );

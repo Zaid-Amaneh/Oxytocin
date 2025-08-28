@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:oxytocin/core/constants/api_endpoints.dart';
+import 'package:oxytocin/core/routing/navigation_service.dart';
+import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/features/home/data/model/doctor_model.dart';
 import 'package:oxytocin/features/home/data/model/nearby_doctor_model.dart';
 import 'package:oxytocin/features/home/data/services/doctors_service.dart';
@@ -16,6 +18,7 @@ class HomeCubit extends Cubit<HomeState> {
   List<NearbyDoctorModel> _nearbyDoctors = [];
   bool _isLoadingDoctors = false;
   bool _isLoadingNearbyDoctors = false;
+  List<DoctorInfo> doctorInfo = [];
 
   HomeCubit()
     : _doctorsService = DoctorsService(baseUrl: ApiEndpoints.baseURL),
@@ -92,6 +95,10 @@ class HomeCubit extends Cubit<HomeState> {
   void onDoctorCardTap(int doctorIndex) {
     if (_doctors.isNotEmpty && doctorIndex < _doctors.length) {
       final doctor = _doctors[doctorIndex];
+      NavigationService().pushToNamedWithParams(
+        RouteNames.doctorProfileView,
+        queryParams: {'id': doctor.id.toString()},
+      );
     }
   }
 
@@ -118,18 +125,32 @@ class HomeCubit extends Cubit<HomeState> {
   void onDoctorBookTap(int doctorIndex) {
     if (_doctors.isNotEmpty && doctorIndex < _doctors.length) {
       final doctor = _doctors[doctorIndex];
+      NavigationService().pushToNamedWithParams(
+        RouteNames.doctorProfileView,
+        queryParams: {'id': doctor.id.toString()},
+      );
     }
   }
 
   void onNearbyDoctorCardTap(int doctorIndex) {
     if (_nearbyDoctors.isNotEmpty && doctorIndex < _nearbyDoctors.length) {
       final doctor = _nearbyDoctors[doctorIndex];
+
+      NavigationService().pushToNamedWithParams(
+        RouteNames.doctorProfileView,
+
+        queryParams: {'id': doctor.doctor.id.toString()},
+      );
     }
   }
 
   void onNearbyDoctorBookTap(int doctorIndex) {
     if (_nearbyDoctors.isNotEmpty && doctorIndex < _nearbyDoctors.length) {
       final doctor = _nearbyDoctors[doctorIndex];
+      NavigationService().pushToNamedWithParams(
+        RouteNames.doctorProfileView,
+        queryParams: {'id': doctor.doctor.id.toString()},
+      );
     }
   }
 

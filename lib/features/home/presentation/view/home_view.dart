@@ -269,12 +269,7 @@ class _HomeViewState extends State<HomeView> {
                           return DoctorCard(
                             doctor: doctor,
                             isFavorite: isFavorite,
-                            onTap: () {
-                              NavigationService().pushToNamedWithParams(
-                                RouteNames.doctorProfileView,
-                                queryParams: {'id': 'doctor.id'},
-                              );
-                            },
+                            onTap: () => _onDoctorCardTap(index),
                             onFavoriteTap: () => _onDoctorFavoriteTap(index),
                             onBookTap: () => _onDoctorBookTap(index),
                           );
