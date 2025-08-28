@@ -42,10 +42,13 @@ class _AppointmentsManagementViewBodyState
     super.didChangeDependencies();
     if (!_didInit) {
       _filters = {
-        'all': {'displayText': context.tr.allReservations, 'apiStatus': ""},
+        'all': {
+          'displayText': context.tr.allReservations,
+          'apiStatus': "waiting,cancelle,completed,absent",
+        },
         'current': {
           'displayText': context.tr.currentReservations,
-          'apiStatus': "waiting,in_consultation",
+          'apiStatus': "waiting",
         },
         'past': {
           'displayText': context.tr.pastReservations,

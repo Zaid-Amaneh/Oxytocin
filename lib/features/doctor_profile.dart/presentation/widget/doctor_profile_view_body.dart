@@ -77,16 +77,16 @@ class DoctorProfileViewBody extends StatelessWidget {
                     },
                   ),
                 ),
-                // const SliverDivider(color: AppColors.textSecondary),
-                // SliverToBoxAdapter(
-                //   child: ClinicLocationPage(
-                //     clinicLatitude: state.doctorProfile.clinic.latitude,
-                //     clinicLongitude: state.doctorProfile.clinic.longitude,
-                //     clinicName: state.doctorProfile.user.fullName,
-                //     clinicLocation: state.doctorProfile.clinic.address,
-                //     clinicPhone: state.doctorProfile.clinic.phone,
-                //   ),
-                // ),
+                const SliverDivider(color: AppColors.textSecondary),
+                SliverToBoxAdapter(
+                  child: ClinicLocationPage(
+                    clinicLatitude: state.doctorProfile.clinic.latitude,
+                    clinicLongitude: state.doctorProfile.clinic.longitude,
+                    clinicName: state.doctorProfile.user.fullName,
+                    clinicLocation: state.doctorProfile.clinic.address,
+                    clinicPhone: state.doctorProfile.clinic.phone,
+                  ),
+                ),
                 const SliverDivider(color: AppColors.textSecondary),
                 SliverToBoxAdapter(
                   child: ClinicPhotosGallery(imageUrls: state.clinicImages),

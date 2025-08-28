@@ -1168,4 +1168,15 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get patientBannedDescription =>
       'لقد قامت العيادة بحظر هذا الحساب. يمكنك التواصل مع العيادة لإزالة الحظر أو في حال كنت تظن أنه قد تم حظرك عن طريق الخطأ.';
+
+  @override
+  String get myMedicalRecordsTitle => 'سجلاتي الطبية';
+
+  @override
+  String get myMedicalRecordsDescription =>
+      'هنا يمكنك الاطلاع على أرشيفك الطبي بناءً على التخصصات التي زرت أطباء فيها من قبل. اختر أحد التخصصات لتتصفح السجلات الطبية المرتبطة به.';
+
+  @override
+  String get selectSpecialtyToViewRecords =>
+      'اختر اختصاصًا طبيًا للاطلاع على سجلاتك';
 }

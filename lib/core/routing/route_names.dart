@@ -27,4 +27,5 @@ class RouteNames {
   static const reAppointment = 'reAppointment';
   static const reBookAppointment = 'reBookAppointment';
   static const attachmentsManagerScreen = 'attachmentsManagerScreen';
+  static const medicalRecordsView = 'medicalRecordsView';
 }

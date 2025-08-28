@@ -33,6 +33,7 @@ import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/fa
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/all_appointment_month.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/all_reviews_view.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/doctor_profile_view.dart';
+import 'package:oxytocin/features/medical_records/presentation/views/medical_records_view.dart';
 import 'package:oxytocin/features/search_doctors_page/data/services/doctor_search_service.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/viewmodels/doctorSearch/doctor_search_cubit.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/views/search_doctors_view.dart';
@@ -72,7 +73,7 @@ import 'package:oxytocin/features/profile/di/profile_dependency_injection.dart';
 class AppRouter {
   static GoRouter createRouter(NavigationService navigationService) {
     final router = GoRouter(
-      initialLocation: '/${RouteNames.splash}',
+      initialLocation: '/${RouteNames.medicalRecordsView}',
       routes: [
         GoRoute(
           path: '/${RouteNames.splash}',
@@ -458,6 +459,12 @@ class AppRouter {
               child: AttachmentsManagerScreen(appointmentId: args['id'] as int),
             );
           },
+        ),
+
+        GoRoute(
+          path: '/${RouteNames.medicalRecordsView}',
+          name: RouteNames.medicalRecordsView,
+          builder: (context, state) => const MedicalRecordsView(),
         ),
       ],
     );

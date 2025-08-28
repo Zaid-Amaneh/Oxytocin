@@ -1193,4 +1193,15 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get patientBannedDescription =>
       'This account has been banned by the clinic. Please contact the clinic to remove the ban or if you believe this ban was applied by mistake.';
+
+  @override
+  String get myMedicalRecordsTitle => 'My Medical Records';
+
+  @override
+  String get myMedicalRecordsDescription =>
+      'Here you can view your medical archive based on the specialties of doctors you have visited before. Select a specialty to browse the related medical records.';
+
+  @override
+  String get selectSpecialtyToViewRecords =>
+      'Select a medical specialty to view your records';
 }

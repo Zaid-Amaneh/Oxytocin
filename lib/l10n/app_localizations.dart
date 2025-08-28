@@ -2215,6 +2215,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This account has been banned by the clinic. Please contact the clinic to remove the ban or if you believe this ban was applied by mistake.'**
   String get patientBannedDescription;
+
+  /// No description provided for @myMedicalRecordsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My Medical Records'**
+  String get myMedicalRecordsTitle;
+
+  /// No description provided for @myMedicalRecordsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Here you can view your medical archive based on the specialties of doctors you have visited before. Select a specialty to browse the related medical records.'**
+  String get myMedicalRecordsDescription;
+
+  /// No description provided for @selectSpecialtyToViewRecords.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a medical specialty to view your records'**
+  String get selectSpecialtyToViewRecords;
 }
 
 class _AppLocalizationsDelegate
