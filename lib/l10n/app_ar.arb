@@ -366,7 +366,17 @@
     "doctorRecommendations": "توصيات الطبيب",
     "medicalSummary": "ملخص الحالة الطبية",
     "mainComplaint": "الشكوى الأساسية",
-    "manageMedicalRecords":"إدارة السجلات الطبية"
+    "manageMedicalRecords":"إدارة السجلات الطبية",
+    "medicalRecordsPermissions": "تحديد صلاحيات السجلات الطبية",
+    "medicalRecordsPermissionsDesc": "اختر ما إذا كان السجل الطبي عامًا يمكن لجميع الأطباء الاطلاع عليه، أو خاصًا بحيث يقتصر على أطباء نفس الاختصاص.",
+    "public": "عام",
+    "restricted": "خاص",
+    "noMedicalRecordsInThisField": "لا توجد لديك أي سجلات طبية في هذا المجال حتى الآن، وهذا أمر يدعو للتفاؤل.",
+    "profilePersonal": "الملف الشخصي",
+    "appointments": "المواعيد",
+    "doctors": "الأطباء",
+    "home": "الرئيسية"
+
 
     
 

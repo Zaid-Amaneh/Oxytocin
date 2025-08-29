@@ -1242,4 +1242,33 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get manageMedicalRecords => 'Manage medical records';
+
+  @override
+  String get medicalRecordsPermissions => 'Set Medical Records Permissions';
+
+  @override
+  String get medicalRecordsPermissionsDesc =>
+      'Choose whether the medical record is public, allowing all doctors to view it, or private, restricted to doctors of the same specialty.';
+
+  @override
+  String get public => 'Public';
+
+  @override
+  String get restricted => 'Restricted';
+
+  @override
+  String get noMedicalRecordsInThisField =>
+      'You don\'t have any medical records in this field yet, and that\'s something to be optimistic about.';
+
+  @override
+  String get profilePersonal => 'Profile';
+
+  @override
+  String get appointments => 'Appointments';
+
+  @override
+  String get doctors => 'Doctors';
+
+  @override
+  String get home => 'Home';
 }

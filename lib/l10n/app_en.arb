@@ -366,7 +366,17 @@
   "doctorRecommendations": "Doctor's Recommendations",
   "medicalSummary": "Medical Summary",
   "mainComplaint": "Main Complaint",
-  "manageMedicalRecords":"Manage medical records"
+  "manageMedicalRecords":"Manage medical records",
+  "medicalRecordsPermissions": "Set Medical Records Permissions",
+  "medicalRecordsPermissionsDesc": "Choose whether the medical record is public, allowing all doctors to view it, or private, restricted to doctors of the same specialty.",
+  "public": "Public",
+  "restricted": "Restricted",
+  "noMedicalRecordsInThisField": "You don't have any medical records in this field yet, and that's something to be optimistic about.",
+  "profilePersonal": "Profile",
+  "appointments": "Appointments",
+  "doctors": "Doctors",
+  "home": "Home"
+
 
 
 

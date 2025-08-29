@@ -2305,6 +2305,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Manage medical records'**
   String get manageMedicalRecords;
+
+  /// No description provided for @medicalRecordsPermissions.
+  ///
+  /// In en, this message translates to:
+  /// **'Set Medical Records Permissions'**
+  String get medicalRecordsPermissions;
+
+  /// No description provided for @medicalRecordsPermissionsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose whether the medical record is public, allowing all doctors to view it, or private, restricted to doctors of the same specialty.'**
+  String get medicalRecordsPermissionsDesc;
+
+  /// No description provided for @public.
+  ///
+  /// In en, this message translates to:
+  /// **'Public'**
+  String get public;
+
+  /// No description provided for @restricted.
+  ///
+  /// In en, this message translates to:
+  /// **'Restricted'**
+  String get restricted;
+
+  /// No description provided for @noMedicalRecordsInThisField.
+  ///
+  /// In en, this message translates to:
+  /// **'You don\'t have any medical records in this field yet, and that\'s something to be optimistic about.'**
+  String get noMedicalRecordsInThisField;
+
+  /// No description provided for @profilePersonal.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profilePersonal;
+
+  /// No description provided for @appointments.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointments'**
+  String get appointments;
+
+  /// No description provided for @doctors.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctors'**
+  String get doctors;
+
+  /// No description provided for @home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get home;
 }
 
 class _AppLocalizationsDelegate

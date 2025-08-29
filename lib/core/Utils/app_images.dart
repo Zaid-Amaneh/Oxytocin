@@ -170,4 +170,15 @@ class AppImages {
       "assets/images/comfortable_person.png";
   static const String comfortablePersonSvg =
       "assets/images/comfortable_person.svg";
+
+  static const String appointmentsSelected =
+      "assets/images/appointmentsSelected.svg";
+  static const String appointmentsUnSelected =
+      "assets/images/appointmentsUnSelected.svg";
+  static const String doctorSelected = "assets/images/doctorSelected.svg";
+  static const String doctorUnSelected = "assets/images/doctorUnSelected.svg";
+  static const String profileSelected = "assets/images/profileSelected.svg";
+  static const String profileUnSelected = "assets/images/profileUnSelected.svg";
+  static const String homeSelected = "assets/images/homeSelected.svg";
+  static const String homeUnSelected = "assets/images/homeUnSelected.svg";
 }

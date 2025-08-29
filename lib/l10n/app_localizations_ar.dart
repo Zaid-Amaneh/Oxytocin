@@ -1216,4 +1216,33 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get manageMedicalRecords => 'إدارة السجلات الطبية';
+
+  @override
+  String get medicalRecordsPermissions => 'تحديد صلاحيات السجلات الطبية';
+
+  @override
+  String get medicalRecordsPermissionsDesc =>
+      'اختر ما إذا كان السجل الطبي عامًا يمكن لجميع الأطباء الاطلاع عليه، أو خاصًا بحيث يقتصر على أطباء نفس الاختصاص.';
+
+  @override
+  String get public => 'عام';
+
+  @override
+  String get restricted => 'خاص';
+
+  @override
+  String get noMedicalRecordsInThisField =>
+      'لا توجد لديك أي سجلات طبية في هذا المجال حتى الآن، وهذا أمر يدعو للتفاؤل.';
+
+  @override
+  String get profilePersonal => 'الملف الشخصي';
+
+  @override
+  String get appointments => 'المواعيد';
+
+  @override
+  String get doctors => 'الأطباء';
+
+  @override
+  String get home => 'الرئيسية';
 }

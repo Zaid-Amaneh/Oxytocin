@@ -33,6 +33,8 @@ import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/fa
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/all_appointment_month.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/all_reviews_view.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/doctor_profile_view.dart';
+import 'package:oxytocin/features/manage_medical_records/data/services/specialty_access_service.dart';
+import 'package:oxytocin/features/manage_medical_records/presentation/viewmodels/specialty_access_cubit.dart';
 import 'package:oxytocin/features/manage_medical_records/presentation/views/manage_medical_records.dart';
 import 'package:oxytocin/features/medical_records/data/repositories/doctors_repository.dart';
 import 'package:oxytocin/features/medical_records/data/services/archives_service.dart';
@@ -83,7 +85,7 @@ import 'package:oxytocin/features/profile/di/profile_dependency_injection.dart';
 class AppRouter {
   static GoRouter createRouter(NavigationService navigationService) {
     final router = GoRouter(
-      initialLocation: '/${RouteNames.specializationsView}',
+      initialLocation: '/${RouteNames.home}',
       routes: [
         GoRoute(
           path: '/${RouteNames.splash}',
@@ -525,7 +527,12 @@ class AppRouter {
         GoRoute(
           path: '/${RouteNames.manageMedicalRecords}',
           name: RouteNames.manageMedicalRecords,
-          builder: (context, state) => const ManageMedicalRecords(),
+          builder: (context, state) => BlocProvider(
+            create: (context) =>
+                SpecialtyAccessCubit(SpecialtyAccessService(http.Client()))
+                  ..fetchSpecialtyAccessList(),
+            child: const ManageMedicalRecords(),
+          ),
         ),
       ],
     );

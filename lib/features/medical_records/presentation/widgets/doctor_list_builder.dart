@@ -58,7 +58,7 @@ class DoctorListBuilder extends StatelessWidget {
                       height: height * 0.35,
                     ),
                     Text(
-                      'لا توجد لديك أي سجلات طبية في هذا المجال حتى الآن، وهذا أمر يدعو للتفاؤل.',
+                      context.tr.noMedicalRecordsInThisField,
                       style: AppStyles.almaraiBold(
                         context,
                       ).copyWith(color: AppColors.textSecondary, fontSize: 16),
