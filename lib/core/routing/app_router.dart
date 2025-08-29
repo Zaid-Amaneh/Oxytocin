@@ -33,7 +33,13 @@ import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/fa
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/all_appointment_month.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/all_reviews_view.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/doctor_profile_view.dart';
+import 'package:oxytocin/features/medical_records/data/services/archives_service.dart';
+import 'package:oxytocin/features/medical_records/data/services/specialties_service.dart';
+import 'package:oxytocin/features/medical_records/presentation/viewmodels/patient_archives_cubit.dart';
+import 'package:oxytocin/features/medical_records/presentation/viewmodels/specialties_cubit.dart';
+import 'package:oxytocin/features/medical_records/presentation/views/doctor_list_view.dart';
 import 'package:oxytocin/features/medical_records/presentation/views/medical_records_view.dart';
+import 'package:oxytocin/features/medical_records/presentation/views/specializations_view.dart';
 import 'package:oxytocin/features/search_doctors_page/data/services/doctor_search_service.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/viewmodels/doctorSearch/doctor_search_cubit.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/views/search_doctors_view.dart';
@@ -73,7 +79,7 @@ import 'package:oxytocin/features/profile/di/profile_dependency_injection.dart';
 class AppRouter {
   static GoRouter createRouter(NavigationService navigationService) {
     final router = GoRouter(
-      initialLocation: '/${RouteNames.medicalRecordsView}',
+      initialLocation: '/${RouteNames.specializationsView}',
       routes: [
         GoRoute(
           path: '/${RouteNames.splash}',
@@ -462,9 +468,42 @@ class AppRouter {
         ),
 
         GoRoute(
+          path: '/${RouteNames.specializationsView}',
+          name: RouteNames.specializationsView,
+          builder: (context, state) {
+            final specialtiesService = SpecialtiesService(http.Client());
+            return BlocProvider(
+              create: (_) =>
+                  SpecialtiesCubit(specialtiesService)..fetchSpecialties(),
+              child: const SpecializationsView(),
+            );
+          },
+        ),
+        GoRoute(
+          path: '/${RouteNames.doctorListView}',
+          name: RouteNames.doctorListView,
+          builder: (context, state) {
+            final args = state.extra as Map<String, dynamic>;
+            final int id = args['id'] as int;
+            final String name = args['name'] as String;
+            return DoctorListView(id: id, specName: name);
+          },
+        ),
+        GoRoute(
           path: '/${RouteNames.medicalRecordsView}',
           name: RouteNames.medicalRecordsView,
-          builder: (context, state) => const MedicalRecordsView(),
+          builder: (context, state) {
+            final args = state.extra as Map<String, dynamic>;
+            final int doctorId = args['id'] as int;
+            return BlocProvider(
+              create: (context) {
+                final archivesService = ArchivesService(http.Client());
+                return PatientArchivesCubit(archivesService)
+                  ..fetchDoctorArchives(doctorId);
+              },
+              child: const MedicalRecordsView(),
+            );
+          },
         ),
       ],
     );

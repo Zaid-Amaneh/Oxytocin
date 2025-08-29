@@ -28,4 +28,6 @@ class RouteNames {
   static const reBookAppointment = 'reBookAppointment';
   static const attachmentsManagerScreen = 'attachmentsManagerScreen';
   static const medicalRecordsView = 'medicalRecordsView';
+  static const specializationsView = 'specializationsView';
+  static const doctorListView = 'doctorListView';
 }

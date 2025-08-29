@@ -1204,4 +1204,15 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get selectSpecialtyToViewRecords =>
       'Select a medical specialty to view your records';
+
+  @override
+  String get visits => 'Visits';
+
+  @override
+  String get selectDoctorToViewRecords =>
+      'Select a doctor to view your medical records with them';
+
+  @override
+  String get visitedDoctorsDescription =>
+      'Here is a list of the doctors you have visited. Select a doctor to view the records they wrote for you.';
 }

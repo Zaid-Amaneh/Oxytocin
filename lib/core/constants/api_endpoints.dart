@@ -30,4 +30,5 @@ class ApiEndpoints {
       '$baseURL/api/appointments/$appointmentId/attachments/$attachmentId/delete/';
   static String getAppointmentQueue(int appointmentId) =>
       '$baseURL/api/appointments/$appointmentId/queue/';
+  static const String specialties = "$baseURL/api/doctors/specialties/";
 }

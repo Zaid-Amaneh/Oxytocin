@@ -2233,6 +2233,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Select a medical specialty to view your records'**
   String get selectSpecialtyToViewRecords;
+
+  /// No description provided for @visits.
+  ///
+  /// In en, this message translates to:
+  /// **'Visits'**
+  String get visits;
+
+  /// No description provided for @selectDoctorToViewRecords.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a doctor to view your medical records with them'**
+  String get selectDoctorToViewRecords;
+
+  /// No description provided for @visitedDoctorsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Here is a list of the doctors you have visited. Select a doctor to view the records they wrote for you.'**
+  String get visitedDoctorsDescription;
 }
 
 class _AppLocalizationsDelegate
