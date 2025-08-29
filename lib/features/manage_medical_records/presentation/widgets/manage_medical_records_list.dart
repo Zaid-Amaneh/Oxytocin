@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
@@ -40,15 +42,21 @@ class ManageMedicalRecordsList extends StatelessWidget {
             itemCount: list.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              crossAxisSpacing: 8,
-              mainAxisSpacing: 8,
+              crossAxisSpacing: 0,
+              mainAxisSpacing: 0,
               childAspectRatio: 0.85,
             ),
             itemBuilder: (context, index) {
               final item = list[index];
               final bool isUpdating = item.id == updatingId;
 
-              return _SpecialtyGridItem(item: item, isUpdating: isUpdating);
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ModernSpecialtyGridItem(
+                  item: item,
+                  isUpdating: isUpdating,
+                ),
+              );
             },
           );
         }
@@ -59,8 +67,101 @@ class ManageMedicalRecordsList extends StatelessWidget {
   }
 }
 
-class _SpecialtyGridItem extends StatelessWidget {
-  const _SpecialtyGridItem({required this.item, required this.isUpdating});
+// class _SpecialtyGridItem extends StatelessWidget {
+//   const _SpecialtyGridItem({required this.item, required this.isUpdating});
+
+//   final SpecialtyAccess item;
+//   final bool isUpdating;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final size = MediaQuery.of(context).size;
+//     final width = size.width;
+//     final name = Helper.isArabic(context)
+//         ? item.specialty.nameAr
+//         : item.specialty.nameEn;
+//     final bool isRestricted = item.visibility == "restricted";
+
+//     return Container(
+//       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+//       margin: const EdgeInsets.all(8),
+//       decoration: BoxDecoration(
+//         color: AppColors.kPrimaryColor2,
+//         borderRadius: BorderRadius.circular(16),
+//         boxShadow: [
+//           const BoxShadow(
+//             color: Colors.black54,
+//             blurRadius: 4,
+//             offset: Offset(0, 2),
+//           ),
+//         ],
+//       ),
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.spaceAround,
+//         children: [
+//           NetworkImageWithState(
+//             url: item.specialty.image ?? "",
+//             width: width * 0.18,
+//             height: width * 0.18,
+//             fit: BoxFit.contain,
+//           ),
+//           Text(
+//             name,
+//             style: AppStyles.almaraiBold(
+//               context,
+//             ).copyWith(color: AppColors.background, fontSize: 15),
+//             textAlign: TextAlign.center,
+//             maxLines: 2,
+//             overflow: TextOverflow.ellipsis,
+//           ),
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               Text(
+//                 isRestricted ? context.tr.restricted : context.tr.public,
+//                 style: AppStyles.almaraiRegular(
+//                   context,
+//                 ).copyWith(color: AppColors.background, fontSize: 12),
+//               ),
+//               const SizedBox(width: 8),
+//               if (isUpdating)
+//                 const SizedBox(
+//                   width: 24,
+//                   height: 24,
+//                   child: CircularProgressIndicator(
+//                     strokeWidth: 2.0,
+//                     color: Colors.white,
+//                   ),
+//                 )
+//               else
+//                 Switch(
+//                   value: isRestricted,
+//                   onChanged: (newValue) {
+//                     final newVisibility = newValue ? "restricted" : "public";
+//                     context
+//                         .read<SpecialtyAccessCubit>()
+//                         .updateSpecialtyVisibility(
+//                           specialtyAccessId: item.id,
+//                           newVisibility: newVisibility,
+//                         );
+//                   },
+//                   activeColor: Colors.white,
+//                   activeTrackColor: AppColors.kPrimaryColor1,
+//                 ),
+//             ],
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+class ModernSpecialtyGridItem extends StatelessWidget {
+  const ModernSpecialtyGridItem({
+    super.key,
+    required this.item,
+    required this.isUpdating,
+  });
 
   final SpecialtyAccess item;
   final bool isUpdating;
@@ -74,75 +175,253 @@ class _SpecialtyGridItem extends StatelessWidget {
         : item.specialty.nameEn;
     final bool isRestricted = item.visibility == "restricted";
 
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-      margin: const EdgeInsets.all(8),
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
       decoration: BoxDecoration(
-        color: AppColors.kPrimaryColor2,
-        borderRadius: BorderRadius.circular(16),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: isRestricted
+              ? [
+                  const Color(0xFFFF6B6B).withOpacity(0.1),
+                  const Color(0xFFFF8E53).withOpacity(0.05),
+                ]
+              : [
+                  const Color(0xFF4ECDC4).withOpacity(0.1),
+                  const Color(0xFF44A08D).withOpacity(0.05),
+                ],
+        ),
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(
+          color: isRestricted
+              ? const Color(0xFFFF6B6B).withOpacity(0.2)
+              : const Color(0xFF4ECDC4).withOpacity(0.2),
+          width: 1.5,
+        ),
         boxShadow: [
-          const BoxShadow(
-            color: Colors.black54,
-            blurRadius: 4,
-            offset: Offset(0, 2),
+          BoxShadow(
+            color: isRestricted
+                ? const Color(0xFFFF6B6B).withOpacity(0.1)
+                : const Color(0xFF4ECDC4).withOpacity(0.1),
+            blurRadius: 20,
+            offset: const Offset(0, 8),
+            spreadRadius: 0,
+          ),
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+            spreadRadius: 0,
           ),
         ],
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          NetworkImageWithState(
-            url: item.specialty.image ?? "",
-            width: width * 0.18,
-            height: width * 0.18,
-            fit: BoxFit.contain,
-          ),
-          Text(
-            name,
-            style: AppStyles.almaraiBold(
-              context,
-            ).copyWith(color: AppColors.background, fontSize: 15),
-            textAlign: TextAlign.center,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                isRestricted ? context.tr.restricted : context.tr.public,
-                style: AppStyles.almaraiRegular(
-                  context,
-                ).copyWith(color: AppColors.background, fontSize: 12),
-              ),
-              const SizedBox(width: 8),
-              if (isUpdating)
-                const SizedBox(
-                  width: 24,
-                  height: 24,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2.0,
-                    color: Colors.white,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(24),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.9),
+              borderRadius: BorderRadius.circular(24),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                  width: width * 0.2,
+                  height: width * 0.2,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    gradient: const LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        AppColors.kPrimaryColor1,
+                        AppColors.kPrimaryColor2,
+                      ],
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 15,
+                        offset: const Offset(0, 5),
+                        spreadRadius: 0,
+                      ),
+                    ],
                   ),
-                )
-              else
-                Switch(
-                  value: isRestricted,
-                  onChanged: (newValue) {
-                    final newVisibility = newValue ? "restricted" : "public";
-                    context
-                        .read<SpecialtyAccessCubit>()
-                        .updateSpecialtyVisibility(
-                          specialtyAccessId: item.id,
-                          newVisibility: newVisibility,
-                        );
-                  },
-                  activeColor: Colors.white,
-                  activeTrackColor: AppColors.kPrimaryColor1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(6.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: NetworkImageWithState(
+                        url: item.specialty.image ?? "",
+                        fit: BoxFit.fitHeight,
+                      ),
+                    ),
+                  ),
                 ),
-            ],
+
+                Text(
+                  name,
+                  style: AppStyles.almaraiBold(context).copyWith(
+                    color: const Color(0xFF2C3E50),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 0.3,
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
+                  decoration: BoxDecoration(
+                    color: isRestricted
+                        ? const Color(0xFFFF6B6B).withOpacity(0.1)
+                        : const Color(0xFF4ECDC4).withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(
+                      color: isRestricted
+                          ? const Color(0xFFFF6B6B).withOpacity(0.3)
+                          : const Color(0xFF4ECDC4).withOpacity(0.3),
+                      width: 1,
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            width: 8,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: isRestricted
+                                  ? const Color(0xFFFF6B6B)
+                                  : const Color(0xFF4ECDC4),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            isRestricted
+                                ? context.tr.restricted
+                                : context.tr.public,
+                            style: AppStyles.almaraiRegular(context).copyWith(
+                              color: isRestricted
+                                  ? const Color(0xFFFF6B6B)
+                                  : const Color(0xFF4ECDC4),
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(width: 12),
+
+                      if (isUpdating)
+                        SizedBox(
+                          width: 24,
+                          height: 24,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2.5,
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              isRestricted
+                                  ? const Color(0xFFFF6B6B)
+                                  : const Color(0xFF4ECDC4),
+                            ),
+                          ),
+                        )
+                      else
+                        GestureDetector(
+                          onTap: () {
+                            final newVisibility = isRestricted
+                                ? "public"
+                                : "restricted";
+                            context
+                                .read<SpecialtyAccessCubit>()
+                                .updateSpecialtyVisibility(
+                                  specialtyAccessId: item.id,
+                                  newVisibility: newVisibility,
+                                );
+                          },
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 300),
+                            width: 50,
+                            height: 26,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              gradient: LinearGradient(
+                                colors: isRestricted
+                                    ? [
+                                        const Color(0xFFFF6B6B),
+                                        const Color(0xFFFF8E53),
+                                      ]
+                                    : [
+                                        const Color(0xFF4ECDC4),
+                                        const Color(0xFF44A08D),
+                                      ],
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color:
+                                      (isRestricted
+                                              ? const Color(0xFFFF6B6B)
+                                              : const Color(0xFF4ECDC4))
+                                          .withOpacity(0.3),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: AnimatedAlign(
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeInOut,
+                              alignment: isRestricted
+                                  ? Alignment.centerRight
+                                  : Alignment.centerLeft,
+                              child: Container(
+                                width: 22,
+                                height: 22,
+                                margin: const EdgeInsets.all(2),
+                                decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black26,
+                                      blurRadius: 4,
+                                      offset: Offset(0, 1),
+                                    ),
+                                  ],
+                                ),
+                                child: Icon(
+                                  isRestricted
+                                      ? Icons.lock_rounded
+                                      : Icons.public_rounded,
+                                  size: 14,
+                                  color: isRestricted
+                                      ? const Color(0xFFFF6B6B)
+                                      : const Color(0xFF4ECDC4),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
-        ],
+        ),
       ),
     );
   }
