@@ -85,7 +85,7 @@ import 'package:oxytocin/features/profile/di/profile_dependency_injection.dart';
 class AppRouter {
   static GoRouter createRouter(NavigationService navigationService) {
     final router = GoRouter(
-      initialLocation: '/${RouteNames.manageMedicalRecords}',
+      initialLocation: '/${RouteNames.signIn}',
       routes: [
         GoRoute(
           path: '/${RouteNames.splash}',

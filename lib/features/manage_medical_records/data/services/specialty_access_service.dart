@@ -63,7 +63,6 @@ class SpecialtyAccessService {
     final refreshToken = await secureStorageService.getRefreshToken();
     if (refreshToken == null) {
       _logger.e("No refresh token found. Deleting all tokens.");
-      await secureStorageService.deleteAll();
       throw const AuthenticationFailure();
     }
 
@@ -158,7 +157,6 @@ class SpecialtyAccessService {
     final refreshToken = await secureStorageService.getRefreshToken();
     if (refreshToken == null) {
       _logger.e("No refresh token found. Deleting all tokens.");
-      await secureStorageService.deleteAll();
       throw const AuthenticationFailure();
     }
 

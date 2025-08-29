@@ -67,95 +67,6 @@ class ManageMedicalRecordsList extends StatelessWidget {
   }
 }
 
-// class _SpecialtyGridItem extends StatelessWidget {
-//   const _SpecialtyGridItem({required this.item, required this.isUpdating});
-
-//   final SpecialtyAccess item;
-//   final bool isUpdating;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final size = MediaQuery.of(context).size;
-//     final width = size.width;
-//     final name = Helper.isArabic(context)
-//         ? item.specialty.nameAr
-//         : item.specialty.nameEn;
-//     final bool isRestricted = item.visibility == "restricted";
-
-//     return Container(
-//       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-//       margin: const EdgeInsets.all(8),
-//       decoration: BoxDecoration(
-//         color: AppColors.kPrimaryColor2,
-//         borderRadius: BorderRadius.circular(16),
-//         boxShadow: [
-//           const BoxShadow(
-//             color: Colors.black54,
-//             blurRadius: 4,
-//             offset: Offset(0, 2),
-//           ),
-//         ],
-//       ),
-//       child: Column(
-//         mainAxisAlignment: MainAxisAlignment.spaceAround,
-//         children: [
-//           NetworkImageWithState(
-//             url: item.specialty.image ?? "",
-//             width: width * 0.18,
-//             height: width * 0.18,
-//             fit: BoxFit.contain,
-//           ),
-//           Text(
-//             name,
-//             style: AppStyles.almaraiBold(
-//               context,
-//             ).copyWith(color: AppColors.background, fontSize: 15),
-//             textAlign: TextAlign.center,
-//             maxLines: 2,
-//             overflow: TextOverflow.ellipsis,
-//           ),
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//               Text(
-//                 isRestricted ? context.tr.restricted : context.tr.public,
-//                 style: AppStyles.almaraiRegular(
-//                   context,
-//                 ).copyWith(color: AppColors.background, fontSize: 12),
-//               ),
-//               const SizedBox(width: 8),
-//               if (isUpdating)
-//                 const SizedBox(
-//                   width: 24,
-//                   height: 24,
-//                   child: CircularProgressIndicator(
-//                     strokeWidth: 2.0,
-//                     color: Colors.white,
-//                   ),
-//                 )
-//               else
-//                 Switch(
-//                   value: isRestricted,
-//                   onChanged: (newValue) {
-//                     final newVisibility = newValue ? "restricted" : "public";
-//                     context
-//                         .read<SpecialtyAccessCubit>()
-//                         .updateSpecialtyVisibility(
-//                           specialtyAccessId: item.id,
-//                           newVisibility: newVisibility,
-//                         );
-//                   },
-//                   activeColor: Colors.white,
-//                   activeTrackColor: AppColors.kPrimaryColor1,
-//                 ),
-//             ],
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
 class ModernSpecialtyGridItem extends StatelessWidget {
   const ModernSpecialtyGridItem({
     super.key,
@@ -183,32 +94,48 @@ class ModernSpecialtyGridItem extends StatelessWidget {
           end: Alignment.bottomRight,
           colors: isRestricted
               ? [
-                  const Color(0xFFFF6B6B).withOpacity(0.1),
-                  const Color(0xFFFF8E53).withOpacity(0.05),
+                  const Color(
+                    0xFFFF6B6B,
+                  ).withAlpha(26), // Replaced withOpacity(0.1)
+                  const Color(
+                    0xFFFF8E53,
+                  ).withAlpha(13), // Replaced withOpacity(0.05)
                 ]
               : [
-                  const Color(0xFF4ECDC4).withOpacity(0.1),
-                  const Color(0xFF44A08D).withOpacity(0.05),
+                  const Color(
+                    0xFF4ECDC4,
+                  ).withAlpha(26), // Replaced withOpacity(0.1)
+                  const Color(
+                    0xFF44A08D,
+                  ).withAlpha(13), // Replaced withOpacity(0.05)
                 ],
         ),
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
           color: isRestricted
-              ? const Color(0xFFFF6B6B).withOpacity(0.2)
-              : const Color(0xFF4ECDC4).withOpacity(0.2),
+              ? const Color(0xFFFF6B6B).withAlpha(
+                  51,
+                ) // Replaced withOpacity(0.2)
+              : const Color(
+                  0xFF4ECDC4,
+                ).withAlpha(51), // Replaced withOpacity(0.2)
           width: 1.5,
         ),
         boxShadow: [
           BoxShadow(
             color: isRestricted
-                ? const Color(0xFFFF6B6B).withOpacity(0.1)
-                : const Color(0xFF4ECDC4).withOpacity(0.1),
+                ? const Color(0xFFFF6B6B).withAlpha(
+                    26,
+                  ) // Replaced withOpacity(0.1)
+                : const Color(
+                    0xFF4ECDC4,
+                  ).withAlpha(26), // Replaced withOpacity(0.1)
             blurRadius: 20,
             offset: const Offset(0, 8),
             spreadRadius: 0,
           ),
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withAlpha(13), // Replaced withOpacity(0.05)
             blurRadius: 10,
             offset: const Offset(0, 4),
             spreadRadius: 0,
@@ -221,7 +148,7 @@ class ModernSpecialtyGridItem extends StatelessWidget {
           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.9),
+              color: Colors.white.withAlpha(230), // Replaced withOpacity(0.9)
               borderRadius: BorderRadius.circular(24),
             ),
             child: Column(
@@ -242,7 +169,9 @@ class ModernSpecialtyGridItem extends StatelessWidget {
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
+                        color: Colors.black.withAlpha(
+                          26,
+                        ), // Replaced withOpacity(0.1)
                         blurRadius: 15,
                         offset: const Offset(0, 5),
                         spreadRadius: 0,
@@ -281,13 +210,21 @@ class ModernSpecialtyGridItem extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     color: isRestricted
-                        ? const Color(0xFFFF6B6B).withOpacity(0.1)
-                        : const Color(0xFF4ECDC4).withOpacity(0.1),
+                        ? const Color(0xFFFF6B6B).withAlpha(
+                            26,
+                          ) // Replaced withOpacity(0.1)
+                        : const Color(
+                            0xFF4ECDC4,
+                          ).withAlpha(26), // Replaced withOpacity(0.1)
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
                       color: isRestricted
-                          ? const Color(0xFFFF6B6B).withOpacity(0.3)
-                          : const Color(0xFF4ECDC4).withOpacity(0.3),
+                          ? const Color(0xFFFF6B6B).withAlpha(
+                              77,
+                            ) // Replaced withOpacity(0.3)
+                          : const Color(
+                              0xFF4ECDC4,
+                            ).withAlpha(77), // Replaced withOpacity(0.3)
                       width: 1,
                     ),
                   ),
@@ -375,7 +312,9 @@ class ModernSpecialtyGridItem extends StatelessWidget {
                                       (isRestricted
                                               ? const Color(0xFFFF6B6B)
                                               : const Color(0xFF4ECDC4))
-                                          .withOpacity(0.3),
+                                          .withAlpha(
+                                            77,
+                                          ), // Replaced withOpacity(0.3)
                                   blurRadius: 8,
                                   offset: const Offset(0, 2),
                                 ),

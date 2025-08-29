@@ -277,8 +277,9 @@ class _AppointmentsManagementViewBodyState
                         context.tr.loginRequiredForCurrentReservations,
                         style: AppStyles.almaraiBold(context).copyWith(
                           color: AppColors.kPrimaryColor1,
-                          fontSize: 22,
+                          fontSize: 18,
                         ),
+                        textAlign: TextAlign.center,
                       )
                     : const UnExpectedError(),
               )
