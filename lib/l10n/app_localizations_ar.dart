@@ -1189,4 +1189,31 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get visitedDoctorsDescription =>
       'فيما يلي قائمة الأطباء الذين زرتهم. اختر طبيبًا للاطلاع على السجلات التي كتبها لك.';
+
+  @override
+  String get remainingAmount => 'المبلغ المتبقي';
+
+  @override
+  String get paidAmount => 'المبلغ المدفوع';
+
+  @override
+  String get sessionCost => 'تكلفة الجلسة';
+
+  @override
+  String get financialInfo => 'المعلومات المالية';
+
+  @override
+  String get vitalSigns => 'العلامات الحيوية';
+
+  @override
+  String get doctorRecommendations => 'توصيات الطبيب';
+
+  @override
+  String get medicalSummary => 'ملخص الحالة الطبية';
+
+  @override
+  String get mainComplaint => 'الشكوى الأساسية';
+
+  @override
+  String get manageMedicalRecords => 'إدارة السجلات الطبية';
 }

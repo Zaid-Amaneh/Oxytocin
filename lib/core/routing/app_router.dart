@@ -33,8 +33,12 @@ import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/fa
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/all_appointment_month.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/all_reviews_view.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/doctor_profile_view.dart';
+import 'package:oxytocin/features/manage_medical_records/presentation/views/manage_medical_records.dart';
+import 'package:oxytocin/features/medical_records/data/repositories/doctors_repository.dart';
 import 'package:oxytocin/features/medical_records/data/services/archives_service.dart';
+import 'package:oxytocin/features/medical_records/data/services/doctors_service.dart';
 import 'package:oxytocin/features/medical_records/data/services/specialties_service.dart';
+import 'package:oxytocin/features/medical_records/presentation/viewmodels/doctors_cubit.dart';
 import 'package:oxytocin/features/medical_records/presentation/viewmodels/patient_archives_cubit.dart';
 import 'package:oxytocin/features/medical_records/presentation/viewmodels/specialties_cubit.dart';
 import 'package:oxytocin/features/medical_records/presentation/views/doctor_list_view.dart';
@@ -486,7 +490,19 @@ class AppRouter {
             final args = state.extra as Map<String, dynamic>;
             final int id = args['id'] as int;
             final String name = args['name'] as String;
-            return DoctorListView(id: id, specName: name);
+
+            return BlocProvider(
+              create: (context) {
+                final DoctorsService doctorsService = DoctorsService(
+                  http.Client(),
+                );
+                final DoctorsRepository repository = DoctorsRepositoryImpl(
+                  doctorsService,
+                );
+                return DoctorsCubit(repository)..fetchDoctors(id);
+              },
+              child: DoctorListView(id: id, specName: name),
+            );
           },
         ),
         GoRoute(
@@ -495,15 +511,21 @@ class AppRouter {
           builder: (context, state) {
             final args = state.extra as Map<String, dynamic>;
             final int doctorId = args['id'] as int;
+            final String doctorName = args['name'] as String;
             return BlocProvider(
               create: (context) {
                 final archivesService = ArchivesService(http.Client());
                 return PatientArchivesCubit(archivesService)
                   ..fetchDoctorArchives(doctorId);
               },
-              child: const MedicalRecordsView(),
+              child: MedicalRecordsView(doctorName: doctorName),
             );
           },
+        ),
+        GoRoute(
+          path: '/${RouteNames.manageMedicalRecords}',
+          name: RouteNames.manageMedicalRecords,
+          builder: (context, state) => const ManageMedicalRecords(),
         ),
       ],
     );

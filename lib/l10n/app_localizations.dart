@@ -2251,6 +2251,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Here is a list of the doctors you have visited. Select a doctor to view the records they wrote for you.'**
   String get visitedDoctorsDescription;
+
+  /// No description provided for @remainingAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Remaining Amount'**
+  String get remainingAmount;
+
+  /// No description provided for @paidAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid Amount'**
+  String get paidAmount;
+
+  /// No description provided for @sessionCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Session Cost'**
+  String get sessionCost;
+
+  /// No description provided for @financialInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Financial Information'**
+  String get financialInfo;
+
+  /// No description provided for @vitalSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Vital Signs'**
+  String get vitalSigns;
+
+  /// No description provided for @doctorRecommendations.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor\'s Recommendations'**
+  String get doctorRecommendations;
+
+  /// No description provided for @medicalSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Medical Summary'**
+  String get medicalSummary;
+
+  /// No description provided for @mainComplaint.
+  ///
+  /// In en, this message translates to:
+  /// **'Main Complaint'**
+  String get mainComplaint;
+
+  /// No description provided for @manageMedicalRecords.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage medical records'**
+  String get manageMedicalRecords;
 }
 
 class _AppLocalizationsDelegate

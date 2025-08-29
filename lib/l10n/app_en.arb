@@ -357,7 +357,16 @@
   "selectSpecialtyToViewRecords": "Select a medical specialty to view your records",
   "visits":"Visits",
   "selectDoctorToViewRecords": "Select a doctor to view your medical records with them",
-  "visitedDoctorsDescription": "Here is a list of the doctors you have visited. Select a doctor to view the records they wrote for you."
+  "visitedDoctorsDescription": "Here is a list of the doctors you have visited. Select a doctor to view the records they wrote for you.",
+  "remainingAmount": "Remaining Amount",
+  "paidAmount": "Paid Amount",
+  "sessionCost": "Session Cost",
+  "financialInfo": "Financial Information",
+  "vitalSigns": "Vital Signs",
+  "doctorRecommendations": "Doctor's Recommendations",
+  "medicalSummary": "Medical Summary",
+  "mainComplaint": "Main Complaint",
+  "manageMedicalRecords":"Manage medical records"
 
 
 

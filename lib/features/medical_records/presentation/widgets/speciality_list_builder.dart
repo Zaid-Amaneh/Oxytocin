@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:logger/web.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/routing/navigation_service.dart';
@@ -17,7 +16,6 @@ class SpecialityListBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final width = size.width;
-    final height = size.height;
     return BlocBuilder<SpecialtiesCubit, SpecialtiesState>(
       builder: (context, state) {
         if (state is SpecialtiesLoading) {
@@ -88,7 +86,7 @@ class SpecialityListBuilder extends StatelessWidget {
             },
           );
         } else {
-          return const UnExpectedError();
+          return const SliverToBoxAdapter(child: UnExpectedError());
         }
       },
     );

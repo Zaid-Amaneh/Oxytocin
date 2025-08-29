@@ -30,4 +30,5 @@ class RouteNames {
   static const medicalRecordsView = 'medicalRecordsView';
   static const specializationsView = 'specializationsView';
   static const doctorListView = 'doctorListView';
+  static const manageMedicalRecords = 'manageMedicalRecords';
 }

@@ -357,7 +357,16 @@
     "selectSpecialtyToViewRecords": "اختر اختصاصًا طبيًا للاطلاع على سجلاتك",
     "visits":"زيارة",
     "selectDoctorToViewRecords": "اختر الطبيب لعرض سجلاتك الطبية معه",
-    "visitedDoctorsDescription": "فيما يلي قائمة الأطباء الذين زرتهم. اختر طبيبًا للاطلاع على السجلات التي كتبها لك."
+    "visitedDoctorsDescription": "فيما يلي قائمة الأطباء الذين زرتهم. اختر طبيبًا للاطلاع على السجلات التي كتبها لك.",
+    "remainingAmount": "المبلغ المتبقي",
+    "paidAmount": "المبلغ المدفوع",
+    "sessionCost": "تكلفة الجلسة",
+    "financialInfo": "المعلومات المالية",
+    "vitalSigns": "العلامات الحيوية",
+    "doctorRecommendations": "توصيات الطبيب",
+    "medicalSummary": "ملخص الحالة الطبية",
+    "mainComplaint": "الشكوى الأساسية",
+    "manageMedicalRecords":"إدارة السجلات الطبية"
 
     
 

@@ -165,4 +165,9 @@ class AppImages {
   static const String categoryDefault = "assets/images/categories/myself.svg";
 
   static const String doctorDefault = "assets/images/categories/myself.svg";
+
+  static const String comfortablePerson =
+      "assets/images/comfortable_person.png";
+  static const String comfortablePersonSvg =
+      "assets/images/comfortable_person.svg";
 }

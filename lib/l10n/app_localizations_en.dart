@@ -1215,4 +1215,31 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get visitedDoctorsDescription =>
       'Here is a list of the doctors you have visited. Select a doctor to view the records they wrote for you.';
+
+  @override
+  String get remainingAmount => 'Remaining Amount';
+
+  @override
+  String get paidAmount => 'Paid Amount';
+
+  @override
+  String get sessionCost => 'Session Cost';
+
+  @override
+  String get financialInfo => 'Financial Information';
+
+  @override
+  String get vitalSigns => 'Vital Signs';
+
+  @override
+  String get doctorRecommendations => 'Doctor\'s Recommendations';
+
+  @override
+  String get medicalSummary => 'Medical Summary';
+
+  @override
+  String get mainComplaint => 'Main Complaint';
+
+  @override
+  String get manageMedicalRecords => 'Manage medical records';
 }
