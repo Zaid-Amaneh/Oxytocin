@@ -155,7 +155,7 @@ abstract class AppLocalizations {
   /// No description provided for @startNow.
   ///
   /// In en, this message translates to:
-  /// **'Start Now'**
+  /// **'Start now'**
   String get startNow;
 
   /// No description provided for @signUp.
@@ -179,7 +179,7 @@ abstract class AppLocalizations {
   /// No description provided for @phoneNumber.
   ///
   /// In en, this message translates to:
-  /// **'Phone Number'**
+  /// **'Phone number'**
   String get phoneNumber;
 
   /// No description provided for @pleaseEnterValidNumber.
@@ -1609,6 +1609,510 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your next appointment is waiting for you. We wish you continued health and wellness.'**
   String get next_appointment_message;
+
+  /// No description provided for @errorLoadingCategories.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading categories'**
+  String get errorLoadingCategories;
+
+  /// No description provided for @doctors.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctors'**
+  String get doctors;
+
+  /// No description provided for @noDoctorsAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No doctors available'**
+  String get noDoctorsAvailable;
+
+  /// No description provided for @failedToLoadCategories.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load categories'**
+  String get failedToLoadCategories;
+
+  /// No description provided for @failedToFetchDoctors.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to fetch doctors'**
+  String get failedToFetchDoctors;
+
+  /// No description provided for @settingUpForYou.
+  ///
+  /// In en, this message translates to:
+  /// **'We are setting everything up for you now...'**
+  String get settingUpForYou;
+
+  /// No description provided for @firstStepHealthcare.
+  ///
+  /// In en, this message translates to:
+  /// **'Your first step towards integrated healthcare starts now'**
+  String get firstStepHealthcare;
+
+  /// No description provided for @chronicDiseases.
+  ///
+  /// In en, this message translates to:
+  /// **'Chronic diseases'**
+  String get chronicDiseases;
+
+  /// No description provided for @yourHealthMatters.
+  ///
+  /// In en, this message translates to:
+  /// **'Your health matters to us\nPlease provide your medical information.'**
+  String get yourHealthMatters;
+
+  /// No description provided for @allergies.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergies'**
+  String get allergies;
+
+  /// No description provided for @regularMedications.
+  ///
+  /// In en, this message translates to:
+  /// **'Medications used regularly'**
+  String get regularMedications;
+
+  /// No description provided for @chooseBloodType.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your blood type'**
+  String get chooseBloodType;
+
+  /// No description provided for @lifestyleInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Lifestyle information'**
+  String get lifestyleInformation;
+
+  /// No description provided for @completePersonalInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'We would like to know you better\nPlease complete your personal information.'**
+  String get completePersonalInfo;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @fieldRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'This field is required'**
+  String get fieldRequired;
+
+  /// No description provided for @enterValidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email address'**
+  String get enterValidEmail;
+
+  /// No description provided for @gender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get gender;
+
+  /// No description provided for @dateOfBirth.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of birth'**
+  String get dateOfBirth;
+
+  /// No description provided for @currentJob.
+  ///
+  /// In en, this message translates to:
+  /// **'Current job'**
+  String get currentJob;
+
+  /// No description provided for @fillAllRequiredFields.
+  ///
+  /// In en, this message translates to:
+  /// **'Please fill in all required fields'**
+  String get fillAllRequiredFields;
+
+  /// No description provided for @errorGettingLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Error getting location:'**
+  String get errorGettingLocation;
+
+  /// No description provided for @enterLocationOnMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter and select your location on the map'**
+  String get enterLocationOnMap;
+
+  /// No description provided for @enterLocationMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Let’s get closer to you\nEnter your location and mark it on the map'**
+  String get enterLocationMessage;
+
+  /// No description provided for @currentLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Your current location'**
+  String get currentLocation;
+
+  /// No description provided for @enterAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your address or area name (example: Baghdad street).'**
+  String get enterAddress;
+
+  /// No description provided for @moveMapOrUseLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Move the map or use your current location to pinpoint accurately'**
+  String get moveMapOrUseLocation;
+
+  /// No description provided for @loadingMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading map...'**
+  String get loadingMap;
+
+  /// No description provided for @addPersonalTouch.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your personal touch'**
+  String get addPersonalTouch;
+
+  /// No description provided for @uploadPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Please upload your photo.'**
+  String get uploadPhoto;
+
+  /// No description provided for @photoGuidelines.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferably the photo should be clear\nrecent, and show your face clearly.'**
+  String get photoGuidelines;
+
+  /// No description provided for @failedToFetchFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to fetch favorites'**
+  String get failedToFetchFavorites;
+
+  /// No description provided for @connectionError.
+  ///
+  /// In en, this message translates to:
+  /// **'Connection error:'**
+  String get connectionError;
+
+  /// No description provided for @failedToFetchFavoriteDoctors.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to fetch favorite doctors'**
+  String get failedToFetchFavoriteDoctors;
+
+  /// No description provided for @failedToAddFavoriteDoctor.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to add doctor to favorites'**
+  String get failedToAddFavoriteDoctor;
+
+  /// No description provided for @failedToRemoveFavoriteDoctor.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to remove doctor from favorites'**
+  String get failedToRemoveFavoriteDoctor;
+
+  /// No description provided for @noFavoriteDoctors.
+  ///
+  /// In en, this message translates to:
+  /// **'No favorite doctors'**
+  String get noFavoriteDoctors;
+
+  /// No description provided for @pleaseLoginFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Please log in first'**
+  String get pleaseLoginFirst;
+
+  /// No description provided for @errorLoadingFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading favorites'**
+  String get errorLoadingFavorites;
+
+  /// No description provided for @favoriteDoctors.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorite doctors'**
+  String get favoriteDoctors;
+
+  /// No description provided for @searchSpecialty.
+  ///
+  /// In en, this message translates to:
+  /// **'What specialty are you looking for'**
+  String get searchSpecialty;
+
+  /// No description provided for @viewAll.
+  ///
+  /// In en, this message translates to:
+  /// **'View all'**
+  String get viewAll;
+
+  /// No description provided for @topDoctorsByRating.
+  ///
+  /// In en, this message translates to:
+  /// **'Top doctors by patient rating'**
+  String get topDoctorsByRating;
+
+  /// No description provided for @errorLoadingData.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading data'**
+  String get errorLoadingData;
+
+  /// No description provided for @noDataAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No data available'**
+  String get noDataAvailable;
+
+  /// No description provided for @doctorsNearYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctors near you'**
+  String get doctorsNearYou;
+
+  /// No description provided for @noNearbyDoctors.
+  ///
+  /// In en, this message translates to:
+  /// **'No nearby doctors at the moment'**
+  String get noNearbyDoctors;
+
+  /// No description provided for @errorLoadingNearbyDoctors.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading nearby doctors'**
+  String get errorLoadingNearbyDoctors;
+
+  /// No description provided for @clinic.
+  ///
+  /// In en, this message translates to:
+  /// **'Clinic:'**
+  String get clinic;
+
+  /// No description provided for @distanceFromYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Distance from you'**
+  String get distanceFromYou;
+
+  /// No description provided for @earliestAvailableAppointment.
+  ///
+  /// In en, this message translates to:
+  /// **'Earliest available appointment'**
+  String get earliestAvailableAppointment;
+
+  /// No description provided for @bookNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Book now'**
+  String get bookNow;
+
+  /// No description provided for @greetingMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Hello, we wish you a happy day!'**
+  String get greetingMessage;
+
+  /// No description provided for @failedToUpdateData.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update data'**
+  String get failedToUpdateData;
+
+  /// No description provided for @failedToUpdatePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update photo'**
+  String get failedToUpdatePhoto;
+
+  /// No description provided for @failedToFetchData.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to fetch data'**
+  String get failedToFetchData;
+
+  /// No description provided for @loadingData.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading data...'**
+  String get loadingData;
+
+  /// No description provided for @personalInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal information'**
+  String get personalInformation;
+
+  /// No description provided for @fullName.
+  ///
+  /// In en, this message translates to:
+  /// **'Full name'**
+  String get fullName;
+
+  /// No description provided for @professionalInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Professional information'**
+  String get professionalInformation;
+
+  /// No description provided for @profession.
+  ///
+  /// In en, this message translates to:
+  /// **'Profession'**
+  String get profession;
+
+  /// No description provided for @address.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get address;
+
+  /// No description provided for @medicalInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Medical information'**
+  String get medicalInformation;
+
+  /// No description provided for @bloodType.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood type'**
+  String get bloodType;
+
+  /// No description provided for @medicalHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Medical history'**
+  String get medicalHistory;
+
+  /// No description provided for @notSpecified.
+  ///
+  /// In en, this message translates to:
+  /// **'Not specified'**
+  String get notSpecified;
+
+  /// No description provided for @currentMedications.
+  ///
+  /// In en, this message translates to:
+  /// **'Current medications'**
+  String get currentMedications;
+
+  /// No description provided for @lifestyle.
+  ///
+  /// In en, this message translates to:
+  /// **'Lifestyle'**
+  String get lifestyle;
+
+  /// No description provided for @smoker.
+  ///
+  /// In en, this message translates to:
+  /// **'Smoker'**
+  String get smoker;
+
+  /// No description provided for @drinksAlcohol.
+  ///
+  /// In en, this message translates to:
+  /// **'Drinks alcohol'**
+  String get drinksAlcohol;
+
+  /// No description provided for @married.
+  ///
+  /// In en, this message translates to:
+  /// **'Married'**
+  String get married;
+
+  /// No description provided for @editProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit profile'**
+  String get editProfile;
+
+  /// No description provided for @logOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out'**
+  String get logOut;
+
+  /// No description provided for @confirmLogOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to log out?'**
+  String get confirmLogOut;
+
+  /// No description provided for @firstName.
+  ///
+  /// In en, this message translates to:
+  /// **'First name'**
+  String get firstName;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @arabic.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic'**
+  String get arabic;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get account;
+
+  /// No description provided for @medicalRecords.
+  ///
+  /// In en, this message translates to:
+  /// **'Medical records'**
+  String get medicalRecords;
+
+  /// No description provided for @favorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites'**
+  String get favorites;
+
+  /// No description provided for @settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
+  /// No description provided for @walkingMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'“ 10 minutes of walking daily makes a big difference in your health and activity. Start now! ”'**
+  String get walkingMessage;
 }
 
 class _AppLocalizationsDelegate

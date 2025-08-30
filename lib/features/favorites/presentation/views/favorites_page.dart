@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/features/home/presentation/cubit/home_cubit.dart';
 import 'package:provider/provider.dart';
 import '../widgets/doctor_card.dart';
@@ -89,7 +90,8 @@ class _FavoritesPageState extends State<FavoritesPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'الأطباء المفضلون',
+          // 'الأطباء المفضلون'
+          context.tr.favoriteDoctors,
           style: TextStyle(
             fontFamily: 'AlmaraiBold',
             fontSize: isTablet ? 20.0 : 18.0,
@@ -135,15 +137,16 @@ class _FavoritesPageState extends State<FavoritesPage> {
     }
 
     if (_favorites.isEmpty) {
-      return const Center(
+      return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.favorite_border, size: 80, color: Colors.grey),
-            SizedBox(height: 16),
+            const Icon(Icons.favorite_border, size: 80, color: Colors.grey),
+            const SizedBox(height: 16),
             Text(
-              'لا يوجد أطباء مفضلين',
-              style: TextStyle(color: Colors.grey, fontSize: 18),
+              // 'لا يوجد أطباء مفضلين'
+              context.tr.noFavoriteDoctors,
+              style: const TextStyle(color: Colors.grey, fontSize: 18),
             ),
           ],
         ),

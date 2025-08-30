@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/features/home/data/model/nearby_doctor_model.dart';
 
 class NearbyDoctorCard extends StatelessWidget {
@@ -145,7 +146,7 @@ class NearbyDoctorCard extends StatelessWidget {
                             info.specialtyName,
                             style: TextStyle(
                               color: Colors.white70,
-                              fontSize: isTablet ? 12.0 : 10.0,
+                              fontSize: isTablet ? 14.0 : 10.0,
                               fontFamily: 'AlmaraiRegular',
                             ),
                             maxLines: 1,
@@ -277,7 +278,8 @@ class NearbyDoctorCard extends StatelessWidget {
                         ),
                         SizedBox(height: isTablet ? 4.0 : 2.0),
                         Text(
-                          'احجزالآن',
+                          context.tr.bookNow,
+                          // 'احجزالآن',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,

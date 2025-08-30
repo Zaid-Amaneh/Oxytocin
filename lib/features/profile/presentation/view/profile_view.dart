@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:feather_icons/feather_icons.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/size_config.dart';
 import 'package:oxytocin/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:oxytocin/features/profile/presentation/cubit/profile_state.dart';
-import 'package:oxytocin/features/profile/presentation/cubit/profile_edit_cubit.dart';
 
 import 'package:oxytocin/features/profile/presentation/widget/profile_header_card.dart';
 import 'package:oxytocin/features/profile/presentation/widget/profile_menu_section.dart';
-import 'package:oxytocin/features/profile/presentation/widget/profile_edit_form.dart';
 import 'package:oxytocin/features/profile/presentation/view/account_details_view.dart';
 import 'package:oxytocin/features/profile/presentation/view/profile_edit_view.dart';
 import 'package:oxytocin/features/profile/data/model/user_profile_model.dart';
@@ -268,7 +266,8 @@ class _ProfileViewState extends State<ProfileView>
           textAlign: TextAlign.center,
         ),
         content: Text(
-          'هل أنت متأكد من أنك تريد تسجيل الخروج؟',
+          context.tr.confirmLogOut,
+          // 'هل أنت متأكد من أنك تريد تسجيل الخروج؟',
           style: TextStyle(
             color: AppColors.textSecondary,
             fontSize: getResponsiveFontSize(context, fontSize: 14),

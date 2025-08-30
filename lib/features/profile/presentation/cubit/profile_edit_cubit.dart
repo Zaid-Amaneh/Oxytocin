@@ -61,96 +61,7 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
     _selectedImage = image;
   }
 
-  // Future<void> updateProfileWithImage(File image) async {
-  //   if (state is ProfileEditMode) {
-  //     final currentState = state as ProfileEditMode;
-  //     emit(ProfileEditSaving(currentState.originalProfile));
 
-  //     try {
-  //       final Map<String, dynamic> imageField = {'image': image};
-  //       final result = await repository.updateProfile(imageField);
-  //       emit(ProfileEditSuccess(result));
-  //     } catch (e) {
-  //       emit(ProfileEditError(e.toString(), currentState.originalProfile));
-  //     }
-  //   }
-  // }
-
-  // Future<void> updateProfile(UserProfileModel updatedProfile) async {
-  //   if (state is ProfileEditMode) {
-  //     final currentState = state as ProfileEditMode;
-  //     emit(ProfileEditSaving(currentState.originalProfile));
-
-  //     try {
-  //       final Map<String, dynamic> updatedFields = {};
-
-  //       final Map<String, dynamic> userData = {};
-
-  //       if (updatedProfile.firstName !=
-  //           currentState.originalProfile.firstName) {
-  //         userData['first_name'] = updatedProfile.firstName;
-  //       }
-  //       if (updatedProfile.lastName != currentState.originalProfile.lastName) {
-  //         userData['last_name'] = updatedProfile.lastName;
-  //       }
-  //       if (updatedProfile.gender != currentState.originalProfile.gender) {
-  //         userData['gender'] = updatedProfile.gender;
-  //       }
-  //       if (updatedProfile.phone != currentState.originalProfile.phone) {
-  //         userData['phone'] = updatedProfile.phone;
-  //       }
-  //       if (updatedProfile.birthDate !=
-  //           currentState.originalProfile.birthDate) {
-  //         userData['birth_date'] = updatedProfile.birthDate
-  //             ?.toIso8601String()
-  //             .split('T')[0];
-  //       }
-
-  //       if (userData.isNotEmpty) {
-  //         updatedFields['user'] = userData;
-  //       }
-  //       final simpleFields = {
-  //         'address': updatedProfile.address,
-  //         'job': updatedProfile.job,
-  //         'blood_type': updatedProfile.bloodType,
-  //         'medical_history': updatedProfile.medicalHistory,
-  //         'surgical_history': updatedProfile.surgicalHistory,
-  //         'allergies': updatedProfile.allergies,
-  //         'medicines': updatedProfile.medicines,
-  //         'is_smoker': updatedProfile.isSmoker,
-  //         'is_drinker': updatedProfile.isDrinker,
-  //         'is_married': updatedProfile.isMarried,
-  //         'longitude': updatedProfile.longitude,
-  //         'latitude': updatedProfile.latitude,
-  //       };
-
-  //       simpleFields.forEach((key, value) {
-  //         final originalValue = _getFieldValue(
-  //           currentState.originalProfile,
-  //           key,
-  //         );
-  //         if (value != originalValue) {
-  //           updatedFields[key] = value;
-  //         }
-  //       });
-
-  //       if (_selectedImage != null) {
-  //         updatedFields['image'] = _selectedImage;
-  //       }
-
-  //       if (updatedFields.isEmpty) {
-  //         emit(ProfileEditInitial());
-  //         return;
-  //       }
-
-  //       final result = await repository.updateProfile(updatedFields);
-  //       emit(ProfileEditSuccess(result));
-  //       _selectedImage = null;
-  //     } catch (e) {
-  //       emit(ProfileEditError(e.toString(), currentState.originalProfile));
-  //     }
-  //   }
-  // }
   Future<void> updateProfile(UserProfileModel updatedProfile) async {
     if (state is ProfileEditMode) {
       final currentState = state as ProfileEditMode;
@@ -174,7 +85,7 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
           userData['phone'] = updatedProfile.phone;
         }
         if (_selectedImage != null) {
-          userData['image'] = _selectedImage; // 👈 بتكون File
+          userData['image'] = _selectedImage; 
         }
         if (updatedProfile.birthDate !=
             currentState.originalProfile.birthDate) {
@@ -186,7 +97,6 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
           updatedFields['user'] = userData;
         }
 
-        // 🔹 باقي الحقول العادية
         final simpleFields = {
           'address': updatedProfile.address,
           'job': updatedProfile.job,

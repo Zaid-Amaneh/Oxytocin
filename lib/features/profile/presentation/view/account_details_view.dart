@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/Utils/size_config.dart';
 import 'package:oxytocin/features/profile/data/model/user_profile_model.dart';
@@ -56,8 +57,9 @@ class _AccountDetailsViewState extends State<AccountDetailsView> {
             valueColor: AlwaysStoppedAnimation<Color>(AppColors.kPrimaryColor1),
           ),
           SizedBox(height: SizeConfig.getProportionateScreenHeight(16)),
-          const Text(
-            'جاري تحميل البيانات...',
+           Text(
+            context.tr.loadingData,
+            // 'جاري تحميل البيانات...',
             style: TextStyle(
               color: AppColors.textPrimary,
               fontSize: 16,
@@ -79,47 +81,47 @@ class _AccountDetailsViewState extends State<AccountDetailsView> {
           SizedBox(height: SizeConfig.getProportionateScreenHeight(40)),
           _buildProfileHeader(profile),
           SizedBox(height: SizeConfig.getProportionateScreenHeight(24)),
-          _buildSectionTitle('المعلومات الشخصية'),
+          _buildSectionTitle(context.tr.personalInformation),
           _buildInfoCard([
-            _buildInfoRow('الاسم الكامل', profile.fullName),
-            _buildInfoRow('الجنس', profile.gender ?? 'غير محدد'),
-            _buildInfoRow('تاريخ الميلاد', _formatDate(profile.birthDate)),
-            _buildInfoRow('العمر', '${profile.age} عاماً'),
-            _buildInfoRow('رقم الهاتف', profile.phone ?? 'غير محدد'),
+            _buildInfoRow(context.tr.fullName, profile.fullName),
+            _buildInfoRow(context.tr.gender, profile.gender ?? 'غير محدد'),
+            _buildInfoRow(context.tr.birthDateLabel, _formatDate(profile.birthDate)),
+            _buildInfoRow(context.tr.age, '${profile.age} عاماً'),
+            _buildInfoRow(context.tr.phoneNumber, profile.phone ?? 'غير محدد'),
           ]),
 
           SizedBox(height: SizeConfig.getProportionateScreenHeight(16)),
-          _buildSectionTitle('المعلومات المهنية'),
+          _buildSectionTitle(context.tr.professionalInformation),
           _buildInfoCard([
-            _buildInfoRow('المهنة', profile.job ?? 'غير محدد'),
-            _buildInfoRow('العنوان', profile.address ?? 'غير محدد'),
+            _buildInfoRow(context.tr.currentJobHint, profile.job ?? 'غير محدد'),
+            _buildInfoRow(context.tr.locationTitle, profile.address ?? 'غير محدد'),
           ]),
 
           SizedBox(height: SizeConfig.getProportionateScreenHeight(16)),
-          _buildSectionTitle('المعلومات الطبية'),
+          _buildSectionTitle(context.tr.medicalInformation),
           _buildInfoCard([
-            _buildInfoRow('فصيلة الدم', profile.bloodType ?? 'غير محدد'),
+            _buildInfoRow(context.tr.bloodType, profile.bloodType ?? 'غير محدد'),
             _buildInfoRow(
-              'التاريخ الطبي',
+              context.tr.medicalHistory,
               profile.medicalHistory ?? 'غير محدد',
             ),
             _buildInfoRow(
               'التاريخ الجراحي',
               profile.surgicalHistory ?? 'غير محدد',
             ),
-            _buildInfoRow('الحساسية', profile.allergies ?? 'غير محدد'),
-            _buildInfoRow('الأدوية الحالية', profile.medicines ?? 'غير محدد'),
+            _buildInfoRow(context.tr.allergies, profile.allergies ?? 'غير محدد'),
+            _buildInfoRow(context.tr.currentMedications, profile.medicines ?? 'غير محدد'),
           ]),
 
           SizedBox(height: SizeConfig.getProportionateScreenHeight(16)),
-          _buildSectionTitle('نمط الحياة'),
+          _buildSectionTitle(context.tr.lifestyle ),
           _buildInfoCard([
-            _buildInfoRow('مدخن', profile.isSmoker == true ? 'نعم' : 'لا'),
+            _buildInfoRow(context.tr.smoker, profile.isSmoker == true ? 'نعم' : 'لا'),
             _buildInfoRow(
-              'يشرب الكحول',
+              context.tr.drinksAlcohol,
               profile.isDrinker == true ? 'نعم' : 'لا',
             ),
-            _buildInfoRow('متزوج', profile.isMarried == true ? 'نعم' : 'لا'),
+            _buildInfoRow(context.tr.married, profile.isMarried == true ? 'نعم' : 'لا'),
             SizedBox(height: SizeConfig.getProportionateScreenHeight(10)),
           ]),
           SizedBox(height: SizeConfig.getProportionateScreenHeight(50)),
@@ -171,7 +173,8 @@ class _AccountDetailsViewState extends State<AccountDetailsView> {
             ),
             SizedBox(width: SizeConfig.getProportionateScreenWidth(8)),
             Text(
-              'تعديل الملف الشخصي',
+              context.tr.editProfile,
+              // 'تعديل الملف الشخصي',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: getResponsiveFontSize(context, fontSize: 16),

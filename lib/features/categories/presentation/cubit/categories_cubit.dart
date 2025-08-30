@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oxytocin/core/Utils/services/local_storage_service.dart';
 import 'package:oxytocin/features/categories/data/datasources/categories_remote_data_source.dart';
 import 'package:oxytocin/features/categories/data/models/category_model.dart';
-import 'package:oxytocin/features/search_doctors_page/data/models/doctor_search_request.dart';
 import 'categories_state.dart';
 
 class CategoriesCubit extends Cubit<CategoriesState> {
@@ -85,15 +84,15 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     emit(state.copyWith(selectedCategory: null, selectedSub: null));
   }
 
-  Future<void> loadDoctorsBySubspecialty(int specialtyId) async {
+  // في CategoriesCubit
+  Future<void> loadDoctorsBySubspecialty(int subspecialtyId) async {
     emit(state.copyWith(status: CategoriesStatus.loading));
     try {
-      final res = await remoteDataSource.fetchDoctorsBySpecialty(specialtyId);
+      final res = await remoteDataSource.fetchDoctorsBySubspecialty(
+        subspecialtyId,
+      );
       emit(
-        state.copyWith(
-          status: CategoriesStatus.success,
-          doctors: [res], // أو res.doctors لو بدك تخزنهم مباشرة
-        ),
+        state.copyWith(status: CategoriesStatus.success, doctors: res.results),
       );
     } catch (e) {
       emit(

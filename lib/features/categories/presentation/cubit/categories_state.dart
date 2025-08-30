@@ -9,7 +9,8 @@ class CategoriesState {
   final CategoryModel? selectedCategory;
   final SubspecialtyModel? selectedSub;
   final String? error;
-  final List<DoctorsResponse> doctors;
+  final List<Doctor> doctors;
+
   CategoriesState({
     this.status = CategoriesStatus.initial,
     this.categories = const [],
@@ -25,7 +26,7 @@ class CategoriesState {
     CategoryModel? selectedCategory,
     SubspecialtyModel? selectedSub,
     String? error,
-    List<DoctorsResponse>? doctors,
+    List<Doctor>? doctors,
   }) {
     return CategoriesState(
       status: status ?? this.status,

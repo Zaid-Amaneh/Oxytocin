@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/Utils/size_config.dart';
+import 'package:oxytocin/features/profile/presentation/widget/settings_sheet.dart';
 
 class ProfileMenuSection extends StatefulWidget {
   final VoidCallback onAccountTap;
@@ -36,17 +38,17 @@ class _ProfileMenuSectionState extends State<ProfileMenuSection> {
         _buildMenuCard([
           _buildMenuItem(
             icon: Icons.person,
-            title: 'حسابي',
+            title: context.tr.account,
             onTap: widget.onAccountTap,
           ),
           _buildMenuItem(
             icon: Icons.snippet_folder_sharp,
-            title: 'سجلاتي الطبية',
+            title: context.tr.medicalRecords,
             onTap: widget.onMedicalRecordsTap,
           ),
           _buildMenuItem(
             icon: Icons.favorite,
-            title: 'المفضلة',
+            title: context.tr.favorites,
             onTap: widget.onFavoritesTap,
             iconColor: AppColors.kPrimaryColor1,
           ),
@@ -55,12 +57,12 @@ class _ProfileMenuSectionState extends State<ProfileMenuSection> {
         _buildMenuCard([
           _buildMenuItem(
             icon: Icons.settings,
-            title: 'اعدادات',
-            onTap: widget.onSettingsTap,
+            title: context.tr.settings,
+            onTap: () => SettingsSheet.open(context),
           ),
           _buildMenuItem(
             icon: Icons.logout_sharp,
-            title: 'تسجيل خروج',
+            title: context.tr.logout,
             onTap: widget.onLogoutTap,
             isDestructive: true,
           ),

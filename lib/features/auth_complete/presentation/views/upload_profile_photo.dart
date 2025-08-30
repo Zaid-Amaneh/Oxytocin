@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/Utils/size_config.dart';
@@ -137,7 +138,8 @@ class _UploadProfilePhotoState extends State<UploadProfilePhoto> {
               children: [
                 SizedBox(height: SizeConfig.screenHigh * 0.05),
                 Text(
-                  'أضف لمستك الشخصية',
+                  context.tr.addPersonalTouch,
+                  // 'أضف لمستك الشخصية'
                   style: AppStyles.almaraiBold(context).copyWith(
                     color: AppColors.kPrimaryColor1,
                     fontSize: getResponsiveFontSize(context, fontSize: 20),
@@ -146,7 +148,9 @@ class _UploadProfilePhotoState extends State<UploadProfilePhoto> {
                 ),
                 SizedBox(height: SizeConfig.screenHigh * 0.01),
                 Text(
-                  'يرجى رفع صورتك.',
+                  context.tr.uploadPhotoTitle,
+
+                  // 'يرجى رفع صورتك.',
                   style: AppStyles.almaraiBold(context).copyWith(
                     color: AppColors.kPrimaryColor1,
                     fontSize: getResponsiveFontSize(context, fontSize: 16),
@@ -214,7 +218,8 @@ class _UploadProfilePhotoState extends State<UploadProfilePhoto> {
                 Padding(
                   padding: EdgeInsets.only(left: SizeConfig.screenWidth * 0.25),
                   child: Text(
-                    'يفضل أن تكون الصورة واضحة  \n وحديثة، وتظهر الوجه بوضوح.',
+                    context.tr.uploadPhotoDescription,
+                    // 'يفضل أن تكون الصورة واضحة  \n وحديثة، وتظهر الوجه بوضوح.',
                     style: AppStyles.almaraiBold(context).copyWith(
                       color: AppColors.textSecondary,
                       fontSize: getResponsiveFontSize(context, fontSize: 13),
@@ -234,7 +239,7 @@ class _UploadProfilePhotoState extends State<UploadProfilePhoto> {
                           builder: (context, state) {
                             if (state.isSubmitting) {
                               return ProfileActionButton(
-                                text: "التالي",
+                                text: context.tr.next,
                                 onPressed: () {},
                                 filled: true,
                                 borderRadius: 20,
@@ -244,7 +249,7 @@ class _UploadProfilePhotoState extends State<UploadProfilePhoto> {
                               );
                             } else {
                               return ProfileActionButton(
-                                text: "التالي",
+                                text: context.tr.next,
                                 onPressed: () {
                                   if (_selectedImage != null) {
                                     context
@@ -269,7 +274,8 @@ class _UploadProfilePhotoState extends State<UploadProfilePhoto> {
 
                       Expanded(
                         child: ProfileActionButton(
-                          text: "عودة",
+                          text: context.tr.backButton,
+                          //  "عودة",
                           onPressed: () {
                             context.pop();
                           },

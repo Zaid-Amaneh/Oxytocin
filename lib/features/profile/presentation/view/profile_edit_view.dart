@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/features/profile/data/model/user_profile_model.dart';
 import 'package:oxytocin/features/profile/presentation/widget/profile_edit_form.dart';
@@ -36,8 +37,9 @@ class _ProfileEditViewState extends State<ProfileEditView> {
             appBar: AppBar(
               backgroundColor: AppColors.kPrimaryColor1,
               foregroundColor: Colors.white,
-              title: const Text(
-                'تعديل الملف الشخصي',
+              title: Text(
+                context.tr.editProfile,
+                // 'تعديل الملف الشخصي',
                 style: TextStyle(
                   fontFamily: 'AlmaraiBold',
                   color: Colors.white,

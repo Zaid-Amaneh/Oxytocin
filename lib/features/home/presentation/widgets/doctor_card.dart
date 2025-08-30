@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/features/home/data/model/doctor_model.dart';
 
 class DoctorCard extends StatefulWidget {
@@ -193,7 +194,8 @@ class _DoctorCardState extends State<DoctorCard> {
                   if (widget.doctor.hasAvailableAppointment) ...[
                     SizedBox(height: isTablet ? 2.0 : 1.0),
                     Text(
-                      'أقرب موعد متاح',
+                      context.tr.earliestAvailableAppointment,
+                      // 'أقرب موعد متاح',
                       style: TextStyle(
                         color: Colors.green[300],
                         fontSize: isTablet ? 10.0 : 8.0,
@@ -288,7 +290,9 @@ class _DoctorCardState extends State<DoctorCard> {
                             ),
                             SizedBox(width: isTablet ? 4.0 : 2.0),
                             Text(
-                              'احجز الآن',
+                              // 'احجز الآن'
+                              context.tr.bookNow,
+                              
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: isTablet ? 12.0 : 10.0,

@@ -88,7 +88,7 @@ class SubspecialtiesBottomSheet extends StatelessWidget {
 
                     await categoriesCubit.selectSubspecialty(subspecialty);
                     await categoriesCubit.loadDoctorsBySubspecialty(
-                      category.id,
+                      subspecialty.id,
                     );
 
                     Navigator.pop(context);

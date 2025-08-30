@@ -39,7 +39,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get skip => 'Skip';
 
   @override
-  String get startNow => 'Start Now';
+  String get startNow => 'Start now';
 
   @override
   String get signUp => 'Sign Up';
@@ -51,7 +51,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get phoneNumber => 'Phone Number';
+  String get phoneNumber => 'Phone number';
 
   @override
   String get pleaseEnterValidNumber => 'Please enter a valid number';
@@ -845,4 +845,266 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get next_appointment_message =>
       'Your next appointment is waiting for you. We wish you continued health and wellness.';
+
+  @override
+  String get errorLoadingCategories => 'Error loading categories';
+
+  @override
+  String get doctors => 'Doctors';
+
+  @override
+  String get noDoctorsAvailable => 'No doctors available';
+
+  @override
+  String get failedToLoadCategories => 'Failed to load categories';
+
+  @override
+  String get failedToFetchDoctors => 'Failed to fetch doctors';
+
+  @override
+  String get settingUpForYou => 'We are setting everything up for you now...';
+
+  @override
+  String get firstStepHealthcare =>
+      'Your first step towards integrated healthcare starts now';
+
+  @override
+  String get chronicDiseases => 'Chronic diseases';
+
+  @override
+  String get yourHealthMatters =>
+      'Your health matters to us\nPlease provide your medical information.';
+
+  @override
+  String get allergies => 'Allergies';
+
+  @override
+  String get regularMedications => 'Medications used regularly';
+
+  @override
+  String get chooseBloodType => 'Choose your blood type';
+
+  @override
+  String get lifestyleInformation => 'Lifestyle information';
+
+  @override
+  String get completePersonalInfo =>
+      'We would like to know you better\nPlease complete your personal information.';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get fieldRequired => 'This field is required';
+
+  @override
+  String get enterValidEmail => 'Please enter a valid email address';
+
+  @override
+  String get gender => 'Gender';
+
+  @override
+  String get dateOfBirth => 'Date of birth';
+
+  @override
+  String get currentJob => 'Current job';
+
+  @override
+  String get fillAllRequiredFields => 'Please fill in all required fields';
+
+  @override
+  String get errorGettingLocation => 'Error getting location:';
+
+  @override
+  String get enterLocationOnMap =>
+      'Please enter and select your location on the map';
+
+  @override
+  String get enterLocationMessage =>
+      'Let’s get closer to you\nEnter your location and mark it on the map';
+
+  @override
+  String get currentLocation => 'Your current location';
+
+  @override
+  String get enterAddress =>
+      'Enter your address or area name (example: Baghdad street).';
+
+  @override
+  String get moveMapOrUseLocation =>
+      'Move the map or use your current location to pinpoint accurately';
+
+  @override
+  String get loadingMap => 'Loading map...';
+
+  @override
+  String get addPersonalTouch => 'Add your personal touch';
+
+  @override
+  String get uploadPhoto => 'Please upload your photo.';
+
+  @override
+  String get photoGuidelines =>
+      'Preferably the photo should be clear\nrecent, and show your face clearly.';
+
+  @override
+  String get failedToFetchFavorites => 'Failed to fetch favorites';
+
+  @override
+  String get connectionError => 'Connection error:';
+
+  @override
+  String get failedToFetchFavoriteDoctors => 'Failed to fetch favorite doctors';
+
+  @override
+  String get failedToAddFavoriteDoctor => 'Failed to add doctor to favorites';
+
+  @override
+  String get failedToRemoveFavoriteDoctor =>
+      'Failed to remove doctor from favorites';
+
+  @override
+  String get noFavoriteDoctors => 'No favorite doctors';
+
+  @override
+  String get pleaseLoginFirst => 'Please log in first';
+
+  @override
+  String get errorLoadingFavorites => 'Error loading favorites';
+
+  @override
+  String get favoriteDoctors => 'Favorite doctors';
+
+  @override
+  String get searchSpecialty => 'What specialty are you looking for';
+
+  @override
+  String get viewAll => 'View all';
+
+  @override
+  String get topDoctorsByRating => 'Top doctors by patient rating';
+
+  @override
+  String get errorLoadingData => 'Error loading data';
+
+  @override
+  String get noDataAvailable => 'No data available';
+
+  @override
+  String get doctorsNearYou => 'Doctors near you';
+
+  @override
+  String get noNearbyDoctors => 'No nearby doctors at the moment';
+
+  @override
+  String get errorLoadingNearbyDoctors => 'Error loading nearby doctors';
+
+  @override
+  String get clinic => 'Clinic:';
+
+  @override
+  String get distanceFromYou => 'Distance from you';
+
+  @override
+  String get earliestAvailableAppointment => 'Earliest available appointment';
+
+  @override
+  String get bookNow => 'Book now';
+
+  @override
+  String get greetingMessage => 'Hello, we wish you a happy day!';
+
+  @override
+  String get failedToUpdateData => 'Failed to update data';
+
+  @override
+  String get failedToUpdatePhoto => 'Failed to update photo';
+
+  @override
+  String get failedToFetchData => 'Failed to fetch data';
+
+  @override
+  String get loadingData => 'Loading data...';
+
+  @override
+  String get personalInformation => 'Personal information';
+
+  @override
+  String get fullName => 'Full name';
+
+  @override
+  String get professionalInformation => 'Professional information';
+
+  @override
+  String get profession => 'Profession';
+
+  @override
+  String get address => 'Address';
+
+  @override
+  String get medicalInformation => 'Medical information';
+
+  @override
+  String get bloodType => 'Blood type';
+
+  @override
+  String get medicalHistory => 'Medical history';
+
+  @override
+  String get notSpecified => 'Not specified';
+
+  @override
+  String get currentMedications => 'Current medications';
+
+  @override
+  String get lifestyle => 'Lifestyle';
+
+  @override
+  String get smoker => 'Smoker';
+
+  @override
+  String get drinksAlcohol => 'Drinks alcohol';
+
+  @override
+  String get married => 'Married';
+
+  @override
+  String get editProfile => 'Edit profile';
+
+  @override
+  String get logOut => 'Log out';
+
+  @override
+  String get confirmLogOut => 'Are you sure you want to log out?';
+
+  @override
+  String get firstName => 'First name';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get arabic => 'Arabic';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get account => 'Account';
+
+  @override
+  String get medicalRecords => 'Medical records';
+
+  @override
+  String get favorites => 'Favorites';
+
+  @override
+  String get settings => 'Settings';
+
+  @override
+  String get logout => 'Logout';
+
+  @override
+  String get walkingMessage =>
+      '“ 10 minutes of walking daily makes a big difference in your health and activity. Start now! ”';
 }

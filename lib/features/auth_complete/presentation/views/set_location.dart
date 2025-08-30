@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oxytocin/features/auth_complete/presentation/cubit/profile_info_cubit.dart';
@@ -45,16 +46,26 @@ class _SetLocationState extends State<SetLocation> {
       if (permission == LocationPermission.denied) {
         permission = await Geolocator.requestPermission();
         if (permission == LocationPermission.denied) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(const SnackBar(content: Text('تم رفض إذن الموقع')));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                context.tr.location_permission_denied,
+                // 'تم رفض إذن الموقع'
+              ),
+            ),
+          );
           return;
         }
       }
 
       if (permission == LocationPermission.deniedForever) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('تم رفض إذن الموقع بشكل دائم')),
+          SnackBar(
+            content: Text(
+              context.tr.location_permission_denied_forever,
+              // 'تم رفض إذن الموقع بشكل دائم'
+            ),
+          ),
         );
         return;
       }
@@ -80,7 +91,12 @@ class _SetLocationState extends State<SetLocation> {
   void sendLocation() async {
     if (_locationName.isEmpty || _latitude == null || _longitude == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('يرجى إدخال الموقع وتحديده على الخريطة')),
+        SnackBar(
+          content: Text(
+            context.tr.enterLocationOnMap,
+            // 'يرجى إدخال الموقع وتحديده على الخريطة'
+          ),
+        ),
       );
       return;
     }
@@ -111,10 +127,11 @@ class _SetLocationState extends State<SetLocation> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 40),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.all(20.0),
                   child: Text(
-                    "لنكن أقرب إليك  \n أدخل موقعك وحدده على الخريطة ",
+                    context.tr.enterLocationMessage,
+                    // "لنكن أقرب إليك  \n أدخل موقعك وحدده على الخريطة ",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 20,
@@ -128,7 +145,8 @@ class _SetLocationState extends State<SetLocation> {
 
                 CustomInputField(
                   controller: _locationController,
-                  hint: "موقعك الحالي",
+                  hint: context.tr.currentLocation,
+                  //  "موقعك الحالي",
                   icon: Icons.location_on_outlined,
                   onChanged: (value) {
                     setState(() {
@@ -138,22 +156,28 @@ class _SetLocationState extends State<SetLocation> {
                 ),
 
                 const SizedBox(height: 12),
-                const Padding(
-                  padding: EdgeInsets.only(left: 20.0, right: 20, bottom: 10),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 20.0,
+                    right: 20,
+                    bottom: 10,
+                  ),
                   child: Text(
-                    "اكتب عنوانك أو اسم منطقتك (مثال: شارع بغداد).",
-                    style: TextStyle(
+                    context.tr.enterAddress,
+                    // "اكتب عنوانك أو اسم منطقتك (مثال: شارع بغداد).",
+                    style: const TextStyle(
                       fontSize: 10,
                       color: Color(0xFF9E9E9E),
                       fontFamily: 'AlmaraiRegular',
                     ),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(left: 20.0, right: 20),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0, right: 20),
                   child: Text(
-                    "حرك الخريطة أو استخدم الموقع الحالي لتحديد موقعك بدقة",
-                    style: TextStyle(
+                    context.tr.moveMapOrUseLocation,
+                    // "حرك الخريطة أو استخدم الموقع الحالي لتحديد موقعك بدقة",
+                    style: const TextStyle(
                       fontSize: 18,
                       color: Color(0xFF424242),
                       fontWeight: FontWeight.bold,
@@ -243,17 +267,18 @@ class _SetLocationState extends State<SetLocation> {
                                   color: Colors.grey[100],
                                   borderRadius: BorderRadius.circular(16),
                                 ),
-                                child: const Center(
+                                child: Center(
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      CircularProgressIndicator(
+                                      const CircularProgressIndicator(
                                         color: Color(0xFF1A237E),
                                       ),
-                                      SizedBox(height: 16),
+                                      const SizedBox(height: 16),
                                       Text(
-                                        'جاري تحميل الخريطة...',
-                                        style: TextStyle(
+                                        context.tr.loadingMap,
+                                        // 'جاري تحميل الخريطة...',
+                                        style: const TextStyle(
                                           color: Color(0xFF1A237E),
                                           fontFamily: 'AlmaraiRegular',
                                         ),
@@ -277,7 +302,7 @@ class _SetLocationState extends State<SetLocation> {
                     children: [
                       Expanded(
                         child: ProfileActionButton(
-                          text: "ابدأ الآن",
+                          text: context.tr.startNow,
                           onPressed: sendLocation,
                           filled: true,
                           borderRadius: 20,

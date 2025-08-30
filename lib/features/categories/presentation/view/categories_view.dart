@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/Utils/services/local_storage_service.dart';
 import 'package:oxytocin/features/categories/data/datasources/categories_remote_data_source.dart';
 import '../cubit/categories_cubit.dart';
 import '../cubit/categories_state.dart';
 import '../widgets/category_card.dart';
-import '../widgets/search_bar.dart';
 import '../widgets/subspecialties_bottom_sheet.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 
@@ -38,7 +38,7 @@ class _CategoriesViewState extends State<CategoriesView> {
           ),
           child: Column(
             children: [
-              CategorySearchBar(onChanged: (value) {}),
+              // CategorySearchBar(onChanged: (value) {}),
               const SizedBox(height: 16),
               Expanded(
                 child: BlocConsumer<CategoriesCubit, CategoriesState>(
@@ -63,8 +63,9 @@ class _CategoriesViewState extends State<CategoriesView> {
                               color: Colors.red,
                             ),
                             const SizedBox(height: 16),
-                            const Text(
-                              'حدث خطأ في تحميل الفئات',
+                            Text(
+                              context.tr.errorLoadingCategories,
+                              // 'حدث خطأ في تحميل الفئات',
                               style: TextStyle(
                                 fontSize: 16,
                                 fontFamily: 'AlmaraiRegular',

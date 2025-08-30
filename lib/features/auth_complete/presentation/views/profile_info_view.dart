@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/constants/app_constants.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
@@ -109,7 +110,8 @@ class _ProfileInfoState extends State<ProfileInfo> {
                           horizontal: SizeConfig.screenWidth * 0.06,
                         ),
                         child: Text(
-                          'نرغب بالتعرف عليك أكثر\nفضلًا أكمل بياناتك الشخصية.',
+                          context.tr.completePersonalInfo,
+                          // 'نرغب بالتعرف عليك أكثر\nفضلًا أكمل بياناتك الشخصية.',
                           style: AppStyles.almaraiBold(context).copyWith(
                             color: AppColors.kPrimaryColor1,
                             fontSize: getResponsiveFontSize(
@@ -131,16 +133,16 @@ class _ProfileInfoState extends State<ProfileInfo> {
                           children: [
                             CustomInputField(
                               controller: emailController,
-                              hint: 'البريد الإلكتروني',
+                              hint: context.tr.emailHint,
                               icon: Icons.email_outlined,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'هذا الحقل مطلوب';
+                                  return context.tr.emailRequiredError;
                                 }
                                 if (!RegExp(
                                   r'^[^@\s]+@[^@\s]+\.[^@\s]+',
                                 ).hasMatch(value)) {
-                                  return 'يرجى إدخال بريد إلكتروني صحيح';
+                                  return context.tr.emailInvalidError;
                                 }
                                 return null;
                               },
@@ -179,7 +181,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
                                     value: gender,
                                     isExpanded: true,
                                     decoration: InputDecoration(
-                                      hintText: 'الجنس',
+                                      hintText: context.tr.genderHint,
                                       hintStyle: AppStyles.almaraiBold(context)
                                           .copyWith(
                                             color: AppColors.textPrimary,
@@ -212,14 +214,14 @@ class _ProfileInfoState extends State<ProfileInfo> {
                                           ),
                                           fontWeight: FontWeight.w900,
                                         ),
-                                    items: const [
+                                    items: [
                                       DropdownMenuItem(
-                                        value: 'ذكر',
-                                        child: Text('ذكر'),
+                                        value: context.tr.male,
+                                        child: Text(context.tr.male),
                                       ),
                                       DropdownMenuItem(
-                                        value: 'أنثى',
-                                        child: Text('أنثى'),
+                                        value: context.tr.female,
+                                        child: Text(context.tr.female),
                                       ),
                                     ],
                                     onChanged: (value) {
@@ -229,25 +231,26 @@ class _ProfileInfoState extends State<ProfileInfo> {
                                           .setGender(value!);
                                     },
                                     validator: (value) => value == null
-                                        ? 'يرجى اختيار الجنس'
+                                        ? context.tr.genderRequiredError
                                         : null,
                                   ),
                                 ),
                               ),
                             ),
                             ProfileDatePickerField(
-                              label: 'تاريخ الميلاد',
+                              label: context.tr.birthDateLabel,
                               selectedDate: selectedDate,
                               onTap: _selectDate,
                               errorText: dateError,
                             ),
                             CustomInputField(
                               controller: jobController,
-                              hint: 'الوظيفة الحالية',
+                              hint: context.tr.currentJobHint,
+                              //  'الوظيفة الحالية',
                               icon: Icons.work_outline,
                               validator: (value) =>
                                   value == null || value.isEmpty
-                                  ? 'هذا الحقل مطلوب'
+                                  ? context.tr.jobRequiredError
                                   : null,
                               horizontalPadding: SizeConfig.screenWidth * 0.06,
                               verticalPadding: SizeConfig.screenHigh * 0.01,
@@ -262,61 +265,57 @@ class _ProfileInfoState extends State<ProfileInfo> {
                         ),
                         child: SizedBox(
                           width: double.infinity,
-                          child:
-                              BlocBuilder<ProfileInfoCubit, ProfileInfoState>(
-                                builder: (context, state) {
-                                  if (state.isSubmitting) {
-                                    return const Center(
-                                      child: CircularProgressIndicator(
-                                        color: AppColors.kPrimaryColor1,
+                          child: BlocBuilder<ProfileInfoCubit, ProfileInfoState>(
+                            builder: (context, state) {
+                              if (state.isSubmitting) {
+                                return const Center(
+                                  child: CircularProgressIndicator(
+                                    color: AppColors.kPrimaryColor1,
+                                  ),
+                                );
+                              }
+                              return ProfileActionButton(
+                                text: context.tr.next,
+                                onPressed: () {
+                                  final cubit = context
+                                      .read<ProfileInfoCubit>();
+                                  if (gender != null) {
+                                    cubit.setGender(gender!);
+                                  } else {}
+                                  if (selectedDate != null) {
+                                    cubit.setBirthDate(selectedDate!);
+                                  } else {}
+                                  if (jobController.text.isNotEmpty) {
+                                    cubit.setJob(jobController.text);
+                                  } else {}
+                                  if (gender != null &&
+                                      selectedDate != null &&
+                                      jobController.text.isNotEmpty) {
+                                    context.pushNamed(
+                                      RouteNames.medicalInfoView,
+                                      extra: context.read<ProfileInfoCubit>(),
+                                    );
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          context.tr.fillAllRequiredFields,
+                                          // 'يرجى تعبئة جميع الحقول المطلوبة',
+                                        ),
+                                        backgroundColor: Colors.red,
                                       ),
                                     );
                                   }
-                                  return ProfileActionButton(
-                                    text: 'التالي',
-                                    onPressed: () {
-                                      final cubit = context
-                                          .read<ProfileInfoCubit>();
-                                      if (gender != null) {
-                                        cubit.setGender(gender!);
-                                      } else {}
-                                      if (selectedDate != null) {
-                                        cubit.setBirthDate(selectedDate!);
-                                      } else {}
-                                      if (jobController.text.isNotEmpty) {
-                                        cubit.setJob(jobController.text);
-                                      } else {}
-                                      if (gender != null &&
-                                          selectedDate != null &&
-                                          jobController.text.isNotEmpty) {
-                                        context.pushNamed(
-                                          RouteNames.medicalInfoView,
-                                          extra: context
-                                              .read<ProfileInfoCubit>(),
-                                        );
-                                      } else {
-                                        ScaffoldMessenger.of(
-                                          context,
-                                        ).showSnackBar(
-                                          const SnackBar(
-                                            content: Text(
-                                              'يرجى تعبئة جميع الحقول المطلوبة',
-                                            ),
-                                            backgroundColor: Colors.red,
-                                          ),
-                                        );
-                                      }
-                                    },
-                                    filled: true,
-                                    borderRadius:
-                                        AppConstants.borderRadiusCircular,
-                                    fontSize: getResponsiveFontSize(
-                                      context,
-                                      fontSize: 18,
-                                    ),
-                                  );
                                 },
-                              ),
+                                filled: true,
+                                borderRadius: AppConstants.borderRadiusCircular,
+                                fontSize: getResponsiveFontSize(
+                                  context,
+                                  fontSize: 18,
+                                ),
+                              );
+                            },
+                          ),
                         ),
                       ),
                       SizedBox(height: SizeConfig.screenHigh * 0.04),

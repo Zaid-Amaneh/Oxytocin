@@ -3,6 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oxytocin/core/Utils/services/local_storage_service.dart';
+import 'package:oxytocin/core/localization/locale_provider.dart';
 import 'package:oxytocin/core/routing/app_router.dart';
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/services/notification_service.dart';
@@ -47,19 +48,25 @@ class OxytocinApp extends StatelessWidget {
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => FavoriteManager()),
+          ChangeNotifierProvider(create: (_) => LocaleProvider()),
         ],
-        child: MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          locale: const Locale('ar'),
-          localizationsDelegates: [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: AppLocalizations.supportedLocales,
-          theme: AppTheme.lightTheme,
-          routerConfig: router,
+        child: Builder(
+          builder: (context) {
+            final locale = context.watch<LocaleProvider>().locale;
+            return MaterialApp.router(
+              debugShowCheckedModeBanner: false,
+              locale: locale ?? const Locale('ar'),
+              localizationsDelegates: [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: AppLocalizations.supportedLocales,
+              theme: AppTheme.lightTheme,
+              routerConfig: router,
+            );
+          },
         ),
       ),
     );

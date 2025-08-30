@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/features/home/presentation/widgets/profile_avatar_with_shadow.dart';
 import 'package:oxytocin/features/profile/data/model/user_profile_model.dart';
-import 'package:oxytocin/features/home/presentation/cubit/home_cubit.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
+ 
 class TopBar extends StatelessWidget {
   final UserProfileModel? profile;
 
@@ -30,8 +29,9 @@ class TopBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'مرحباً، نتمنى لك يوماً سعيداً!',
+                 Text(
+                  context.tr.greetingMessage,
+                  // 'مرحباً، نتمنى لك يوماً سعيداً!',
                   style: TextStyle(
                     fontFamily: 'AlmaraiBold',
                     color: Colors.black,

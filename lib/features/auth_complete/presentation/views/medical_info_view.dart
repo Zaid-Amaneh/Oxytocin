@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/features/auth_complete/presentation/cubit/profile_info_cubit.dart';
@@ -94,7 +95,8 @@ class _MedicalInfoBodyState extends State<MedicalInfoBody> {
               SizedBox(height: SizeConfig.screenHigh * 0.01),
 
               Text(
-                'صحتك تهمنا\nنرجى تزويدنا بمعلوماتك الطبية.',
+                context.tr.medicalInfoSubtitle,
+                // 'صحتك تهمنا\nنرجى تزويدنا بمعلوماتك الطبية.',
                 textAlign: TextAlign.center,
                 style: AppStyles.almaraiBold(context).copyWith(
                   color: AppColors.kPrimaryColor1,
@@ -106,7 +108,8 @@ class _MedicalInfoBodyState extends State<MedicalInfoBody> {
 
               CustomInputField(
                 controller: chronicController,
-                hint: 'الأمراض المزمنة',
+                hint: context.tr.chronicDiseasesHint,
+                // 'الأمراض المزمنة',
                 svgIcon: AppImages.illnesses,
                 horizontalPadding: SizeConfig.screenWidth * 0.06,
                 verticalPadding: SizeConfig.screenHigh * 0.01,
@@ -115,7 +118,8 @@ class _MedicalInfoBodyState extends State<MedicalInfoBody> {
               ),
               CustomInputField(
                 controller: surgeryController,
-                hint: 'العمليات الجراحية السابقة',
+                hint: context.tr.previousSurgeriesHint,
+                //  'العمليات الجراحية السابقة',
                 svgIcon: AppImages.surgeryIcon,
                 horizontalPadding: SizeConfig.screenWidth * 0.06,
                 verticalPadding: SizeConfig.screenHigh * 0.01,
@@ -124,7 +128,8 @@ class _MedicalInfoBodyState extends State<MedicalInfoBody> {
               ),
               CustomInputField(
                 controller: allergyController,
-                hint: 'الحساسية',
+                hint: context.tr.allergiesHint,
+                // 'الحساسية',
                 svgIcon: AppImages.sensitive,
                 horizontalPadding: SizeConfig.screenWidth * 0.06,
                 verticalPadding: SizeConfig.screenHigh * 0.01,
@@ -133,7 +138,8 @@ class _MedicalInfoBodyState extends State<MedicalInfoBody> {
               ),
               CustomInputField(
                 controller: medsController,
-                hint: 'الأدوية المستخدمة بانتظام',
+                hint: context.tr.regularMedicationsHint,
+                // 'الأدوية المستخدمة بانتظام',
                 svgIcon: AppImages.medicines,
                 horizontalPadding: SizeConfig.screenWidth * 0.06,
                 verticalPadding: SizeConfig.screenHigh * 0.01,
@@ -148,7 +154,8 @@ class _MedicalInfoBodyState extends State<MedicalInfoBody> {
                 child: Align(
                   alignment: Alignment.centerRight,
                   child: Text(
-                    'اختر نوع زمرة دمك',
+                    context.tr.bloodTypeTitle,
+                    // 'اختر نوع زمرة دمك',
                     style: AppStyles.almaraiBold(context).copyWith(
                       color: AppColors.kPrimaryColor1,
                       fontSize: getResponsiveFontSize(context, fontSize: 14),
@@ -243,7 +250,9 @@ class _MedicalInfoBodyState extends State<MedicalInfoBody> {
                 child: Align(
                   alignment: Alignment.centerRight,
                   child: Text(
-                    'معلومات نمط الحياة',
+                    context.tr.lifestyleInformation,
+                    //
+                    // 'معلومات نمط الحياة',
                     style: AppStyles.almaraiBold(context).copyWith(
                       color: AppColors.kPrimaryColor1,
                       fontSize: getResponsiveFontSize(context, fontSize: 14),
@@ -324,7 +333,7 @@ class _MedicalInfoBodyState extends State<MedicalInfoBody> {
                             );
                           }
                           return ProfileActionButton(
-                            text: 'التالي',
+                            text: context.tr.next,
                             onPressed: () {
                               context
                                   .read<ProfileInfoCubit>()

@@ -56,7 +56,8 @@ class _CongratsViewState extends State<CongratsView> {
                 ),
                 SizedBox(height: SizeConfig.screenHigh * 0.04),
                 Text(
-                  'خطوتك الأولى نحو عناية صحية متكاملة تبدأ الآن',
+                  context.tr.firstStepHealthcare,
+                  // 'خطوتك الأولى نحو عناية صحية متكاملة تبدأ الآن',
                   textAlign: TextAlign.center,
                   style: AppStyles.almaraiBold(context).copyWith(
                     fontSize: getResponsiveFontSize(context, fontSize: 20),
@@ -65,7 +66,8 @@ class _CongratsViewState extends State<CongratsView> {
                 ),
                 SizedBox(height: SizeConfig.screenHigh * 0.10),
                 Text(
-                  'نقوم بإعداد كل شيء لك الآن...',
+                  context.tr.congratsLoadingText,
+                  // 'نقوم بإعداد كل شيء لك الآن...',
                   style: AppStyles.almaraiRegular(context).copyWith(
                     fontSize: getResponsiveFontSize(context, fontSize: 16),
                     color: AppColors.textSecondary,

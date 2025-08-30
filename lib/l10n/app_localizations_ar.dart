@@ -191,7 +191,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get medicalInfoTitle => 'صحتك تهمنا';
 
   @override
-  String get medicalInfoSubtitle => 'نرجى تزويدنا بمعلوماتك الطبية.';
+  String get medicalInfoSubtitle =>
+      ' صحتك تهمنا\nنرجى تزويدنا بمعلوماتك الطبية.';
 
   @override
   String get chronicDiseasesHint => 'الأمراض المزمنة';
@@ -833,4 +834,262 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get next_appointment_message =>
       'موعدك القادم في انتظارك. نتمنى لك دوام الصحة والعافية.';
+
+  @override
+  String get errorLoadingCategories => 'حدث خطأ في تحميل الفئات';
+
+  @override
+  String get doctors => 'الأطباء';
+
+  @override
+  String get noDoctorsAvailable => 'لا يوجد أطباء';
+
+  @override
+  String get failedToLoadCategories => 'فشل في تحميل الفئات';
+
+  @override
+  String get failedToFetchDoctors => 'فشل في جلب الأطباء';
+
+  @override
+  String get settingUpForYou => 'نقوم بإعداد كل شيء لك الآن...';
+
+  @override
+  String get firstStepHealthcare =>
+      'خطوتك الأولى نحو عناية صحية متكاملة تبدأ الآن';
+
+  @override
+  String get chronicDiseases => 'الأمراض المزمنة';
+
+  @override
+  String get yourHealthMatters => 'صحتك تهمنا\nنرجى تزويدنا بمعلوماتك الطبية.';
+
+  @override
+  String get allergies => 'الحساسية';
+
+  @override
+  String get regularMedications => 'الأدوية المستخدمة بانتظام';
+
+  @override
+  String get chooseBloodType => 'اختر نوع زمرة دمك';
+
+  @override
+  String get lifestyleInformation => 'معلومات نمط الحياة';
+
+  @override
+  String get completePersonalInfo =>
+      'نرغب بالتعرف عليك أكثر\nفضلًا أكمل بياناتك الشخصية.';
+
+  @override
+  String get email => 'البريد الإلكتروني';
+
+  @override
+  String get fieldRequired => 'هذا الحقل مطلوب';
+
+  @override
+  String get enterValidEmail => 'يرجى إدخال بريد إلكتروني صحيح';
+
+  @override
+  String get gender => 'الجنس';
+
+  @override
+  String get dateOfBirth => 'تاريخ الميلاد';
+
+  @override
+  String get currentJob => 'الوظيفة الحالية';
+
+  @override
+  String get fillAllRequiredFields => 'يرجى تعبئة جميع الحقول المطلوبة';
+
+  @override
+  String get errorGettingLocation => 'خطأ في الحصول على الموقع:';
+
+  @override
+  String get enterLocationOnMap => 'يرجى إدخال الموقع وتحديده على الخريطة';
+
+  @override
+  String get enterLocationMessage =>
+      'لنكن أقرب إليك  \n أدخل موقعك وحدده على الخريطة';
+
+  @override
+  String get currentLocation => 'موقعك الحالي';
+
+  @override
+  String get enterAddress => 'اكتب عنوانك أو اسم منطقتك (مثال: شارع بغداد).';
+
+  @override
+  String get moveMapOrUseLocation =>
+      'حرك الخريطة أو استخدم الموقع الحالي لتحديد موقعك بدقة';
+
+  @override
+  String get loadingMap => 'جاري تحميل الخريطة...';
+
+  @override
+  String get addPersonalTouch => 'أضف لمستك الشخصية';
+
+  @override
+  String get uploadPhoto => 'يرجى رفع صورتك.';
+
+  @override
+  String get photoGuidelines =>
+      'يفضل أن تكون الصورة واضحة  \n وحديثة، وتظهر الوجه بوضوح.';
+
+  @override
+  String get failedToFetchFavorites => 'فشل في الحصول على المفضلة';
+
+  @override
+  String get connectionError => 'خطأ في الاتصال:';
+
+  @override
+  String get failedToFetchFavoriteDoctors => 'فشل في الحصول على أطباء المفضلة';
+
+  @override
+  String get failedToAddFavoriteDoctor => 'فشل في إضافة الطبيب للمفضلة';
+
+  @override
+  String get failedToRemoveFavoriteDoctor => 'فشل في حذف الطبيب من المفضلة';
+
+  @override
+  String get noFavoriteDoctors => 'لا يوجد أطباء مفضلين';
+
+  @override
+  String get pleaseLoginFirst => 'يرجى تسجيل الدخول أولاً';
+
+  @override
+  String get errorLoadingFavorites => 'حدث خطأ في تحميل المفضلة';
+
+  @override
+  String get favoriteDoctors => 'الأطباء المفضلون';
+
+  @override
+  String get searchSpecialty => 'ما هو التخصص الذي تبحث عنه';
+
+  @override
+  String get viewAll => 'عرض الكل';
+
+  @override
+  String get topDoctorsByRating => ' أفضل الأطباء حسب تقييم المرضى      ';
+
+  @override
+  String get errorLoadingData => 'حدث خطأ في تحميل البيانات';
+
+  @override
+  String get noDataAvailable => 'لا توجد بيانات متاحة';
+
+  @override
+  String get doctorsNearYou => 'أطباء بالقرب منك';
+
+  @override
+  String get noNearbyDoctors => 'لا يوجد أطباء قريبين في الوقت الحالي';
+
+  @override
+  String get errorLoadingNearbyDoctors => 'حدث خطأ في تحميل الأطباء القريبين';
+
+  @override
+  String get clinic => 'العيادة:';
+
+  @override
+  String get distanceFromYou => 'يبعد عنك';
+
+  @override
+  String get earliestAvailableAppointment => 'أقرب موعد متاح';
+
+  @override
+  String get bookNow => 'احجز الآن';
+
+  @override
+  String get greetingMessage => 'مرحباً، نتمنى لك يوماً سعيداً!';
+
+  @override
+  String get failedToUpdateData => 'فشل في تحديث البيانات';
+
+  @override
+  String get failedToUpdatePhoto => 'فشل في تحديث الصورة';
+
+  @override
+  String get failedToFetchData => 'فشل في جلب البيانات';
+
+  @override
+  String get loadingData => 'جاري تحميل البيانات...';
+
+  @override
+  String get personalInformation => 'المعلومات الشخصية';
+
+  @override
+  String get fullName => 'الاسم الكامل';
+
+  @override
+  String get professionalInformation => 'المعلومات المهنية';
+
+  @override
+  String get profession => 'المهنة';
+
+  @override
+  String get address => 'العنوان';
+
+  @override
+  String get medicalInformation => 'المعلومات الطبية';
+
+  @override
+  String get bloodType => 'فصيلة الدم';
+
+  @override
+  String get medicalHistory => 'التاريخ الطبي';
+
+  @override
+  String get notSpecified => 'غير محدد';
+
+  @override
+  String get currentMedications => 'الأدوية الحالية';
+
+  @override
+  String get lifestyle => 'نمط الحياة';
+
+  @override
+  String get smoker => 'مدخن';
+
+  @override
+  String get drinksAlcohol => 'يشرب الكحول';
+
+  @override
+  String get married => 'متزوج';
+
+  @override
+  String get editProfile => 'تعديل الملف الشخصي';
+
+  @override
+  String get logOut => 'تسجيل الخروج';
+
+  @override
+  String get confirmLogOut => 'هل أنت متأكد من أنك تريد تسجيل الخروج؟';
+
+  @override
+  String get firstName => 'الاسم الأول';
+
+  @override
+  String get language => 'اللغة';
+
+  @override
+  String get arabic => 'العربية';
+
+  @override
+  String get english => 'الانجليزية';
+
+  @override
+  String get account => 'الحساب';
+
+  @override
+  String get medicalRecords => 'السجلات الطبية';
+
+  @override
+  String get favorites => 'المفضلة';
+
+  @override
+  String get settings => 'الاعدادات';
+
+  @override
+  String get logout => 'تسجيل الخروج';
+
+  @override
+  String get walkingMessage =>
+      '“ 10 دقائق من المشي يومياً تصنع فرقاً كبيراً في صحتك ونشاطك. ابدأ الآن! ”';
 }
