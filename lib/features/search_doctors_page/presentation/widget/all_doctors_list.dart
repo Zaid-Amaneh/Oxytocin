@@ -6,6 +6,7 @@ import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
+import 'package:oxytocin/core/widgets/un_expected_error.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/viewmodels/doctorSearch/doctor_search_cubit.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/widget/doctor_card.dart';
 import 'package:shimmer/shimmer.dart';
@@ -125,23 +126,7 @@ class _AllDoctorsListState extends State<AllDoctorsList> {
             ),
           );
         } else if (state is DoctorSearchFailure) {
-          return SliverToBoxAdapter(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(36, 36, 36, 8),
-                  child: Image.asset(AppImages.unexpectedError),
-                ),
-                Text(
-                  context.tr.server_error,
-                  textAlign: TextAlign.center,
-                  style: AppStyles.almaraiBold(
-                    context,
-                  ).copyWith(color: AppColors.kPrimaryColor1, fontSize: 14),
-                ),
-              ],
-            ),
-          );
+          return const SliverToBoxAdapter(child: UnExpectedError());
         } else {
           return const SliverToBoxAdapter(child: SizedBox.shrink());
         }

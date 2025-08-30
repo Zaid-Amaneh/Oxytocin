@@ -3,8 +3,6 @@ import 'package:oxytocin/core/Utils/services/secure_storage_service.dart';
 import 'dart:convert';
 import 'package:oxytocin/core/Utils/services/url_container.dart';
 import 'package:oxytocin/features/categories/data/models/doctors_response.dart';
-import 'package:oxytocin/features/search_doctors_page/data/models/doctor_model.dart'
-    show DoctorModel;
 import '../models/category_model.dart';
 
 class CategoriesRemoteDataSource {

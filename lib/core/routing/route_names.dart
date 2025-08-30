@@ -18,10 +18,17 @@ class RouteNames {
   static const allReviewsView = 'AllReviewsView';
 
   static const searchDoctorsView = 'SearchDoctorsView';
-  static const medicalAppointmentsView = 'medicalAppointmentsView';
+  static const appointmentsManagementView = 'appointmentsManagementView';
   static const profile = 'profile';
   static const doctorProfileView = 'doctorProfileView';
   static const allAppointmentMonth = 'AllAppointmentMonth';
   static const bookAppointment = 'bookAppointment';
   static const appointmentSuccessfullyBooked = 'appointmentSuccessfullyBooked';
+  static const reAppointment = 'reAppointment';
+  static const reBookAppointment = 'reBookAppointment';
+  static const attachmentsManagerScreen = 'attachmentsManagerScreen';
+  static const medicalRecordsView = 'medicalRecordsView';
+  static const specializationsView = 'specializationsView';
+  static const doctorListView = 'doctorListView';
+  static const manageMedicalRecords = 'manageMedicalRecords';
 }

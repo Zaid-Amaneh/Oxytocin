@@ -75,3 +75,7 @@ class FilesUploadErrorFailure extends Failure {
 class InvalidUploadedFileFailure extends Failure {
   const InvalidUploadedFileFailure() : super("invalid_uploaded_file");
 }
+
+class PatientBannedTitleFailure extends Failure {
+  const PatientBannedTitleFailure() : super("patientBannedTitle");
+}

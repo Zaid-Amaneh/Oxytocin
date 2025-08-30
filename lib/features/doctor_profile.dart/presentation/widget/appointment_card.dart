@@ -12,8 +12,10 @@ class AppointmentCard extends StatelessWidget {
     super.key,
     required this.appointment,
     required this.id,
+    this.re,
   });
   final String id;
+  final bool? re;
   final AppointmentDate appointment;
   @override
   Widget build(BuildContext context) {
@@ -139,15 +141,27 @@ class AppointmentCard extends StatelessWidget {
           GestureDetector(
             onTap: hasAvailableTimes
                 ? () {
-                    NavigationService().pushToNamedWithParams(
-                      RouteNames.bookAppointment,
-                      extra: {
-                        'dateText': dateText,
-                        'dayName': dayName,
-                        'availableTimes': availableTimes,
-                        'id': id,
-                      },
-                    );
+                    if (re != null) {
+                      NavigationService().pushToNamedWithParams(
+                        RouteNames.reBookAppointment,
+                        extra: {
+                          'dateText': dateText,
+                          'dayName': dayName,
+                          'availableTimes': availableTimes,
+                          'id': id,
+                        },
+                      );
+                    } else {
+                      NavigationService().pushToNamedWithParams(
+                        RouteNames.bookAppointment,
+                        extra: {
+                          'dateText': dateText,
+                          'dayName': dayName,
+                          'availableTimes': availableTimes,
+                          'id': id,
+                        },
+                      );
+                    }
                   }
                 : null,
             child: Container(

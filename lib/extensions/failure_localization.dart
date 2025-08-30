@@ -40,6 +40,8 @@ extension FailureLocalization on AppLocalizations {
         return files_upload_error;
       case 'invalid_uploaded_file':
         return invalid_uploaded_file;
+      case 'patientBannedTitle':
+        return patientBannedTitle;
       default:
         return errorUnknown;
     }

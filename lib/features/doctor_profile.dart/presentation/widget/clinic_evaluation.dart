@@ -20,6 +20,7 @@ class ClinicEvaluation extends StatelessWidget {
   final List<EvaluationModel> evaluations;
   @override
   Widget build(BuildContext context) {
+    String rateR = rate.toStringAsFixed(1);
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -36,7 +37,7 @@ class ClinicEvaluation extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                rate.toString(),
+                rateR,
                 style: AppStyles.almaraiExtraBold(
                   context,
                 ).copyWith(color: AppColors.textPrimary, fontSize: 34),

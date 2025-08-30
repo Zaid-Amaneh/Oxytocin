@@ -3,6 +3,20 @@ import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/routing/route_names.dart';
+import 'package:oxytocin/features/appointments_management/data/services/appointment_cancellation_service.dart';
+import 'package:oxytocin/features/appointments_management/data/services/appointments_fetch_service.dart';
+import 'package:oxytocin/features/appointments_management/data/services/evaluation_service.dart';
+import 'package:oxytocin/features/appointments_management/data/services/manage_attachment_service.dart';
+import 'package:oxytocin/features/appointments_management/data/services/queue_service.dart';
+import 'package:oxytocin/features/appointments_management/data/services/re_book_appointment_service.dart';
+import 'package:oxytocin/features/appointments_management/data/services/rebook_appointment_service.dart';
+import 'package:oxytocin/features/appointments_management/presentation/viewmodels/attachments_manager_cubit.dart';
+import 'package:oxytocin/features/appointments_management/presentation/viewmodels/management_appointments_cubit.dart';
+import 'package:oxytocin/features/appointments_management/presentation/viewmodels/queue_cubit.dart';
+import 'package:oxytocin/features/appointments_management/presentation/viewmodels/re_booking_cubit.dart';
+import 'package:oxytocin/features/appointments_management/presentation/views/attachments_manager_screen.dart';
+import 'package:oxytocin/features/appointments_management/presentation/views/re_appointment_view.dart';
+import 'package:oxytocin/features/appointments_management/presentation/views/re_book_Appointment_view.dart';
 import 'package:oxytocin/features/book_appointment/data/models/booked_appointment_model.dart';
 import 'package:oxytocin/features/book_appointment/data/services/appointment_service.dart';
 import 'package:oxytocin/features/book_appointment/data/services/attachment_service.dart';
@@ -19,6 +33,19 @@ import 'package:oxytocin/features/doctor_profile.dart/presentation/viewmodels/fa
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/all_appointment_month.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/all_reviews_view.dart';
 import 'package:oxytocin/features/doctor_profile.dart/presentation/views/doctor_profile_view.dart';
+import 'package:oxytocin/features/manage_medical_records/data/services/specialty_access_service.dart';
+import 'package:oxytocin/features/manage_medical_records/presentation/viewmodels/specialty_access_cubit.dart';
+import 'package:oxytocin/features/manage_medical_records/presentation/views/manage_medical_records.dart';
+import 'package:oxytocin/features/medical_records/data/repositories/doctors_repository.dart';
+import 'package:oxytocin/features/medical_records/data/services/archives_service.dart';
+import 'package:oxytocin/features/medical_records/data/services/doctors_service.dart';
+import 'package:oxytocin/features/medical_records/data/services/specialties_service.dart';
+import 'package:oxytocin/features/medical_records/presentation/viewmodels/doctors_cubit.dart';
+import 'package:oxytocin/features/medical_records/presentation/viewmodels/patient_archives_cubit.dart';
+import 'package:oxytocin/features/medical_records/presentation/viewmodels/specialties_cubit.dart';
+import 'package:oxytocin/features/medical_records/presentation/views/doctor_list_view.dart';
+import 'package:oxytocin/features/medical_records/presentation/views/medical_records_view.dart';
+import 'package:oxytocin/features/medical_records/presentation/views/specializations_view.dart';
 import 'package:oxytocin/features/search_doctors_page/data/services/doctor_search_service.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/viewmodels/doctorSearch/doctor_search_cubit.dart';
 import 'package:oxytocin/features/search_doctors_page/presentation/views/search_doctors_view.dart';
@@ -51,14 +78,14 @@ import 'package:oxytocin/features/auth_complete/presentation/views/medical_info_
 import 'package:oxytocin/features/auth_complete/presentation/views/profile_info_view.dart';
 import 'package:oxytocin/features/auth_complete/presentation/views/set_location.dart';
 import 'package:oxytocin/features/auth_complete/presentation/views/upload_profile_photo.dart';
-import 'package:oxytocin/features/medical_appointments/presentation/views/medical_appointments_view.dart';
+import 'package:oxytocin/features/appointments_management/presentation/views/appointments_management_view.dart';
 import 'package:oxytocin/features/profile/presentation/view/profile_view.dart';
 import 'package:oxytocin/features/profile/di/profile_dependency_injection.dart';
 
 class AppRouter {
   static GoRouter createRouter(NavigationService navigationService) {
     final router = GoRouter(
-      initialLocation: '/${RouteNames.signIn}',
+      initialLocation: '/${RouteNames.splash}',
       routes: [
         GoRoute(
           path: '/${RouteNames.splash}',
@@ -257,9 +284,28 @@ class AppRouter {
         ),
 
         GoRoute(
-          path: '/${RouteNames.medicalAppointmentsView}',
-          name: RouteNames.medicalAppointmentsView,
-          builder: (context, state) => const MedicalAppointmentsView(),
+          path: '/${RouteNames.appointmentsManagementView}',
+          name: RouteNames.appointmentsManagementView,
+          builder: (context, state) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => ManagementAppointmentsCubit(
+                  evaluationService: EvaluationService(http.Client()),
+                  appointmentsFetchService: AppointmentsFetchService(
+                    http.Client(),
+                  ),
+                  cancellationService: AppointmentCancellationService(
+                    http.Client(),
+                  ),
+                  rebookService: RebookAppointmentService(http.Client()),
+                ),
+              ),
+              BlocProvider(
+                create: (context) => QueueCubit(QueueService(http.Client())),
+              ),
+            ],
+            child: const AppointmentsManagementView(),
+          ),
         ),
         GoRoute(
           path: '/${RouteNames.profile}',
@@ -363,6 +409,130 @@ class AppRouter {
               ),
             );
           },
+        ),
+        GoRoute(
+          path: '/${RouteNames.reAppointment}',
+          name: RouteNames.reAppointment,
+          builder: (context, state) {
+            final args = state.extra as Map<String, dynamic>;
+            final id = args['id'] as int;
+            final appointmentId = args['appointmentId'] as int;
+            final now = DateTime.now();
+            final startDate = DateTime(now.year, now.month, 1);
+            final endDate = DateTime(now.year, now.month + 1, 0);
+            final String formattedStartDate =
+                "${startDate.year}-${startDate.month.toString().padLeft(2, '0')}-${startDate.day.toString().padLeft(2, '0')}";
+
+            final String formattedEndDate =
+                "${endDate.year}-${endDate.month.toString().padLeft(2, '0')}-${endDate.day.toString().padLeft(2, '0')}";
+
+            return BlocProvider(
+              create: (context) => DoctorProfileCubit(DoctorProfileService())
+                ..fetchAppointmentDates(
+                  clinicId: id,
+                  startDate: formattedStartDate,
+                  endDate: formattedEndDate,
+                ),
+              child: ReAppointmentView(id: id, appointmentId: appointmentId),
+            );
+          },
+        ),
+
+        GoRoute(
+          path: '/${RouteNames.reBookAppointment}',
+          name: RouteNames.reBookAppointment,
+          builder: (context, state) {
+            final args = state.extra as Map<String, dynamic>;
+            final appointmentService = ReBookAppointmentService(http.Client());
+            return BlocProvider(
+              create: (_) => ReBookingCubit(appointmentService),
+              child: ReBookAppointmentView(
+                id: args['id'] as String,
+                dateText: args['dateText'] as String,
+                dayName: args['dayName'] as String,
+                availableTimes: List<VisitTime>.from(
+                  args['availableTimes'] as List,
+                ),
+              ),
+            );
+          },
+        ),
+
+        GoRoute(
+          path: '/${RouteNames.attachmentsManagerScreen}',
+          name: RouteNames.attachmentsManagerScreen,
+          builder: (context, state) {
+            final args = state.extra as Map<String, dynamic>;
+            final manageAttachmentService = ManageAttachmentService(
+              http.Client(),
+            );
+            return BlocProvider(
+              create: (_) => AttachmentsManagerCubit(manageAttachmentService),
+              child: AttachmentsManagerScreen(appointmentId: args['id'] as int),
+            );
+          },
+        ),
+
+        GoRoute(
+          path: '/${RouteNames.specializationsView}',
+          name: RouteNames.specializationsView,
+          builder: (context, state) {
+            final specialtiesService = SpecialtiesService(http.Client());
+            return BlocProvider(
+              create: (_) =>
+                  SpecialtiesCubit(specialtiesService)..fetchSpecialties(),
+              child: const SpecializationsView(),
+            );
+          },
+        ),
+        GoRoute(
+          path: '/${RouteNames.doctorListView}',
+          name: RouteNames.doctorListView,
+          builder: (context, state) {
+            final args = state.extra as Map<String, dynamic>;
+            final int id = args['id'] as int;
+            final String name = args['name'] as String;
+
+            return BlocProvider(
+              create: (context) {
+                final DoctorsService doctorsService = DoctorsService(
+                  http.Client(),
+                );
+                final DoctorsRepository repository = DoctorsRepositoryImpl(
+                  doctorsService,
+                );
+                return DoctorsCubit(repository)..fetchDoctors(id);
+              },
+              child: DoctorListView(id: id, specName: name),
+            );
+          },
+        ),
+        GoRoute(
+          path: '/${RouteNames.medicalRecordsView}',
+          name: RouteNames.medicalRecordsView,
+          builder: (context, state) {
+            final args = state.extra as Map<String, dynamic>;
+            final int doctorId = args['id'] as int;
+            final String doctorName = args['name'] as String;
+            return BlocProvider(
+              create: (context) {
+                final archivesService = ArchivesService(http.Client());
+                return PatientArchivesCubit(archivesService)
+                  ..fetchDoctorArchives(doctorId);
+              },
+              child: MedicalRecordsView(doctorName: doctorName),
+            );
+          },
+        ),
+        GoRoute(
+          path: '/${RouteNames.manageMedicalRecords}',
+          name: RouteNames.manageMedicalRecords,
+          builder: (context, state) => BlocProvider(
+            create: (context) =>
+                SpecialtyAccessCubit(SpecialtyAccessService(http.Client()))
+                  ..fetchSpecialtyAccessList(),
+            child: const ManageMedicalRecords(),
+          ),
         ),
       ],
     );

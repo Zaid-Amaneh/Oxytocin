@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
+import 'package:oxytocin/core/routing/navigation_service.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/Utils/app_styles.dart';
 import 'package:oxytocin/core/Utils/size_config.dart';
@@ -240,7 +241,7 @@ class _ProfileViewState extends State<ProfileView>
   }
 
   void _handleMedicalRecordsTap() {
-    print('تم النقر على السجلات الطبية');
+    NavigationService().pushToNamed(RouteNames.specializationsView);
   }
 
   void _handleSettingsTap() {

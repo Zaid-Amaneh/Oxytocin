@@ -155,7 +155,7 @@ abstract class AppLocalizations {
   /// No description provided for @startNow.
   ///
   /// In en, this message translates to:
-  /// **'Start now'**
+  /// **'Start Now'**
   String get startNow;
 
   /// No description provided for @signUp.
@@ -179,7 +179,7 @@ abstract class AppLocalizations {
   /// No description provided for @phoneNumber.
   ///
   /// In en, this message translates to:
-  /// **'Phone number'**
+  /// **'Phone Number'**
   String get phoneNumber;
 
   /// No description provided for @pleaseEnterValidNumber.
@@ -1610,6 +1610,750 @@ abstract class AppLocalizations {
   /// **'Your next appointment is waiting for you. We wish you continued health and wellness.'**
   String get next_appointment_message;
 
+  /// No description provided for @reservationCanceledSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'You have successfully canceled this reservation.'**
+  String get reservationCanceledSuccess;
+
+  /// No description provided for @allReservations.
+  ///
+  /// In en, this message translates to:
+  /// **'All Reservations'**
+  String get allReservations;
+
+  /// No description provided for @currentReservations.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Reservations'**
+  String get currentReservations;
+
+  /// No description provided for @pastReservations.
+  ///
+  /// In en, this message translates to:
+  /// **'Past Reservations'**
+  String get pastReservations;
+
+  /// No description provided for @canceledReservations.
+  ///
+  /// In en, this message translates to:
+  /// **'Canceled Reservations'**
+  String get canceledReservations;
+
+  /// No description provided for @rebook.
+  ///
+  /// In en, this message translates to:
+  /// **'Rebook'**
+  String get rebook;
+
+  /// No description provided for @loginRequiredForCurrentReservations.
+  ///
+  /// In en, this message translates to:
+  /// **'You cannot view current reservations because you are not logged in yet. Please log in to enjoy all the app features.'**
+  String get loginRequiredForCurrentReservations;
+
+  /// No description provided for @edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// No description provided for @reschedule.
+  ///
+  /// In en, this message translates to:
+  /// **'Reschedule'**
+  String get reschedule;
+
+  /// No description provided for @cancelReservation.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel Reservation'**
+  String get cancelReservation;
+
+  /// No description provided for @sessionFeedbackTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How was your session? Rate your experience with us!'**
+  String get sessionFeedbackTitle;
+
+  /// No description provided for @sessionFeedbackSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Share your feedback to help others.. What did you like or dislike?'**
+  String get sessionFeedbackSubtitle;
+
+  /// No description provided for @send.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get send;
+
+  /// No description provided for @map.
+  ///
+  /// In en, this message translates to:
+  /// **'Map'**
+  String get map;
+
+  /// No description provided for @rateDoctor.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate Doctor'**
+  String get rateDoctor;
+
+  /// No description provided for @details.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get details;
+
+  /// No description provided for @call.
+  ///
+  /// In en, this message translates to:
+  /// **'Call'**
+  String get call;
+
+  /// No description provided for @callErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, we couldn\'t make the call'**
+  String get callErrorTitle;
+
+  /// No description provided for @callErrorMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to open the call app. Please try again later or dial manually.'**
+  String get callErrorMessage;
+
+  /// No description provided for @missed_reservation.
+  ///
+  /// In en, this message translates to:
+  /// **'You missed this reservation. We hope you can attend next time.'**
+  String get missed_reservation;
+
+  /// No description provided for @ratingFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rating could not be submitted due to an error. Please try again later.'**
+  String get ratingFailed;
+
+  /// No description provided for @ratingSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rating has been submitted successfully. Thank you!'**
+  String get ratingSuccess;
+
+  /// No description provided for @alreadyRatedOrCommented.
+  ///
+  /// In en, this message translates to:
+  /// **'Rated'**
+  String get alreadyRatedOrCommented;
+
+  /// No description provided for @visitCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Your visit has been completed successfully. Wishing you good health and wellness!'**
+  String get visitCompleted;
+
+  /// No description provided for @noNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'No notes recorded'**
+  String get noNotes;
+
+  /// No description provided for @patientNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Patient Notes'**
+  String get patientNotes;
+
+  /// No description provided for @appointmentInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment Information'**
+  String get appointmentInfo;
+
+  /// No description provided for @doctorName.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor Name:'**
+  String get doctorName;
+
+  /// No description provided for @doctorInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor Information'**
+  String get doctorInfo;
+
+  /// No description provided for @appointmentDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment Details'**
+  String get appointmentDetails;
+
+  /// No description provided for @address.
+  ///
+  /// In en, this message translates to:
+  /// **'Address:'**
+  String get address;
+
+  /// No description provided for @clinicNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Clinic Number:'**
+  String get clinicNumber;
+
+  /// No description provided for @queue.
+  ///
+  /// In en, this message translates to:
+  /// **'Queue'**
+  String get queue;
+
+  /// No description provided for @cancellationSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'The appointment has been cancelled successfully.'**
+  String get cancellationSuccess;
+
+  /// No description provided for @cancellationFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'The appointment could not be cancelled. Please try again later.'**
+  String get cancellationFailed;
+
+  /// No description provided for @updateBookingSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Your booking has been updated successfully.'**
+  String get updateBookingSuccess;
+
+  /// No description provided for @updateBookingFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update your booking. Please try again later.'**
+  String get updateBookingFailed;
+
+  /// No description provided for @editUploadedFiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Files'**
+  String get editUploadedFiles;
+
+  /// No description provided for @rebookingSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Your booking has been successfully rescheduled after cancellation.'**
+  String get rebookingSuccess;
+
+  /// No description provided for @rebookingFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Rebooking failed, the requested time slot is already taken.'**
+  String get rebookingFailed;
+
+  /// No description provided for @fileOpenFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load or open the file'**
+  String get fileOpenFailed;
+
+  /// No description provided for @fileLoadedNoViewer.
+  ///
+  /// In en, this message translates to:
+  /// **'The file is loaded but no viewer is available to open it.'**
+  String get fileLoadedNoViewer;
+
+  /// No description provided for @manageAttachments.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage Attachments'**
+  String get manageAttachments;
+
+  /// No description provided for @attachments.
+  ///
+  /// In en, this message translates to:
+  /// **'Attachments'**
+  String get attachments;
+
+  /// No description provided for @attachmentsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} of 5 files'**
+  String attachmentsCount(Object count);
+
+  /// No description provided for @uploading.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading...'**
+  String get uploading;
+
+  /// No description provided for @addFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Add File'**
+  String get addFile;
+
+  /// No description provided for @loadingFiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading files...'**
+  String get loadingFiles;
+
+  /// No description provided for @noAttachments.
+  ///
+  /// In en, this message translates to:
+  /// **'No attachments available'**
+  String get noAttachments;
+
+  /// No description provided for @addFileHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Press the \'Add File\' button to upload your files'**
+  String get addFileHint;
+
+  /// No description provided for @deleteFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete File'**
+  String get deleteFile;
+
+  /// No description provided for @maxFilesError.
+  ///
+  /// In en, this message translates to:
+  /// **'You cannot upload more than 5 files'**
+  String get maxFilesError;
+
+  /// No description provided for @uploadAlerts.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload Alerts'**
+  String get uploadAlerts;
+
+  /// No description provided for @fileSelectionError.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred while selecting files'**
+  String get fileSelectionError;
+
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get ok;
+
+  /// No description provided for @deleteConfirmationQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this file?'**
+  String get deleteConfirmationQuestion;
+
+  /// No description provided for @deleteConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Confirmation'**
+  String get deleteConfirmation;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @canceled.
+  ///
+  /// In en, this message translates to:
+  /// **'Canceled'**
+  String get canceled;
+
+  /// No description provided for @absent.
+  ///
+  /// In en, this message translates to:
+  /// **'Absent'**
+  String get absent;
+
+  /// No description provided for @waiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting'**
+  String get waiting;
+
+  /// No description provided for @inExamination.
+  ///
+  /// In en, this message translates to:
+  /// **'In Examination'**
+  String get inExamination;
+
+  /// No description provided for @finished.
+  ///
+  /// In en, this message translates to:
+  /// **'Finished'**
+  String get finished;
+
+  /// No description provided for @enteredAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Entered at: {time}'**
+  String enteredAt(Object time);
+
+  /// No description provided for @exitedAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Exited at: {time}'**
+  String exitedAt(Object time);
+
+  /// No description provided for @appointmentAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment: {time}'**
+  String appointmentAt(Object time);
+
+  /// No description provided for @you.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get you;
+
+  /// No description provided for @patientNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Patient No. {number}'**
+  String patientNumber(Object number);
+
+  /// No description provided for @inQueue.
+  ///
+  /// In en, this message translates to:
+  /// **'In Queue'**
+  String get inQueue;
+
+  /// No description provided for @yourPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Position'**
+  String get yourPosition;
+
+  /// No description provided for @completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completed;
+
+  /// No description provided for @queueProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{progress} of {total}'**
+  String queueProgress(Object progress, Object total);
+
+  /// No description provided for @queueProgressText.
+  ///
+  /// In en, this message translates to:
+  /// **'Queue Progress'**
+  String get queueProgressText;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @averageDelay.
+  ///
+  /// In en, this message translates to:
+  /// **'Average Delay: {minutes}m'**
+  String averageDelay(Object minutes);
+
+  /// No description provided for @averageExamination.
+  ///
+  /// In en, this message translates to:
+  /// **'Average Examination: {minutes}m'**
+  String averageExamination(Object minutes);
+
+  /// No description provided for @yourNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Number: {number}'**
+  String yourNumber(Object number);
+
+  /// No description provided for @estimatedWait.
+  ///
+  /// In en, this message translates to:
+  /// **'Approximately {minutes} minutes'**
+  String estimatedWait(Object minutes);
+
+  /// No description provided for @expectedWaitTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Expected Waiting Time'**
+  String get expectedWaitTime;
+
+  /// No description provided for @waitingQueue.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting Queue'**
+  String get waitingQueue;
+
+  /// No description provided for @queueLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading queue data...'**
+  String get queueLoading;
+
+  /// No description provided for @pleaseWait.
+  ///
+  /// In en, this message translates to:
+  /// **'Please wait a moment'**
+  String get pleaseWait;
+
+  /// No description provided for @queueLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load queue'**
+  String get queueLoadFailed;
+
+  /// No description provided for @serverError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not connect to the server. Please check your internet connection.'**
+  String get serverError;
+
+  /// No description provided for @noQueue.
+  ///
+  /// In en, this message translates to:
+  /// **'No queue available'**
+  String get noQueue;
+
+  /// No description provided for @doctorUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Dr. {doctorName} is currently unavailable or no appointments are scheduled'**
+  String doctorUnavailable(Object doctorName);
+
+  /// No description provided for @checkLater.
+  ///
+  /// In en, this message translates to:
+  /// **'You can come back later to check the queue status'**
+  String get checkLater;
+
+  /// No description provided for @unknownState.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown state'**
+  String get unknownState;
+
+  /// No description provided for @unexpectedError.
+  ///
+  /// In en, this message translates to:
+  /// **'An unexpected error occurred, please try again'**
+  String get unexpectedError;
+
+  /// No description provided for @cancelAppointment.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, cancel the appointment'**
+  String get cancelAppointment;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @confirmCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm cancellation'**
+  String get confirmCancel;
+
+  /// No description provided for @cancelConfirmationMsg.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to cancel this appointment? You will not be able to undo this action.'**
+  String get cancelConfirmationMsg;
+
+  /// No description provided for @cancelAppointmentPermanently.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel the appointment permanently'**
+  String get cancelAppointmentPermanently;
+
+  /// No description provided for @addRemovemanageAttachments.
+  ///
+  /// In en, this message translates to:
+  /// **'Add or remove attachments'**
+  String get addRemovemanageAttachments;
+
+  /// No description provided for @changeAppointmentDateTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Change appointment date or time'**
+  String get changeAppointmentDateTime;
+
+  /// No description provided for @noCurrentAppointments.
+  ///
+  /// In en, this message translates to:
+  /// **'You have no current appointments'**
+  String get noCurrentAppointments;
+
+  /// No description provided for @noPastAppointments.
+  ///
+  /// In en, this message translates to:
+  /// **'You have no past appointments'**
+  String get noPastAppointments;
+
+  /// No description provided for @noCancelledAppointments.
+  ///
+  /// In en, this message translates to:
+  /// **'You have no cancelled appointments'**
+  String get noCancelledAppointments;
+
+  /// No description provided for @patientBannedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Patient Banned'**
+  String get patientBannedTitle;
+
+  /// No description provided for @patientBannedDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'This account has been banned by the clinic. Please contact the clinic to remove the ban or if you believe this ban was applied by mistake.'**
+  String get patientBannedDescription;
+
+  /// No description provided for @myMedicalRecordsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My Medical Records'**
+  String get myMedicalRecordsTitle;
+
+  /// No description provided for @myMedicalRecordsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Here you can view your medical archive based on the specialties of doctors you have visited before. Select a specialty to browse the related medical records.'**
+  String get myMedicalRecordsDescription;
+
+  /// No description provided for @selectSpecialtyToViewRecords.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a medical specialty to view your records'**
+  String get selectSpecialtyToViewRecords;
+
+  /// No description provided for @visits.
+  ///
+  /// In en, this message translates to:
+  /// **'Visits'**
+  String get visits;
+
+  /// No description provided for @selectDoctorToViewRecords.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a doctor to view your medical records with them'**
+  String get selectDoctorToViewRecords;
+
+  /// No description provided for @visitedDoctorsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Here is a list of the doctors you have visited. Select a doctor to view the records they wrote for you.'**
+  String get visitedDoctorsDescription;
+
+  /// No description provided for @remainingAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Remaining Amount'**
+  String get remainingAmount;
+
+  /// No description provided for @paidAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid Amount'**
+  String get paidAmount;
+
+  /// No description provided for @sessionCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Session Cost'**
+  String get sessionCost;
+
+  /// No description provided for @financialInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Financial Information'**
+  String get financialInfo;
+
+  /// No description provided for @vitalSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Vital Signs'**
+  String get vitalSigns;
+
+  /// No description provided for @doctorRecommendations.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor\'s Recommendations'**
+  String get doctorRecommendations;
+
+  /// No description provided for @medicalSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Medical Summary'**
+  String get medicalSummary;
+
+  /// No description provided for @mainComplaint.
+  ///
+  /// In en, this message translates to:
+  /// **'Main Complaint'**
+  String get mainComplaint;
+
+  /// No description provided for @manageMedicalRecords.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage medical records'**
+  String get manageMedicalRecords;
+
+  /// No description provided for @medicalRecordsPermissions.
+  ///
+  /// In en, this message translates to:
+  /// **'Set Medical Records Permissions'**
+  String get medicalRecordsPermissions;
+
+  /// No description provided for @medicalRecordsPermissionsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose whether the medical record is public, allowing all doctors to view it, or private, restricted to doctors of the same specialty.'**
+  String get medicalRecordsPermissionsDesc;
+
+  /// No description provided for @public.
+  ///
+  /// In en, this message translates to:
+  /// **'Public'**
+  String get public;
+
+  /// No description provided for @restricted.
+  ///
+  /// In en, this message translates to:
+  /// **'Restricted'**
+  String get restricted;
+
+  /// No description provided for @noMedicalRecordsInThisField.
+  ///
+  /// In en, this message translates to:
+  /// **'You don\'t have any medical records in this field yet, and that\'s something to be optimistic about.'**
+  String get noMedicalRecordsInThisField;
+
+  /// No description provided for @profilePersonal.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profilePersonal;
+
+  /// No description provided for @appointments.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointments'**
+  String get appointments;
+
+  /// No description provided for @home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get home;
+
   /// No description provided for @errorLoadingCategories.
   ///
   /// In en, this message translates to:
@@ -1975,12 +2719,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Profession'**
   String get profession;
-
-  /// No description provided for @address.
-  ///
-  /// In en, this message translates to:
-  /// **'Address'**
-  String get address;
 
   /// No description provided for @medicalInformation.
   ///

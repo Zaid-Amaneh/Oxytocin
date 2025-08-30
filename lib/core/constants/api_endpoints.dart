@@ -1,8 +1,6 @@
 class ApiEndpoints {
-  static const String baseURL =
-      // 'https://actively-sound-tiger.ngrok-free.app';
-      "http://10.248.180.222:8000";
-  //   'http://10.235.151.222:8000';
+  static const String baseURL = 'https://overly-measured-panda.ngrok-free.app';
+  // "http://192.168.1.100:8000";
   static const String signUp = '$baseURL/api/users/';
   static const String login = '$baseURL/api/patients/login/';
   static const String verifyOtp = '$baseURL/api/users/otp/signup/verify/';
@@ -23,4 +21,14 @@ class ApiEndpoints {
   static const String evaluations = "$baseURL/api/evaluations/";
   static const String favorites = "$baseURL/api/patients/favorites/";
   static const String appointmentDate = "$baseURL/api/appointments/";
+  static const String appointments = '$baseURL/api/appointments/';
+  static String rebookAppointment(int appointmentId) =>
+      '$baseURL/api/appointments/$appointmentId/rebook/';
+  static String getAttachments(int appointmentId) =>
+      '$baseURL/api/appointments/$appointmentId/attachments/';
+  static String deleteAttachment(int appointmentId, int attachmentId) =>
+      '$baseURL/api/appointments/$appointmentId/attachments/$attachmentId/delete/';
+  static String getAppointmentQueue(int appointmentId) =>
+      '$baseURL/api/appointments/$appointmentId/queue/';
+  static const String specialties = "$baseURL/api/doctors/specialties/";
 }

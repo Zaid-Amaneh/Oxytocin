@@ -155,11 +155,24 @@ void showFilterSheet(BuildContext context, DoctorSearchCubit cubit) {
       return FutureBuilder<Map<String, dynamic>?>(
         future: LocalStorageService().getSelectedCategory(),
         builder: (context, snapshot) {
-          if (!snapshot.hasData) {
+          if (snapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
           }
 
-          final specialties = snapshot.data!;
+          Map<String, int> specialties = {
+            'غير محدد': 0,
+            'الطب الباطني': 1,
+            'طب الأسرة': 2,
+            'طب الأطفال': 3,
+            'التوليد وأمراض النساء': 4,
+            'الجراحة': 5,
+            'جراحة العظام': 6,
+            'طب الأعصاب': 7,
+            'جراحة الأعصاب': 8,
+            'الطب النفسي': 9,
+            'الأمراض الجلدية': 10,
+            'الأشعة': 11,
+          };
           String selectedSpecialty = specialties.entries
               .firstWhere(
                 (e) => e.value == currentParams.specialties,

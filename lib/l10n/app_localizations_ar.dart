@@ -836,6 +836,415 @@ class AppLocalizationsAr extends AppLocalizations {
       'موعدك القادم في انتظارك. نتمنى لك دوام الصحة والعافية.';
 
   @override
+  String get reservationCanceledSuccess => 'لقد قمت بإلغاء هذا الحجز بنجاح.';
+
+  @override
+  String get allReservations => 'جميع الحجوزات';
+
+  @override
+  String get currentReservations => 'الحجوزات الحالية';
+
+  @override
+  String get pastReservations => 'الحجوزات السابقة';
+
+  @override
+  String get canceledReservations => 'الحجوزات الملغاة';
+
+  @override
+  String get rebook => 'إعادة الحجز';
+
+  @override
+  String get loginRequiredForCurrentReservations =>
+      'لا يمكنك عرض الحجوزات الحالية لأنك لم تقم بتسجيل الدخول بعد. سجّل الدخول واستفد من جميع ميزات التطبيق.';
+
+  @override
+  String get edit => 'تعديل';
+
+  @override
+  String get reschedule => 'تغيير الموعد';
+
+  @override
+  String get cancelReservation => 'إلغاء الحجز';
+
+  @override
+  String get sessionFeedbackTitle => 'كيف كانت جلستك؟ قيّم تجربتك معنا!';
+
+  @override
+  String get sessionFeedbackSubtitle =>
+      'شاركنا رأيك ليساعد غيرك.. ما الذي أعجبك أو لم يعجبك؟';
+
+  @override
+  String get send => 'إرسال';
+
+  @override
+  String get map => 'الخريطة';
+
+  @override
+  String get rateDoctor => 'قيّم الطبيب';
+
+  @override
+  String get details => 'تفاصيل';
+
+  @override
+  String get call => 'اتصال';
+
+  @override
+  String get callErrorTitle => 'عذرًا، لم نتمكن من إجراء المكالمة';
+
+  @override
+  String get callErrorMessage =>
+      'تعذّر فتح تطبيق الاتصال. جرّب لاحقًا أو اتصل يدويًا.';
+
+  @override
+  String get missed_reservation =>
+      'لم تحضر هذا الحجز. نتمنى أن تتمكن من الحضور في المرات القادمة.';
+
+  @override
+  String get ratingFailed =>
+      'لم يتم رفع تقييمك بسبب حدوث خطأ، يرجى المحاولة لاحقًا.';
+
+  @override
+  String get ratingSuccess => 'تم رفع تقييمك بنجاح، شكرًا لك!';
+
+  @override
+  String get alreadyRatedOrCommented => 'تم التقييم';
+
+  @override
+  String get visitCompleted =>
+      'تمت زيارتك بنجاح. نتمنى لك دوام الصحة والعافية!';
+
+  @override
+  String get noNotes => 'لا توجد ملاحظات مسجلة';
+
+  @override
+  String get patientNotes => 'ملاحظات المريض';
+
+  @override
+  String get appointmentInfo => 'معلومات الموعد';
+
+  @override
+  String get doctorName => 'اسم الطبيب:';
+
+  @override
+  String get doctorInfo => 'معلومات الطبيب';
+
+  @override
+  String get appointmentDetails => 'تفاصيل الموعد';
+
+  @override
+  String get address => 'العنوان:';
+
+  @override
+  String get clinicNumber => 'رقم العيادة:';
+
+  @override
+  String get queue => 'الطابور';
+
+  @override
+  String get cancellationSuccess => 'تم إلغاء الموعد بنجاح.';
+
+  @override
+  String get cancellationFailed => 'لم يتم إلغاء الموعد. يرجى المحاولة لاحقًا.';
+
+  @override
+  String get updateBookingSuccess => 'تم تعديل حجزك بنجاح.';
+
+  @override
+  String get updateBookingFailed => 'فشل تعديل حجزك. يرجى المحاولة لاحقًا.';
+
+  @override
+  String get editUploadedFiles => 'تعديل الملفات';
+
+  @override
+  String get rebookingSuccess => 'تمت إعادة حجزك بنجاح بعد الإلغاء.';
+
+  @override
+  String get rebookingFailed =>
+      'تعذّرت إعادة حجزك، الموعد المطلوب أصبح مشغولاً.';
+
+  @override
+  String get fileOpenFailed => 'فشل تحميل أو فتح الملف';
+
+  @override
+  String get fileLoadedNoViewer => 'تم التحميل ولا يوجد عارض مناسب لفتح الملف.';
+
+  @override
+  String get manageAttachments => 'إدارة الملفات المرفقة';
+
+  @override
+  String get attachments => 'الملفات المرفقة';
+
+  @override
+  String attachmentsCount(Object count) {
+    return '$count من 5 ملفات';
+  }
+
+  @override
+  String get uploading => 'جاري الرفع...';
+
+  @override
+  String get addFile => 'إضافة ملف';
+
+  @override
+  String get loadingFiles => 'جاري تحميل الملفات...';
+
+  @override
+  String get noAttachments => 'لا توجد ملفات مرفقة';
+
+  @override
+  String get addFileHint => 'اضغط على زر \"إضافة ملف\" لرفع ملفاتك';
+
+  @override
+  String get deleteFile => 'حذف الملف';
+
+  @override
+  String get maxFilesError => 'لا يمكن رفع أكثر من 5 ملفات';
+
+  @override
+  String get uploadAlerts => 'تنبيهات الرفع';
+
+  @override
+  String get fileSelectionError => 'حدث خطأ أثناء اختيار الملفات';
+
+  @override
+  String get ok => 'موافق';
+
+  @override
+  String get deleteConfirmationQuestion => 'هل أنت متأكد من حذف هذا الملف؟';
+
+  @override
+  String get deleteConfirmation => 'تأكيد الحذف';
+
+  @override
+  String get delete => 'حذف';
+
+  @override
+  String get canceled => 'ألغى';
+
+  @override
+  String get absent => 'غائب';
+
+  @override
+  String get waiting => 'ينتظر';
+
+  @override
+  String get inExamination => 'يُفحص الآن';
+
+  @override
+  String get finished => 'انتهى';
+
+  @override
+  String enteredAt(Object time) {
+    return 'دخل: $time';
+  }
+
+  @override
+  String exitedAt(Object time) {
+    return 'خرج: $time';
+  }
+
+  @override
+  String appointmentAt(Object time) {
+    return 'الموعد: $time';
+  }
+
+  @override
+  String get you => 'أنت';
+
+  @override
+  String patientNumber(Object number) {
+    return 'مريض رقم $number';
+  }
+
+  @override
+  String get inQueue => 'في الانتظار';
+
+  @override
+  String get yourPosition => 'موقعك';
+
+  @override
+  String get completed => 'مكتمل';
+
+  @override
+  String queueProgress(Object progress, Object total) {
+    return '$progress من $total';
+  }
+
+  @override
+  String get queueProgressText => 'تقدم الطابور';
+
+  @override
+  String get close => 'إغلاق';
+
+  @override
+  String averageDelay(Object minutes) {
+    return 'متوسط التأخير: $minutesد';
+  }
+
+  @override
+  String averageExamination(Object minutes) {
+    return 'متوسط الفحص: $minutesد';
+  }
+
+  @override
+  String yourNumber(Object number) {
+    return 'رقمك: $number';
+  }
+
+  @override
+  String estimatedWait(Object minutes) {
+    return '$minutes دقيقة تقريباً';
+  }
+
+  @override
+  String get expectedWaitTime => 'الوقت المتوقع للانتظار';
+
+  @override
+  String get waitingQueue => 'طابور الانتظار';
+
+  @override
+  String get queueLoading => 'جاري تحميل بيانات الطابور...';
+
+  @override
+  String get pleaseWait => 'يرجى الانتظار قليلاً';
+
+  @override
+  String get queueLoadFailed => 'فشل في تحميل الطابور';
+
+  @override
+  String get serverError =>
+      'تعذر الاتصال بالخادم. يرجى التحقق من الاتصال بالإنترنت.';
+
+  @override
+  String get noQueue => 'لا يوجد طابور حالياً';
+
+  @override
+  String doctorUnavailable(Object doctorName) {
+    return 'د. $doctorName غير متاح حالياً أو لا توجد مواعيد مجدولة';
+  }
+
+  @override
+  String get checkLater => 'يمكنك العودة لاحقاً للتحقق من حالة الطابور';
+
+  @override
+  String get unknownState => 'حالة غير معروفة';
+
+  @override
+  String get unexpectedError => 'حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى';
+
+  @override
+  String get cancelAppointment => 'نعم، إلغاء الموعد';
+
+  @override
+  String get back => 'تراجع';
+
+  @override
+  String get confirmCancel => 'تأكيد الإلغاء';
+
+  @override
+  String get cancelConfirmationMsg =>
+      'هل أنت متأكد من إلغاء هذا الموعد؟ لن تتمكن من التراجع عن هذا الإجراء.';
+
+  @override
+  String get cancelAppointmentPermanently => 'إلغاء الموعد نهائياً';
+
+  @override
+  String get addRemovemanageAttachments => 'إضافة أو حذف الملفات المرفقة';
+
+  @override
+  String get changeAppointmentDateTime => 'تغيير تاريخ أو وقت الموعد';
+
+  @override
+  String get noCurrentAppointments => 'لا يوجد أي مواعيد حالية';
+
+  @override
+  String get noPastAppointments => 'لا يوجد أي مواعيد سابقة';
+
+  @override
+  String get noCancelledAppointments => 'لا يوجد أي مواعيد ملغاة';
+
+  @override
+  String get patientBannedTitle => 'تم حظر المريض';
+
+  @override
+  String get patientBannedDescription =>
+      'لقد قامت العيادة بحظر هذا الحساب. يمكنك التواصل مع العيادة لإزالة الحظر أو في حال كنت تظن أنه قد تم حظرك عن طريق الخطأ.';
+
+  @override
+  String get myMedicalRecordsTitle => 'سجلاتي الطبية';
+
+  @override
+  String get myMedicalRecordsDescription =>
+      'هنا يمكنك الاطلاع على أرشيفك الطبي بناءً على التخصصات التي زرت أطباء فيها من قبل. اختر أحد التخصصات لتتصفح السجلات الطبية المرتبطة به.';
+
+  @override
+  String get selectSpecialtyToViewRecords =>
+      'اختر اختصاصًا طبيًا للاطلاع على سجلاتك';
+
+  @override
+  String get visits => 'زيارة';
+
+  @override
+  String get selectDoctorToViewRecords => 'اختر الطبيب لعرض سجلاتك الطبية معه';
+
+  @override
+  String get visitedDoctorsDescription =>
+      'فيما يلي قائمة الأطباء الذين زرتهم. اختر طبيبًا للاطلاع على السجلات التي كتبها لك.';
+
+  @override
+  String get remainingAmount => 'المبلغ المتبقي';
+
+  @override
+  String get paidAmount => 'المبلغ المدفوع';
+
+  @override
+  String get sessionCost => 'تكلفة الجلسة';
+
+  @override
+  String get financialInfo => 'المعلومات المالية';
+
+  @override
+  String get vitalSigns => 'العلامات الحيوية';
+
+  @override
+  String get doctorRecommendations => 'توصيات الطبيب';
+
+  @override
+  String get medicalSummary => 'ملخص الحالة الطبية';
+
+  @override
+  String get mainComplaint => 'الشكوى الأساسية';
+
+  @override
+  String get manageMedicalRecords => 'إدارة السجلات الطبية';
+
+  @override
+  String get medicalRecordsPermissions => 'تحديد صلاحيات السجلات الطبية';
+
+  @override
+  String get medicalRecordsPermissionsDesc =>
+      'اختر ما إذا كان السجل الطبي عامًا يمكن لجميع الأطباء الاطلاع عليه، أو خاصًا بحيث يقتصر على أطباء نفس الاختصاص.';
+
+  @override
+  String get public => 'عام';
+
+  @override
+  String get restricted => 'خاص';
+
+  @override
+  String get noMedicalRecordsInThisField =>
+      'لا توجد لديك أي سجلات طبية في هذا المجال حتى الآن، وهذا أمر يدعو للتفاؤل.';
+
+  @override
+  String get profilePersonal => 'الملف الشخصي';
+
+  @override
+  String get appointments => 'المواعيد';
+
+  @override
+  String get home => 'الرئيسية';
+
+  @override
   String get errorLoadingCategories => 'حدث خطأ في تحميل الفئات';
 
   @override
@@ -1022,9 +1431,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profession => 'المهنة';
-
-  @override
-  String get address => 'العنوان';
 
   @override
   String get medicalInformation => 'المعلومات الطبية';

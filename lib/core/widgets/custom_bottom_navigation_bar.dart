@@ -1,5 +1,10 @@
 import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:oxytocin/core/Utils/app_images.dart';
+import 'package:oxytocin/core/Utils/app_styles.dart';
+import 'package:oxytocin/core/Utils/helpers/helper.dart';
+import 'package:oxytocin/core/theme/app_colors.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   final int currentIndex;
@@ -71,17 +76,47 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _buildNavItem(3, FeatherIcons.user, 'الملف الشخصي'),
-            _buildNavItem(2, FeatherIcons.calendar, 'المواعيد'),
-            _buildNavItem(1, FeatherIcons.user, 'الأطباء'),
-            _buildNavItem(0, FeatherIcons.home, 'الرئيسية'),
+            _buildNavItem(
+              3,
+              FeatherIcons.user,
+              AppImages.profileUnSelected,
+              AppImages.profileSelected,
+              context.tr.profilePersonal,
+            ),
+            _buildNavItem(
+              2,
+              FeatherIcons.calendar,
+              AppImages.appointmentsUnSelected,
+              AppImages.appointmentsSelected,
+              context.tr.appointments,
+            ),
+            _buildNavItem(
+              1,
+              FeatherIcons.user,
+              AppImages.doctorUnSelected,
+              AppImages.doctorSelected,
+              context.tr.doctors,
+            ),
+            _buildNavItem(
+              0,
+              FeatherIcons.home,
+              AppImages.homeUnSelected,
+              AppImages.homeSelected,
+              context.tr.home,
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildNavItem(int index, IconData icon, String label) {
+  Widget _buildNavItem(
+    int index,
+    IconData icon,
+    String imagePath,
+    String imagePathSelected,
+    String label,
+  ) {
     final isSelected = widget.currentIndex == index;
 
     return GestureDetector(
@@ -112,19 +147,15 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
             if (isSelected) ...[
               Text(
                 label,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 10,
-                  // fontWeight: FontWeight.w600,
-                  fontFamily: 'AlmaraiBold',
-                ),
+                style: AppStyles.almaraiBold(
+                  context,
+                ).copyWith(color: AppColors.background, fontSize: 12),
               ),
               const SizedBox(width: 8),
             ],
-            Icon(
-              icon,
-              color: isSelected ? Colors.white : const Color(0xFF1E3A8A),
-              size: 20,
+            SvgPicture.asset(
+              isSelected ? imagePathSelected : imagePath,
+              height: 20,
             ),
           ],
         ),

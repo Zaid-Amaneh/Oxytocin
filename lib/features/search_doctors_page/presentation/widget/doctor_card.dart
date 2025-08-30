@@ -9,15 +9,22 @@ import 'package:oxytocin/features/search_doctors_page/data/models/doctor_model.d
 import 'package:shimmer/shimmer.dart';
 
 class DoctorCard extends StatelessWidget {
-  const DoctorCard({super.key, required this.doctorModel, this.onTap});
+  const DoctorCard({
+    super.key,
+    required this.doctorModel,
+    this.onTap,
+    this.spec,
+  });
   final DoctorModel doctorModel;
   final void Function()? onTap;
+  final bool? spec;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final width = size.width;
     // final height = size.height;
-
+    double num = doctorModel.rate;
+    String rate = num.toStringAsFixed(1);
     return GestureDetector(
       onTap: onTap,
       child: Card(
@@ -80,7 +87,7 @@ class DoctorCard extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
               child: Text(
                 doctorModel.mainSpecialty.university,
                 style: AppStyles.almaraiBold(
@@ -88,42 +95,55 @@ class DoctorCard extends StatelessWidget {
                 ).copyWith(fontSize: 12, color: AppColors.textSecondary),
               ),
             ),
+            const Spacer(),
             Row(
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    spacing: 4,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            '${doctorModel.rate}/5',
-                            style: AppStyles.almaraiBold(context).copyWith(
-                              fontSize: 12,
-                              color: AppColors.textPrimary,
+                  child: spec == null
+                      ? Column(
+                          spacing: 4,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  '$rate/5',
+                                  style: AppStyles.almaraiBold(context)
+                                      .copyWith(
+                                        fontSize: 12,
+                                        color: AppColors.textPrimary,
+                                      ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 4,
+                                    right: 4,
+                                  ),
+                                  child: SvgPicture.asset(
+                                    AppImages.starSolid,
+                                    height: 14,
+                                    width: 14,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 4, right: 4),
-                            child: SvgPicture.asset(
-                              AppImages.starSolid,
-                              height: 14,
-                              width: 14,
+                            Text(
+                              '${doctorModel.rates} ${context.tr.reviews}',
+                              style: AppStyles.almaraiBold(context).copyWith(
+                                fontSize: 12,
+                                color: AppColors.textSecondary,
+                              ),
                             ),
+                          ],
+                        )
+                      : Text(
+                          '${doctorModel.rates} ${context.tr.visits}',
+                          style: AppStyles.almaraiBold(context).copyWith(
+                            fontSize: 12,
+                            color: AppColors.textSecondary,
                           ),
-                        ],
-                      ),
-                      Text(
-                        '${doctorModel.rates} ${context.tr.reviews}',
-                        style: AppStyles.almaraiBold(context).copyWith(
-                          fontSize: 12,
-                          color: AppColors.textSecondary,
                         ),
-                      ),
-                    ],
-                  ),
                 ),
                 const Spacer(),
                 Padding(

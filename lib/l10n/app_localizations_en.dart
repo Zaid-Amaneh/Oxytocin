@@ -39,7 +39,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get skip => 'Skip';
 
   @override
-  String get startNow => 'Start now';
+  String get startNow => 'Start Now';
 
   @override
   String get signUp => 'Sign Up';
@@ -51,7 +51,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get phoneNumber => 'Phone number';
+  String get phoneNumber => 'Phone Number';
 
   @override
   String get pleaseEnterValidNumber => 'Please enter a valid number';
@@ -847,6 +847,429 @@ class AppLocalizationsEn extends AppLocalizations {
       'Your next appointment is waiting for you. We wish you continued health and wellness.';
 
   @override
+  String get reservationCanceledSuccess =>
+      'You have successfully canceled this reservation.';
+
+  @override
+  String get allReservations => 'All Reservations';
+
+  @override
+  String get currentReservations => 'Current Reservations';
+
+  @override
+  String get pastReservations => 'Past Reservations';
+
+  @override
+  String get canceledReservations => 'Canceled Reservations';
+
+  @override
+  String get rebook => 'Rebook';
+
+  @override
+  String get loginRequiredForCurrentReservations =>
+      'You cannot view current reservations because you are not logged in yet. Please log in to enjoy all the app features.';
+
+  @override
+  String get edit => 'Edit';
+
+  @override
+  String get reschedule => 'Reschedule';
+
+  @override
+  String get cancelReservation => 'Cancel Reservation';
+
+  @override
+  String get sessionFeedbackTitle =>
+      'How was your session? Rate your experience with us!';
+
+  @override
+  String get sessionFeedbackSubtitle =>
+      'Share your feedback to help others.. What did you like or dislike?';
+
+  @override
+  String get send => 'Send';
+
+  @override
+  String get map => 'Map';
+
+  @override
+  String get rateDoctor => 'Rate Doctor';
+
+  @override
+  String get details => 'Details';
+
+  @override
+  String get call => 'Call';
+
+  @override
+  String get callErrorTitle => 'Sorry, we couldn\'t make the call';
+
+  @override
+  String get callErrorMessage =>
+      'Failed to open the call app. Please try again later or dial manually.';
+
+  @override
+  String get missed_reservation =>
+      'You missed this reservation. We hope you can attend next time.';
+
+  @override
+  String get ratingFailed =>
+      'Your rating could not be submitted due to an error. Please try again later.';
+
+  @override
+  String get ratingSuccess =>
+      'Your rating has been submitted successfully. Thank you!';
+
+  @override
+  String get alreadyRatedOrCommented => 'Rated';
+
+  @override
+  String get visitCompleted =>
+      'Your visit has been completed successfully. Wishing you good health and wellness!';
+
+  @override
+  String get noNotes => 'No notes recorded';
+
+  @override
+  String get patientNotes => 'Patient Notes';
+
+  @override
+  String get appointmentInfo => 'Appointment Information';
+
+  @override
+  String get doctorName => 'Doctor Name:';
+
+  @override
+  String get doctorInfo => 'Doctor Information';
+
+  @override
+  String get appointmentDetails => 'Appointment Details';
+
+  @override
+  String get address => 'Address:';
+
+  @override
+  String get clinicNumber => 'Clinic Number:';
+
+  @override
+  String get queue => 'Queue';
+
+  @override
+  String get cancellationSuccess =>
+      'The appointment has been cancelled successfully.';
+
+  @override
+  String get cancellationFailed =>
+      'The appointment could not be cancelled. Please try again later.';
+
+  @override
+  String get updateBookingSuccess =>
+      'Your booking has been updated successfully.';
+
+  @override
+  String get updateBookingFailed =>
+      'Failed to update your booking. Please try again later.';
+
+  @override
+  String get editUploadedFiles => 'Edit Files';
+
+  @override
+  String get rebookingSuccess =>
+      'Your booking has been successfully rescheduled after cancellation.';
+
+  @override
+  String get rebookingFailed =>
+      'Rebooking failed, the requested time slot is already taken.';
+
+  @override
+  String get fileOpenFailed => 'Failed to load or open the file';
+
+  @override
+  String get fileLoadedNoViewer =>
+      'The file is loaded but no viewer is available to open it.';
+
+  @override
+  String get manageAttachments => 'Manage Attachments';
+
+  @override
+  String get attachments => 'Attachments';
+
+  @override
+  String attachmentsCount(Object count) {
+    return '$count of 5 files';
+  }
+
+  @override
+  String get uploading => 'Uploading...';
+
+  @override
+  String get addFile => 'Add File';
+
+  @override
+  String get loadingFiles => 'Loading files...';
+
+  @override
+  String get noAttachments => 'No attachments available';
+
+  @override
+  String get addFileHint =>
+      'Press the \'Add File\' button to upload your files';
+
+  @override
+  String get deleteFile => 'Delete File';
+
+  @override
+  String get maxFilesError => 'You cannot upload more than 5 files';
+
+  @override
+  String get uploadAlerts => 'Upload Alerts';
+
+  @override
+  String get fileSelectionError => 'An error occurred while selecting files';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get deleteConfirmationQuestion =>
+      'Are you sure you want to delete this file?';
+
+  @override
+  String get deleteConfirmation => 'Delete Confirmation';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get canceled => 'Canceled';
+
+  @override
+  String get absent => 'Absent';
+
+  @override
+  String get waiting => 'Waiting';
+
+  @override
+  String get inExamination => 'In Examination';
+
+  @override
+  String get finished => 'Finished';
+
+  @override
+  String enteredAt(Object time) {
+    return 'Entered at: $time';
+  }
+
+  @override
+  String exitedAt(Object time) {
+    return 'Exited at: $time';
+  }
+
+  @override
+  String appointmentAt(Object time) {
+    return 'Appointment: $time';
+  }
+
+  @override
+  String get you => 'You';
+
+  @override
+  String patientNumber(Object number) {
+    return 'Patient No. $number';
+  }
+
+  @override
+  String get inQueue => 'In Queue';
+
+  @override
+  String get yourPosition => 'Your Position';
+
+  @override
+  String get completed => 'Completed';
+
+  @override
+  String queueProgress(Object progress, Object total) {
+    return '$progress of $total';
+  }
+
+  @override
+  String get queueProgressText => 'Queue Progress';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String averageDelay(Object minutes) {
+    return 'Average Delay: ${minutes}m';
+  }
+
+  @override
+  String averageExamination(Object minutes) {
+    return 'Average Examination: ${minutes}m';
+  }
+
+  @override
+  String yourNumber(Object number) {
+    return 'Your Number: $number';
+  }
+
+  @override
+  String estimatedWait(Object minutes) {
+    return 'Approximately $minutes minutes';
+  }
+
+  @override
+  String get expectedWaitTime => 'Expected Waiting Time';
+
+  @override
+  String get waitingQueue => 'Waiting Queue';
+
+  @override
+  String get queueLoading => 'Loading queue data...';
+
+  @override
+  String get pleaseWait => 'Please wait a moment';
+
+  @override
+  String get queueLoadFailed => 'Failed to load queue';
+
+  @override
+  String get serverError =>
+      'Could not connect to the server. Please check your internet connection.';
+
+  @override
+  String get noQueue => 'No queue available';
+
+  @override
+  String doctorUnavailable(Object doctorName) {
+    return 'Dr. $doctorName is currently unavailable or no appointments are scheduled';
+  }
+
+  @override
+  String get checkLater => 'You can come back later to check the queue status';
+
+  @override
+  String get unknownState => 'Unknown state';
+
+  @override
+  String get unexpectedError =>
+      'An unexpected error occurred, please try again';
+
+  @override
+  String get cancelAppointment => 'Yes, cancel the appointment';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get confirmCancel => 'Confirm cancellation';
+
+  @override
+  String get cancelConfirmationMsg =>
+      'Are you sure you want to cancel this appointment? You will not be able to undo this action.';
+
+  @override
+  String get cancelAppointmentPermanently =>
+      'Cancel the appointment permanently';
+
+  @override
+  String get addRemovemanageAttachments => 'Add or remove attachments';
+
+  @override
+  String get changeAppointmentDateTime => 'Change appointment date or time';
+
+  @override
+  String get noCurrentAppointments => 'You have no current appointments';
+
+  @override
+  String get noPastAppointments => 'You have no past appointments';
+
+  @override
+  String get noCancelledAppointments => 'You have no cancelled appointments';
+
+  @override
+  String get patientBannedTitle => 'Patient Banned';
+
+  @override
+  String get patientBannedDescription =>
+      'This account has been banned by the clinic. Please contact the clinic to remove the ban or if you believe this ban was applied by mistake.';
+
+  @override
+  String get myMedicalRecordsTitle => 'My Medical Records';
+
+  @override
+  String get myMedicalRecordsDescription =>
+      'Here you can view your medical archive based on the specialties of doctors you have visited before. Select a specialty to browse the related medical records.';
+
+  @override
+  String get selectSpecialtyToViewRecords =>
+      'Select a medical specialty to view your records';
+
+  @override
+  String get visits => 'Visits';
+
+  @override
+  String get selectDoctorToViewRecords =>
+      'Select a doctor to view your medical records with them';
+
+  @override
+  String get visitedDoctorsDescription =>
+      'Here is a list of the doctors you have visited. Select a doctor to view the records they wrote for you.';
+
+  @override
+  String get remainingAmount => 'Remaining Amount';
+
+  @override
+  String get paidAmount => 'Paid Amount';
+
+  @override
+  String get sessionCost => 'Session Cost';
+
+  @override
+  String get financialInfo => 'Financial Information';
+
+  @override
+  String get vitalSigns => 'Vital Signs';
+
+  @override
+  String get doctorRecommendations => 'Doctor\'s Recommendations';
+
+  @override
+  String get medicalSummary => 'Medical Summary';
+
+  @override
+  String get mainComplaint => 'Main Complaint';
+
+  @override
+  String get manageMedicalRecords => 'Manage medical records';
+
+  @override
+  String get medicalRecordsPermissions => 'Set Medical Records Permissions';
+
+  @override
+  String get medicalRecordsPermissionsDesc =>
+      'Choose whether the medical record is public, allowing all doctors to view it, or private, restricted to doctors of the same specialty.';
+
+  @override
+  String get public => 'Public';
+
+  @override
+  String get restricted => 'Restricted';
+
+  @override
+  String get noMedicalRecordsInThisField =>
+      'You don\'t have any medical records in this field yet, and that\'s something to be optimistic about.';
+
+  @override
+  String get profilePersonal => 'Profile';
+
+  @override
+  String get appointments => 'Appointments';
+
+  @override
+  String get home => 'Home';
+
+  @override
   String get errorLoadingCategories => 'Error loading categories';
 
   @override
@@ -1037,9 +1460,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profession => 'Profession';
-
-  @override
-  String get address => 'Address';
 
   @override
   String get medicalInformation => 'Medical information';

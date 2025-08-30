@@ -4,6 +4,12 @@ import 'package:http/http.dart' as http;
 import 'package:oxytocin/core/Utils/app_images.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/features/favorites/data/services/favorite_manager.dart';
+import 'package:oxytocin/features/appointments_management/data/services/appointment_cancellation_service.dart';
+import 'package:oxytocin/features/appointments_management/data/services/appointments_fetch_service.dart';
+import 'package:oxytocin/features/appointments_management/data/services/evaluation_service.dart';
+import 'package:oxytocin/features/appointments_management/data/services/re_book_appointment_service.dart';
+import 'package:oxytocin/features/appointments_management/data/services/rebook_appointment_service.dart';
+import 'package:oxytocin/features/appointments_management/presentation/viewmodels/management_appointments_cubit.dart';
 import 'package:oxytocin/features/home/presentation/widgets/doctor_card.dart';
 import 'package:oxytocin/features/home/presentation/widgets/nearby_doctor_card.dart';
 import 'package:oxytocin/features/home/presentation/widgets/section_header.dart';
@@ -28,7 +34,7 @@ import 'package:oxytocin/features/profile/presentation/cubit/profile_cubit.dart'
 import 'package:oxytocin/features/profile/presentation/cubit/profile_state.dart';
 import 'package:oxytocin/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:oxytocin/features/profile/data/datasources/profile_data_source.dart';
-import 'package:oxytocin/features/medical_appointments/presentation/views/medical_appointments_view.dart';
+import 'package:oxytocin/features/appointments_management/presentation/views/appointments_management_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -529,7 +535,21 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget _buildAppointmentsPage() {
-    return const MedicalAppointmentsView();
+    final appointmentsFetchService = AppointmentsFetchService(http.Client());
+    final evaluationService = EvaluationService(http.Client());
+    final appointmentCancellationService = AppointmentCancellationService(
+      http.Client(),
+    );
+    final rebookService = RebookAppointmentService(http.Client());
+    return BlocProvider(
+      create: (context) => ManagementAppointmentsCubit(
+        appointmentsFetchService: appointmentsFetchService,
+        evaluationService: evaluationService,
+        cancellationService: appointmentCancellationService,
+        rebookService: rebookService,
+      ),
+      child: const AppointmentsManagementView(),
+    );
   }
 
   Widget _buildProfilePage() {

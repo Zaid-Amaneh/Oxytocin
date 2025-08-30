@@ -55,6 +55,7 @@ class AppImages {
   static const String starOutline = 'assets/images/starOutline.svg';
   static const String imagesMedicines = "assets/images/medicines.svg";
   static const String noClinicImage = "assets/images/noClinicImage.svg";
+  static const String queueIcon = "assets/images/queueIcon.svg";
   static const String alcohol = 'assets/images/alcohol.png';
 
   static const String imagesO = "assets/images/o-.png";
@@ -92,6 +93,8 @@ class AppImages {
   static const String rescheduleIcon = "assets/images/reschedule.svg";
 
   static const String editIcon = "assets/images/edit.svg";
+
+  static const String fileIcon = "assets/images/filesEdit.svg";
 
   static const String mapLocationIcon = "assets/images/map_location.svg";
 
@@ -162,4 +165,20 @@ class AppImages {
   static const String categoryDefault = "assets/images/categories/myself.svg";
 
   static const String doctorDefault = "assets/images/categories/myself.svg";
+
+  static const String comfortablePerson =
+      "assets/images/comfortable_person.png";
+  static const String comfortablePersonSvg =
+      "assets/images/comfortable_person.svg";
+
+  static const String appointmentsSelected =
+      "assets/images/appointmentsSelected.svg";
+  static const String appointmentsUnSelected =
+      "assets/images/appointmentsUnSelected.svg";
+  static const String doctorSelected = "assets/images/doctorSelected.svg";
+  static const String doctorUnSelected = "assets/images/doctorUnSelected.svg";
+  static const String profileSelected = "assets/images/profileSelected.svg";
+  static const String profileUnSelected = "assets/images/profileUnSelected.svg";
+  static const String homeSelected = "assets/images/homeSelected.svg";
+  static const String homeUnSelected = "assets/images/homeUnSelected.svg";
 }
