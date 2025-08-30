@@ -182,7 +182,7 @@ class NearbyDoctorCard extends StatelessWidget {
                         SizedBox(height: isTablet ? 10.0 : 5.0),
                         Padding(
                           padding: EdgeInsets.only(
-                            right: isTablet ? 110.0 : 100.0,
+                            right: isTablet ? 90.0 : 80.0,
                           ),
                           child: Container(
                             padding: EdgeInsets.symmetric(
@@ -231,7 +231,7 @@ class NearbyDoctorCard extends StatelessWidget {
                               Text(
                                 info.rates > 0
                                     ? '${info.rate.toStringAsFixed(1)} (${info.rates})'
-                                    : '${info.rate.toStringAsFixed(1)}',
+                                    : info.rate.toStringAsFixed(1),
                                 style: TextStyle(
                                   color: Colors.white70,
                                   fontSize: isTablet ? 10.0 : 8.0,

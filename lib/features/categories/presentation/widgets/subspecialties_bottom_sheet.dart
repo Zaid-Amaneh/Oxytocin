@@ -94,7 +94,9 @@ class SubspecialtiesBottomSheet extends StatelessWidget {
                     Navigator.pop(context);
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => DoctorsPage()),
+                      MaterialPageRoute(
+                        builder: (_) => DoctorsPage(id: subspecialty.id),
+                      ),
                     );
                   },
                 );

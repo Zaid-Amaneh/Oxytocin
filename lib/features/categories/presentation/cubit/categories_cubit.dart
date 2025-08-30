@@ -91,6 +91,8 @@ class CategoriesCubit extends Cubit<CategoriesState> {
       final res = await remoteDataSource.fetchDoctorsBySubspecialty(
         subspecialtyId,
       );
+
+      print("lissst${res.results.length}");
       emit(
         state.copyWith(status: CategoriesStatus.success, doctors: res.results),
       );

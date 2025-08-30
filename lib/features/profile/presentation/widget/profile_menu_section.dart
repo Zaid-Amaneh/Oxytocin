@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
+import 'package:oxytocin/core/routing/navigation_service.dart';
+import 'package:oxytocin/core/routing/route_names.dart';
 import 'package:oxytocin/core/theme/app_colors.dart';
 import 'package:oxytocin/core/Utils/size_config.dart';
 import 'package:oxytocin/features/profile/presentation/widget/settings_sheet.dart';
@@ -56,6 +58,13 @@ class _ProfileMenuSectionState extends State<ProfileMenuSection> {
         SizedBox(height: SizeConfig.getProportionateScreenHeight(16)),
         _buildMenuCard([
           _buildMenuItem(
+            icon: Icons.archive,
+            title: context.tr.manageAttachments,
+            onTap: () => NavigationService().pushToNamed(
+              RouteNames.manageMedicalRecords,
+            ),
+          ),
+          _buildMenuItem(
             icon: Icons.settings,
             title: context.tr.settings,
             onTap: () => SettingsSheet.open(context),
@@ -74,7 +83,7 @@ class _ProfileMenuSectionState extends State<ProfileMenuSection> {
   Widget _buildMenuCard(List<Widget> children) {
     return Container(
       decoration: BoxDecoration(
-        color: Color(0xffD9D9D9),
+        color: const Color(0xffD9D9D9),
         borderRadius: BorderRadius.circular(
           SizeConfig.getProportionateScreenWidth(16),
         ),

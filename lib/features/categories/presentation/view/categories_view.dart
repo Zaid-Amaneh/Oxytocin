@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oxytocin/core/Utils/helpers/helper.dart';
 import 'package:oxytocin/core/Utils/services/local_storage_service.dart';
+import 'package:oxytocin/core/widgets/custom_app_bar.dart';
 import 'package:oxytocin/features/categories/data/datasources/categories_remote_data_source.dart';
 import '../cubit/categories_cubit.dart';
 import '../cubit/categories_state.dart';
@@ -29,6 +30,7 @@ class _CategoriesViewState extends State<CategoriesView> {
         return cubit;
       },
       child: Scaffold(
+        appBar: CustomAppBar(titel: context.tr.specialization),
         body: Padding(
           padding: const EdgeInsets.only(
             top: 96,
@@ -66,7 +68,7 @@ class _CategoriesViewState extends State<CategoriesView> {
                             Text(
                               context.tr.errorLoadingCategories,
                               // 'حدث خطأ في تحميل الفئات',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 16,
                                 fontFamily: 'AlmaraiRegular',
                               ),
