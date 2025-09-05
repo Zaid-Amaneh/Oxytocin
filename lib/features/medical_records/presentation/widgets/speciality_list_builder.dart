@@ -137,8 +137,11 @@ class NetworkImageWithState extends StatelessWidget {
           ),
         );
       },
-      errorBuilder: (context, error, stackTrace) =>
-          const Icon(Icons.error_outline, size: 36, color: AppColors.error),
+      errorBuilder: (context, error, stackTrace) => const Icon(
+        Icons.medical_information,
+        size: 36,
+        color: AppColors.background,
+      ),
     );
   }
 }

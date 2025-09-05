@@ -249,7 +249,7 @@ class _HomeViewState extends State<HomeView> {
                           child: Text(
                             // 'حدث خطأ في تحميل الفئات'
                             context.tr.errorLoadingCategories,
-                            style: TextStyle(fontSize: 14),
+                            style: const TextStyle(fontSize: 14),
                           ),
                         );
                       }
@@ -260,126 +260,126 @@ class _HomeViewState extends State<HomeView> {
             ),
           ),
           SizedBox(height: screenHeight * 0.01),
-          SectionHeader(title: context.tr.topDoctorsByRating),
-          SizedBox(height: screenHeight * 0.012),
-          BlocBuilder<HomeCubit, HomeState>(
-            builder: (context, state) {
-              if (state is HomeLoading) {
-                return const Center(child: CircularProgressIndicator());
-              } else if (state is HomeLoaded) {
-                return Consumer<FavoriteManager>(
-                  builder: (context, favoriteManager, child) {
-                    return Padding(
-                      padding: const EdgeInsets.only(left: 8.0, right: 8),
-                      child: SizedBox(
-                        height: isTablet ? 320.0 : 260.0,
-                        child: ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: state.doctors.length,
-                          itemBuilder: (context, index) {
-                            final doctor = state.doctors[index];
-                            final isFavorite = favoriteManager.isFavorite(
-                              doctor.id,
-                            );
-                            return DoctorCard(
-                              doctor: doctor,
-                              isFavorite: isFavorite,
-                              onTap: () => _onDoctorCardTap(index),
-                              onFavoriteTap: () => _onDoctorFavoriteTap(index),
-                              onBookTap: () => _onDoctorBookTap(index),
-                            );
-                          },
-                          separatorBuilder: (_, __) =>
-                              SizedBox(width: isTablet ? 8.0 : 6.0),
-                        ),
-                      ),
-                    );
-                  },
-                );
-              } else if (state is HomeFullyLoaded) {
-                return Consumer<FavoriteManager>(
-                  builder: (context, favoriteManager, child) {
-                    return Padding(
-                      padding: const EdgeInsets.only(left: 8.0, right: 8),
-                      child: SizedBox(
-                        height: isTablet ? 320.0 : 260.0,
-                        child: ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: state.doctors.length,
-                          itemBuilder: (context, index) {
-                            final doctor = state.doctors[index];
-                            final isFavorite = favoriteManager.isFavorite(
-                              doctor.id,
-                            );
-                            return DoctorCard(
-                              isFavorite: isFavorite,
-                              doctor: doctor,
-                              onTap: () => _onDoctorCardTap(index),
-                              onFavoriteTap: () => _onDoctorFavoriteTap(index),
-                              onBookTap: () => _onDoctorBookTap(index),
-                            );
-                          },
-                          separatorBuilder: (_, __) =>
-                              SizedBox(width: isTablet ? 8.0 : 6.0),
-                        ),
-                      ),
-                    );
-                  },
-                );
-              } else if (state is HomeError) {
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.error_outline,
-                        size: 64,
-                        color: Colors.red[300],
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        'حدث خطأ في تحميل البيانات',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.red[700],
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        state.message,
-                        style: TextStyle(fontSize: 14, color: Colors.grey[600]),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 16),
-                      ElevatedButton(
-                        onPressed: () {
-                          _loadDoctorsWithCurrentLocation();
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                        child: Text(
-                          context.tr.retry,
-                          // 'إعادة المحاولة',
-                          style: TextStyle(
-                            fontFamily: 'AlmaraiBold',
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              } else {
-                return Center(child: Text(context.tr.noDataAvailable));
-              }
-            },
-          ),
 
+          // SectionHeader(title: context.tr.topDoctorsByRating),
+          // SizedBox(height: screenHeight * 0.012),
+          // BlocBuilder<HomeCubit, HomeState>(
+          //   builder: (context, state) {
+          //     if (state is HomeLoading) {
+          //       return const Center(child: CircularProgressIndicator());
+          //     } else if (state is HomeLoaded) {
+          //       return Consumer<FavoriteManager>(
+          //         builder: (context, favoriteManager, child) {
+          //           return Padding(
+          //             padding: const EdgeInsets.only(left: 8.0, right: 8),
+          //             child: SizedBox(
+          //               height: isTablet ? 320.0 : 260.0,
+          //               child: ListView.separated(
+          //                 scrollDirection: Axis.horizontal,
+          //                 itemCount: state.doctors.length,
+          //                 itemBuilder: (context, index) {
+          //                   final doctor = state.doctors[index];
+          //                   final isFavorite = favoriteManager.isFavorite(
+          //                     doctor.id,
+          //                   );
+          //                   return DoctorCard(
+          //                     doctor: doctor,
+          //                     isFavorite: isFavorite,
+          //                     onTap: () => _onDoctorCardTap(index),
+          //                     onFavoriteTap: () => _onDoctorFavoriteTap(index),
+          //                     onBookTap: () => _onDoctorBookTap(index),
+          //                   );
+          //                 },
+          //                 separatorBuilder: (_, __) =>
+          //                     SizedBox(width: isTablet ? 8.0 : 6.0),
+          //               ),
+          //             ),
+          //           );
+          //         },
+          //       );
+          //     } else if (state is HomeFullyLoaded) {
+          //       return Consumer<FavoriteManager>(
+          //         builder: (context, favoriteManager, child) {
+          //           return Padding(
+          //             padding: const EdgeInsets.only(left: 8.0, right: 8),
+          //             child: SizedBox(
+          //               height: isTablet ? 320.0 : 260.0,
+          //               child: ListView.separated(
+          //                 scrollDirection: Axis.horizontal,
+          //                 itemCount: state.doctors.length,
+          //                 itemBuilder: (context, index) {
+          //                   final doctor = state.doctors[index];
+          //                   final isFavorite = favoriteManager.isFavorite(
+          //                     doctor.id,
+          //                   );
+          //                   return DoctorCard(
+          //                     isFavorite: isFavorite,
+          //                     doctor: doctor,
+          //                     onTap: () => _onDoctorCardTap(index),
+          //                     onFavoriteTap: () => _onDoctorFavoriteTap(index),
+          //                     onBookTap: () => _onDoctorBookTap(index),
+          //                   );
+          //                 },
+          //                 separatorBuilder: (_, __) =>
+          //                     SizedBox(width: isTablet ? 8.0 : 6.0),
+          //               ),
+          //             ),
+          //           );
+          //         },
+          //       );
+          //     } else if (state is HomeError) {
+          //       return Center(
+          //         child: Column(
+          //           mainAxisAlignment: MainAxisAlignment.center,
+          //           children: [
+          //             Icon(
+          //               Icons.error_outline,
+          //               size: 64,
+          //               color: Colors.red[300],
+          //             ),
+          //             const SizedBox(height: 16),
+          //             Text(
+          //               'حدث خطأ في تحميل البيانات',
+          //               style: TextStyle(
+          //                 fontSize: 16,
+          //                 fontWeight: FontWeight.bold,
+          //                 color: Colors.red[700],
+          //               ),
+          //             ),
+          //             const SizedBox(height: 8),
+          //             Text(
+          //               state.message,
+          //               style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+          //               textAlign: TextAlign.center,
+          //             ),
+          //             const SizedBox(height: 16),
+          //             ElevatedButton(
+          //               onPressed: () {
+          //                 _loadDoctorsWithCurrentLocation();
+          //               },
+          //               style: ElevatedButton.styleFrom(
+          //                 backgroundColor: Colors.blue,
+          //                 shape: RoundedRectangleBorder(
+          //                   borderRadius: BorderRadius.circular(8),
+          //                 ),
+          //               ),
+          //               child: Text(
+          //                 context.tr.retry,
+          //                 // 'إعادة المحاولة',
+          //                 style: const TextStyle(
+          //                   fontFamily: 'AlmaraiBold',
+          //                   color: Colors.white,
+          //                 ),
+          //               ),
+          //             ),
+          //           ],
+          //         ),
+          //       );
+          //     } else {
+          //       return Center(child: Text(context.tr.noDataAvailable));
+          //     }
+          //   },
+          // ),
           SizedBox(height: screenHeight * 0.01),
           SectionHeader(title: context.tr.doctorsNearYou),
           SizedBox(height: screenHeight * 0.010),
