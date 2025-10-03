@@ -12,31 +12,51 @@ You can view the UI/UX design and an interactive prototype of the project on Beh
 
 👉 [Watch here](https://www.behance.net/gallery/234136599/Medical-Appointment-Booking-App-Mobile-UIUX-Design)
 
-## 🎨 Screenshots & GIFs
+## 🎨 Screenshots
 
 Here are some highlights of the Oxytocin app’s UI/UX and interactions:
 
-**Login Screen**  
-![Login Screen](https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/login.png)
-
-**Register Screen**  
-![Register Screen](https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/register.png)
-
-**Queue Screen**  
-![Queue Screen](https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/queue1.png)
-![Queue Screen](https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/queue2.png)
-
-**Home Page Screen**  
-![Home Page](https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/homePage.png)
-
-**Doctor Profile Screen**  
-![Doctor Search](https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/doctorProfile.png)
-
-**Google Maps Interaction**  
-![Map Interaction](https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/googleMapsInteraction.png)
-
-**Appointment Booked**  
-![Appointment Booked](https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/appointmentBooked.png)
+<table>
+<tr>
+<td align="center">
+**Login Screen**<br>
+<img src="https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/login.png" alt="Login Screen" width="250"/>
+</td>
+<td align="center">
+**Register Screen**<br>
+<img src="https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/register.png" alt="Register Screen" width="250"/>
+</td>
+<td align="center">
+**Home Page**<br>
+<img src="https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/homePage.png" alt="Home Page" width="250"/>
+</td>
+</tr>
+<tr>
+<td align="center">
+**Queue Screen 1**<br>
+<img src="https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/queue1.png" alt="Queue Screen 1" width="250"/>
+</td>
+<td align="center">
+**Queue Screen 2**<br>
+<img src="https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/queue2.png" alt="Queue Screen 2" width="250"/>
+</td>
+<td align="center">
+**Doctor Profile**<br>
+<img src="https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/doctorProfile.png" alt="Doctor Profile" width="250"/>
+</td>
+</tr>
+<tr>
+<td align="center">
+**Google Maps Interaction**<br>
+<img src="https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/googleMapsInteraction.png" alt="Google Maps Interaction" width="250"/>
+</td>
+<td align="center">
+**Appointment Booked**<br>
+<img src="https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/appointmentBooked.png" alt="Appointment Booked" width="250"/>
+</td>
+<td></td>
+</tr>
+</table>
 
 
 ## 🚀 Flutter Features & Architectural Patterns
@@ -74,7 +94,7 @@ The project utilizes a modern technology stack to ensure scalability, security, 
 ## 👨‍💻 Author
 
 - **Zaid Amaneh** – Flutter Developer & UI/UX Designer
-- 💼 [LinkedIn](www.linkedin.com/in/zaidamaneh)
+- 💼 [LinkedIn](https://www.linkedin.com/in/zaidamaneh/?locale=en_US)
 - 🐙 [GitHub](https://github.com/zaid-amaneh)
 - 🎨 [Behance](https://www.behance.net/zaidamaneh)
 
