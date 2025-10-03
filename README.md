@@ -32,3 +32,13 @@ You can view the UI/UX design and an interactive prototype of the project on Beh
 | **Form Validation** | Provides input validation and error handling for forms like booking appointments or creating patient records. |
 | **Error Handling & Loading States** | Implements consistent error handling and loading indicators for a better user experience. |
 
+## 👨‍💻 Author
+- **Zaid Amaneh** – Flutter Developer & UI/UX Designer
+- 💼 [LinkedIn](www.linkedin.com/in/zaidamaneh)
+- 🐙 [GitHub](https://github.com/zaid-amaneh)
+- 🎨 [Behance](https://www.behance.net/zaidamaneh)
+
+## 📄 License
+
+This project is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
+
