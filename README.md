@@ -17,23 +17,26 @@ You can view the UI/UX design and an interactive prototype of the project on Beh
 Here are some highlights of the Oxytocin app’s UI/UX and interactions:
 
 **Login Screen**  
-![Login Screen](https://github.com/zaid-amaneh/Oxytocin/raw/main/assets/images/login.png)
+![Login Screen](https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/login.png)
 
-**Doctor Search Screen**  
-![Doctor Search](https://github.com/zaid-amaneh/Oxytocin/raw/main/assets/images/search.png)
+**Register Screen**  
+![Register Screen](https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/register.png)
 
-**Dashboard / Admin Panel**  
-![Dashboard](https://github.com/zaid-amaneh/Oxytocin/raw/main/assets/images/dashboard.png)
+**Queue Screen**  
+![Queue Screen](https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/queue1.png)
+![Queue Screen](https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/queue2.png)
+
+**Home Page Screen**  
+![Home Page](https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/homePage.png)
+
+**Doctor Profile Screen**  
+![Doctor Search](https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/doctorProfile.png)
 
 **Google Maps Interaction**  
-*Displays clinic locations, routes, and interactive map features.*  
-![Map Interaction](https://github.com/zaid-amaneh/Oxytocin/raw/main/assets/gifs/map_interaction.gif)
+![Map Interaction](https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/googleMapsInteraction.png)
 
-**Appointment Booking**  
-![Appointment Booking](https://github.com/zaid-amaneh/Oxytocin/raw/main/assets/images/appointment.png)
-
-**Medical Records Screen**  
-![Medical Records](https://github.com/zaid-amaneh/Oxytocin/raw/main/assets/images/records.png)
+**Appointment Booked**  
+![Appointment Booked](https://github.com/Zaid-Amaneh/Oxytocin/blob/main/screenshots/appointmentBooked.png)
 
 
 ## 🚀 Flutter Features & Architectural Patterns
