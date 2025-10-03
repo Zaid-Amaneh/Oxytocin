@@ -12,10 +12,33 @@ You can view the UI/UX design and an interactive prototype of the project on Beh
 
 👉 [Watch here](https://www.behance.net/gallery/234136599/Medical-Appointment-Booking-App-Mobile-UIUX-Design)
 
+## 🎨 Screenshots & GIFs
+
+Here are some highlights of the Oxytocin app’s UI/UX and interactions:
+
+**Login Screen**  
+![Login Screen](https://github.com/zaid-amaneh/Oxytocin/raw/main/assets/images/login.png)
+
+**Doctor Search Screen**  
+![Doctor Search](https://github.com/zaid-amaneh/Oxytocin/raw/main/assets/images/search.png)
+
+**Dashboard / Admin Panel**  
+![Dashboard](https://github.com/zaid-amaneh/Oxytocin/raw/main/assets/images/dashboard.png)
+
+**Google Maps Interaction**  
+*Displays clinic locations, routes, and interactive map features.*  
+![Map Interaction](https://github.com/zaid-amaneh/Oxytocin/raw/main/assets/gifs/map_interaction.gif)
+
+**Appointment Booking**  
+![Appointment Booking](https://github.com/zaid-amaneh/Oxytocin/raw/main/assets/images/appointment.png)
+
+**Medical Records Screen**  
+![Medical Records](https://github.com/zaid-amaneh/Oxytocin/raw/main/assets/images/records.png)
+
+
 ## 🚀 Flutter Features & Architectural Patterns
 
 *A detailed overview of the key features, design patterns, and technologies implemented in the Oxytocin app using Flutter.*
-
 
 | Feature / Concept | Description |
 | --- | --- |
@@ -32,7 +55,21 @@ You can view the UI/UX design and an interactive prototype of the project on Beh
 | **Form Validation** | Provides input validation and error handling for forms like booking appointments or creating patient records. |
 | **Error Handling & Loading States** | Implements consistent error handling and loading indicators for a better user experience. |
 
+## 💣 Technology Stack
+
+The project utilizes a modern technology stack to ensure scalability, security, and a seamless user experience.
+
+| Category | Technology | Description |
+| --- | --- | --- |
+| **Backend** | Django (Python) | A high-level Python web framework used for the core application logic. |
+| **Mobile App** | Flutter | A UI toolkit by Google for building natively compiled applications for mobile from a single codebase. |
+| **Web Frontend** | React | A JavaScript library for building user interfaces, used for the web dashboard. |
+| **Database** | PostgreSQL + PostGIS | The primary database for the system. PostGIS provides support for geographic objects. |
+| **UI/UX Design** | Figma | A collaborative design tool used for creating the user interface and user experience prototypes. |
+| **Authentication** | JWT (JSON Web Tokens) | Used for securely transmitting information between parties as a JSON object to authenticate sessions. |
+
 ## 👨‍💻 Author
+
 - **Zaid Amaneh** – Flutter Developer & UI/UX Designer
 - 💼 [LinkedIn](www.linkedin.com/in/zaidamaneh)
 - 🐙 [GitHub](https://github.com/zaid-amaneh)
